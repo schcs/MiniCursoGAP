@@ -12,6 +12,7 @@ $$
 A [Conjetura de Collatz](https://en.wikipedia.org/wiki/Collatz_conjecture) afirma que para todo $n\in\N$, existe um número $k$ tal que aplicando a função $f$ $k$ vezes em $n$, o resultado vai ser igual a $1$. Em outras, palavras, $f^k(n)=1$.
 </div>
 
+### Tarefa
 <div class="subproblem">
 Escreva uma função `collatz( n )` que toma $n$ como input e devolve $f(n)$. Faça testes da sua função com vários números. 
 </div>
@@ -27,7 +28,7 @@ gap> 6 mod 2;
 Além disso, a sua função precisará usar a expressão `if` [(manual)](https://docs.gap-system.org/doc/ref/chap4_mj.html#X875000188622700D).
 </div>
 
-<div class="example_code">
+<div class="example_run">
 A sua função deve comportar-se de acordo com os seguintes exemplos:
 ```python
 gap> collatz( 15 );
@@ -39,6 +40,8 @@ gap> collatz( 5 );
 ```
 </div>
 
+
+### Tarefa 2
 <div class="subproblem">
 Escreva uma função `nr_steps( n )` que vai calcular o número de vezes a função $f$ precisa ser aplicado em $n$ para obter o número $1$. Em outras palavras,  `nr_steps( n )` deve devolver o menor número $k$ tal que $f^k(n)=1$.
 </div>
@@ -61,6 +64,8 @@ gap> nr_steps( 32 );
 ```
 </div>
 
+
+### Tarefa 3
 <div class="subproblem">
 Escreva uma função `max_nr_steps( n )` para determinar o número $k\in\{1,\ldots,n\}$ tal que `nr_steps( k )` é maior possível.
 </div>
@@ -81,6 +86,7 @@ gap> max_nr_steps( 100000 );
 ```
 </div>
 
+### Tarefa 4
 <div class="subproblem">
 Calcular `nr_steps( k )` separadamente para todo $k\in \{1,\ldots,n\}$ faz muita computação redundante. Por exemplo, calculando `max_nr_steps( 6 )` deste jeito, fazemos as seguintes contas 
 ```python
