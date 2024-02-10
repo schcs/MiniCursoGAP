@@ -119,8 +119,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     3n+1 &amp; \mbox{se $n$ for ímpar.}\end{array}\right.
 \]</span> A <a href="https://en.wikipedia.org/wiki/Collatz_conjecture">Conjetura de Collatz</a> afirma que para todo <span class="math inline">\(n\in\N\)</span>, existe um número <span class="math inline">\(k\)</span> tal que aplicando a função <span class="math inline">\(f\)</span> <span class="math inline">\(k\)</span> vezes em <span class="math inline">\(n\)</span>, o resultado vai ser igual a <span class="math inline">\(1\)</span>. Em outras, palavras, <span class="math inline">\(f^k(n)=1\)</span>.</p>
 </div>
-<section id="tarefa" class="level3">
-<h3 class="anchored" data-anchor-id="tarefa">Tarefa</h3>
+<section id="tarefa-1" class="level3">
+<h3 class="anchored" data-anchor-id="tarefa-1">Tarefa 1</h3>
 <div class="subproblem">
 <p>Escreva uma função <code>collatz( n )</code> que toma <span class="math inline">\(n\)</span> como input e devolve <span class="math inline">\(f(n)\)</span>. Faça testes da sua função com vários números.</p>
 </div>
@@ -184,12 +184,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="tarefa-4">Tarefa 4</h3>
 <div class="subproblem">
 <p>Calcular <code>nr_steps( k )</code> separadamente para todo <span class="math inline">\(k\in \{1,\ldots,n\}\)</span> faz muita computação redundante. Por exemplo, calculando <code>max_nr_steps( 6 )</code> deste jeito, fazemos as seguintes contas</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">-&gt;</span> <span class="dv">1</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">1</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">-&gt;</span> <span class="dv">10</span> <span class="op">-&gt;</span> <span class="dv">5</span> <span class="op">-&gt;</span> <span class="dv">16</span> <span class="op">-&gt;</span> <span class="dv">8</span> <span class="op">-&gt;</span> <span class="dv">4</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">1</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">1</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">-&gt;</span> <span class="dv">16</span> <span class="op">-&gt;</span> <span class="dv">8</span> <span class="op">-&gt;</span> <span class="dv">4</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">1</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="op">-&gt;</span> <span class="dv">3</span> <span class="op">-&gt;</span> <span class="dv">10</span> <span class="op">-&gt;</span> <span class="dv">5</span> <span class="op">-&gt;</span> <span class="dv">16</span> <span class="op">-&gt;</span> <span class="dv">8</span> <span class="op">-&gt;</span> <span class="dv">4</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> → <span class="dv">1</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> → <span class="dv">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> → <span class="dv">10</span> → <span class="dv">5</span> → <span class="dv">16</span> → <span class="dv">8</span> → <span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> → <span class="dv">16</span> → <span class="dv">8</span> → <span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> → <span class="dv">3</span> → <span class="dv">10</span> → <span class="dv">5</span> → <span class="dv">16</span> → <span class="dv">8</span> → <span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ou seja, a computação <code>nr_steps( 6 )</code> deve realizar que <code>nr_steps( 3 )</code> já foi calculado e simplificar a conta por computar que <code>nr_steps( 6 ) = nr_steps( 3 ) + 1</code>. Escreva uma versão da função <code>max_nr_steps( n )</code> utilizando as computações anteriores e compare o tempo de execução das duas versões.</p>
 </div>
 </section>

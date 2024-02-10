@@ -12,7 +12,7 @@ $$
 A [Conjetura de Collatz](https://en.wikipedia.org/wiki/Collatz_conjecture) afirma que para todo $n\in\N$, existe um número $k$ tal que aplicando a função $f$ $k$ vezes em $n$, o resultado vai ser igual a $1$. Em outras, palavras, $f^k(n)=1$.
 </div>
 
-### Tarefa
+### Tarefa 1
 <div class="subproblem">
 Escreva uma função `collatz( n )` que toma $n$ como input e devolve $f(n)$. Faça testes da sua função com vários números. 
 </div>
@@ -90,12 +90,12 @@ gap> max_nr_steps( 100000 );
 <div class="subproblem">
 Calcular `nr_steps( k )` separadamente para todo $k\in \{1,\ldots,n\}$ faz muita computação redundante. Por exemplo, calculando `max_nr_steps( 6 )` deste jeito, fazemos as seguintes contas 
 ```python
-1 -> 1 
-2 -> 1
-3 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1 
-4 -> 2 -> 1 
-5 -> 16 -> 8 -> 4 -> 2 -> 1
-6 -> 3 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1
+1 → 1 
+2 → 1
+3 → 10 → 5 → 16 → 8 → 4 → 2 → 1 
+4 → 2 → 1 
+5 → 16 → 8 → 4 → 2 → 1
+6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1
 ```
 Ou seja, a computação `nr_steps( 6 )` deve realizar que `nr_steps( 3 )` já foi calculado e simplificar a conta por computar que `nr_steps( 6 ) = nr_steps( 3 ) + 1`. Escreva uma versão da função `max_nr_steps( n )` utilizando as computações anteriores e compare o tempo de execução das duas versões.
 </div>
