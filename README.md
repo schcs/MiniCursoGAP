@@ -1,10 +1,13 @@
 # MiniCursoGAP
 Material para minicurso de GAP na Escola de Álgebra em São Paulo (2024).
 
+- Rodar o sistema, criar, salvar e carregar arquivos
 - Aritmética básica, variáveis, funções
 - A linguagem de programação
-- O algoritmo de Euclides
+- Listas, matrizes, permutações
 - [A Conjetura de Collatz](collatz.html)
+- Conceitos básicos com grupos
+- Homomorfismos, automorfismos, etc, de grupos
 - Comutadores de grupos
 - Grupos livres, homomorfismos, Exploração do cubo mágico
 - Grupos de permutação
