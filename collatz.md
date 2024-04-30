@@ -19,7 +19,7 @@ Escreva uma função `collatz( n )` que toma $n$ como input e devolve $f(n)$. Fa
 
 <div class="hint">
 Precisa testar se o input é par ou ímpar e para isso pode usar a operação `mod` [(manual)](https://docs.gap-system.org/doc/ref/chap4_mj.html#X7B66C8707B5DE10A).
-```python
+```matlab
 gap> 3 mod 2;
 1
 gap> 6 mod 2;
