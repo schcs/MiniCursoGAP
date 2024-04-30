@@ -2,6 +2,7 @@
 
 ## Projeto 1: A Conjetura de Collatz
 
+
 $\newcommand{\N}{\mathbb N}$
 <div class="problem">
 Considere a seguinte função $f:\N\to \N$:
