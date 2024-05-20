@@ -1,4 +1,9 @@
-## Aritmética básica
+---
+title: "Aritmética básica"
+number-sections: true
+lang: pt-BR
+---
+
 
 ### Operações aritméticas
 

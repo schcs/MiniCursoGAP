@@ -1,4 +1,8 @@
-<link href="style.css" rel="stylesheet"></link>
+---
+title: "A conjetura de Collatz"
+number-sections: true
+lang: pt-BR
+---
 
 ## Projeto 1: A Conjetura de Collatz
 

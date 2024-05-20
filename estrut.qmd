@@ -1,3 +1,9 @@
+---
+title: "Estruturas algébricas"
+number-sections: true
+lang: pt-BR
+---
+
 ### Os primeiros passos com grupos
 
 `GAP` permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas.

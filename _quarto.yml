@@ -1,0 +1,18 @@
+project:
+  type: book
+
+execute: 
+  freeze: true
+
+book:
+  title: "Álgebra Computacional com GAP"
+  subtitle: "Minicurso na Escola de Álgebra, 2024"
+  author: "Csaba Schneider e Igor Lima"
+  date: "Criado e atualizado maio-julho de 2024"
+  chapters:
+    - index.qmd
+    - arith.qmd
+    - ling.qmd
+    - estrut.qmd
+    - collatz.qmd
+

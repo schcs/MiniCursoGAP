@@ -3,11 +3,11 @@
 Material para minicurso de GAP na Escola de Álgebra em São Paulo (2024).
 
 - Rodar o sistema, criar, salvar e carregar arquivos
-- [Aritmética básica, variáveis, funções](arith.html)
-- [O primeiro encontro com estruturas algébricas](estrut.html)
-- [A linguagem de programação](ling.html)
+- [Aritmética básica, variáveis, funções](arith.qmd)
+- [O primeiro encontro com estruturas algébricas](estrut.qmd)
+- [A linguagem de programação](ling.qmd)
 - Listas, matrizes, permutações
-- [A Conjetura de Collatz](collatz.html)
+- [A Conjetura de Collatz](collatz.qmd)
 - Conceitos básicos com grupos
 - Homomorfismos, automorfismos, etc, de grupos
 - Comutadores de grupos
