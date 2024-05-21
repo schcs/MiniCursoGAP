@@ -5,7 +5,7 @@ lang: pt-BR
 ---
 
 
-### Operações aritméticas
+### Operações aritméticas 
 
 <div class="task">
 As operações mais comuns em GAP são `+` (adição), `-` (subtração), `*` (multiplicação), `/` (divisão), `mod`, `^` (exponenciação). Considere os seguintes exemplos
