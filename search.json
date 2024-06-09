@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Álgebra Computacional com GAP",
     "section": "",
-    "text": "1 MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP que foi realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA\nConceitos básicos com grupos\nHomomorfismos, automorfismos, etc, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nGrupos de permutação\nGrupos de matrizes\nÁlgebras de Lie\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos",
+    "text": "1 MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP que foi realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA\nConceitos básicos com grupos\nUma exploração dos centralizadores\nHomomorfismos, automorfismos, etc, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nGrupos de permutação\nGrupos de matrizes\nÁlgebras de Lie\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>MiniCursoGAP</span>"
     ]
@@ -284,7 +284,7 @@
     "href": "aliquot.html#tarefa-5",
     "title": "7  Projeto: A sequência alíquota",
     "section": "7.5 Tarefa 5",
-    "text": "7.5 Tarefa 5\nSeja \\(a_0\\in\\mathbb N\\) arbitrário. Defina a sequência que começa por \\(a_0\\) e para \\(i\\geq 1\\), \\(a_i=\\sigma(a_{i-1})\\). Por exemplo, se \\(a_0=8\\), então \\[\na_0=8,\\quad a_1=\\sigma(8)=7,\\quad a_2=\\sigma(7)=1, a_3=\\sigma(1)=0, \\quad a_4=\\sigma(0)=0.\n\\] Este tipo de sequência chama-se sequência alíquota (aliquot sequence).\n\nEscreva uma função aliquot_sequence( a0, k ) que, dado a0 e um número k, devolve os primeiros k termos da sequência alíquota que inicia-se com a0.\n\ngap&gt; aliquot_sequence( 8, 4 );\n[ 8, 7, 1, 0 ]\ngap&gt; aliquot_sequence( 24, 6 );\n[ 24, 36, 55, 17, 1, 0 ]\ngap&gt; aliquot_sequence( 30, 15 );\n[ 30, 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1 ]\n\nModifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica.\n\ngap&gt; aliquot_sequence_until_repeat( 21 );\n[ 21, 11, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 42 );\n[ 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 34 );\n[ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]\n\nO comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre \\(1\\) e \\(1000\\) que produz o sequência com maior comprimento.\n\n\nEste projeto foi inspirado pelo seguinte vídeo",
+    "text": "7.5 Tarefa 5\nSeja \\(a_0\\in\\mathbb N\\) arbitrário. Defina a sequência que começa por \\(a_0\\) e para \\(i\\geq 1\\), \\(a_i=\\sigma(a_{i-1})\\). Por exemplo, se \\(a_0=8\\), então \\[\na_0=8,\\quad a_1=\\sigma(8)=7,\\quad a_2=\\sigma(7)=1, a_3=\\sigma(1)=0, \\quad a_4=\\sigma(0)=0.\n\\] Este tipo de sequência chama-se sequência alíquota (aliquot sequence).\n\nEscreva uma função aliquot_sequence( a0, k ) que, dado a0 e um número k, devolve os primeiros k termos da sequência alíquota que inicia-se com a0.\n\ngap&gt; aliquot_sequence( 8, 4 );\n[ 8, 7, 1, 0 ]\ngap&gt; aliquot_sequence( 24, 6 );\n[ 24, 36, 55, 17, 1, 0 ]\ngap&gt; aliquot_sequence( 30, 15 );\n[ 30, 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1 ]\n\nModifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica.\n\ngap&gt; aliquot_sequence_until_repeat( 21 );\n[ 21, 11, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 42 );\n[ 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 34 );\n[ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]\n\nO comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre \\(1\\) e \\(1000\\) que produz o sequência com maior comprimento.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Projeto: A sequência alíquota</span>"
     ]
@@ -304,7 +304,7 @@
     "href": "rsa.html#tarefa-1-exploração-interativa",
     "title": "8  Criptografia RSA",
     "section": "8.2 Tarefa 1: Exploração interativa",
-    "text": "8.2 Tarefa 1: Exploração interativa\nAssuma que trabalhamos com um protocolo simplificado. Assuma que trabalhamos com criptografia de 100 bits. Usando NextPrimeInt ache dois primos pe q tal que o produto é um numero composto entre \\(2^{99}\\) e \\(2^{100}-1\\).\ngap&gt; p := NextPrimeInt( Random( 2^59, 2^60 ));\n1086726084099436427\ngap&gt; q := NextPrimeInt( Random( 2^39, 2^40 ));\n1073930166469\ngap&gt; n := p*q;\n1167067924403112255997192566263\ngap&gt; n &lt;= 2^100;\ntrue\nOra, vamos criar o anel das classes residuais módulo n. Precisamos de um elemento c invertível e seu inverso d (módulo n).\ngap&gt; R := ZmodnZ( n );\n(Integers mod 1167067924403112255997192566263)\ngap&gt; R1 := ZmodnZ( (p-1)*(q-1) );\n(Integers mod 1167067924402025528839162963368)\ngap&gt; c := Random( R1 );\nZmodnZObj( 449601717067465409204371741486, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\nfalse\ngap&gt; c := Random( R1 );\nZmodnZObj( 564525934207952237103150572399, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\ntrue\ngap&gt; d := c^-1;\nZmodnZObj( 477861003212806940664702229055, 1167067924402025528839162963368 )\ngap&gt; c := Int( c );\n564525934207952237103150572399\ngap&gt; d := Int( d );\n477861003212806940664702229055\nTendo criado, estes números, assuma que temos uma mensagem a que é um número entre 2 e n. Vamos criptografar e descriptografar a mensagem.\ngap&gt; msg2 := 2*One( R );\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg2_cript := msg2^c;\nZmodnZObj( 409777624988356516250582182849, 1167067924403112255997192566263 )\ngap&gt; msg2_descript := msg2_cript^d;\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg_rand := Random( R );\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_cript := msg_rand^c;\nZmodnZObj( 117680927883705414410064163455, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript := msg_rand_cript^d;\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript = msg_rand;\ntrue",
+    "text": "8.2 Tarefa 1: Exploração interativa\nAssuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits. Usando NextPrimeInt ache dois primos pe q tal que o produto é um numero composto entre \\(2^{99}\\) e \\(2^{100}-1\\). Por motivos de segurança, é recomendável que os primos p e q não sejam próximos, mas também não queremos que um deles seja pequeno. Nós vamos atingir este critério por escolher o primo p com 60 bits, enquanto o primo q terá de 40 bits.\ngap&gt; p := NextPrimeInt( Random( 2^59, 2^60 ));\n1086726084099436427\ngap&gt; q := NextPrimeInt( Random( 2^39, 2^40 ));\n1073930166469\ngap&gt; n := p*q;\n1167067924403112255997192566263\ngap&gt; n &lt;= 2^100;\ntrue\nPara criar as chaves ce d, usaremos aritmética modular. Vamos criar os anéis R e R1 de classes residuais módulo ne \\(\\varphi(n)=(p-1)(q-1)\\).\ngap&gt; R := ZmodnZ( n );\n(Integers mod 1167067924403112255997192566263)\ngap&gt; R1 := ZmodnZ( (p-1)*(q-1) );\n(Integers mod 1167067924402025528839162963368)\ngap&gt; c := Random( R1 );\nZmodnZObj( 449601717067465409204371741486, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\nfalse\ngap&gt; c := Random( R1 );\nZmodnZObj( 564525934207952237103150572399, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\ntrue\ngap&gt; d := c^-1;\nZmodnZObj( 477861003212806940664702229055, 1167067924402025528839162963368 )\ngap&gt; c := Int( c );\n564525934207952237103150572399\ngap&gt; d := Int( d );\n477861003212806940664702229055\nTendo criado, estes números, assuma que temos uma mensagem a que é um número entre 2 e n. Vamos criptografar e descriptografar a mensagem.\ngap&gt; msg2 := 2*One( R );\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg2_cript := msg2^c;\nZmodnZObj( 409777624988356516250582182849, 1167067924403112255997192566263 )\ngap&gt; msg2_descript := msg2_cript^d;\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg_rand := Random( R );\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_cript := msg_rand^c;\nZmodnZObj( 117680927883705414410064163455, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript := msg_rand_cript^d;\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript = msg_rand;\ntrue",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
     ]
@@ -327,6 +327,116 @@
     "text": "8.4 Geração das chaves\nEscreva uma função RSA_keys( nr_bits ) que gera dados necessários para criptografia RSA usando nr_bits. Ou seja, RSA_keys( nr_bits ) devolve\n\no número n que é produto dos primos p e q (mas não devolve os números p e q);\ndevolve a chave pública c e a chave privada d.",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
+    ]
+  },
+  {
+    "objectID": "centralizers.html",
+    "href": "centralizers.html",
+    "title": "9  Projeto: Uma exploração dos centralizadores",
+    "section": "",
+    "text": "9.1 Os fundamentos teóricos\nRecordamos que o centralizador de um elemento \\(x\\) em um grupo \\(G\\) é definido por \\[\nC_{G}(x) = \\{g \\in G | \\ gx=xg \\}.\n\\]\nDenote por \\(\\mbox{Cent}(G)\\) o conjunto de todos os centralizadores de elementos de \\(G\\). O estudo de \\(\\mbox{Cent}(G)\\) tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar \\(\\mbox{Cent}(G)|\\) é responder essencialmente duas questões:\nNeste projeto, queremos usar o GAP para resolver algumas questões para grupos simples finitos.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
+    ]
+  },
+  {
+    "objectID": "centralizers.html#os-fundamentos-teóricos",
+    "href": "centralizers.html#os-fundamentos-teóricos",
+    "title": "9  Projeto: Uma exploração dos centralizadores",
+    "section": "",
+    "text": "Dado um grupo \\(G\\), o que se pode dizer sobre \\(|\\mbox{Cent}(G)|\\)?\nSe é conhecido o valor de \\(|\\mbox{Cent}(G)|\\), o que se pode dizer a respeito do grupo \\(G\\)?",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
+    ]
+  },
+  {
+    "objectID": "centralizers.html#tarefa-1",
+    "href": "centralizers.html#tarefa-1",
+    "title": "9  Projeto: Uma exploração dos centralizadores",
+    "section": "9.2 Tarefa 1",
+    "text": "9.2 Tarefa 1\nEscreva uma função Cent(G) para computar o conjunto de todos os centralizadores de elementos de um grupo \\(G\\) dado. Use a função Centralizer(G,x).\nSua função deve verificar:\ngap&gt; Size(Cent(SymmetricGroup(3)));\n5\ngap&gt; Size(Cent(AlternatingGroup(5)));\n22 \ngap&gt; Size(Cent(AlternatingGroup(6)));\n137\ngap&gt; Size(Cent(AlternatingGroup(5)));\n807\ngap&gt; Size(Cent(PSL(2,7));\n79\ngap&gt; Size(Cent(PSL(3,3));\n1185\ngap&gt; Size(Cent(DihedralGroup(8)));\n4\ngap&gt; Size(SmallGroup(16,7));\n6\ngap&gt; Size(Cent(MathieuGroup(11));\n2081",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
+    ]
+  },
+  {
+    "objectID": "centralizers.html#tarefa-2",
+    "href": "centralizers.html#tarefa-2",
+    "title": "9  Projeto: Uma exploração dos centralizadores",
+    "section": "9.3 Tarefa 2:",
+    "text": "9.3 Tarefa 2:\nA lista a seguir possui somente ordens de grupos simples não abelianos (com repetição):\\\n[60, 168, 360, 504, 660, 1092, 2448, 2520, 3420, 4080, 5616, 6048, 6072, 7800, 7920, \n 9828, 12180, 14880, 20160, 20160, 25308, 25920, 29120, 32736, 34440, 39732, 51888, \n 58800, 62400, 74412, 95040, 102660, 113460, 126000, 150348]\nExplore a função AllSmallNonabelianSimpleGroups([60..n]), para \\(n\\) no conjunto acima. Por exemplo:\ngap&gt; AllSmallNonabelianSimpleGroups([60..20160]);\n[ A5, PSL(2,7), A6, PSL(2,8), PSL(2,11), PSL(2,13), PSL(2,17), A7, PSL(2,19), PSL(2,16), PSL(3,3), PSU(3,3), PSL(2,23), PSL(2,25), M11, PSL(2,27), PSL(2,29), PSL(2,31), A8, PSL(3,4)]",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
+    ]
+  },
+  {
+    "objectID": "centralizers.html#tarefa-3",
+    "href": "centralizers.html#tarefa-3",
+    "title": "9  Projeto: Uma exploração dos centralizadores",
+    "section": "9.4 Tarefa 3:",
+    "text": "9.4 Tarefa 3:\nAgora você precisa responder a seguinte questão\n\n[Questão de Ashrafi e Taeri] Sejam \\(G\\) e \\(H\\) grupos simples não abelianos. É verdade que se \\(|\\mbox{Cent}(G)| = |\\mbox{Cent}(H)|\\), então \\(G\\) é isomorfo a \\(H\\)?\n\nTente para os grupos da tarefa anterior.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
+    ]
+  },
+  {
+    "objectID": "centralizers.html#tarefa-4",
+    "href": "centralizers.html#tarefa-4",
+    "title": "9  Projeto: Uma exploração dos centralizadores",
+    "section": "9.5 Tarefa 4:",
+    "text": "9.5 Tarefa 4:\nE se restringirmos a função para sabermos a quantidade de centralizadores abelianos de um grupo? Será que se dois grupos simples não abelianos tiverem a mesma quantidade de centralizadores abelianos de elementos, esses grupos são necessariamente isomorfos?\nFaça uma mudança no seu código e crie uma função abCent(G) para computar o conjunto de centralizadores abelianos de elementos. Posteriormente, responda a questão desta tarefa.\nPor fim, o que podemos dizer para o caso de centralizadores não abelianos de elementos?",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
+    ]
+  },
+  {
+    "objectID": "commutators.html",
+    "href": "commutators.html",
+    "title": "10  Projeto: Comutadores",
+    "section": "",
+    "text": "10.1 A Teoria\nSeja \\(G\\) um grupo. Se \\(x,y\\in G\\), então o comutador \\([x,y]\\) está definido como \\[\n[x,y]=x^{-1}y^{-1}xy.\n\\] O subgrupo derivado \\(G'\\) de \\(G\\) é definido como o subgrupo de \\(G\\) gerado por todos os comutadores; ou seja, \\[\nG'=\\left&lt;[x,y]\\mid x,y\\in G\\right&gt;.\n\\] É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o subgrupo gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequeno \\(G'\\) coincide com o conjunto de comutadores.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projeto: Comutadores</span>"
+    ]
+  },
+  {
+    "objectID": "commutators.html#tarefa-1",
+    "href": "commutators.html#tarefa-1",
+    "title": "10  Projeto: Comutadores",
+    "section": "10.2 Tarefa 1",
+    "text": "10.2 Tarefa 1\nVamos explorar o conjunto de comutadores em um grupo dado. Considere por exemplo o grupo SymmetricGroup( 5 ). Vamos primeiro calcular o comutador de dois elementos.\ngap&gt; G := SymmetricGroup( 5 );\nSym( [ 1 .. 5 ] )\ngap&gt; x := (1,2,3,4,5);\n(1,2,3,4,5)\ngap&gt; y := (1,2);\n(1,2)\ngap&gt; x in G;\ntrue\ngap&gt; y in G;\ntrue\ngap&gt; Comm( x, y );\n(1,2,3)\ngap&gt; Comm( x, y ) = x^-1*y^-1*x*y;\ntrue\nOra, vamos computar o conjunto de comutadores de \\(G\\) e comparamos este conjunto com o subgrupo derivado.\ngap&gt; comms := Set( Tuples( Elements( G ), 2 ), t-&gt;Comm( t[1],t[2]));\n[ (), (3,4,5), (3,5,4), (2,3)(4,5), (2,3,4), (2,3,5), (2,4,3), (2,4,5), \n  (2,4)(3,5), (2,5,3), (2,5,4), (2,5)(3,4), (1,2)(4,5), (1,2)(3,4), \n  (1,2)(3,5), (1,2,3), (1,2,3,4,5), (1,2,3,5,4), (1,2,4,5,3), (1,2,4), \n  (1,2,4,3,5), (1,2,5,4,3), (1,2,5), (1,2,5,3,4), (1,3,2), (1,3,4,5,2), \n  (1,3,5,4,2), (1,3)(4,5), (1,3,4), (1,3,5), (1,3)(2,4), (1,3,2,4,5), \n  (1,3,5,2,4), (1,3)(2,5), (1,3,2,5,4), (1,3,4,2,5), (1,4,5,3,2), (1,4,2), \n  (1,4,3,5,2), (1,4,3), (1,4,5), (1,4)(3,5), (1,4,5,2,3), (1,4)(2,3), \n  (1,4,2,3,5), (1,4,2,5,3), (1,4,3,2,5), (1,4)(2,5), (1,5,4,3,2), (1,5,2), \n  (1,5,3,4,2), (1,5,3), (1,5,4), (1,5)(3,4), (1,5,4,2,3), (1,5)(2,3), \n  (1,5,2,3,4), (1,5,2,4,3), (1,5,3,2,4), (1,5)(2,4) ]\ngap&gt; Size( comms );\n60\ngap&gt; comms = Set( DerivedSubgroup( G ));\ntrue\nA computação em cima mostra que, no caso do grupo \\(S_5\\), o subgrupo derivado coincide com o conjunto de comutadores.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projeto: Comutadores</span>"
+    ]
+  },
+  {
+    "objectID": "commutators.html#tarefa-2",
+    "href": "commutators.html#tarefa-2",
+    "title": "10  Projeto: Comutadores",
+    "section": "10.3 Tarefa 2",
+    "text": "10.3 Tarefa 2\nEscreva uma função nr_comps( G ) que para um grupo G dado, computa o número de comutadores distintos de G. A sua função deve verificar:\ngap&gt; nr_comms( SymmetricGroup( 5 ));\n60\ngap&gt; nr_comms( AlternatingGroup( 5 ));\n60\ngap&gt; nr_comms( DihedralGroup( 20  ));\n5\ngap&gt; nr_comms( AlternatingGroup( 4  ));\n4\ngap&gt; nr_comms( PGL( 2, 7 ));\n168\ngap&gt; Size( DerivedSubgroup( SymmetricGroup( 5 )));\n60\ngap&gt; Size( DerivedSubgroup( AlternatingGroup( 5 )));\n60\ngap&gt; Size( DerivedSubgroup( DihedralGroup( 10 )));\n5\ngap&gt; Size( DerivedSubgroup( PGL( 2,7 )));\n168",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projeto: Comutadores</span>"
+    ]
+  },
+  {
+    "objectID": "commutators.html#tarefa-3",
+    "href": "commutators.html#tarefa-3",
+    "title": "10  Projeto: Comutadores",
+    "section": "10.4 Tarefa 3",
+    "text": "10.4 Tarefa 3\nEscreva uma função commutator_set_is_subgroup( G ) para verificar se o conjunto de comutadores é igual ao subgrupo derivado de um grupo G. A função deve devolver true ou false. Note que é suficiente verificar se a cardinalidade do conjunto de comutadores é igual à cardinalidade do subgrupo derivado. A sua função deve seguir os seguintes exemplos.\ngap&gt; commutator_set_is_subgroup( SymmetricGroup( 5 ));\ntrue\ngap&gt; commutator_set_is_subgroup( AlternatingGroup( 5 ));\ntrue\ngap&gt; commutator_set_is_subgroup( DihedralGroup( 10 ));\ntrue\ngap&gt; commutator_set_is_subgroup( PGL( 2, 7 ));\ntrue",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projeto: Comutadores</span>"
+    ]
+  },
+  {
+    "objectID": "commutators.html#tarefa-4",
+    "href": "commutators.html#tarefa-4",
+    "title": "10  Projeto: Comutadores",
+    "section": "10.5 Tarefa 4",
+    "text": "10.5 Tarefa 4\nUsando a função SmallGroup( n, k ), ache o menor grupo G tal que o conjunto de comutadores de G não é o grupo derivado. Por exemplo, vamos verificar que entre os grupos de ordem 24 isso não ocorre.\ngap&gt; max_k := NrSmallGroups( 24 );\n15\ngap&gt; List( [1..15], x -&gt; commutator_set_is_subgroup( SmallGroup( 24, x )));\n[ true, true, true, true, true, true, true, true, true, true, true, true, \n  true, true, true ]",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projeto: Comutadores</span>"
     ]
   }
 ]

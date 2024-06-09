@@ -1,0 +1,131 @@
+.problem {
+    border: 3px outset green;
+      padding: 5px;
+    background-color: #e6ffff;
+  }
+  
+  .problem:before {
+  content: "Problema. ";
+  font-weight: bold;
+  font-style: normal;
+  }
+  
+  .problem[text]:before {
+  content: "Defini\00E7\00E3 o (" attr(text) ") ";
+  }
+  
+  
+  .subproblem {
+    border: 3px outset #00aaff;
+    background-color: #e6f7ff;
+      padding: 5px;
+  }
+  
+  .subproblem:before {
+  content: "Tarefa. ";
+  font-weight: bold;
+  font-style: normal;
+  }
+  
+  .subproblem[text]:before {
+  content: "Tarefa (" attr(text) ") ";
+  }
+  
+  .hint {
+    border: 3px outset #00aaff;
+    background-color: #e6f7ff;
+      padding: 5px;
+  }
+  
+  .hint:before {
+  content: "Dica. ";
+  font-weight: bold;
+  font-style: normal;
+  }
+  
+  .hint[text]:before {
+  content: "Hint (" attr(text) ") ";
+  }
+  
+  
+  .example_run {
+    border: 3px outset hotpink;
+    background-color: #fff2e6;
+      padding: 5px;
+  }
+  
+/*  .lemma:before {
+  content: "Lema. ";
+  font-weight: bold;
+  font-style: normal;
+  }
+  
+  .lemma[text]:before {
+  content: "Lema (" attr(text) ") ";
+  }
+  
+  
+  .theorem {
+    border: 3px outset hotpink;
+    background-color: #fff2e6;
+      padding: 5px;
+  }
+  
+  .theorem:before {
+  content: "Teorema. ";
+  font-weight: bold;
+  font-style: normal;
+  }
+  
+  .theorem[text]:before {
+  content: "Teorema (" attr(text) ") ";
+  }
+  
+  .corollary {
+    border: 3px outset hotpink;
+    background-color: #fff2e6;
+      padding: 5px;
+  }
+  
+  .corollary:before {
+  content: "Corol\00E1 rio. ";
+  font-weight: bold;
+  font-style: normal;
+  }
+  
+  .corollary[text]:before {
+  content: "Corol\00E1 rio (" attr(text) ") ";
+  }
+  
+  .proof {
+    border: 3px outset green;
+      padding: 5px;
+    background-color: #e6ffcc;
+  }
+  
+  .proof:before {
+  content: "Demonstra\00E7\00E3 o. ";
+  font-weight: bold;
+  font-style: normal;
+  }
+  
+  .proof[text]:before {
+  content: "Demonstra\00E7\00E3 o (" attr(text) ") ";
+  }
+  
+  .conjecture {
+    border: 3px outset hotpink;
+    background-color: #fff2e6;
+      padding: 5px;
+  }
+  
+  .conjecture:before {
+  content: "Conjectura. ";
+  font-weight: bold;
+  font-style: normal;
+  }
+  
+  .conjecture[text]:before {
+  content: "Conjecture (" attr(text) ") ";
+  }
+  */

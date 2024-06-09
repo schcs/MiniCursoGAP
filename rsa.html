@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./centralizers.html" rel="next">
 <link href="./aliquot.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -132,6 +133,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -216,6 +218,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Criptografia RSA</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./centralizers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Projeto: Uma exploração dos centralizadores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./commutators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -260,7 +274,7 @@ window.Quarto = {
 </section>
 <section id="tarefa-1-exploração-interativa" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="tarefa-1-exploração-interativa"><span class="header-section-number">8.2</span> Tarefa 1: Exploração interativa</h2>
-<p>Assuma que trabalhamos com um protocolo simplificado. Assuma que trabalhamos com criptografia de 100 bits. Usando <code>NextPrimeInt</code> ache dois primos <code>p</code>e <code>q</code> tal que o produto é um numero composto entre <span class="math inline">\(2^{99}\)</span> e <span class="math inline">\(2^{100}-1\)</span>.</p>
+<p>Assuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits. Usando <code>NextPrimeInt</code> ache dois primos <code>p</code>e <code>q</code> tal que o produto é um numero composto entre <span class="math inline">\(2^{99}\)</span> e <span class="math inline">\(2^{100}-1\)</span>. Por motivos de segurança, é recomendável que os primos <code>p</code> e <code>q</code> não sejam próximos, mas também não queremos que um deles seja pequeno. Nós vamos atingir este critério por escolher o primo <code>p</code> com 60 bits, enquanto o primo <code>q</code> terá de 40 bits.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p</span> <span class="op">:=</span> <span class="va">NextPrimeInt</span>( <span class="va">Random</span>( <span class="fl">2</span><span class="op">^</span><span class="fl">59</span><span class="op">,</span> <span class="fl">2</span><span class="op">^</span><span class="fl">60</span> ))<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1086726084099436427</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">q</span> <span class="op">:=</span> <span class="va">NextPrimeInt</span>( <span class="va">Random</span>( <span class="fl">2</span><span class="op">^</span><span class="fl">39</span><span class="op">,</span> <span class="fl">2</span><span class="op">^</span><span class="fl">40</span> ))<span class="op">;</span></span>
@@ -269,7 +283,7 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fl">1167067924403112255997192566263</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">^</span><span class="fl">100</span><span class="op">;</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ora, vamos criar o anel das classes residuais módulo <code>n</code>. Precisamos de um elemento <code>c</code> invertível e seu inverso <code>d</code> (módulo <code>n</code>).</p>
+<p>Para criar as chaves <code>c</code>e <code>d</code>, usaremos aritmética modular. Vamos criar os anéis <code>R</code> e <code>R1</code> de classes residuais módulo <code>n</code>e <span class="math inline">\(\varphi(n)=(p-1)(q-1)\)</span>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">R</span> <span class="op">:=</span> <span class="va">ZmodnZ</span>( <span class="va">n</span> )<span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="va">Integers</span> <span class="va">mod</span> <span class="fl">1167067924403112255997192566263</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">R1</span> <span class="op">:=</span> <span class="va">ZmodnZ</span>( (<span class="va">p</span><span class="op">-</span><span class="fl">1</span>)<span class="op">*</span>(<span class="va">q</span><span class="op">-</span><span class="fl">1</span>) )<span class="op">;</span></span>
@@ -759,6 +773,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./centralizers.html" class="pagination-link" aria-label="Projeto: Uma exploração dos centralizadores">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Projeto: Uma exploração dos centralizadores</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
