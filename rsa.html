@@ -271,6 +271,32 @@ window.Quarto = {
 
 <section id="a-teoria-da-criptografia" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="a-teoria-da-criptografia"><span class="header-section-number">8.1</span> A Teoria da Criptografia</h2>
+<p>Na área da criptografia, a suposição geral é que dois parceiros (que podem ser duas pessoas, ou dois computadores) querem trocar informação sigilosa usando um canal de comunicação que está disponível para terceiros. Os dois parceiros geralmente chamam-se A(lice) e B(ob) e um possível terceiro chama-se E(va). Assume-se que as mensagens enviadas por Alice e Bob são números. A Eva consegue interceptar as mensagens enviadas. O objetivo é desenvolver métodos seguros de codificação para as mensagens que podem garantir que Eva não vai conseguir descodificar as mensagens interceptadas.</p>
+<p>Um método, conhecido como criptografia RSA, foi desenvolvido pelos matemáticos <a title="Ron Rivest" href="https://en.wikipedia.org/wiki/Ron_Rivest">Ron Rivest</a>, <a title="Adi Shamir" href="https://en.wikipedia.org/wiki/Adi_Shamir">Adi Shamir</a>, and <a title="Leonard Adleman" href="https://en.wikipedia.org/wiki/Leonard_Adleman">Leonard Adleman</a> e foi publicado em 1977.</p>
+<p>Lembre que a função <span class="math inline">\(\varphi\)</span> de Euler é definida como <span class="math display">\[
+\varphi(n)=|\{a\in\{1,\ldots,n\}\mid \mbox{mdc}(a,n)=1\}|
+\]</span> para todo natural <span class="math inline">\(n\)</span>. Temos, para primos <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span> distintos, que <span class="math display">\[
+\varphi(pq)=(p-1)(q-1).
+\]</span></p>
+<p>Assuma que Alice quer enviar uma mensagem para Bob. Eles seguem os seguintes passos:</p>
+<ol type="1">
+<li>Bob escolhe um número <span class="math inline">\(n\)</span> tal que <span class="math inline">\(n\)</span> é produto de dois primos <span class="math inline">\(p\)</span> e <span class="math inline">\(q\)</span> e escolhe um número <span class="math inline">\(c\in\{2,\ldots,n-1\}\)</span> tal que <span class="math inline">\(\mbox{mdc}(c,\varphi(n))=1\)</span>. Isso implica que <span class="math inline">\(c\)</span> é invertível módulo <span class="math inline">\(\varphi(n)\)</span>; ou seja existe <span class="math inline">\(d\in\{1,\ldots,\varphi(n)\}\)</span> tal que <span class="math display">\[
+cd\equiv 1\pmod{\varphi(n)}.
+\]</span></li>
+<li>Bob publica o par <span class="math inline">\((n,c)\)</span> dos números. Este é a chave pública do Bob e está disponível publicamente para toda pessoa que quer enviar mensagem sigilosa para o Bob. Em particular esta chave é conhecida por Alice.</li>
+<li>O Bob guarda os números <span class="math inline">\((\varphi(n),d)\)</span> em sigilo. Esta é a chave privada do Bob.</li>
+<li>A mensagem da Alice é um número <span class="math inline">\(b\)</span> entre <span class="math inline">\(1\)</span> e <span class="math inline">\(n\)</span>. A Alice vai calcular <span class="math display">\[
+C(b)=\mbox{o resto de $b^c$ por $n$}.
+\]</span> Note que Alice conhece os números <span class="math inline">\(c\)</span> e <span class="math inline">\(n\)</span> e consegue calcular <span class="math inline">\(C(b)\)</span>. O número <span class="math inline">\(C(b)\)</span> é a mensagem codificada.</li>
+<li>Alice envia <span class="math inline">\(C(b)\)</span> para o Bob.</li>
+<li>Ao receber a mensagem <span class="math inline">\(b_1=C(b)\)</span> da Alice, Bob calcula <span class="math display">\[
+D( b_1)=\mbox{o resto de $b_1^c$ módulo $n$}.
+\]</span> O número obtido <span class="math inline">\(D(b_1)\)</span> é a mensagem descodificada.</li>
+<li>O número <span class="math inline">\(D(b_1)\)</span> coincide com a mensagem original <span class="math inline">\(b\)</span> da Alice; ou seja, o Bob conseguiu descodificar a mensagem da Alice.</li>
+</ol>
+<div id="thm-" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 8.1</strong></span> Usando a notação acima, <span class="math inline">\(D(C(b))=b\)</span> para todo <span class="math inline">\(b\in\{1,\ldots,n-1\}\)</span>. Ou seja, usando a função <span class="math inline">\(D\)</span>, o Bob consegue descodificar a mensagem da Alice</p>
+</div>
 </section>
 <section id="tarefa-1-exploração-interativa" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="tarefa-1-exploração-interativa"><span class="header-section-number">8.2</span> Tarefa 1: Exploração interativa</h2>
