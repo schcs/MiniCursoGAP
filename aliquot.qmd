@@ -102,6 +102,7 @@ gap> aliquot_sequence_until_repeat( 34 );
 
 3. O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre $1$ e $1000$ que produz o sequência com maior comprimento.
 
+
 <!--
 aliquot_sequence := function( a0, k )
     local i, seq;
@@ -131,7 +132,4 @@ end;
 
 -->
 
-Este projeto foi inspirado pelo seguinte vídeo
-
-{{< video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width="560" height="315" >}}
 

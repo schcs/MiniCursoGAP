@@ -8,7 +8,7 @@ lang: pt-BR
 
 ## Tarefa 1: Exploração interativa
 
-Assuma que trabalhamos com um protocolo simplificado. Assuma que trabalhamos com criptografia de 100 bits. Usando `NextPrimeInt` ache dois primos `p`e `q` tal que o produto é um numero composto entre $2^{99}$ e $2^{100}-1$. 
+Assuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits. Usando `NextPrimeInt` ache dois primos `p`e `q` tal que o produto é um numero composto entre $2^{99}$ e $2^{100}-1$. Por motivos de segurança, é recomendável que os primos `p` e `q` não sejam próximos, mas também não queremos que um deles seja pequeno.  Nós vamos atingir este critério por escolher o primo `p` com 60 bits, enquanto o primo `q` terá de 40 bits.
 
 ```matlab
 gap> p := NextPrimeInt( Random( 2^59, 2^60 ));
@@ -22,7 +22,7 @@ true
 ```
 
 
-Ora, vamos criar o anel das classes residuais módulo `n`. Precisamos de um elemento `c` invertível e seu inverso `d` (módulo `n`).
+Para criar as chaves `c`e `d`, usaremos aritmética modular. Vamos criar os anéis `R` e `R1` de classes residuais módulo `n`e $\varphi(n)=(p-1)(q-1)$. 
 
 ```matlab
 gap> R := ZmodnZ( n );

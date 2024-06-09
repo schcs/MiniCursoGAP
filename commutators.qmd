@@ -1,0 +1,121 @@
+---
+title: "Projeto: Comutadores"
+number-sections: true
+lang: pt-BR
+---
+
+## A Teoria
+
+Seja $G$ um grupo. Se $x,y\in G$, então o comutador $[x,y]$ está definido como 
+$$
+[x,y]=x^{-1}y^{-1}xy.
+$$
+O subgrupo derivado $G'$ de $G$ é definido como o subgrupo de $G$ gerado por todos os comutadores; ou seja, 
+$$
+G'=\left<[x,y]\mid x,y\in G\right>.
+$$
+É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o subgrupo gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequeno $G'$ coincide com o conjunto de comutadores. 
+
+## Tarefa 1
+
+Vamos explorar o conjunto de comutadores em um grupo dado. Considere por exemplo o grupo `SymmetricGroup( 5 )`. Vamos primeiro calcular o comutador de dois elementos. 
+
+```matlab
+gap> G := SymmetricGroup( 5 );
+Sym( [ 1 .. 5 ] )
+gap> x := (1,2,3,4,5);
+(1,2,3,4,5)
+gap> y := (1,2);
+(1,2)
+gap> x in G;
+true
+gap> y in G;
+true
+gap> Comm( x, y );
+(1,2,3)
+gap> Comm( x, y ) = x^-1*y^-1*x*y;
+true
+```
+
+Ora, vamos computar o conjunto de comutadores de $G$ e comparamos este conjunto com o subgrupo derivado. 
+```matlab
+gap> comms := Set( Tuples( Elements( G ), 2 ), t->Comm( t[1],t[2]));
+[ (), (3,4,5), (3,5,4), (2,3)(4,5), (2,3,4), (2,3,5), (2,4,3), (2,4,5), 
+  (2,4)(3,5), (2,5,3), (2,5,4), (2,5)(3,4), (1,2)(4,5), (1,2)(3,4), 
+  (1,2)(3,5), (1,2,3), (1,2,3,4,5), (1,2,3,5,4), (1,2,4,5,3), (1,2,4), 
+  (1,2,4,3,5), (1,2,5,4,3), (1,2,5), (1,2,5,3,4), (1,3,2), (1,3,4,5,2), 
+  (1,3,5,4,2), (1,3)(4,5), (1,3,4), (1,3,5), (1,3)(2,4), (1,3,2,4,5), 
+  (1,3,5,2,4), (1,3)(2,5), (1,3,2,5,4), (1,3,4,2,5), (1,4,5,3,2), (1,4,2), 
+  (1,4,3,5,2), (1,4,3), (1,4,5), (1,4)(3,5), (1,4,5,2,3), (1,4)(2,3), 
+  (1,4,2,3,5), (1,4,2,5,3), (1,4,3,2,5), (1,4)(2,5), (1,5,4,3,2), (1,5,2), 
+  (1,5,3,4,2), (1,5,3), (1,5,4), (1,5)(3,4), (1,5,4,2,3), (1,5)(2,3), 
+  (1,5,2,3,4), (1,5,2,4,3), (1,5,3,2,4), (1,5)(2,4) ]
+gap> Size( comms );
+60
+gap> comms = Set( DerivedSubgroup( G ));
+true
+```
+A computação em cima mostra que, no caso do grupo $S_5$, o subgrupo derivado coincide com o conjunto de comutadores. 
+
+## Tarefa 2
+
+Escreva uma função `nr_comps( G )` que para um grupo `G` dado, computa o número de comutadores distintos de `G`. A sua função deve verificar:
+
+```matlab
+gap> nr_comms( SymmetricGroup( 5 ));
+60
+gap> nr_comms( AlternatingGroup( 5 ));
+60
+gap> nr_comms( DihedralGroup( 20  ));
+5
+gap> nr_comms( AlternatingGroup( 4  ));
+4
+gap> nr_comms( PGL( 2, 7 ));
+168
+gap> Size( DerivedSubgroup( SymmetricGroup( 5 )));
+60
+gap> Size( DerivedSubgroup( AlternatingGroup( 5 )));
+60
+gap> Size( DerivedSubgroup( DihedralGroup( 10 )));
+5
+gap> Size( DerivedSubgroup( PGL( 2,7 )));
+168
+```
+
+## Tarefa 3
+
+Escreva uma função `commutator_set_is_subgroup( G )` para verificar se o conjunto de comutadores é igual ao subgrupo derivado de um grupo `G`. A função deve devolver `true` ou `false`. Note que é suficiente verificar se 
+a cardinalidade do conjunto de comutadores é igual à cardinalidade do subgrupo derivado. A sua função deve seguir os seguintes exemplos. 
+```matlab 
+gap> commutator_set_is_subgroup( SymmetricGroup( 5 ));
+true
+gap> commutator_set_is_subgroup( AlternatingGroup( 5 ));
+true
+gap> commutator_set_is_subgroup( DihedralGroup( 10 ));
+true
+gap> commutator_set_is_subgroup( PGL( 2, 7 ));
+true
+```
+
+## Tarefa 4
+
+Usando a função `SmallGroup( n, k )`, ache o menor grupo `G` tal que o conjunto de comutadores de `G` não é o grupo derivado. Por exemplo, vamos verificar que entre os grupos de ordem 24 isso não ocorre. 
+
+```matlab
+gap> max_k := NrSmallGroups( 24 );
+15
+gap> List( [1..15], x -> commutator_set_is_subgroup( SmallGroup( 24, x )));
+[ true, true, true, true, true, true, true, true, true, true, true, true, 
+  true, true, true ]
+```
+
+
+
+<!-- 
+nr_comms := function( G )
+    return Size( Set( Tuples( Elements( G ), 2 ), t->Comm( t[1],t[2])));
+end;
+-->
+
+
+

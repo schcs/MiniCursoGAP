@@ -18,4 +18,19 @@ book:
     - collatz.qmd
     - aliquot.qmd
     - rsa.qmd
+    - centralizers.qmd
+    - commutators.qmd
 
+format:
+  html:
+    theme: cosmo
+    css: style.css
+    toc: true
+    fontsize: 12pt
+    include-in-header:
+      - file: macros.html
+    grid:
+      sidebar-width: 200px
+      body-width: 800px
+      margin-width: 600px
+      gutter-width: 1.5rem

@@ -1,0 +1,95 @@
+---
+title: "Projeto: Uma exploração dos centralizadores"
+number-sections: true
+lang: pt-BR
+---
+
+## Os fundamentos teóricos
+
+Recordamos que o centralizador de um elemento $x$ em um grupo $G$ é definido por 
+$$
+C_{G}(x) = \{g \in G | \ gx=xg \}.
+$$
+
+Denote por $\mbox{Cent}(G)$ o conjunto de todos os centralizadores de elementos de $G$. O estudo de $\mbox{Cent}(G)$ tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar $\mbox{Cent}(G)|$ é responder essencialmente duas questões:
+
+
+1. Dado um grupo $G$, o que se pode dizer sobre $|\mbox{Cent}(G)|$?
+2. Se é conhecido o valor de $|\mbox{Cent}(G)|$, o que se pode dizer a respeito do grupo $G$?
+    
+
+Neste projeto, queremos usar o `GAP` para resolver algumas questões para grupos simples finitos.
+
+## Tarefa 1
+
+Escreva uma função `Cent(G)` para computar o conjunto de todos os centralizadores de elementos de um grupo $G$ dado. Use a função `Centralizer(G,x)`. 
+
+Sua função deve verificar:
+```matlab
+gap> Size(Cent(SymmetricGroup(3)));
+5
+gap> Size(Cent(AlternatingGroup(5)));
+22 
+gap> Size(Cent(AlternatingGroup(6)));
+137
+gap> Size(Cent(AlternatingGroup(5)));
+807
+gap> Size(Cent(PSL(2,7));
+79
+gap> Size(Cent(PSL(3,3));
+1185
+gap> Size(Cent(DihedralGroup(8)));
+4
+gap> Size(SmallGroup(16,7));
+6
+gap> Size(Cent(MathieuGroup(11));
+2081
+```
+
+## Tarefa 2:
+A lista a seguir possui somente ordens de grupos simples não abelianos (com repetição):\\
+```matlab
+[60, 168, 360, 504, 660, 1092, 2448, 2520, 3420, 4080, 5616, 6048, 6072, 7800, 7920, 
+ 9828, 12180, 14880, 20160, 20160, 25308, 25920, 29120, 32736, 34440, 39732, 51888, 
+ 58800, 62400, 74412, 95040, 102660, 113460, 126000, 150348]
+``` 
+
+Explore a função `AllSmallNonabelianSimpleGroups([60..n])`, para $n$ no conjunto acima. Por exemplo:
+
+```matlab
+gap> AllSmallNonabelianSimpleGroups([60..20160]);
+[ A5, PSL(2,7), A6, PSL(2,8), PSL(2,11), PSL(2,13), PSL(2,17), A7, PSL(2,19), PSL(2,16), PSL(3,3), PSU(3,3), PSL(2,23), PSL(2,25), M11, PSL(2,27), PSL(2,29), PSL(2,31), A8, PSL(3,4)]
+```
+
+## Tarefa 3:
+
+Agora você precisa responder a seguinte questão 
+
+1. [Questão de Ashrafi e Taeri] Sejam $G$ e $H$ grupos simples não abelianos. É verdade que se $|\mbox{Cent}(G)| = |\mbox{Cent}(H)|$, então $G$ é isomorfo a $H$?
+    
+Tente para os grupos da tarefa anterior.
+
+<!--Compute $|Cent(PSL(2,23)|$ e $|Cent(A7)|$ e verifique se esses esses grupos são isomorfos.-->
+
+## Tarefa 4:
+
+E se restringirmos a função para sabermos a quantidade de centralizadores abelianos de um grupo? Será que se dois grupos simples não abelianos tiverem a mesma quantidade de centralizadores abelianos de elementos, esses grupos são necessariamente isomorfos? 
+
+
+Faça uma mudança no seu código e crie uma função `abCent(G)` para computar o conjunto de centralizadores abelianos de elementos. Posteriormente, responda a questão desta tarefa.
+
+
+
+Por fim, o que podemos dizer para o caso de centralizadores não abelianos de elementos?
+
+<!--
+
+gap> f:=function(g)                               
+> local x;                                     
+> return Set(List(g,x->Centralizer(g,x))); end;
+function( g ) ... end
+gap> f(SymmetricGroup(3));
+[ Group([ (2,3) ]), Group([ (1,3), (2,3) ]), Group([ (1,2) ]), Group([ (1,3,2) ]), Group([ (1,3) ]) ]
+gap> Size(last);
+5
+-->

@@ -11,8 +11,9 @@ Este material foi preparado para o minicurso de *Álgebra Computacional com GAP*
 - [Números perfeitos, abundantes, e sequências alíquotas](aliquot.qmd)
 - [Criptografia RSA](rsa.qmd)
 - Conceitos básicos com grupos
+- [Uma exploração dos centralizadores](centralizers.qmd)
 - Homomorfismos, automorfismos, etc, de grupos
-- Comutadores de grupos
+- [Comutadores de grupos](commutators.qmd)
 - Grupos livres, homomorfismos, Exploração do cubo mágico
 - Grupos de permutação
 - Grupos de matrizes
