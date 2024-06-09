@@ -243,7 +243,7 @@ window.Quarto = {
   <li><a href="#a-teoria-da-criptografia" id="toc-a-teoria-da-criptografia" class="nav-link active" data-scroll-target="#a-teoria-da-criptografia"><span class="header-section-number">8.1</span> A Teoria da Criptografia</a></li>
   <li><a href="#tarefa-1-exploração-interativa" id="toc-tarefa-1-exploração-interativa" class="nav-link" data-scroll-target="#tarefa-1-exploração-interativa"><span class="header-section-number">8.2</span> Tarefa 1: Exploração interativa</a></li>
   <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">8.3</span> Tarefa 2</a></li>
-  <li><a href="#geração-das-chaves" id="toc-geração-das-chaves" class="nav-link" data-scroll-target="#geração-das-chaves"><span class="header-section-number">8.4</span> Geração das chaves</a></li>
+  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">8.4</span> Tarefa 3</a></li>
   </ul>
 </nav>
     </div>
@@ -349,8 +349,8 @@ D( b_1)=\mbox{o resto de $b_1^c$ módulo $n$}.
 <p>Repita a computação anterior, mas agora com números maiores. Em vez de trabalhar com chave de comprimento de <code>100</code> bits, trabalhe com chave de <code>2048</code> bits que é o usual com protocolos modernos de criptografia RSA. O comprimento de <code>p</code> será de <code>1228</code> bits, enquanto o comprimento de <code>q</code> será de <code>820</code> bits. (Ou seja, <code>p</code> é um primo entre <span class="math inline">\(2^{1227}\)</span> e <span class="math inline">\(2^{1228}-1\)</span>) e <code>q</code> é primo entre <span class="math inline">\(2^{819}\)</span> e <span class="math inline">\(2^{820}-1\)</span>.</p>
 <p>Única coisa que precisa modificar é que a função <code>NextPrimeInt</code> não funciona para estes típos de números e precisa usar <code>NextProbablyPrimeInt</code>.</p>
 </section>
-<section id="geração-das-chaves" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="geração-das-chaves"><span class="header-section-number">8.4</span> Geração das chaves</h2>
+<section id="tarefa-3" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">8.4</span> Tarefa 3</h2>
 <p>Escreva uma função <code>RSA_keys( nr_bits )</code> que gera dados necessários para criptografia RSA usando <code>nr_bits</code>. Ou seja, <code>RSA_keys( nr_bits )</code> devolve</p>
 <ol type="1">
 <li>o número <code>n</code> que é produto dos primos <code>p</code> e <code>q</code> (mas não devolve os números <code>p</code> e <code>q</code>);</li>

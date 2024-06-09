@@ -330,11 +330,11 @@
     ]
   },
   {
-    "objectID": "rsa.html#geração-das-chaves",
-    "href": "rsa.html#geração-das-chaves",
+    "objectID": "rsa.html#tarefa-3",
+    "href": "rsa.html#tarefa-3",
     "title": "8  Criptografia RSA",
-    "section": "8.4 Geração das chaves",
-    "text": "8.4 Geração das chaves\nEscreva uma função RSA_keys( nr_bits ) que gera dados necessários para criptografia RSA usando nr_bits. Ou seja, RSA_keys( nr_bits ) devolve\n\no número n que é produto dos primos p e q (mas não devolve os números p e q);\ndevolve a chave pública c e a chave privada d.",
+    "section": "8.4 Tarefa 3",
+    "text": "8.4 Tarefa 3\nEscreva uma função RSA_keys( nr_bits ) que gera dados necessários para criptografia RSA usando nr_bits. Ou seja, RSA_keys( nr_bits ) devolve\n\no número n que é produto dos primos p e q (mas não devolve os números p e q);\ndevolve a chave pública c e a chave privada d.",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
     ]
