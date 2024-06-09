@@ -6,6 +6,46 @@ lang: pt-BR
 
 ## A Teoria da Criptografia
 
+Na área da criptografia, a suposição geral é que dois parceiros (que podem ser duas pessoas, ou dois computadores) querem trocar informação sigilosa usando um canal de comunicação que está disponível para terceiros. Os dois parceiros geralmente chamam-se A(lice) e B(ob) e um possível terceiro chama-se E(va). Assume-se que as mensagens enviadas por Alice e Bob são números. A Eva consegue interceptar as mensagens enviadas. O objetivo é desenvolver métodos seguros de codificação para as mensagens que podem garantir que Eva não vai conseguir descodificar as mensagens interceptadas.
+
+Um método, conhecido como criptografia RSA, foi desenvolvido pelos matemáticos  <a title="Ron Rivest" href="https://en.wikipedia.org/wiki/Ron_Rivest">Ron Rivest</a>, <a title="Adi Shamir" href="https://en.wikipedia.org/wiki/Adi_Shamir">Adi Shamir</a>, and <a title="Leonard Adleman" href="https://en.wikipedia.org/wiki/Leonard_Adleman">Leonard Adleman</a> e foi publicado em 1977.
+
+Lembre que a função $\varphi$ de Euler é definida como
+$$
+\varphi(n)=|\{a\in\{1,\ldots,n\}\mid \mbox{mdc}(a,n)=1\}|
+$$
+para todo natural $n$. Temos, para primos $p$ e $q$ distintos, que
+$$
+\varphi(pq)=(p-1)(q-1).
+$$
+
+Assuma que Alice quer enviar uma mensagem para Bob. Eles seguem os seguintes passos:
+
+1.   Bob escolhe um número $n$ tal que $n$ é produto de dois primos $p$ e $q$ e escolhe um número $c\in\{2,\ldots,n-1\}$ tal que $\mbox{mdc}(c,\varphi(n))=1$. Isso implica que $c$ é invertível módulo $\varphi(n)$; ou seja existe $d\in\{1,\ldots,\varphi(n)\}$ tal que
+$$
+cd\equiv 1\pmod{\varphi(n)}.
+$$
+2.  Bob publica o par $(n,c)$ dos números. Este é a chave pública do Bob e está disponível publicamente para toda pessoa que quer enviar mensagem sigilosa para o Bob. Em particular esta chave é conhecida por Alice.
+3.  O Bob guarda os números $(\varphi(n),d)$ em sigilo. Esta é a chave privada do Bob.
+4.  A mensagem da Alice é um número $b$ entre $1$ e $n$. A Alice vai calcular
+$$
+C(b)=\mbox{o resto de $b^c$ por $n$}.
+$$
+Note que Alice conhece os números $c$ e $n$ e consegue calcular $C(b)$. O número $C(b)$ é a mensagem codificada.
+5.  Alice envia $C(b)$ para o Bob.
+6.  Ao receber a mensagem $b_1=C(b)$ da Alice, Bob calcula
+$$
+D( b_1)=\mbox{o resto de $b_1^c$ módulo $n$}.
+$$
+O número obtido $D(b_1)$ é a mensagem descodificada.
+6.  O número $D(b_1)$ coincide com a mensagem original $b$ da Alice; ou seja, o Bob conseguiu descodificar a mensagem da Alice.
+
+
+:::{#thm-}
+Usando a notação acima, $D(C(b))=b$ para todo $b\in\{1,\ldots,n-1\}$. Ou seja, usando a função $D$, o Bob consegue descodificar a mensagem da Alice
+:::
+
+
 ## Tarefa 1: Exploração interativa
 
 Assuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits. Usando `NextPrimeInt` ache dois primos `p`e `q` tal que o produto é um numero composto entre $2^{99}$ e $2^{100}-1$. Por motivos de segurança, é recomendável que os primos `p` e `q` não sejam próximos, mas também não queremos que um deles seja pequeno.  Nós vamos atingir este critério por escolher o primo `p` com 60 bits, enquanto o primo `q` terá de 40 bits.
