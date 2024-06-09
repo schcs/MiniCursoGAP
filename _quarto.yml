@@ -13,6 +13,9 @@ book:
     - index.qmd
     - arith.qmd
     - ling.qmd
+    - list_mat_perm.qmd
     - estrut.qmd
     - collatz.qmd
+    - aliquot.qmd
+    - rsa.qmd
 

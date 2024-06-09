@@ -52,7 +52,7 @@ Escreva uma função `nr_steps( n )` que vai calcular o número de vezes a funç
 </div>
 
 <div class="hint">
-Você usará a função a função `collatz( n )` na tarefa anterior em um laço `while` [(manual)](https://docs.gap-system.org/doc/ref/chap4_mj.html#X87AA46408783383F) ou `repeat` [(manual)](https://docs.gap-system.org/doc/ref/chap4_mj.html#X87AA46408783383F). 
+Você usará a função `collatz( n )` na tarefa anterior em um laço `while` [(manual)](https://docs.gap-system.org/doc/ref/chap4_mj.html#X87AA46408783383F) ou `repeat` [(manual)](https://docs.gap-system.org/doc/ref/chap4_mj.html#X87AA46408783383F). 
 </div>
 
 <div class="example_run">

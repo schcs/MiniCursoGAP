@@ -1,12 +1,12 @@
 ---
-title: "Estruturas algébricas"
+title: "O primeiro encontro com grupos"
 number-sections: true
 lang: pt-BR
 ---
 
-### Os primeiros passos com grupos
+## Grupos disponíveis na biblioteca
 
-`GAP` permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas.
+`GAP` permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas. Primeiro considere alguns exemplos usando os grupos ``GL`` e ``SL``.
 ```matlab
 gap> G1 := SL( 3, GF(5));
 SL(3,5)
@@ -22,19 +22,25 @@ gap> Order( G1 );
 1488000
 gap> Order( G2 );
 372000
-gap> S6 := SymmetricGroup( 6 );
-Sym( [ 1 .. 6 ] )
-gap> A6 := AlternatingGroup( 6 );
-Alt( [ 1 .. 6 ] )
 gap> IsSubgroup( G1, G2 );
-true
-gap> IsSubgroup( S6, A6 );
-true
-gap> IsNormal( S6, A6 );
 true
 gap> IsNormal( G1, G2 );
 true
 ```
+
+Ora, considere construções com `SymmetricGroup` e `AlternatingGroup`.
+```matlab
+gap> S6 := SymmetricGroup( 6 );
+Sym( [ 1 .. 6 ] )
+gap> A6 := AlternatingGroup( 6 );
+Alt( [ 1 .. 6 ] )
+gap> IsSubgroup( S6, A6 );
+true
+gap> IsNormal( S6, A6 );
+true
+```
+
+## Grupos gerados por permutações
 
 Pode também definir grupo por geradores. Os geradores podem ser objetos multiplicáveis, tipicamente usamos matrizes e permutações. Primeiro, consideremos alguns exemplos com permutações.
 ```matlab
@@ -56,10 +62,6 @@ false
 
 O grupo dihedral $D_5$ de ordem $10$ pode ser construído da forma seguinte.
 ```matlab
-gap> D := Group( (1,2,3,4,5),(2,4)(3,5));
-Group([ (1,2,3,4,5), (2,4)(3,5) ])
-gap> Size( D );
-60
 gap> D := Group( (1,2,3,4,5),(2,5)(3,4));
 Group([ (1,2,3,4,5), (2,5)(3,4) ])
 gap> Size( D );
@@ -71,6 +73,75 @@ true
 gap> IsNormal( AlternatingGroup( 5 ), D );
 false
 ```
+
+## Grupos gerados por matrizes
+
+Pode-se também definir grupos de matrizes usando geradores. Considere por exemplo as seguintes duas matrizes sobre `GF( 5 )`:
+$$
+m_1 = \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}\quad \mbox{e}\quad m_2 = \begin{pmatrix} 2 & 1 \\ 2 & 0 \end{pmatrix}.
+$$
+O grupo gerado por $m_1$ e $m_2$ pode ser construído em `GAP` usando as seguintes instruções.
+```matlab
+gap> m1 := [[2,0],[0,1]]*Z(5)^0;
+[ [ Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0 ] ]
+gap> m2 := [[2,1],[2,0]]*Z(5)^0;
+[ [ Z(5), Z(5)^0 ], [ Z(5), 0*Z(5) ] ]
+gap> G := Group( m1, m2 );
+Group([ [ [ Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0 ] ], 
+  [ [ Z(5), Z(5)^0 ], [ Z(5), 0*Z(5) ] ] ])
+gap> Order( G );
+480
+gap> G = GL( 2, 5 );
+true
+```
+
+## Projeto: O grupo de Heisenberg
+
+Sobre um corpo $\mathbb F$, o grupo de Heisenberg é o grupo 
+$$
+H=\left\{\begin{pmatrix} 1 & a & c \\ 0 & 1 & b \\ 0 & 0 & c\end{pmatrix}\mid a, b, c \in\mathbb F\right\}.
+$$
+
+O seguinte resultado é fácil de verificar.
+
+:::{#lemma-}
+Se $\mathbb F$ é um corpo finito de ordem $q$, então $|H|=q^3$. 
+:::
+
+:::{tarefa}
+**Tarefa 1:** Construa em `GAP` o grupo de Heisenberg sobre os corpos `GF(2)`, `GF(3)`, `GF(5)`, `GF( 9 )`, `GF( 25 )` como um grupo de matrizes dado por geradores. Calcule a ordem do grupo construido para verificar que tem o grupo certo. 
+
+**Tarefa 2:** Escreva uma função `heisenberg_group( q )` que devolve o grupo de Heisenberg  sobre `GF( q )` dado input `q`. A sua função precisa seguir o seguinte exemplo.
+```matlab
+gap> H := heisenberg_group( 5 );
+Group(
+[ 
+  [ [ Z(5)^0, Z(5)^0, 0*Z(5) ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], 
+      [ 0*Z(5), 0*Z(5), Z(5)^0 ] ], 
+  [ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0, Z(5)^0 ], 
+      [ 0*Z(5), 0*Z(5), Z(5)^0 ] ] ])
+gap> Order( H );
+125
+gap> H := heisenberg_group( 7 );
+Group(
+[ 
+  [ [ Z(7)^0, Z(7)^0, 0*Z(7) ], [ 0*Z(7), Z(7)^0, 0*Z(7) ], 
+      [ 0*Z(7), 0*Z(7), Z(7)^0 ] ], 
+  [ [ Z(7)^0, 0*Z(7), 0*Z(7) ], [ 0*Z(7), Z(7)^0, Z(7)^0 ], 
+      [ 0*Z(7), 0*Z(7), Z(7)^0 ] ] ])
+gap> Order( H );
+343
+gap> H := heisenberg_group( 3 );
+<matrix group of size 729 with 4 generators>
+gap> Order( H );
+729
+```
+
+**Tarefa 3:** Investiga o grupo de Heisenberg usando a sua função construída na Tarefa 2. Calcule o seu centro, subgrupo derivado, os termos da série derivada, série central superior, e série central inferior. 
+:::
+
+<!--
+
 Para ver um grupo gerado por matrizes, considere o grupo de Heisenberg sobre $\mathbb F_5$.
 ```matlab
 gap> F := GF( 5 );
@@ -105,5 +176,5 @@ true
 gap> IsNormal( SL( 3, 5 ), H );
 false
 ```
+-->
 
-VbRU_8/+kzP9Ek

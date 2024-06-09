@@ -5,7 +5,7 @@ lang: pt-BR
 ---
 
 
-### Expressões `if-then`
+## Expressões `if-then-else`
 
 A expressão `if-then` está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa. Considere o seguinte exemplo:
 ```python
@@ -44,8 +44,108 @@ gap> a;
 4
 ```
 
-### Laço `for`
+## Laço `for`
+Usamos `for` quando queremos executar a mesma peça de código várias vezes. Por exemplo, queremos calcular o quadrado dos números entre `1` e `10`.
+```matlab
+gap> for i in [1..10] do
+> Print( "O quadrado de ", i, " é ", i^2, "\n" );
+> od;
+O quadrado de 1 é 1
+O quadrado de 2 é 4
+O quadrado de 3 é 9
+O quadrado de 4 é 16
+O quadrado de 5 é 25
+O quadrado de 6 é 36
+O quadrado de 7 é 49
+O quadrado de 8 é 64
+O quadrado de 9 é 81
+O quadrado de 10 é 100
+gap> 
+```
+Observamos os seguintes regras importantes:
 
-### Laço `while`
+1. a palavra chave `for` é seguida por uma variável, neste caso `i`;
+2. depois temos a palavra `in` seguida por uma lista;
+3. depois da lista temos a palavra `do`;
+4. o laço está fechado pela palavra `od` (`do` invertido). 
 
-### Laço `repeat`
+O ciclo executa o código entre as palavras `do` e `od` para todo valor `i` na lista que aparece depois da palavra `in`.
+
+
+## Laço `while`
+
+Uma outra maneira de criar um laço é usar a construção com `while`. Considere o seguinte exemplo.
+```matlab 
+gap> while i <= 10 do 
+> Print( "O quadrado de ", i, " é ", i^2, "\n" );
+> i := i + 1;
+> od;
+O quadrado de 0 é 0
+O quadrado de 1 é 1
+O quadrado de 2 é 4
+O quadrado de 3 é 9
+O quadrado de 4 é 16
+O quadrado de 5 é 25
+O quadrado de 6 é 36
+O quadrado de 7 é 49
+O quadrado de 8 é 64
+O quadrado de 9 é 81
+O quadrado de 10 é 100
+```
+
+As regras de construir este tipo de laço são as seguintes:
+
+1. a palavra `while` (enquanto) está seguida por uma condição lógica (booleana) e depois pela palavra `do`;
+2. o laço está fechado pela palavra `od`;
+3. a peça de código está executado entre as palavras `do` e `od` enquanto (`while`) a condição está verdadeira.
+
+Note que no laço `while` o valor da variável `i` precisa ser incrementado manualmente.
+
+
+## Laço `repeat`
+
+O terceiro tipo de laço pode ser construída com a palavra `repeat`. Considere o seguinte exemplo:
+
+```matlab
+gap> i := 0;
+0
+gap> repeat
+> Print( "O quadrado de ", i, " é ", i^2, "\n" );
+> i := i + 1;
+> until i = 10;
+O quadrado de 0 é 0
+O quadrado de 1 é 1
+O quadrado de 2 é 4
+O quadrado de 3 é 9
+O quadrado de 4 é 16
+O quadrado de 5 é 25
+O quadrado de 6 é 36
+O quadrado de 7 é 49
+O quadrado de 8 é 64
+O quadrado de 9 é 81
+```
+
+Observamos que 
+
+1. O laço está iniciado pela palavra `repeat`;
+2. na última linha, temos a palavra `until` seguida por uma condição lógica;
+3. o sistema termina a execução do laço assim que a condição depois de `repeat` vira verdadeira. 
+
+A diferença entre os laços construídos por `while` e `repeat` é que no caso de `while` a decisão está feita antes da execução do código, enquanto no caso de `repeat`a mesma decisão está feita depois da execução. Em particular, o laço `repeat` sempre será executado pelo menos uma vez. Considere o seguinte código e explique o comportamento.
+
+```matlab
+gap> i := 11;
+11
+gap> while i <= 10 do
+> Print( "O quadrado de ", i, " é ", i^2, "\n" );
+> i := i + 1;
+> od;
+
+gap> i := 11;
+11
+gap> repeat
+> Print( "O quadrado de ", i, " é ", i^2, "\n" );
+> i := 11;
+> until i >= 10;
+O quadrado de 11 é 121
+```

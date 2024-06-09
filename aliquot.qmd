@@ -1,0 +1,137 @@
+---
+title: "Projeto: A sequência alíquota"
+number-sections: true
+lang: pt-BR
+---
+
+
+
+Seja $n\in\mathbb N_0$. Denote por $\sigma(n)$ a soma dos divisores de $n$ entre $1$ e $n-1$ (ou seja, $n$ está desconsiderado). Em outras palavras, 
+$$
+\sigma(n)=\sum_{d\mid n,\ d<n}d.
+$$
+Por exemplo
+$$
+\sigma(8)=1+2+4=7
+$$
+e 
+$$
+\sigma(24)=1+2+3+4+6+8+12=36.
+$$
+Nós definimos também 
+$$
+\sigma(1)=0\quad\mbox{e}\quad \sigma(0)=0.
+$$
+
+## Tarefa 1
+Escreva uma função `sum_divisors( n )` em `GAP` que dado um numero `n` devolve $\sigma(n)$. Pode usar a função `DivisorsInt`. A sua função deve se comportar como no seguinte exemplo.
+
+```matlab
+gap> sum_divisors( 8 );
+7
+gap> sum_divisors( 9 );
+4
+gap> sum_divisors( 11 );
+1
+```
+
+## Tarefa 2 
+
+Um número $n$ chama-se *perfeito* se $\sigma(n)=n$. 
+
+1. Escreva uma função `is_perfect( n )` que devolva `true` se `n` é perfeito e `false` se `n` não é perfeito. 
+```matlab
+gap> is_perfect( 6 );
+true
+gap> is_perfect( 20 );
+false
+gap> is_perfect( 28 );
+true
+```
+2. Ache todos os números perfeitos entre `1` e `1000000`.
+
+## Tarefa 3
+
+Um número $n$ chama-se *abundante*, se $\sigma(n)>n$. Ache todos os número abundantes entre `1` e `1000`.
+
+
+## Tarefa 4
+
+Dois números $n$ e $m$ são chamados de amigáveis se $\sigma(n)=m$ e $\sigma(m)=n$. 
+
+1. Escreva uma função `is_friendly( n )` que verifica se um número `n` é membro de um par amigável. A função deve devolver o par de `n` caso sim, e `0` caso não.
+```matlab
+gap> is_friendly( 6 );
+6
+gap> is_friendly( 220 );
+284
+gap> is_friendly( 284 );
+220
+gap> is_friendly( 200 );
+0
+```
+2. Ache todos os pares amigáveis de números entre `1` e `1000000`. 
+
+## Tarefa 5
+
+Seja $a_0\in\mathbb N$ arbitrário. Defina a sequência que começa por $a_0$ e para $i\geq 1$, $a_i=\sigma(a_{i-1})$. Por exemplo, se $a_0=8$, então 
+$$
+a_0=8,\quad a_1=\sigma(8)=7,\quad a_2=\sigma(7)=1, a_3=\sigma(1)=0, \quad a_4=\sigma(0)=0.
+$$
+Este tipo de sequência chama-se [sequência alíquota](https://en.wikipedia.org/wiki/Aliquot_sequence) (aliquot sequence).
+
+1. Escreva uma função `aliquot_sequence( a0, k )` que, dado `a0` e um número `k`, devolve os primeiros `k` termos da sequência alíquota que inicia-se com `a0`. 
+```matlab
+gap> aliquot_sequence( 8, 4 );
+[ 8, 7, 1, 0 ]
+gap> aliquot_sequence( 24, 6 );
+[ 24, 36, 55, 17, 1, 0 ]
+gap> aliquot_sequence( 30, 15 );
+[ 30, 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1 ]
+```
+
+2. Modifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica. 
+```matlab
+gap> aliquot_sequence_until_repeat( 21 );
+[ 21, 11, 1, 0, 0 ]
+gap> aliquot_sequence_until_repeat( 42 );
+[ 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1, 0, 0 ]
+gap> aliquot_sequence_until_repeat( 34 );
+[ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]
+```
+
+3. O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre $1$ e $1000$ que produz o sequência com maior comprimento.
+
+<!--
+aliquot_sequence := function( a0, k )
+    local i, seq;
+    seq := [a0];
+    for i in [1..k-1] do
+        Add( seq, sum_divisors( seq[i] ));
+    od;
+    return seq;
+end;
+
+
+aliquot_sequence_until_repeat := function( a0 )
+    local i, seq, next_term;
+    seq := [a0];
+    i := 1;
+    while true do
+        next_term := sum_divisors( seq[i] );
+        if next_term in seq then
+            Add( seq, next_term );
+            break;
+        fi;
+        Add( seq, next_term );
+        i := i + 1;
+    od;
+    return seq;
+end;
+
+-->
+
+Este projeto foi inspirado pelo seguinte vídeo
+
+{{< video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width="560" height="315" >}}
+

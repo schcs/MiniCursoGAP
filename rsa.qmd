@@ -1,0 +1,101 @@
+---
+title: "Criptografia RSA"
+number-sections: true
+lang: pt-BR
+---
+
+## A Teoria da Criptografia
+
+## Tarefa 1: Exploração interativa
+
+Assuma que trabalhamos com um protocolo simplificado. Assuma que trabalhamos com criptografia de 100 bits. Usando `NextPrimeInt` ache dois primos `p`e `q` tal que o produto é um numero composto entre $2^{99}$ e $2^{100}-1$. 
+
+```matlab
+gap> p := NextPrimeInt( Random( 2^59, 2^60 ));
+1086726084099436427
+gap> q := NextPrimeInt( Random( 2^39, 2^40 ));
+1073930166469
+gap> n := p*q;
+1167067924403112255997192566263
+gap> n <= 2^100;
+true
+```
+
+
+Ora, vamos criar o anel das classes residuais módulo `n`. Precisamos de um elemento `c` invertível e seu inverso `d` (módulo `n`).
+
+```matlab
+gap> R := ZmodnZ( n );
+(Integers mod 1167067924403112255997192566263)
+gap> R1 := ZmodnZ( (p-1)*(q-1) );
+(Integers mod 1167067924402025528839162963368)
+gap> c := Random( R1 );
+ZmodnZObj( 449601717067465409204371741486, 1167067924402025528839162963368 )
+gap> IsUnit( c );
+false
+gap> c := Random( R1 );
+ZmodnZObj( 564525934207952237103150572399, 1167067924402025528839162963368 )
+gap> IsUnit( c );
+true
+gap> d := c^-1;
+ZmodnZObj( 477861003212806940664702229055, 1167067924402025528839162963368 )
+gap> c := Int( c );
+564525934207952237103150572399
+gap> d := Int( d );
+477861003212806940664702229055
+```
+Tendo criado, estes números, assuma que temos uma mensagem `a` que é um número entre `2` e `n`.  Vamos criptografar e descriptografar a mensagem.
+
+```matlab
+gap> msg2 := 2*One( R );
+ZmodnZObj( 2, 1167067924403112255997192566263 )
+gap> msg2_cript := msg2^c;
+ZmodnZObj( 409777624988356516250582182849, 1167067924403112255997192566263 )
+gap> msg2_descript := msg2_cript^d;
+ZmodnZObj( 2, 1167067924403112255997192566263 )
+gap> msg_rand := Random( R );
+ZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )
+gap> msg_rand_cript := msg_rand^c;
+ZmodnZObj( 117680927883705414410064163455, 1167067924403112255997192566263 )
+gap> msg_rand_descript := msg_rand_cript^d;
+ZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )
+gap> msg_rand_descript = msg_rand;
+true
+```
+
+## Tarefa 2
+
+Repita a computação anterior, mas agora com números maiores. Em vez de trabalhar com chave de comprimento de `100` bits, trabalhe com chave de `2048` bits que é o usual com protocolos modernos de criptografia RSA. O comprimento de `p` será de `1228` bits, enquanto o comprimento de `q` será de `820` bits. (Ou seja, `p` é um primo entre $2^{1227}$ e $2^{1228}-1$) e `q` é primo entre $2^{819}$ e $2^{820}-1$.
+
+Única coisa que precisa modificar é que a função `NextPrimeInt` não funciona para estes típos de números e precisa usar `NextProbablyPrimeInt`. 
+
+## Geração das chaves
+
+
+Escreva uma função `RSA_keys( nr_bits )` que gera dados necessários para criptografia RSA usando `nr_bits`. Ou seja, `RSA_keys( nr_bits )` devolve 
+
+1. o número `n` que é produto dos primos `p` e `q` (mas não devolve os números `p` e `q`);
+2. devolve a chave pública `c` e a chave privada `d`.
+
+<!--
+RSA_keys := function( nr_bits )
+    local nr_bits_p, nr_bits_q, p, q, n, phi_n, c, gcd_rep, d;
+
+    nr_bits_p := Int( 3*nr_bits/5 );
+    nr_bits_q := nr_bits - nr_bits_p; 
+    p := NextProbablyPrimeInt( 2^(nr_bits_p-1) );
+    q := NextProbablyPrimeInt( 2^(nr_bits_q-1) );
+
+    n := p*q;
+
+    phi_n := (p-1)*(q-1);
+
+    repeat 
+        c := Random( 2, n );
+        gcd_rep := Gcdex( phi_n, c );
+        d := gcd_rep.coeff1*phi_n + gcd_rep.coeff2*c;
+    until d = 1;
+
+    return [ n, c, gcd_rep.coeff2 ];
+end; 
+-->

@@ -1,13 +1,15 @@
 # MiniCursoGAP
 
-Material para minicurso de GAP na Escola de Álgebra em São Paulo (2024).
+Este material foi preparado para o minicurso de *Álgebra Computacional com GAP* que foi realizado na [XXVII Escola de Álgebra](https://algebra2024.ime.usp.br/index.php) em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá
 
 - Rodar o sistema, criar, salvar e carregar arquivos
 - [Aritmética básica, variáveis, funções](arith.qmd)
-- [O primeiro encontro com estruturas algébricas](estrut.qmd)
+- [Listas, matrizes, permutações](list_mat_perm.qmd)
+- [O primeiro encontro com grupos](estrut.qmd)
 - [A linguagem de programação](ling.qmd)
-- Listas, matrizes, permutações
 - [A Conjetura de Collatz](collatz.qmd)
+- [Números perfeitos, abundantes, e sequências alíquotas](aliquot.qmd)
+- [Criptografia RSA](rsa.qmd)
 - Conceitos básicos com grupos
 - Homomorfismos, automorfismos, etc, de grupos
 - Comutadores de grupos
