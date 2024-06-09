@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Álgebra Computacional com GAP - 4&nbsp; Estruturas algébricas</title>
+<title>Álgebra Computacional com GAP - 5&nbsp; O primeiro encontro com grupos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./collatz.html" rel="next">
-<link href="./ling.html" rel="prev">
+<link href="./list_mat_perm.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./estrut.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estruturas algébricas</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./estrut.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O primeiro encontro com grupos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -189,14 +189,32 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./list_mat_perm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Listas, matrizes e permutações</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./estrut.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estruturas algébricas</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O primeiro encontro com grupos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./collatz.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aliquot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rsa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Criptografia RSA</span></span></a>
   </div>
 </li>
     </ul>
@@ -209,7 +227,10 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#os-primeiros-passos-com-grupos" id="toc-os-primeiros-passos-com-grupos" class="nav-link active" data-scroll-target="#os-primeiros-passos-com-grupos"><span class="header-section-number">4.0.1</span> Os primeiros passos com grupos</a></li>
+  <li><a href="#grupos-disponíveis-na-biblioteca" id="toc-grupos-disponíveis-na-biblioteca" class="nav-link active" data-scroll-target="#grupos-disponíveis-na-biblioteca"><span class="header-section-number">5.1</span> Grupos disponíveis na biblioteca</a></li>
+  <li><a href="#grupos-gerados-por-permutações" id="toc-grupos-gerados-por-permutações" class="nav-link" data-scroll-target="#grupos-gerados-por-permutações"><span class="header-section-number">5.2</span> Grupos gerados por permutações</a></li>
+  <li><a href="#grupos-gerados-por-matrizes" id="toc-grupos-gerados-por-matrizes" class="nav-link" data-scroll-target="#grupos-gerados-por-matrizes"><span class="header-section-number">5.3</span> Grupos gerados por matrizes</a></li>
+  <li><a href="#projeto-o-grupo-de-heisenberg" id="toc-projeto-o-grupo-de-heisenberg" class="nav-link" data-scroll-target="#projeto-o-grupo-de-heisenberg"><span class="header-section-number">5.4</span> Projeto: O grupo de Heisenberg</a></li>
   </ul>
 </nav>
     </div>
@@ -218,7 +239,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Estruturas algébricas</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O primeiro encontro com grupos</span></h1>
 </div>
 
 
@@ -235,9 +256,9 @@ window.Quarto = {
 </header>
 
 
-<section id="os-primeiros-passos-com-grupos" class="level3" data-number="4.0.1">
-<h3 data-number="4.0.1" class="anchored" data-anchor-id="os-primeiros-passos-com-grupos"><span class="header-section-number">4.0.1</span> Os primeiros passos com grupos</h3>
-<p><code>GAP</code> permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas.</p>
+<section id="grupos-disponíveis-na-biblioteca" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="grupos-disponíveis-na-biblioteca"><span class="header-section-number">5.1</span> Grupos disponíveis na biblioteca</h2>
+<p><code>GAP</code> permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas. Primeiro considere alguns exemplos usando os grupos <code>GL</code> e <code>SL</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G1</span> <span class="op">:=</span> <span class="va">SL</span>( <span class="fl">3</span><span class="op">,</span> <span class="va">GF</span>(<span class="fl">5</span>))<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">SL</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G1</span> <span class="op">:=</span> <span class="va">SL</span>( <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span>)<span class="op">;</span></span>
@@ -252,81 +273,139 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fl">1488000</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Order</span>( <span class="va">G2</span> )<span class="op">;</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fl">372000</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">S6</span> <span class="op">:=</span> <span class="va">SymmetricGroup</span>( <span class="fl">6</span> )<span class="op">;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="va">Sym</span>( [ <span class="fl">1</span> .. <span class="fl">6</span> ] )</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A6</span> <span class="op">:=</span> <span class="va">AlternatingGroup</span>( <span class="fl">6</span> )<span class="op">;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="va">Alt</span>( [ <span class="fl">1</span> .. <span class="fl">6</span> ] )</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSubgroup</span>( <span class="va">G1</span><span class="op">,</span> <span class="va">G2</span> )<span class="op">;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSubgroup</span>( <span class="va">S6</span><span class="op">,</span> <span class="va">A6</span> )<span class="op">;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsNormal</span>( <span class="va">S6</span><span class="op">,</span> <span class="va">A6</span> )<span class="op">;</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsNormal</span>( <span class="va">G1</span><span class="op">,</span> <span class="va">G2</span> )<span class="op">;</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Pode também definir grupo por geradores. Os geradores podem ser objetos multiplicáveis, tipicamente usamos matrizes e permutações. Primeiro, consideremos alguns exemplos com permutações.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="va">Group</span>( (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>))<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>) ])</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">G</span> )<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fl">120</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">=</span> <span class="va">SymmetricGroup</span>( <span class="fl">5</span> )<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSubgroup</span>( <span class="va">G1</span><span class="op">,</span> <span class="va">G2</span> )<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsNormal</span>( <span class="va">G1</span><span class="op">,</span> <span class="va">G2</span> )<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ora, considere construções com <code>SymmetricGroup</code> e <code>AlternatingGroup</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">S6</span> <span class="op">:=</span> <span class="va">SymmetricGroup</span>( <span class="fl">6</span> )<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">Sym</span>( [ <span class="fl">1</span> .. <span class="fl">6</span> ] )</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A6</span> <span class="op">:=</span> <span class="va">AlternatingGroup</span>( <span class="fl">6</span> )<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">Alt</span>( [ <span class="fl">1</span> .. <span class="fl">6</span> ] )</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSubgroup</span>( <span class="va">S6</span><span class="op">,</span> <span class="va">A6</span> )<span class="op">;</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A</span> <span class="op">:=</span> <span class="va">Group</span>( (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>))<span class="op">;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> (<span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>) ])</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">A</span> )<span class="op">;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fl">60</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A</span> <span class="op">=</span> <span class="va">AlternatingGroup</span>( <span class="fl">5</span> )<span class="op">;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A</span> <span class="op">=</span> <span class="va">SymmetricGroup</span>( <span class="fl">5</span> )<span class="op">;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O grupo dihedral <span class="math inline">\(D_5\)</span> de ordem <span class="math inline">\(10\)</span> pode ser construído da forma seguinte.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">D</span> <span class="op">:=</span> <span class="va">Group</span>( (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">4</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>))<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">4</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>) ])</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">D</span> )<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">60</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">D</span> <span class="op">:=</span> <span class="va">Group</span>( (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>))<span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>) ])</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">D</span> )<span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fl">10</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Elements</span>( <span class="va">D</span> )<span class="op">;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>[ ()<span class="op">,</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">4</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">4</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">4</span>) ]</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSubgroup</span>( <span class="va">AlternatingGroup</span>( <span class="fl">5</span> )<span class="op">,</span> <span class="va">D</span> )<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsNormal</span>( <span class="va">S6</span><span class="op">,</span> <span class="va">A6</span> )<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="grupos-gerados-por-permutações" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="grupos-gerados-por-permutações"><span class="header-section-number">5.2</span> Grupos gerados por permutações</h2>
+<p>Pode também definir grupo por geradores. Os geradores podem ser objetos multiplicáveis, tipicamente usamos matrizes e permutações. Primeiro, consideremos alguns exemplos com permutações.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="va">Group</span>( (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>))<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>) ])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">G</span> )<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">120</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">=</span> <span class="va">SymmetricGroup</span>( <span class="fl">5</span> )<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A</span> <span class="op">:=</span> <span class="va">Group</span>( (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>))<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> (<span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>) ])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">A</span> )<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fl">60</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A</span> <span class="op">=</span> <span class="va">AlternatingGroup</span>( <span class="fl">5</span> )<span class="op">;</span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsNormal</span>( <span class="va">AlternatingGroup</span>( <span class="fl">5</span> )<span class="op">,</span> <span class="va">D</span> )<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A</span> <span class="op">=</span> <span class="va">SymmetricGroup</span>( <span class="fl">5</span> )<span class="op">;</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Para ver um grupo gerado por matrizes, considere o grupo de Heisenberg sobre <span class="math inline">\(\mathbb F_5\)</span>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">F</span> <span class="op">:=</span> <span class="va">GF</span>( <span class="fl">5</span> )<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">GF</span>(<span class="fl">5</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">e</span> <span class="op">:=</span> <span class="va">One</span>( <span class="va">F</span> )<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">mx</span> <span class="op">:=</span> [[<span class="fl">1</span><span class="op">,</span><span class="fl">1</span><span class="op">,</span><span class="fl">0</span>]<span class="op">,</span>[<span class="fl">0</span><span class="op">,</span><span class="fl">1</span><span class="op">,</span><span class="fl">0</span>]<span class="op">,</span>[<span class="fl">0</span><span class="op">,</span><span class="fl">0</span><span class="op">,</span><span class="fl">1</span>]]<span class="op">*</span><span class="va">e</span><span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ] ]</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">mx</span> )<span class="op">;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a> <span class="fl">1</span> <span class="fl">1</span> .</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a> . <span class="fl">1</span> .</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a> . . <span class="fl">1</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">my</span> <span class="op">:=</span> [[<span class="fl">1</span><span class="op">,</span><span class="fl">0</span><span class="op">,</span><span class="fl">0</span>]<span class="op">,</span>[<span class="fl">0</span><span class="op">,</span><span class="fl">1</span><span class="op">,</span><span class="fl">1</span>]<span class="op">,</span>[<span class="fl">0</span><span class="op">,</span><span class="fl">0</span><span class="op">,</span><span class="fl">1</span>]]<span class="op">*</span><span class="va">e</span><span class="op">;</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>[ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ] ]</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">my</span> )<span class="op">;</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a> <span class="fl">1</span> . .</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a> . <span class="fl">1</span> <span class="fl">1</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a> . . <span class="fl">1</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">H</span> <span class="op">:=</span> <span class="va">Group</span>( <span class="va">mx</span><span class="op">,</span> <span class="va">my</span> )<span class="op">;</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ [ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ] ]<span class="op">,</span> </span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  [ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ] ] ])</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">H</span> )<span class="op">;</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fl">125</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Comm</span>( <span class="va">mx</span><span class="op">,</span> <span class="va">my</span> )<span class="op">;</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>[ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ] ]</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">last</span> )<span class="op">;</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a> <span class="fl">1</span> . <span class="fl">1</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a> . <span class="fl">1</span> .</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a> . . <span class="fl">1</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSubgroup</span>( <span class="va">SL</span>( <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span> )<span class="op">,</span> <span class="va">H</span> )<span class="op">;</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsNormal</span>( <span class="va">SL</span>( <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span> )<span class="op">,</span> <span class="va">H</span> )<span class="op">;</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>VbRU_8/+kzP9Ek</p>
+<p>O grupo dihedral <span class="math inline">\(D_5\)</span> de ordem <span class="math inline">\(10\)</span> pode ser construído da forma seguinte.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">D</span> <span class="op">:=</span> <span class="va">Group</span>( (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>))<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>) ])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">D</span> )<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fl">10</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Elements</span>( <span class="va">D</span> )<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[ ()<span class="op">,</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">4</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">4</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">4</span>) ]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSubgroup</span>( <span class="va">AlternatingGroup</span>( <span class="fl">5</span> )<span class="op">,</span> <span class="va">D</span> )<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsNormal</span>( <span class="va">AlternatingGroup</span>( <span class="fl">5</span> )<span class="op">,</span> <span class="va">D</span> )<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="grupos-gerados-por-matrizes" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="grupos-gerados-por-matrizes"><span class="header-section-number">5.3</span> Grupos gerados por matrizes</h2>
+<p>Pode-se também definir grupos de matrizes usando geradores. Considere por exemplo as seguintes duas matrizes sobre <code>GF( 5 )</code>: <span class="math display">\[
+m_1 = \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\quad \mbox{e}\quad m_2 = \begin{pmatrix} 2 &amp; 1 \\ 2 &amp; 0 \end{pmatrix}.
+\]</span> O grupo gerado por <span class="math inline">\(m_1\)</span> e <span class="math inline">\(m_2\)</span> pode ser construído em <code>GAP</code> usando as seguintes instruções.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m1</span> <span class="op">:=</span> [[<span class="fl">2</span><span class="op">,</span><span class="fl">0</span>]<span class="op">,</span>[<span class="fl">0</span><span class="op">,</span><span class="fl">1</span>]]<span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ] ]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m2</span> <span class="op">:=</span> [[<span class="fl">2</span><span class="op">,</span><span class="fl">1</span>]<span class="op">,</span>[<span class="fl">2</span><span class="op">,</span><span class="fl">0</span>]]<span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>[ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ]<span class="op">,</span> [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ] ]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="va">Group</span>( <span class="va">m1</span><span class="op">,</span> <span class="va">m2</span> )<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ [ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ] ]<span class="op">,</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  [ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ]<span class="op">,</span> [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ] ] ])</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Order</span>( <span class="va">G</span> )<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fl">480</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">=</span> <span class="va">GL</span>( <span class="fl">2</span><span class="op">,</span> <span class="fl">5</span> )<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="projeto-o-grupo-de-heisenberg" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="projeto-o-grupo-de-heisenberg"><span class="header-section-number">5.4</span> Projeto: O grupo de Heisenberg</h2>
+<p>Sobre um corpo <span class="math inline">\(\mathbb F\)</span>, o grupo de Heisenberg é o grupo <span class="math display">\[
+H=\left\{\begin{pmatrix} 1 &amp; a &amp; c \\ 0 &amp; 1 &amp; b \\ 0 &amp; 0 &amp; c\end{pmatrix}\mid a, b, c \in\mathbb F\right\}.
+\]</span></p>
+<p>O seguinte resultado é fácil de verificar.</p>
+<div id="lemma-">
+<p>Se <span class="math inline">\(\mathbb F\)</span> é um corpo finito de ordem <span class="math inline">\(q\)</span>, então <span class="math inline">\(|H|=q^3\)</span>.</p>
+</div>
+<div class="{tarefa}">
+<p><strong>Tarefa 1:</strong> Construa em <code>GAP</code> o grupo de Heisenberg sobre os corpos <code>GF(2)</code>, <code>GF(3)</code>, <code>GF(5)</code>, <code>GF( 9 )</code>, <code>GF( 25 )</code> como um grupo de matrizes dado por geradores. Calcule a ordem do grupo construido para verificar que tem o grupo certo.</p>
+<p><strong>Tarefa 2:</strong> Escreva uma função <code>heisenberg_group( q )</code> que devolve o grupo de Heisenberg sobre <code>GF( q )</code> dado input <code>q</code>. A sua função precisa seguir o seguinte exemplo.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">H</span> <span class="op">:=</span> <span class="va">heisenberg_group</span>( <span class="fl">5</span> )<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>[ </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  [ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ] ]<span class="op">,</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  [ [ <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ]<span class="op">,</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">5</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">5</span>)<span class="op">^</span><span class="fl">0</span> ] ] ])</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Order</span>( <span class="va">H</span> )<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fl">125</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">H</span> <span class="op">:=</span> <span class="va">heisenberg_group</span>( <span class="fl">7</span> )<span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>(</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>[ </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  [ [ <span class="va">Z</span>(<span class="fl">7</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="va">Z</span>(<span class="fl">7</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">7</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>) ]<span class="op">,</span> </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">7</span>)<span class="op">^</span><span class="fl">0</span> ] ]<span class="op">,</span> </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  [ [ <span class="va">Z</span>(<span class="fl">7</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>) ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">7</span>)<span class="op">^</span><span class="fl">0</span><span class="op">,</span> <span class="va">Z</span>(<span class="fl">7</span>)<span class="op">^</span><span class="fl">0</span> ]<span class="op">,</span> </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      [ <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>)<span class="op">,</span> <span class="fl">0</span><span class="op">*</span><span class="va">Z</span>(<span class="fl">7</span>)<span class="op">,</span> <span class="va">Z</span>(<span class="fl">7</span>)<span class="op">^</span><span class="fl">0</span> ] ] ])</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Order</span>( <span class="va">H</span> )<span class="op">;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fl">343</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">H</span> <span class="op">:=</span> <span class="va">heisenberg_group</span>( <span class="fl">3</span> )<span class="op">;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">matrix</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">729</span> <span class="va">with</span> <span class="fl">4</span> <span class="va">generators</span><span class="op">&gt;</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Order</span>( <span class="va">H</span> )<span class="op">;</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="fl">729</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Tarefa 3:</strong> Investiga o grupo de Heisenberg usando a sua função construída na Tarefa 2. Calcule o seu centro, subgrupo derivado, os termos da série derivada, série central superior, e série central inferior.</p>
+</div>
+<!--
+
+Para ver um grupo gerado por matrizes, considere o grupo de Heisenberg sobre $\mathbb F_5$.
+```matlab
+gap> F := GF( 5 );
+GF(5)
+gap> e := One( F );
+Z(5)^0
+gap> mx := [[1,1,0],[0,1,0],[0,0,1]]*e;
+[ [ Z(5)^0, Z(5)^0, 0*Z(5) ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ]
+gap> Display( mx );
+ 1 1 .
+ . 1 .
+ . . 1
+gap> my := [[1,0,0],[0,1,1],[0,0,1]]*e;
+[ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0, Z(5)^0 ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ]
+gap> Display( my );
+ 1 . .
+ . 1 1
+ . . 1
+gap> H := Group( mx, my );
+Group([ [ [ Z(5)^0, Z(5)^0, 0*Z(5) ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ], 
+  [ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0, Z(5)^0 ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ] ])
+gap> Size( H );
+125
+gap> Comm( mx, my );
+[ [ Z(5)^0, 0*Z(5), Z(5)^0 ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ]
+gap> Display( last );
+ 1 . 1
+ . 1 .
+ . . 1
+gap> IsSubgroup( SL( 3, 5 ), H );
+true
+gap> IsNormal( SL( 3, 5 ), H );
+false
+```
+-->
 
 
 </section>
@@ -743,13 +822,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ling.html" class="pagination-link" aria-label="A linguagem de programação">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A linguagem de programação</span></span>
+      <a href="./list_mat_perm.html" class="pagination-link" aria-label="Listas, matrizes e permutações">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Listas, matrizes e permutações</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./collatz.html" class="pagination-link" aria-label="A conjetura de Collatz">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

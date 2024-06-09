@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Álgebra Computacional com GAP",
     "section": "",
-    "text": "1 MiniCursoGAP\nMaterial para minicurso de GAP na Escola de Álgebra em São Paulo (2024).\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nO primeiro encontro com estruturas algébricas\nA linguagem de programação\nListas, matrizes, permutações\nA Conjetura de Collatz\nConceitos básicos com grupos\nHomomorfismos, automorfismos, etc, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nGrupos de permutação\nGrupos de matrizes\nÁlgebras de Lie\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos",
+    "text": "1 MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP que foi realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA\nConceitos básicos com grupos\nHomomorfismos, automorfismos, etc, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nGrupos de permutação\nGrupos de matrizes\nÁlgebras de Lie\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>MiniCursoGAP</span>"
     ]
@@ -14,7 +14,57 @@
     "href": "arith.html",
     "title": "2  Aritmética básica",
     "section": "",
-    "text": "2.0.1 Operações aritméticas\n\nAs operações mais comuns em GAP são + (adição), - (subtração), * (multiplicação), / (divisão), mod, ^ (exponenciação). Considere os seguintes exemplos\ngap&gt; 2+3;\n5\ngap&gt; 2/4;\n1/2\ngap&gt; (2+3)*(1/2);\n5/2\ngap&gt; 2^3*3;\n24\ngap&gt; 2^-2*3;\n3/4\ngap&gt; 2.0;\n2.\ngap&gt; 2.01+3.11;\n5.12\ngap&gt; 1/3;\n1/3\ngap&gt; 1.0/3;\n0.333333\n\nNote a diferença de trabalhar com valores exatos (como por exemplo 1/3) e valores aproximados (por exemplo 1.0/3).\nQuando trabalhamos com estruturas algébricas, precisamos trabalhar com corpos além do corpo \\(\\mathbb Q\\). Aqui em baixo veremos alguns exemplos para aritmética com corpos finitos.\ngap&gt; F := GF(11);\nGF(11)\ngap&gt; e := One( F );\nZ(11)^0\ngap&gt; z := Zero( F );\n0*Z(11)\ngap&gt; p := PrimitiveElement( F );\nZ(11)\ngap&gt; e+p;\nZ(11)^8\ngap&gt; e+p^2;\nZ(11)^4\ngap&gt; IntFFE( e+p^2 );\n5\n\n\n2.0.2 Variáveis\nAs variáveis guardam valores. Uma variável é um string de letras, números e alguns carateres especiais. Aqui é um exemplo simples.\ngap&gt; 3a := 2;\n2\ngap&gt; _3a := 2;\n2\ngap&gt; a := 2; \n2\ngap&gt; b := 3;\n3\ngap&gt; a + b; a*b;\n5\n6\nVariávies podem conter valores mais complexos, como nos seguintes exemplos.\ngap&gt; s1 := \"Hello\";\n\"Hello\"\ngap&gt; s2 := \" World!\";\n\" World!\"\ngap&gt; Concatenation( s1, s2 );\n\"Hello World!\"\n\n\n2.0.3 Funções\nFunções em GAP podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado x computa 3*x+1 pode ser definida de duas maneiras diferentes.\ngap&gt; f1 := function( x )\n&gt; return 3*x+1;\n&gt; end;\nfunction( x ) ... end\ngap&gt; f2 := x -&gt; 3*x + 1;\nfunction( x ) ... end\ngap&gt; f1 = f2;\nfalse\ngap&gt; f1( 5 );\n16\ngap&gt; f2( -2 );\n-5\nNos exemplos anteriores, a função não precisa de variáveis adicionais para executar sua tarefa. Isso pode acontecer com funções simples, mas uma função mais complicada pode precisar introduzir as suas próprias variáveis, chamadas de variáveis locais. Considere a seguinte implementação do exemplo em cima.\ngap&gt; f3 := function( x )\n&gt; local y;\n&gt; y := 3*x;\n&gt; return y+1;\n&gt; end;\nfunction( x ) ... end\ngap&gt; f3(4);\n13\ngap&gt; y;\nError, Variable: 'y' must have a value\nnot in any function at *stdin*:44\nAs últimas linhas do exemplo anterior mostram que o variável y não está visível fora da função. Isso permite que variáveis com o mesmo nome sejam usadas em várias funções sem que sejam confundidas. O mesmo também impede que a varíavel local y definida dentro da função f3 seja confundida com uma possível variável global também chamada de y. O seguinte código mostra que o nome y tem significado diferente dentro e fora da função.\ngap&gt; f3 := function( x )\n&gt; local y;\n&gt; y := 3*x;\n&gt; Print( \"O valor de y é \", y, \"\\n\" );\n&gt; return y+1;\n&gt; end;\nfunction( x ) ... end\ngap&gt; y := -5;\n-5\ngap&gt; f3(10);\nO valor de y é 30\n31\ngap&gt; y;\n-5\n\n\n2.0.4 Listas e Matrizes\nListas são importantes em GAP. Listas contém uma sequência de objetos. Os objetos nas listas podem ser números, carateres, ou até objetos complexos, tais como grupos, subgrupos de um grupo, etc. Os seguintes exemplos mostram a criação de listas e as operações básicas com listas.\ngap&gt; L1 := [1,3,5,7,9,10,8,6,4,2,0];\n[ 1, 3, 5, 7, 9, 10, 8, 6, 4, 2, 0 ]\ngap&gt; L2 := [\"a\",\"b\",\"c\",\"z\",\"x\",\"y\"];\n[ \"a\", \"b\", \"c\", \"z\", \"x\", \"y\" ]\ngap&gt; L1[3];\n5\ngap&gt; 10 in L1;\ntrue\ngap&gt; 10 in L2;\nfalse\ngap&gt; \"a\" in L2;\ntrue\ngap&gt; Union( L1, L2 );\n[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, \"a\", \"b\", \"c\", \"x\", \"y\", \"z\" ]\ngap&gt; Position( L1, 10 );\n6\ngap&gt; Position( L1, -1 );\nfail\ngap&gt; Intersection( L1, L2 );\n[  ]\ngap&gt; Filtered( L, x -&gt; x mod 2 = 0 );\nError, Variable: 'L' must have a value\nnot in any function at *stdin*:2\ngap&gt; Filtered( L1, x -&gt; x mod 2 = 0 );\n[ 10, 8, 6, 4, 2, 0 ]\ngap&gt; Filtered( L1, x -&gt; x mod 2 = 1 );\n[ 1, 3, 5, 7, 9 ]\ngap&gt; Filtered( L1, x -&gt; IsEvenInt( x ));\n[ 10, 8, 6, 4, 2, 0 ]\ngap&gt; Filtered( L1, x -&gt; IsOddInt( x ));\n[ 1, 3, 5, 7, 9 ]\ngap&gt; Filtered( L1, IsEvenInt );\n[ 10, 8, 6, 4, 2, 0 ]\ngap&gt; Filtered( L1, IsOddInt );\n[ 1, 3, 5, 7, 9 ]\ngap&gt; \nListas podem ser criadas usando outras listas. Por exemplo, criamos a list dos quadrados dos primeiros 10 números naturais:\ngap&gt; List( [1..10], x-&gt;x^2 );\n[ 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 ]\nEm GAP uma matriz é lista de listas (que são as linhas da matriz). As entradas de matrizes são tipicamente números ou, mais geralmente, elementos de um anel ou corpo. As matrizes podem ser somadas e multiplicadas exatamente como números.\ngap&gt; List( [1..10], x-&gt;x^2 );\n[ 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 ]\ngap&gt; m1 := [[1,2,0],[0,-2,3]];\n[ [ 1, 2, 0 ], [ 0, -2, 3 ] ]\ngap&gt; Display( m1 );\n[ [   1,   2,   0 ],\n  [   0,  -2,   3 ] ]\ngap&gt; m2 := [[1,-1],[0,3],[4,1/2]];\n[ [ 1, -1 ], [ 0, 3 ], [ 4, 1/2 ] ]\ngap&gt; Display( m2 );\n[ [    1,   -1 ],\n  [    0,    3 ],\n  [    4,  1/2 ] ]\ngap&gt; m1*m2;\n[ [ 1, 5 ], [ 12, -9/2 ] ]\ngap&gt; Display( last );\n[ [     1,     5 ],\n  [    12,  -9/2 ] ]\ngap&gt; m2*m1;\n[ [ 1, 4, -3 ], [ 0, -6, 9 ], [ 4, 7, 3/2 ] ]\ngap&gt; Display( last );\n[ [    1,    4,   -3 ],\n  [    0,   -6,    9 ],\n  [    4,    7,  3/2 ] ]\nOutro objeto fundamento quando trabalhamos com grupos finitos é a permutação. Permutações em GAP podem ser definidas como produto de cíclos disjuntos mas também usando uma lista.\ngap&gt; p1 := (1,2,3)(4,5,6);\n(1,2,3)(4,5,6)\ngap&gt; p1^2;\n(1,3,2)(4,6,5)\ngap&gt; p2 := PermList( [1,5,4,3,2] );\n(2,5)(3,4)\ngap&gt; p1*p2;\n(1,5,6,3)(2,4)\ngap&gt; p2*p1;\n(1,2,6,4)(3,5)",
+    "text": "2.1 Operações aritméticas\nNote a diferença entre trabalhar com valores exatos (como por exemplo 1/3) e valores aproximados (por exemplo 1.0/3).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Aritmética básica</span>"
+    ]
+  },
+  {
+    "objectID": "arith.html#operações-aritméticas",
+    "href": "arith.html#operações-aritméticas",
+    "title": "2  Aritmética básica",
+    "section": "",
+    "text": "As operações mais comuns em GAP são + (adição), - (subtração), * (multiplicação), / (divisão), mod, (resto) ^ (exponenciação). Experimente com os seguintes exemplos.\ngap&gt; 2+3;\n5\ngap&gt; 2/4;\n1/2\ngap&gt; (2+3)*(1/2);\n5/2\ngap&gt; 2^3*3;\n24\ngap&gt; 2^-2*3;\n3/4\ngap&gt; 2.0;\n2.\ngap&gt; 2.01+3.11;\n5.12\ngap&gt; 1/3;\n1/3\ngap&gt; 1.0/3;\n0.333333",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Aritmética básica</span>"
+    ]
+  },
+  {
+    "objectID": "arith.html#operações-lógicas-booleanas",
+    "href": "arith.html#operações-lógicas-booleanas",
+    "title": "2  Aritmética básica",
+    "section": "2.2 Operações lógicas (booleanas)",
+    "text": "2.2 Operações lógicas (booleanas)\nPara comparar valores, usamos a operação = cujo valor é um valor lógico ou seja true ou false. As operações com valores lógicos são not, and e or.\ngap&gt; 2 + 3 = 5;\ntrue\ngap&gt; 2 + 3 = 5 or 2 + 3 = 6;\ntrue\ngap&gt; 2 + 3 = 5 and 2 + 3 = 6;\nfalse\ngap&gt; 2 + 3 = 5 and  not 2 + 3 = 6;\ntrue",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Aritmética básica</span>"
+    ]
+  },
+  {
+    "objectID": "arith.html#corpos-finitos",
+    "href": "arith.html#corpos-finitos",
+    "title": "2  Aritmética básica",
+    "section": "2.3 Corpos finitos",
+    "text": "2.3 Corpos finitos\nQuando trabalhamos com estruturas algébricas, precisamos trabalhar com corpos além do corpo \\(\\mathbb Q\\). Aqui em baixo veremos alguns exemplos para aritmética com corpos finitos. Sabemos que o grupo multiplicativo de um corpo finito é cíclico. Isso quer dizer que para todo corpo finito \\(\\mathbb F\\), existe um elemento \\(z\\in \\mathbb F\\) tal que os elementos não nulos de \\(\\mathbb F\\) são as potências de \\(z\\); ou seja, \\[\n\\mathbb F=\\{0\\}\\cup \\{z^0,z^1,\\ldots,z^{q-2}\\}\n\\] onde \\(q=|\\mathbb F|\\). Para uma potência de primo q, função Z( q ) devolve um gerador explícito do corpo finito GF( q ) (Galois Field). Os elementos não nulos de GF( q ) são representados como potências de Z( q ). Considere os seguintes exemplos.\ngap&gt; F := GF(11);\nGF(11)\ngap&gt; e := One( F );\nZ(11)^0\ngap&gt; z := Zero( F );\n0*Z(11)\ngap&gt; p := PrimitiveElement( F );\nZ(11)\ngap&gt; e+p;\nZ(11)^8\ngap&gt; e+p^2;\nZ(11)^4\ngap&gt; IntFFE( e+p^2 );\n5",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Aritmética básica</span>"
+    ]
+  },
+  {
+    "objectID": "arith.html#variáveis",
+    "href": "arith.html#variáveis",
+    "title": "2  Aritmética básica",
+    "section": "2.4 Variáveis",
+    "text": "2.4 Variáveis\nAs variáveis guardam valores. Uma variável é um string de letras, números e alguns carateres especiais. Aqui é um exemplo simples.\ngap&gt; a := 2;\n2\ngap&gt; a3 := 3;\n3\ngap&gt; a_5 := 5;\n5\ngap&gt; a := 2; \n2\ngap&gt; b := 3;\n3\ngap&gt; a + b; a*b;\n5\n6\nVariávies podem conter valores mais complexos, como nos seguintes exemplos.\ngap&gt; s1 := \"Hello\";\n\"Hello\"\ngap&gt; s2 := \" World!\";\n\" World!\"\ngap&gt; Concatenation( s1, s2 );\n\"Hello World!\"",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Aritmética básica</span>"
+    ]
+  },
+  {
+    "objectID": "arith.html#funções",
+    "href": "arith.html#funções",
+    "title": "2  Aritmética básica",
+    "section": "2.5 Funções",
+    "text": "2.5 Funções\nFunções em GAP podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado x computa 3*x+1 pode ser definida de duas maneiras diferentes.\ngap&gt; f1 := function( x )\n&gt; return 3*x+1;\n&gt; end;\nfunction( x ) ... end\ngap&gt; f1( 5 );\n16\ngap&gt; f2 := x -&gt; 3*x + 1;\nfunction( x ) ... end\ngap&gt; f2( -2 );\n-5\ngap&gt; f1 = f2;\nfalse\n# As funções f1 e f2 fazem a mesma coisa, mas são objetos distintos\nNos exemplos anteriores, a função não precisa de variáveis adicionais para executar sua tarefa. Isso pode acontecer com funções simples, mas uma função mais complicada pode precisar introduzir as suas próprias variáveis, chamadas de variáveis locais. Considere a seguinte implementação do exemplo em cima.\ngap&gt; f3 := function( x )\n&gt; local y;\n&gt; y := 3*x;\n&gt; return y+1;\n&gt; end;\nfunction( x ) ... end\ngap&gt; f3(4);\n13\ngap&gt; y;\nError, Variable: 'y' must have a value\nnot in any function at *stdin*:44\nAs últimas linhas do exemplo anterior mostram que o variável y não está visível fora da função. Isso permite que variáveis com o mesmo nome sejam usadas em várias funções sem que sejam confundidas. O mesmo também impede que a varíavel local y definida dentro da função f3 seja confundida com uma possível variável global também chamada de y. O seguinte código mostra que o nome y tem significado diferente dentro e fora da função.\ngap&gt; f3 := function( x )\n&gt; local y;\n&gt; y := 3*x;\n&gt; Print( \"O valor de y é \", y, \"\\n\" );\n&gt; return y+1;\n&gt; end;\nfunction( x ) ... end\ngap&gt; y := -5;\n-5\ngap&gt; f3(10);\nO valor de y é 30\n31\ngap&gt; y;\n-5",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Aritmética básica</span>"
     ]
@@ -24,39 +74,259 @@
     "href": "ling.html",
     "title": "3  A linguagem de programação",
     "section": "",
-    "text": "3.0.1 Expressões if-then\nA expressão if-then está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa. Considere o seguinte exemplo:\ngap&gt; a := 3;                # seja a inicialmente 3\n3\ngap&gt; if a mod 2 = 0 then    # se a for par, dividimos a por 2\n&gt; b := a/2;\n&gt; fi;\ngap&gt; a;                     # valor de a continua 3\n3\ngap&gt; if a mod 2 = 1 then    # se a for ímpar, multiplicamos a por 3 e somamos 1\n&gt; a := 3*a+1;\n&gt; fi;\ngap&gt; a;                     # o valor de a mudou\n10\nExpressões mais complicadas podem ser montadas usando as palavras chaves else e elif.\ngap&gt; a := 3;\n3\ngap&gt; if a mod 2 = 0 then \n&gt; a := a/2;\n&gt; else\n&gt; a := 3*a+1;\n&gt; fi;\ngap&gt; a;\n10\ngap&gt; a := 8;\n8\ngap&gt; if a mod 2 = 0 then\n&gt; a := a/2;\n&gt; else\n&gt; a := 3*a+1;\n&gt; fi;\ngap&gt; a;\n4\n\n\n3.0.2 Laço for\n\n\n3.0.3 Laço while\n\n\n3.0.4 Laço repeat",
+    "text": "3.1 Expressões if-then-else\nA expressão if-then está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa. Considere o seguinte exemplo:\nExpressões mais complicadas podem ser montadas usando as palavras chaves else e elif.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>A linguagem de programação</span>"
     ]
   },
   {
+    "objectID": "ling.html#expressões-if-then-else",
+    "href": "ling.html#expressões-if-then-else",
+    "title": "3  A linguagem de programação",
+    "section": "",
+    "text": "gap&gt; a := 3;                # seja a inicialmente 3\n3\ngap&gt; if a mod 2 = 0 then    # se a for par, dividimos a por 2\n&gt; b := a/2;\n&gt; fi;\ngap&gt; a;                     # valor de a continua 3\n3\ngap&gt; if a mod 2 = 1 then    # se a for ímpar, multiplicamos a por 3 e somamos 1\n&gt; a := 3*a+1;\n&gt; fi;\ngap&gt; a;                     # o valor de a mudou\n10\n\ngap&gt; a := 3;\n3\ngap&gt; if a mod 2 = 0 then \n&gt; a := a/2;\n&gt; else\n&gt; a := 3*a+1;\n&gt; fi;\ngap&gt; a;\n10\ngap&gt; a := 8;\n8\ngap&gt; if a mod 2 = 0 then\n&gt; a := a/2;\n&gt; else\n&gt; a := 3*a+1;\n&gt; fi;\ngap&gt; a;\n4",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A linguagem de programação</span>"
+    ]
+  },
+  {
+    "objectID": "ling.html#laço-for",
+    "href": "ling.html#laço-for",
+    "title": "3  A linguagem de programação",
+    "section": "3.2 Laço for",
+    "text": "3.2 Laço for\nUsamos for quando queremos executar a mesma peça de código várias vezes. Por exemplo, queremos calcular o quadrado dos números entre 1 e 10.\ngap&gt; for i in [1..10] do\n&gt; Print( \"O quadrado de \", i, \" é \", i^2, \"\\n\" );\n&gt; od;\nO quadrado de 1 é 1\nO quadrado de 2 é 4\nO quadrado de 3 é 9\nO quadrado de 4 é 16\nO quadrado de 5 é 25\nO quadrado de 6 é 36\nO quadrado de 7 é 49\nO quadrado de 8 é 64\nO quadrado de 9 é 81\nO quadrado de 10 é 100\ngap&gt; \nObservamos os seguintes regras importantes:\n\na palavra chave for é seguida por uma variável, neste caso i;\ndepois temos a palavra in seguida por uma lista;\ndepois da lista temos a palavra do;\no laço está fechado pela palavra od (do invertido).\n\nO ciclo executa o código entre as palavras do e od para todo valor i na lista que aparece depois da palavra in.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A linguagem de programação</span>"
+    ]
+  },
+  {
+    "objectID": "ling.html#laço-while",
+    "href": "ling.html#laço-while",
+    "title": "3  A linguagem de programação",
+    "section": "3.3 Laço while",
+    "text": "3.3 Laço while\nUma outra maneira de criar um laço é usar a construção com while. Considere o seguinte exemplo.\ngap&gt; while i &lt;= 10 do \n&gt; Print( \"O quadrado de \", i, \" é \", i^2, \"\\n\" );\n&gt; i := i + 1;\n&gt; od;\nO quadrado de 0 é 0\nO quadrado de 1 é 1\nO quadrado de 2 é 4\nO quadrado de 3 é 9\nO quadrado de 4 é 16\nO quadrado de 5 é 25\nO quadrado de 6 é 36\nO quadrado de 7 é 49\nO quadrado de 8 é 64\nO quadrado de 9 é 81\nO quadrado de 10 é 100\nAs regras de construir este tipo de laço são as seguintes:\n\na palavra while (enquanto) está seguida por uma condição lógica (booleana) e depois pela palavra do;\no laço está fechado pela palavra od;\na peça de código está executado entre as palavras do e od enquanto (while) a condição está verdadeira.\n\nNote que no laço while o valor da variável i precisa ser incrementado manualmente.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A linguagem de programação</span>"
+    ]
+  },
+  {
+    "objectID": "ling.html#laço-repeat",
+    "href": "ling.html#laço-repeat",
+    "title": "3  A linguagem de programação",
+    "section": "3.4 Laço repeat",
+    "text": "3.4 Laço repeat\nO terceiro tipo de laço pode ser construída com a palavra repeat. Considere o seguinte exemplo:\ngap&gt; i := 0;\n0\ngap&gt; repeat\n&gt; Print( \"O quadrado de \", i, \" é \", i^2, \"\\n\" );\n&gt; i := i + 1;\n&gt; until i = 10;\nO quadrado de 0 é 0\nO quadrado de 1 é 1\nO quadrado de 2 é 4\nO quadrado de 3 é 9\nO quadrado de 4 é 16\nO quadrado de 5 é 25\nO quadrado de 6 é 36\nO quadrado de 7 é 49\nO quadrado de 8 é 64\nO quadrado de 9 é 81\nObservamos que\n\nO laço está iniciado pela palavra repeat;\nna última linha, temos a palavra until seguida por uma condição lógica;\no sistema termina a execução do laço assim que a condição depois de repeat vira verdadeira.\n\nA diferença entre os laços construídos por while e repeat é que no caso de while a decisão está feita antes da execução do código, enquanto no caso de repeata mesma decisão está feita depois da execução. Em particular, o laço repeat sempre será executado pelo menos uma vez. Considere o seguinte código e explique o comportamento.\ngap&gt; i := 11;\n11\ngap&gt; while i &lt;= 10 do\n&gt; Print( \"O quadrado de \", i, \" é \", i^2, \"\\n\" );\n&gt; i := i + 1;\n&gt; od;\n\ngap&gt; i := 11;\n11\ngap&gt; repeat\n&gt; Print( \"O quadrado de \", i, \" é \", i^2, \"\\n\" );\n&gt; i := 11;\n&gt; until i &gt;= 10;\nO quadrado de 11 é 121",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A linguagem de programação</span>"
+    ]
+  },
+  {
+    "objectID": "list_mat_perm.html",
+    "href": "list_mat_perm.html",
+    "title": "4  Listas, matrizes e permutações",
+    "section": "",
+    "text": "4.1 Listas\nListas são importantes em GAP. Listas contém uma sequência de objetos. Os objetos nas listas podem ser números, carateres, ou até objetos complexos, tais como grupos, subgrupos de um grupo, etc. Os seguintes exemplos mostram a criação de listas e as operações básicas com listas.\nListas podem ser criadas usando outras listas. Por exemplo, criamos a list dos quadrados dos primeiros 10 números naturais:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Listas, matrizes e permutações</span>"
+    ]
+  },
+  {
+    "objectID": "list_mat_perm.html#listas",
+    "href": "list_mat_perm.html#listas",
+    "title": "4  Listas, matrizes e permutações",
+    "section": "",
+    "text": "gap&gt; L1 := [1,3,5,7,9,10,8,6,4,2,0];\n[ 1, 3, 5, 7, 9, 10, 8, 6, 4, 2, 0 ]\ngap&gt; L2 := [\"a\",\"b\",\"c\",\"z\",\"x\",\"y\"];\n[ \"a\", \"b\", \"c\", \"z\", \"x\", \"y\" ]\ngap&gt; L1[3];\n5\ngap&gt; 10 in L1;\ntrue\ngap&gt; 10 in L2;\nfalse\ngap&gt; \"a\" in L2;\ntrue\ngap&gt; Union( L1, L2 );\n[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, \"a\", \"b\", \"c\", \"x\", \"y\", \"z\" ]\ngap&gt; Position( L1, 10 );\n6\ngap&gt; Position( L1, -1 );\nfail\ngap&gt; Intersection( L1, L2 );\n[  ]\ngap&gt; Filtered( L, x -&gt; x mod 2 = 0 );\nError, Variable: 'L' must have a value\nnot in any function at *stdin*:2\ngap&gt; Filtered( L1, x -&gt; x mod 2 = 0 );\n[ 10, 8, 6, 4, 2, 0 ]\ngap&gt; Filtered( L1, x -&gt; x mod 2 = 1 );\n[ 1, 3, 5, 7, 9 ]\ngap&gt; Filtered( L1, x -&gt; IsEvenInt( x ));\n[ 10, 8, 6, 4, 2, 0 ]\ngap&gt; Filtered( L1, x -&gt; IsOddInt( x ));\n[ 1, 3, 5, 7, 9 ]\ngap&gt; Filtered( L1, IsEvenInt );\n[ 10, 8, 6, 4, 2, 0 ]\ngap&gt; Filtered( L1, IsOddInt );\n[ 1, 3, 5, 7, 9 ]\ngap&gt; \n\ngap&gt; List( [1..10], x-&gt;x^2 );\n[ 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 ]",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Listas, matrizes e permutações</span>"
+    ]
+  },
+  {
+    "objectID": "list_mat_perm.html#matrizes",
+    "href": "list_mat_perm.html#matrizes",
+    "title": "4  Listas, matrizes e permutações",
+    "section": "4.2 Matrizes",
+    "text": "4.2 Matrizes\nEm GAP uma matriz é lista de listas (que são as linhas da matriz). As entradas de matrizes são tipicamente números ou, mais geralmente, elementos de um anel ou corpo. As matrizes podem ser somadas e multiplicadas exatamente como números.\ngap&gt; List( [1..10], x-&gt;x^2 );\n[ 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 ]\ngap&gt; m1 := [[1,2,0],[0,-2,3]];\n[ [ 1, 2, 0 ], [ 0, -2, 3 ] ]\ngap&gt; Display( m1 );\n[ [   1,   2,   0 ],\n  [   0,  -2,   3 ] ]\ngap&gt; m2 := [[1,-1],[0,3],[4,1/2]];\n[ [ 1, -1 ], [ 0, 3 ], [ 4, 1/2 ] ]\ngap&gt; Display( m2 );\n[ [    1,   -1 ],\n  [    0,    3 ],\n  [    4,  1/2 ] ]\ngap&gt; m1*m2;\n[ [ 1, 5 ], [ 12, -9/2 ] ]\ngap&gt; Display( last );\n[ [     1,     5 ],\n  [    12,  -9/2 ] ]\ngap&gt; m2*m1;\n[ [ 1, 4, -3 ], [ 0, -6, 9 ], [ 4, 7, 3/2 ] ]\ngap&gt; Display( last );\n[ [    1,    4,   -3 ],\n  [    0,   -6,    9 ],\n  [    4,    7,  3/2 ] ]",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Listas, matrizes e permutações</span>"
+    ]
+  },
+  {
+    "objectID": "list_mat_perm.html#permutações",
+    "href": "list_mat_perm.html#permutações",
+    "title": "4  Listas, matrizes e permutações",
+    "section": "4.3 Permutações",
+    "text": "4.3 Permutações\nOutro objeto fundamento quando trabalhamos com grupos finitos é a permutação. Permutações em GAP podem ser definidas como produto de cíclos disjuntos mas também usando uma lista.\ngap&gt; p1 := (1,2,3)(4,5,6);\n(1,2,3)(4,5,6)\ngap&gt; p1^2;\n(1,3,2)(4,6,5)\ngap&gt; p2 := PermList( [1,5,4,3,2] );\n(2,5)(3,4)\ngap&gt; p1*p2;\n(1,5,6,3)(2,4)\ngap&gt; p2*p1;\n(1,2,6,4)(3,5)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Listas, matrizes e permutações</span>"
+    ]
+  },
+  {
     "objectID": "estrut.html",
     "href": "estrut.html",
-    "title": "4  Estruturas algébricas",
+    "title": "5  O primeiro encontro com grupos",
     "section": "",
-    "text": "4.0.1 Os primeiros passos com grupos\nGAP permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas.\ngap&gt; G1 := SL( 3, GF(5));\nSL(3,5)\ngap&gt; G1 := SL( 3, 5);\nSL(3,5)\ngap&gt; G1 := SL( 3, 5 );\nSL(3,5)\ngap&gt; G1 := GL( 3, 5 );\nGL(3,5)\ngap&gt; G2 := SL( 3, 5 );\nSL(3,5)\ngap&gt; Order( G1 );\n1488000\ngap&gt; Order( G2 );\n372000\ngap&gt; S6 := SymmetricGroup( 6 );\nSym( [ 1 .. 6 ] )\ngap&gt; A6 := AlternatingGroup( 6 );\nAlt( [ 1 .. 6 ] )\ngap&gt; IsSubgroup( G1, G2 );\ntrue\ngap&gt; IsSubgroup( S6, A6 );\ntrue\ngap&gt; IsNormal( S6, A6 );\ntrue\ngap&gt; IsNormal( G1, G2 );\ntrue\nPode também definir grupo por geradores. Os geradores podem ser objetos multiplicáveis, tipicamente usamos matrizes e permutações. Primeiro, consideremos alguns exemplos com permutações.\ngap&gt; G := Group( (1,2), (1,2,3,4,5));\nGroup([ (1,2), (1,2,3,4,5) ])\ngap&gt; Size( G );\n120\ngap&gt; G = SymmetricGroup( 5 );\ntrue\ngap&gt; A := Group( (1,2,3),(3,4,5));\nGroup([ (1,2,3), (3,4,5) ])\ngap&gt; Size( A );\n60\ngap&gt; A = AlternatingGroup( 5 );\ntrue\ngap&gt; A = SymmetricGroup( 5 );\nfalse\nO grupo dihedral \\(D_5\\) de ordem \\(10\\) pode ser construído da forma seguinte.\ngap&gt; D := Group( (1,2,3,4,5),(2,4)(3,5));\nGroup([ (1,2,3,4,5), (2,4)(3,5) ])\ngap&gt; Size( D );\n60\ngap&gt; D := Group( (1,2,3,4,5),(2,5)(3,4));\nGroup([ (1,2,3,4,5), (2,5)(3,4) ])\ngap&gt; Size( D );\n10\ngap&gt; Elements( D );\n[ (), (2,5)(3,4), (1,2)(3,5), (1,2,3,4,5), (1,3)(4,5), (1,3,5,2,4), (1,4)(2,3), (1,4,2,5,3), (1,5,4,3,2), (1,5)(2,4) ]\ngap&gt; IsSubgroup( AlternatingGroup( 5 ), D );\ntrue\ngap&gt; IsNormal( AlternatingGroup( 5 ), D );\nfalse\nPara ver um grupo gerado por matrizes, considere o grupo de Heisenberg sobre \\(\\mathbb F_5\\).\ngap&gt; F := GF( 5 );\nGF(5)\ngap&gt; e := One( F );\nZ(5)^0\ngap&gt; mx := [[1,1,0],[0,1,0],[0,0,1]]*e;\n[ [ Z(5)^0, Z(5)^0, 0*Z(5) ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ]\ngap&gt; Display( mx );\n 1 1 .\n . 1 .\n . . 1\ngap&gt; my := [[1,0,0],[0,1,1],[0,0,1]]*e;\n[ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0, Z(5)^0 ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ]\ngap&gt; Display( my );\n 1 . .\n . 1 1\n . . 1\ngap&gt; H := Group( mx, my );\nGroup([ [ [ Z(5)^0, Z(5)^0, 0*Z(5) ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ], \n  [ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0, Z(5)^0 ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ] ])\ngap&gt; Size( H );\n125\ngap&gt; Comm( mx, my );\n[ [ Z(5)^0, 0*Z(5), Z(5)^0 ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], [ 0*Z(5), 0*Z(5), Z(5)^0 ] ]\ngap&gt; Display( last );\n 1 . 1\n . 1 .\n . . 1\ngap&gt; IsSubgroup( SL( 3, 5 ), H );\ntrue\ngap&gt; IsNormal( SL( 3, 5 ), H );\nfalse\nVbRU_8/+kzP9Ek",
+    "text": "5.1 Grupos disponíveis na biblioteca\nGAP permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas. Primeiro considere alguns exemplos usando os grupos GL e SL.\nOra, considere construções com SymmetricGroup e AlternatingGroup.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Estruturas algébricas</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>O primeiro encontro com grupos</span>"
+    ]
+  },
+  {
+    "objectID": "estrut.html#grupos-disponíveis-na-biblioteca",
+    "href": "estrut.html#grupos-disponíveis-na-biblioteca",
+    "title": "5  O primeiro encontro com grupos",
+    "section": "",
+    "text": "gap&gt; G1 := SL( 3, GF(5));\nSL(3,5)\ngap&gt; G1 := SL( 3, 5);\nSL(3,5)\ngap&gt; G1 := SL( 3, 5 );\nSL(3,5)\ngap&gt; G1 := GL( 3, 5 );\nGL(3,5)\ngap&gt; G2 := SL( 3, 5 );\nSL(3,5)\ngap&gt; Order( G1 );\n1488000\ngap&gt; Order( G2 );\n372000\ngap&gt; IsSubgroup( G1, G2 );\ntrue\ngap&gt; IsNormal( G1, G2 );\ntrue\n\ngap&gt; S6 := SymmetricGroup( 6 );\nSym( [ 1 .. 6 ] )\ngap&gt; A6 := AlternatingGroup( 6 );\nAlt( [ 1 .. 6 ] )\ngap&gt; IsSubgroup( S6, A6 );\ntrue\ngap&gt; IsNormal( S6, A6 );\ntrue",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>O primeiro encontro com grupos</span>"
+    ]
+  },
+  {
+    "objectID": "estrut.html#grupos-gerados-por-permutações",
+    "href": "estrut.html#grupos-gerados-por-permutações",
+    "title": "5  O primeiro encontro com grupos",
+    "section": "5.2 Grupos gerados por permutações",
+    "text": "5.2 Grupos gerados por permutações\nPode também definir grupo por geradores. Os geradores podem ser objetos multiplicáveis, tipicamente usamos matrizes e permutações. Primeiro, consideremos alguns exemplos com permutações.\ngap&gt; G := Group( (1,2), (1,2,3,4,5));\nGroup([ (1,2), (1,2,3,4,5) ])\ngap&gt; Size( G );\n120\ngap&gt; G = SymmetricGroup( 5 );\ntrue\ngap&gt; A := Group( (1,2,3),(3,4,5));\nGroup([ (1,2,3), (3,4,5) ])\ngap&gt; Size( A );\n60\ngap&gt; A = AlternatingGroup( 5 );\ntrue\ngap&gt; A = SymmetricGroup( 5 );\nfalse\nO grupo dihedral \\(D_5\\) de ordem \\(10\\) pode ser construído da forma seguinte.\ngap&gt; D := Group( (1,2,3,4,5),(2,5)(3,4));\nGroup([ (1,2,3,4,5), (2,5)(3,4) ])\ngap&gt; Size( D );\n10\ngap&gt; Elements( D );\n[ (), (2,5)(3,4), (1,2)(3,5), (1,2,3,4,5), (1,3)(4,5), (1,3,5,2,4), (1,4)(2,3), (1,4,2,5,3), (1,5,4,3,2), (1,5)(2,4) ]\ngap&gt; IsSubgroup( AlternatingGroup( 5 ), D );\ntrue\ngap&gt; IsNormal( AlternatingGroup( 5 ), D );\nfalse",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>O primeiro encontro com grupos</span>"
+    ]
+  },
+  {
+    "objectID": "estrut.html#grupos-gerados-por-matrizes",
+    "href": "estrut.html#grupos-gerados-por-matrizes",
+    "title": "5  O primeiro encontro com grupos",
+    "section": "5.3 Grupos gerados por matrizes",
+    "text": "5.3 Grupos gerados por matrizes\nPode-se também definir grupos de matrizes usando geradores. Considere por exemplo as seguintes duas matrizes sobre GF( 5 ): \\[\nm_1 = \\begin{pmatrix} 2 & 0 \\\\ 0 & 1 \\end{pmatrix}\\quad \\mbox{e}\\quad m_2 = \\begin{pmatrix} 2 & 1 \\\\ 2 & 0 \\end{pmatrix}.\n\\] O grupo gerado por \\(m_1\\) e \\(m_2\\) pode ser construído em GAP usando as seguintes instruções.\ngap&gt; m1 := [[2,0],[0,1]]*Z(5)^0;\n[ [ Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0 ] ]\ngap&gt; m2 := [[2,1],[2,0]]*Z(5)^0;\n[ [ Z(5), Z(5)^0 ], [ Z(5), 0*Z(5) ] ]\ngap&gt; G := Group( m1, m2 );\nGroup([ [ [ Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0 ] ], \n  [ [ Z(5), Z(5)^0 ], [ Z(5), 0*Z(5) ] ] ])\ngap&gt; Order( G );\n480\ngap&gt; G = GL( 2, 5 );\ntrue",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>O primeiro encontro com grupos</span>"
+    ]
+  },
+  {
+    "objectID": "estrut.html#projeto-o-grupo-de-heisenberg",
+    "href": "estrut.html#projeto-o-grupo-de-heisenberg",
+    "title": "5  O primeiro encontro com grupos",
+    "section": "5.4 Projeto: O grupo de Heisenberg",
+    "text": "5.4 Projeto: O grupo de Heisenberg\nSobre um corpo \\(\\mathbb F\\), o grupo de Heisenberg é o grupo \\[\nH=\\left\\{\\begin{pmatrix} 1 & a & c \\\\ 0 & 1 & b \\\\ 0 & 0 & c\\end{pmatrix}\\mid a, b, c \\in\\mathbb F\\right\\}.\n\\]\nO seguinte resultado é fácil de verificar.\n\nSe \\(\\mathbb F\\) é um corpo finito de ordem \\(q\\), então \\(|H|=q^3\\).\n\n\nTarefa 1: Construa em GAP o grupo de Heisenberg sobre os corpos GF(2), GF(3), GF(5), GF( 9 ), GF( 25 ) como um grupo de matrizes dado por geradores. Calcule a ordem do grupo construido para verificar que tem o grupo certo.\nTarefa 2: Escreva uma função heisenberg_group( q ) que devolve o grupo de Heisenberg sobre GF( q ) dado input q. A sua função precisa seguir o seguinte exemplo.\ngap&gt; H := heisenberg_group( 5 );\nGroup(\n[ \n  [ [ Z(5)^0, Z(5)^0, 0*Z(5) ], [ 0*Z(5), Z(5)^0, 0*Z(5) ], \n      [ 0*Z(5), 0*Z(5), Z(5)^0 ] ], \n  [ [ Z(5)^0, 0*Z(5), 0*Z(5) ], [ 0*Z(5), Z(5)^0, Z(5)^0 ], \n      [ 0*Z(5), 0*Z(5), Z(5)^0 ] ] ])\ngap&gt; Order( H );\n125\ngap&gt; H := heisenberg_group( 7 );\nGroup(\n[ \n  [ [ Z(7)^0, Z(7)^0, 0*Z(7) ], [ 0*Z(7), Z(7)^0, 0*Z(7) ], \n      [ 0*Z(7), 0*Z(7), Z(7)^0 ] ], \n  [ [ Z(7)^0, 0*Z(7), 0*Z(7) ], [ 0*Z(7), Z(7)^0, Z(7)^0 ], \n      [ 0*Z(7), 0*Z(7), Z(7)^0 ] ] ])\ngap&gt; Order( H );\n343\ngap&gt; H := heisenberg_group( 3 );\n&lt;matrix group of size 729 with 4 generators&gt;\ngap&gt; Order( H );\n729\nTarefa 3: Investiga o grupo de Heisenberg usando a sua função construída na Tarefa 2. Calcule o seu centro, subgrupo derivado, os termos da série derivada, série central superior, e série central inferior.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>O primeiro encontro com grupos</span>"
     ]
   },
   {
     "objectID": "collatz.html",
     "href": "collatz.html",
-    "title": "5  A conjetura de Collatz",
+    "title": "6  A conjetura de Collatz",
     "section": "",
-    "text": "5.1 Projeto 1: A Conjetura de Collatz",
+    "text": "6.1 Projeto 1: A Conjetura de Collatz",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
     ]
   },
   {
     "objectID": "collatz.html#projeto-1-a-conjetura-de-collatz",
     "href": "collatz.html#projeto-1-a-conjetura-de-collatz",
-    "title": "5  A conjetura de Collatz",
+    "title": "6  A conjetura de Collatz",
     "section": "",
-    "text": "\\(\\newcommand{\\N}{\\mathbb N}\\)\n\nConsidere a seguinte função \\(f:\\N\\to \\N\\): \\[\n    f(n)=\\left\\{\\begin{array}{cc} n/2 & \\mbox{se $n$ for par;}\\\\\n    3n+1 & \\mbox{se $n$ for ímpar.}\\end{array}\\right.\n\\] A Conjetura de Collatz afirma que para todo \\(n\\in\\N\\), existe um número \\(k\\) tal que aplicando a função \\(f\\) \\(k\\) vezes em \\(n\\), o resultado vai ser igual a \\(1\\). Em outras, palavras, \\(f^k(n)=1\\).\n\n\n5.1.1 Tarefa 1\n\nEscreva uma função collatz( n ) que toma \\(n\\) como input e devolve \\(f(n)\\). Faça testes da sua função com vários números.\n\n\nPrecisa testar se o input é par ou ímpar e para isso pode usar a operação mod (manual).\ngap&gt; 3 mod 2;\n1\ngap&gt; 6 mod 2;\n0\nAlém disso, a sua função precisará usar a expressão if (manual).\n\n\nA sua função deve comportar-se de acordo com os seguintes exemplos:\ngap&gt; collatz( 15 );\n46\ngap&gt; collatz( 14 );\n7\ngap&gt; collatz( 5 );\n16\n\n\n\n5.1.2 Tarefa 2\n\nEscreva uma função nr_steps( n ) que vai calcular o número de vezes a função \\(f\\) precisa ser aplicado em \\(n\\) para obter o número \\(1\\). Em outras palavras, nr_steps( n ) deve devolver o menor número \\(k\\) tal que \\(f^k(n)=1\\).\n\n\nVocê usará a função a função collatz( n ) na tarefa anterior em um laço while (manual) ou repeat (manual).\n\n\nA sua função precisa devolver input de acordo com os seguintes exemplos.\ngap&gt; nr_steps( 1 );\n0\ngap&gt; nr_steps( 3 );\n7\ngap&gt; nr_steps( 14 );\n17\ngap&gt; nr_steps( 32 );\n5\n\n\n\n5.1.3 Tarefa 3\n\nEscreva uma função max_nr_steps( n ) para determinar o número \\(k\\in\\{1,\\ldots,n\\}\\) tal que nr_steps( k ) é maior possível.\n\n\nPode usar a função nr_steps( k ) escrita na tarefa anterior em um laço for (manual) que roda na lista [1..n].\n\n\nO comportamento da sua função seguirá os seguintes exemplos:\ngap&gt; max_nr_steps( 1000 );\n[ 871, 178 ]\ngap&gt; max_nr_steps( 10000 );\n[ 6171, 261 ]\ngap&gt; max_nr_steps( 100000 );\n[ 77031, 350 ]\n\n\n\n5.1.4 Tarefa 4\n\nCalcular nr_steps( k ) separadamente para todo \\(k\\in \\{1,\\ldots,n\\}\\) faz muita computação redundante. Por exemplo, calculando max_nr_steps( 6 ) deste jeito, fazemos as seguintes contas\n1 → 1 \n2 → 1\n3 → 10 → 5 → 16 → 8 → 4 → 2 → 1 \n4 → 2 → 1 \n5 → 16 → 8 → 4 → 2 → 1\n6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1\nOu seja, a computação nr_steps( 6 ) deve realizar que nr_steps( 3 ) já foi calculado e simplificar a conta por computar que nr_steps( 6 ) = nr_steps( 3 ) + 1. Escreva uma versão da função max_nr_steps( n ) utilizando as computações anteriores e compare o tempo de execução das duas versões.",
+    "text": "\\(\\newcommand{\\N}{\\mathbb N}\\)\n\nConsidere a seguinte função \\(f:\\N\\to \\N\\): \\[\n    f(n)=\\left\\{\\begin{array}{cc} n/2 & \\mbox{se $n$ for par;}\\\\\n    3n+1 & \\mbox{se $n$ for ímpar.}\\end{array}\\right.\n\\] A Conjetura de Collatz afirma que para todo \\(n\\in\\N\\), existe um número \\(k\\) tal que aplicando a função \\(f\\) \\(k\\) vezes em \\(n\\), o resultado vai ser igual a \\(1\\). Em outras, palavras, \\(f^k(n)=1\\).\n\n\n6.1.1 Tarefa 1\n\nEscreva uma função collatz( n ) que toma \\(n\\) como input e devolve \\(f(n)\\). Faça testes da sua função com vários números.\n\n\nPrecisa testar se o input é par ou ímpar e para isso pode usar a operação mod (manual).\ngap&gt; 3 mod 2;\n1\ngap&gt; 6 mod 2;\n0\nAlém disso, a sua função precisará usar a expressão if (manual).\n\n\nA sua função deve comportar-se de acordo com os seguintes exemplos:\ngap&gt; collatz( 15 );\n46\ngap&gt; collatz( 14 );\n7\ngap&gt; collatz( 5 );\n16\n\n\n\n6.1.2 Tarefa 2\n\nEscreva uma função nr_steps( n ) que vai calcular o número de vezes a função \\(f\\) precisa ser aplicado em \\(n\\) para obter o número \\(1\\). Em outras palavras, nr_steps( n ) deve devolver o menor número \\(k\\) tal que \\(f^k(n)=1\\).\n\n\nVocê usará a função collatz( n ) na tarefa anterior em um laço while (manual) ou repeat (manual).\n\n\nA sua função precisa devolver input de acordo com os seguintes exemplos.\ngap&gt; nr_steps( 1 );\n0\ngap&gt; nr_steps( 3 );\n7\ngap&gt; nr_steps( 14 );\n17\ngap&gt; nr_steps( 32 );\n5\n\n\n\n6.1.3 Tarefa 3\n\nEscreva uma função max_nr_steps( n ) para determinar o número \\(k\\in\\{1,\\ldots,n\\}\\) tal que nr_steps( k ) é maior possível.\n\n\nPode usar a função nr_steps( k ) escrita na tarefa anterior em um laço for (manual) que roda na lista [1..n].\n\n\nO comportamento da sua função seguirá os seguintes exemplos:\ngap&gt; max_nr_steps( 1000 );\n[ 871, 178 ]\ngap&gt; max_nr_steps( 10000 );\n[ 6171, 261 ]\ngap&gt; max_nr_steps( 100000 );\n[ 77031, 350 ]\n\n\n\n6.1.4 Tarefa 4\n\nCalcular nr_steps( k ) separadamente para todo \\(k\\in \\{1,\\ldots,n\\}\\) faz muita computação redundante. Por exemplo, calculando max_nr_steps( 6 ) deste jeito, fazemos as seguintes contas\n1 → 1 \n2 → 1\n3 → 10 → 5 → 16 → 8 → 4 → 2 → 1 \n4 → 2 → 1 \n5 → 16 → 8 → 4 → 2 → 1\n6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1\nOu seja, a computação nr_steps( 6 ) deve realizar que nr_steps( 3 ) já foi calculado e simplificar a conta por computar que nr_steps( 6 ) = nr_steps( 3 ) + 1. Escreva uma versão da função max_nr_steps( n ) utilizando as computações anteriores e compare o tempo de execução das duas versões.",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
+    ]
+  },
+  {
+    "objectID": "aliquot.html",
+    "href": "aliquot.html",
+    "title": "7  Projeto: A sequência alíquota",
+    "section": "",
+    "text": "7.1 Tarefa 1\nEscreva uma função sum_divisors( n ) em GAP que dado um numero n devolve \\(\\sigma(n)\\). Pode usar a função DivisorsInt. A sua função deve se comportar como no seguinte exemplo.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Projeto: A sequência alíquota</span>"
+    ]
+  },
+  {
+    "objectID": "aliquot.html#tarefa-1",
+    "href": "aliquot.html#tarefa-1",
+    "title": "7  Projeto: A sequência alíquota",
+    "section": "",
+    "text": "gap&gt; sum_divisors( 8 );\n7\ngap&gt; sum_divisors( 9 );\n4\ngap&gt; sum_divisors( 11 );\n1",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Projeto: A sequência alíquota</span>"
+    ]
+  },
+  {
+    "objectID": "aliquot.html#tarefa-2",
+    "href": "aliquot.html#tarefa-2",
+    "title": "7  Projeto: A sequência alíquota",
+    "section": "7.2 Tarefa 2",
+    "text": "7.2 Tarefa 2\nUm número \\(n\\) chama-se perfeito se \\(\\sigma(n)=n\\).\n\nEscreva uma função is_perfect( n ) que devolva true se n é perfeito e false se n não é perfeito.\n\ngap&gt; is_perfect( 6 );\ntrue\ngap&gt; is_perfect( 20 );\nfalse\ngap&gt; is_perfect( 28 );\ntrue\n\nAche todos os números perfeitos entre 1 e 1000000.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Projeto: A sequência alíquota</span>"
+    ]
+  },
+  {
+    "objectID": "aliquot.html#tarefa-3",
+    "href": "aliquot.html#tarefa-3",
+    "title": "7  Projeto: A sequência alíquota",
+    "section": "7.3 Tarefa 3",
+    "text": "7.3 Tarefa 3\nUm número \\(n\\) chama-se abundante, se \\(\\sigma(n)&gt;n\\). Ache todos os número abundantes entre 1 e 1000.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Projeto: A sequência alíquota</span>"
+    ]
+  },
+  {
+    "objectID": "aliquot.html#tarefa-4",
+    "href": "aliquot.html#tarefa-4",
+    "title": "7  Projeto: A sequência alíquota",
+    "section": "7.4 Tarefa 4",
+    "text": "7.4 Tarefa 4\nDois números \\(n\\) e \\(m\\) são chamados de amigáveis se \\(\\sigma(n)=m\\) e \\(\\sigma(m)=n\\).\n\nEscreva uma função is_friendly( n ) que verifica se um número n é membro de um par amigável. A função deve devolver o par de n caso sim, e 0 caso não.\n\ngap&gt; is_friendly( 6 );\n6\ngap&gt; is_friendly( 220 );\n284\ngap&gt; is_friendly( 284 );\n220\ngap&gt; is_friendly( 200 );\n0\n\nAche todos os pares amigáveis de números entre 1 e 1000000.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Projeto: A sequência alíquota</span>"
+    ]
+  },
+  {
+    "objectID": "aliquot.html#tarefa-5",
+    "href": "aliquot.html#tarefa-5",
+    "title": "7  Projeto: A sequência alíquota",
+    "section": "7.5 Tarefa 5",
+    "text": "7.5 Tarefa 5\nSeja \\(a_0\\in\\mathbb N\\) arbitrário. Defina a sequência que começa por \\(a_0\\) e para \\(i\\geq 1\\), \\(a_i=\\sigma(a_{i-1})\\). Por exemplo, se \\(a_0=8\\), então \\[\na_0=8,\\quad a_1=\\sigma(8)=7,\\quad a_2=\\sigma(7)=1, a_3=\\sigma(1)=0, \\quad a_4=\\sigma(0)=0.\n\\] Este tipo de sequência chama-se sequência alíquota (aliquot sequence).\n\nEscreva uma função aliquot_sequence( a0, k ) que, dado a0 e um número k, devolve os primeiros k termos da sequência alíquota que inicia-se com a0.\n\ngap&gt; aliquot_sequence( 8, 4 );\n[ 8, 7, 1, 0 ]\ngap&gt; aliquot_sequence( 24, 6 );\n[ 24, 36, 55, 17, 1, 0 ]\ngap&gt; aliquot_sequence( 30, 15 );\n[ 30, 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1 ]\n\nModifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica.\n\ngap&gt; aliquot_sequence_until_repeat( 21 );\n[ 21, 11, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 42 );\n[ 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 34 );\n[ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]\n\nO comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre \\(1\\) e \\(1000\\) que produz o sequência com maior comprimento.\n\n\nEste projeto foi inspirado pelo seguinte vídeo",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Projeto: A sequência alíquota</span>"
+    ]
+  },
+  {
+    "objectID": "rsa.html",
+    "href": "rsa.html",
+    "title": "8  Criptografia RSA",
+    "section": "",
+    "text": "8.1 A Teoria da Criptografia",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
+    ]
+  },
+  {
+    "objectID": "rsa.html#tarefa-1-exploração-interativa",
+    "href": "rsa.html#tarefa-1-exploração-interativa",
+    "title": "8  Criptografia RSA",
+    "section": "8.2 Tarefa 1: Exploração interativa",
+    "text": "8.2 Tarefa 1: Exploração interativa\nAssuma que trabalhamos com um protocolo simplificado. Assuma que trabalhamos com criptografia de 100 bits. Usando NextPrimeInt ache dois primos pe q tal que o produto é um numero composto entre \\(2^{99}\\) e \\(2^{100}-1\\).\ngap&gt; p := NextPrimeInt( Random( 2^59, 2^60 ));\n1086726084099436427\ngap&gt; q := NextPrimeInt( Random( 2^39, 2^40 ));\n1073930166469\ngap&gt; n := p*q;\n1167067924403112255997192566263\ngap&gt; n &lt;= 2^100;\ntrue\nOra, vamos criar o anel das classes residuais módulo n. Precisamos de um elemento c invertível e seu inverso d (módulo n).\ngap&gt; R := ZmodnZ( n );\n(Integers mod 1167067924403112255997192566263)\ngap&gt; R1 := ZmodnZ( (p-1)*(q-1) );\n(Integers mod 1167067924402025528839162963368)\ngap&gt; c := Random( R1 );\nZmodnZObj( 449601717067465409204371741486, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\nfalse\ngap&gt; c := Random( R1 );\nZmodnZObj( 564525934207952237103150572399, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\ntrue\ngap&gt; d := c^-1;\nZmodnZObj( 477861003212806940664702229055, 1167067924402025528839162963368 )\ngap&gt; c := Int( c );\n564525934207952237103150572399\ngap&gt; d := Int( d );\n477861003212806940664702229055\nTendo criado, estes números, assuma que temos uma mensagem a que é um número entre 2 e n. Vamos criptografar e descriptografar a mensagem.\ngap&gt; msg2 := 2*One( R );\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg2_cript := msg2^c;\nZmodnZObj( 409777624988356516250582182849, 1167067924403112255997192566263 )\ngap&gt; msg2_descript := msg2_cript^d;\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg_rand := Random( R );\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_cript := msg_rand^c;\nZmodnZObj( 117680927883705414410064163455, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript := msg_rand_cript^d;\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript = msg_rand;\ntrue",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
+    ]
+  },
+  {
+    "objectID": "rsa.html#tarefa-2",
+    "href": "rsa.html#tarefa-2",
+    "title": "8  Criptografia RSA",
+    "section": "8.3 Tarefa 2",
+    "text": "8.3 Tarefa 2\nRepita a computação anterior, mas agora com números maiores. Em vez de trabalhar com chave de comprimento de 100 bits, trabalhe com chave de 2048 bits que é o usual com protocolos modernos de criptografia RSA. O comprimento de p será de 1228 bits, enquanto o comprimento de q será de 820 bits. (Ou seja, p é um primo entre \\(2^{1227}\\) e \\(2^{1228}-1\\)) e q é primo entre \\(2^{819}\\) e \\(2^{820}-1\\).\nÚnica coisa que precisa modificar é que a função NextPrimeInt não funciona para estes típos de números e precisa usar NextProbablyPrimeInt.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
+    ]
+  },
+  {
+    "objectID": "rsa.html#geração-das-chaves",
+    "href": "rsa.html#geração-das-chaves",
+    "title": "8  Criptografia RSA",
+    "section": "8.4 Geração das chaves",
+    "text": "8.4 Geração das chaves\nEscreva uma função RSA_keys( nr_bits ) que gera dados necessários para criptografia RSA usando nr_bits. Ou seja, RSA_keys( nr_bits ) devolve\n\no número n que é produto dos primos p e q (mas não devolve os números p e q);\ndevolve a chave pública c e a chave privada d.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
     ]
   }
 ]

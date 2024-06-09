@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Álgebra Computacional com GAP - 6&nbsp; A conjetura de Collatz</title>
+<title>Álgebra Computacional com GAP - 8&nbsp; Criptografia RSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./aliquot.html" rel="next">
-<link href="./estrut.html" rel="prev">
+<link href="./aliquot.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -144,7 +143,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./collatz.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rsa.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Criptografia RSA</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -201,7 +200,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./collatz.html" class="sidebar-item-text sidebar-link active">
+  <a href="./collatz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></span></a>
   </div>
 </li>
@@ -213,7 +212,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rsa.html" class="sidebar-item-text sidebar-link">
+  <a href="./rsa.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Criptografia RSA</span></span></a>
   </div>
 </li>
@@ -227,13 +226,10 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#projeto-1-a-conjetura-de-collatz" id="toc-projeto-1-a-conjetura-de-collatz" class="nav-link active" data-scroll-target="#projeto-1-a-conjetura-de-collatz"><span class="header-section-number">6.1</span> Projeto 1: A Conjetura de Collatz</a>
-  <ul class="collapse">
-  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">6.1.1</span> Tarefa 1</a></li>
-  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">6.1.2</span> Tarefa 2</a></li>
-  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">6.1.3</span> Tarefa 3</a></li>
-  <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">6.1.4</span> Tarefa 4</a></li>
-  </ul></li>
+  <li><a href="#a-teoria-da-criptografia" id="toc-a-teoria-da-criptografia" class="nav-link active" data-scroll-target="#a-teoria-da-criptografia"><span class="header-section-number">8.1</span> A Teoria da Criptografia</a></li>
+  <li><a href="#tarefa-1-exploração-interativa" id="toc-tarefa-1-exploração-interativa" class="nav-link" data-scroll-target="#tarefa-1-exploração-interativa"><span class="header-section-number">8.2</span> Tarefa 1: Exploração interativa</a></li>
+  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">8.3</span> Tarefa 2</a></li>
+  <li><a href="#geração-das-chaves" id="toc-geração-das-chaves" class="nav-link" data-scroll-target="#geração-das-chaves"><span class="header-section-number">8.4</span> Geração das chaves</a></li>
   </ul>
 </nav>
     </div>
@@ -242,7 +238,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Criptografia RSA</span></h1>
 </div>
 
 
@@ -259,91 +255,91 @@ window.Quarto = {
 </header>
 
 
-<section id="projeto-1-a-conjetura-de-collatz" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="projeto-1-a-conjetura-de-collatz"><span class="header-section-number">6.1</span> Projeto 1: A Conjetura de Collatz</h2>
-<span class="math inline">\(\newcommand{\N}{\mathbb N}\)</span>
-<div class="problem">
-<p>Considere a seguinte função <span class="math inline">\(f:\N\to \N\)</span>: <span class="math display">\[
-    f(n)=\left\{\begin{array}{cc} n/2 &amp; \mbox{se $n$ for par;}\\
-    3n+1 &amp; \mbox{se $n$ for ímpar.}\end{array}\right.
-\]</span> A <a href="https://en.wikipedia.org/wiki/Collatz_conjecture">Conjetura de Collatz</a> afirma que para todo <span class="math inline">\(n\in\N\)</span>, existe um número <span class="math inline">\(k\)</span> tal que aplicando a função <span class="math inline">\(f\)</span> <span class="math inline">\(k\)</span> vezes em <span class="math inline">\(n\)</span>, o resultado vai ser igual a <span class="math inline">\(1\)</span>. Em outras, palavras, <span class="math inline">\(f^k(n)=1\)</span>.</p>
-</div>
-<section id="tarefa-1" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">6.1.1</span> Tarefa 1</h3>
-<div class="subproblem">
-<p>Escreva uma função <code>collatz( n )</code> que toma <span class="math inline">\(n\)</span> como input e devolve <span class="math inline">\(f(n)\)</span>. Faça testes da sua função com vários números.</p>
-</div>
-<div class="hint">
-<p>Precisa testar se o input é par ou ímpar e para isso pode usar a operação <code>mod</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X7B66C8707B5DE10A">(manual)</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="fl">3</span> <span class="va">mod</span> <span class="fl">2</span><span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="fl">6</span> <span class="va">mod</span> <span class="fl">2</span><span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fl">0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Além disso, a sua função precisará usar a expressão <code>if</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X875000188622700D">(manual)</a>.</p>
-</div>
-<div class="example_run">
-<p>A sua função deve comportar-se de acordo com os seguintes exemplos:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> collatz( <span class="dv">15</span> )<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">46</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> collatz( <span class="dv">14</span> )<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> collatz( <span class="dv">5</span> )<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="a-teoria-da-criptografia" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="a-teoria-da-criptografia"><span class="header-section-number">8.1</span> A Teoria da Criptografia</h2>
 </section>
-<section id="tarefa-2" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">6.1.2</span> Tarefa 2</h3>
-<div class="subproblem">
-<p>Escreva uma função <code>nr_steps( n )</code> que vai calcular o número de vezes a função <span class="math inline">\(f\)</span> precisa ser aplicado em <span class="math inline">\(n\)</span> para obter o número <span class="math inline">\(1\)</span>. Em outras palavras, <code>nr_steps( n )</code> deve devolver o menor número <span class="math inline">\(k\)</span> tal que <span class="math inline">\(f^k(n)=1\)</span>.</p>
-</div>
-<div class="hint">
-<p>Você usará a função <code>collatz( n )</code> na tarefa anterior em um laço <code>while</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X87AA46408783383F">(manual)</a> ou <code>repeat</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X87AA46408783383F">(manual)</a>.</p>
-</div>
-<div class="example_run">
-<p>A sua função precisa devolver input de acordo com os seguintes exemplos.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> nr_steps( <span class="dv">1</span> )<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> nr_steps( <span class="dv">3</span> )<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> nr_steps( <span class="dv">14</span> )<span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> nr_steps( <span class="dv">32</span> )<span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="tarefa-1-exploração-interativa" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="tarefa-1-exploração-interativa"><span class="header-section-number">8.2</span> Tarefa 1: Exploração interativa</h2>
+<p>Assuma que trabalhamos com um protocolo simplificado. Assuma que trabalhamos com criptografia de 100 bits. Usando <code>NextPrimeInt</code> ache dois primos <code>p</code>e <code>q</code> tal que o produto é um numero composto entre <span class="math inline">\(2^{99}\)</span> e <span class="math inline">\(2^{100}-1\)</span>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p</span> <span class="op">:=</span> <span class="va">NextPrimeInt</span>( <span class="va">Random</span>( <span class="fl">2</span><span class="op">^</span><span class="fl">59</span><span class="op">,</span> <span class="fl">2</span><span class="op">^</span><span class="fl">60</span> ))<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1086726084099436427</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">q</span> <span class="op">:=</span> <span class="va">NextPrimeInt</span>( <span class="va">Random</span>( <span class="fl">2</span><span class="op">^</span><span class="fl">39</span><span class="op">,</span> <span class="fl">2</span><span class="op">^</span><span class="fl">40</span> ))<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1073930166469</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">n</span> <span class="op">:=</span> <span class="va">p</span><span class="op">*</span><span class="va">q</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fl">1167067924403112255997192566263</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">^</span><span class="fl">100</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ora, vamos criar o anel das classes residuais módulo <code>n</code>. Precisamos de um elemento <code>c</code> invertível e seu inverso <code>d</code> (módulo <code>n</code>).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">R</span> <span class="op">:=</span> <span class="va">ZmodnZ</span>( <span class="va">n</span> )<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="va">Integers</span> <span class="va">mod</span> <span class="fl">1167067924403112255997192566263</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">R1</span> <span class="op">:=</span> <span class="va">ZmodnZ</span>( (<span class="va">p</span><span class="op">-</span><span class="fl">1</span>)<span class="op">*</span>(<span class="va">q</span><span class="op">-</span><span class="fl">1</span>) )<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="va">Integers</span> <span class="va">mod</span> <span class="fl">1167067924402025528839162963368</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">c</span> <span class="op">:=</span> <span class="va">Random</span>( <span class="va">R1</span> )<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">ZmodnZObj</span>( <span class="fl">449601717067465409204371741486</span><span class="op">,</span> <span class="fl">1167067924402025528839162963368</span> )</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsUnit</span>( <span class="va">c</span> )<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">c</span> <span class="op">:=</span> <span class="va">Random</span>( <span class="va">R1</span> )<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="va">ZmodnZObj</span>( <span class="fl">564525934207952237103150572399</span><span class="op">,</span> <span class="fl">1167067924402025528839162963368</span> )</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsUnit</span>( <span class="va">c</span> )<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">d</span> <span class="op">:=</span> <span class="va">c</span><span class="op">^-</span><span class="fl">1</span><span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="va">ZmodnZObj</span>( <span class="fl">477861003212806940664702229055</span><span class="op">,</span> <span class="fl">1167067924402025528839162963368</span> )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">c</span> <span class="op">:=</span> <span class="va">Int</span>( <span class="va">c</span> )<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fl">564525934207952237103150572399</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">d</span> <span class="op">:=</span> <span class="va">Int</span>( <span class="va">d</span> )<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fl">477861003212806940664702229055</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Tendo criado, estes números, assuma que temos uma mensagem <code>a</code> que é um número entre <code>2</code> e <code>n</code>. Vamos criptografar e descriptografar a mensagem.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">msg2</span> <span class="op">:=</span> <span class="fl">2</span><span class="op">*</span><span class="va">One</span>( <span class="va">R</span> )<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">ZmodnZObj</span>( <span class="fl">2</span><span class="op">,</span> <span class="fl">1167067924403112255997192566263</span> )</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">msg2_cript</span> <span class="op">:=</span> <span class="va">msg2</span><span class="op">^</span><span class="va">c</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">ZmodnZObj</span>( <span class="fl">409777624988356516250582182849</span><span class="op">,</span> <span class="fl">1167067924403112255997192566263</span> )</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">msg2_descript</span> <span class="op">:=</span> <span class="va">msg2_cript</span><span class="op">^</span><span class="va">d</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">ZmodnZObj</span>( <span class="fl">2</span><span class="op">,</span> <span class="fl">1167067924403112255997192566263</span> )</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">msg_rand</span> <span class="op">:=</span> <span class="va">Random</span>( <span class="va">R</span> )<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">ZmodnZObj</span>( <span class="fl">417408283977422861261533080164</span><span class="op">,</span> <span class="fl">1167067924403112255997192566263</span> )</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">msg_rand_cript</span> <span class="op">:=</span> <span class="va">msg_rand</span><span class="op">^</span><span class="va">c</span><span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="va">ZmodnZObj</span>( <span class="fl">117680927883705414410064163455</span><span class="op">,</span> <span class="fl">1167067924403112255997192566263</span> )</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">msg_rand_descript</span> <span class="op">:=</span> <span class="va">msg_rand_cript</span><span class="op">^</span><span class="va">d</span><span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="va">ZmodnZObj</span>( <span class="fl">417408283977422861261533080164</span><span class="op">,</span> <span class="fl">1167067924403112255997192566263</span> )</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">msg_rand_descript</span> <span class="op">=</span> <span class="va">msg_rand</span><span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="tarefa-3" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">6.1.3</span> Tarefa 3</h3>
-<div class="subproblem">
-<p>Escreva uma função <code>max_nr_steps( n )</code> para determinar o número <span class="math inline">\(k\in\{1,\ldots,n\}\)</span> tal que <code>nr_steps( k )</code> é maior possível.</p>
-</div>
-<div class="hint">
-<p>Pode usar a função <code>nr_steps( k )</code> escrita na tarefa anterior em um laço <code>for</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X78783E777867638A">(manual)</a> que roda na lista <code>[1..n]</code>.</p>
-</div>
-<div class="example_run">
-<p>O comportamento da sua função seguirá os seguintes exemplos:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> max_nr_steps( <span class="dv">1000</span> )<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[ <span class="dv">871</span>, <span class="dv">178</span> ]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> max_nr_steps( <span class="dv">10000</span> )<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[ <span class="dv">6171</span>, <span class="dv">261</span> ]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> max_nr_steps( <span class="dv">100000</span> )<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[ <span class="dv">77031</span>, <span class="dv">350</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="tarefa-2" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">8.3</span> Tarefa 2</h2>
+<p>Repita a computação anterior, mas agora com números maiores. Em vez de trabalhar com chave de comprimento de <code>100</code> bits, trabalhe com chave de <code>2048</code> bits que é o usual com protocolos modernos de criptografia RSA. O comprimento de <code>p</code> será de <code>1228</code> bits, enquanto o comprimento de <code>q</code> será de <code>820</code> bits. (Ou seja, <code>p</code> é um primo entre <span class="math inline">\(2^{1227}\)</span> e <span class="math inline">\(2^{1228}-1\)</span>) e <code>q</code> é primo entre <span class="math inline">\(2^{819}\)</span> e <span class="math inline">\(2^{820}-1\)</span>.</p>
+<p>Única coisa que precisa modificar é que a função <code>NextPrimeInt</code> não funciona para estes típos de números e precisa usar <code>NextProbablyPrimeInt</code>.</p>
 </section>
-<section id="tarefa-4" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">6.1.4</span> Tarefa 4</h3>
-<div class="subproblem">
-<p>Calcular <code>nr_steps( k )</code> separadamente para todo <span class="math inline">\(k\in \{1,\ldots,n\}\)</span> faz muita computação redundante. Por exemplo, calculando <code>max_nr_steps( 6 )</code> deste jeito, fazemos as seguintes contas</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> → <span class="dv">1</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> → <span class="dv">1</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> → <span class="dv">10</span> → <span class="dv">5</span> → <span class="dv">16</span> → <span class="dv">8</span> → <span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> → <span class="dv">16</span> → <span class="dv">8</span> → <span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> → <span class="dv">3</span> → <span class="dv">10</span> → <span class="dv">5</span> → <span class="dv">16</span> → <span class="dv">8</span> → <span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ou seja, a computação <code>nr_steps( 6 )</code> deve realizar que <code>nr_steps( 3 )</code> já foi calculado e simplificar a conta por computar que <code>nr_steps( 6 ) = nr_steps( 3 ) + 1</code>. Escreva uma versão da função <code>max_nr_steps( n )</code> utilizando as computações anteriores e compare o tempo de execução das duas versões.</p>
-</div>
+<section id="geração-das-chaves" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="geração-das-chaves"><span class="header-section-number">8.4</span> Geração das chaves</h2>
+<p>Escreva uma função <code>RSA_keys( nr_bits )</code> que gera dados necessários para criptografia RSA usando <code>nr_bits</code>. Ou seja, <code>RSA_keys( nr_bits )</code> devolve</p>
+<ol type="1">
+<li>o número <code>n</code> que é produto dos primos <code>p</code> e <code>q</code> (mas não devolve os números <code>p</code> e <code>q</code>);</li>
+<li>devolve a chave pública <code>c</code> e a chave privada <code>d</code>.</li>
+</ol>
+<!--
+RSA_keys := function( nr_bits )
+    local nr_bits_p, nr_bits_q, p, q, n, phi_n, c, gcd_rep, d;
+
+    nr_bits_p := Int( 3*nr_bits/5 );
+    nr_bits_q := nr_bits - nr_bits_p; 
+    p := NextProbablyPrimeInt( 2^(nr_bits_p-1) );
+    q := NextProbablyPrimeInt( 2^(nr_bits_q-1) );
+
+    n := p*q;
+
+    phi_n := (p-1)*(q-1);
+
+    repeat 
+        c := Random( 2, n );
+        gcd_rep := Gcdex( phi_n, c );
+        d := gcd_rep.coeff1*phi_n + gcd_rep.coeff2*c;
+    until d = 1;
+
+    return [ n, c, gcd_rep.coeff2 ];
+end; 
+-->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -758,14 +754,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./estrut.html" class="pagination-link" aria-label="O primeiro encontro com grupos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O primeiro encontro com grupos</span></span>
+      <a href="./aliquot.html" class="pagination-link" aria-label="Projeto: A sequência alíquota">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./aliquot.html" class="pagination-link" aria-label="Projeto: A sequência alíquota">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
