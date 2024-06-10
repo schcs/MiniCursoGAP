@@ -22,6 +22,65 @@ Neste projeto, queremos usar o `GAP` para resolver algumas questões para grupos
 
 ## Tarefa 1
 
+Vamos determinar o centralizador de um elemento em um grupo. Considere o seguinte exemplo.
+
+```matlab
+gap> G := AlternatingGroup( 5 );
+Alt( [ 1 .. 5 ] )
+gap> x := (1,2,3);
+(1,2,3)
+gap> Cx := Centralizer( G, x );
+Group([ (1,2,3) ])
+gap> Size( Cx );
+3
+```
+
+Seguindo o exemplo em cima, determine os seguintes centralizadores $C_G(x)$. 
+
+1. $G=S_6$, $x=(1,2,3)(4,5,6)$. 
+2. etc
+
+## Tarefa 2 
+
+Para investigar o problema em cima, nós precisamos determinar o conjunto dos centralizadores em um grupo dado. Vamos fazer esta computação com o grupo $S_5$. 
+
+```gap
+gap> G := SymmetricGroup( 5 );
+Sym( [ 1 .. 5 ] )
+gap> cents := Set( Elements( G ), x->Centralizer( G, x ));
+[ Group([ (1,5), (2,5), (3,5), (4,5) ]), Group([ (1,2), (3,5), (4,5) ]), 
+  Group([ (2,3), (2,4)(3,5), (4,5) ]), Group([ (1,3), (2,3), (4,5) ]), 
+  Group([ (1,5), (2,3), (4,5) ]), Group([ (1,3), (2,5), (4,5) ]), 
+  Group([ (1,2), (1,4)(2,5), (4,5) ]), Group([ (1,3,2), (4,5) ]), 
+  Group([ (1,3), (1,4)(3,5), (4,5) ]), Group([ (1,5), (2,4), (3,4) ]), 
+  Group([ (2,5), (2,3)(4,5), (3,4) ]), Group([ (1,5), (2,5), (3,4) ]), 
+  Group([ (1,4), (2,5), (3,4) ]), Group([ (1,2), (1,3)(2,4), (3,4) ]), 
+  Group([ (1,2,5), (3,4) ]), Group([ (1,5), (1,3)(4,5), (3,4) ]), 
+  Group([ (1,2), (3,5,4) ]), Group([ (1,4), (2,5), (3,5) ]), 
+  Group([ (2,4), (2,3)(4,5), (3,5) ]), Group([ (1,4), (2,4), (3,5) ]), 
+  Group([ (1,5), (2,4), (3,5) ]), Group([ (1,2), (1,3)(2,5), (3,5) ]), 
+  Group([ (1,2,4), (3,5) ]), Group([ (1,4), (1,3)(4,5), (3,5) ]), 
+  Group([ (1,4), (1,2)(3,4), (2,3) ]), Group([ (1,5), (1,2)(3,5), (2,3) ]), 
+  Group([ (1,4,5), (2,3) ]), Group([ (2,4,3,5) ]), Group([ (1,5), (2,3,4) ]), 
+  Group([ (2,3,4,5) ]), Group([ (2,4,5,3) ]), Group([ (1,4), (2,3,5) ]), 
+  Group([ (1,5), (1,2)(4,5), (2,4) ]), Group([ (1,3), (1,2)(3,4), (2,4) ]), 
+  Group([ (1,5,3), (2,4) ]), Group([ (1,3), (2,4,5) ]), 
+  Group([ (1,4), (1,2)(4,5), (2,5) ]), Group([ (1,3), (1,2)(3,5), (2,5) ]), 
+  Group([ (1,4,3), (2,5) ]), Group([ (1,4,2,5) ]), Group([ (1,4,2,3) ]), 
+  Group([ (1,5,2,3) ]), Group([ (1,4,3,2) ]), Group([ (1,3,5,2,4) ]), 
+  Group([ (1,5,2,4,3) ]), Group([ (1,2,3,5) ]), Group([ (1,2,4,3) ]), 
+  Group([ (1,3,5,4,2) ]), Group([ (1,2,4,5) ]), Group([ (1,5,3,4,2) ]), 
+  Group([ (1,4,2,3,5) ]), Group([ (1,3,5,2) ]), Group([ (1,2,5,4) ]), 
+  Group([ (1,4,3,5,2) ]), Group([ (1,4,3,5) ]), Group([ (1,3,4,5) ]), 
+  Group([ (1,4,5,3) ]) ]
+gap> Size( cents );
+57
+```
+Ou seja, $S_5$ possui 57 centralizadores. Note que usamos a função `Set` que vai devolver um conjunto; ou seja, todo elemento do output será aparece apenas uma vez.
+
+
+## Tarefa 3
+
 Escreva uma função `Cent(G)` para computar o conjunto de todos os centralizadores de elementos de um grupo $G$ dado. Use a função `Centralizer(G,x)`. 
 
 Sua função deve verificar:
@@ -46,8 +105,8 @@ gap> Size(Cent(MathieuGroup(11));
 2081
 ```
 
-## Tarefa 2:
-A lista a seguir possui somente ordens de grupos simples não abelianos (com repetição):\\
+## Tarefa 4
+A lista a seguir possui somente ordens de grupos simples não abelianos (com repetição):
 ```matlab
 [60, 168, 360, 504, 660, 1092, 2448, 2520, 3420, 4080, 5616, 6048, 6072, 7800, 7920, 
  9828, 12180, 14880, 20160, 20160, 25308, 25920, 29120, 32736, 34440, 39732, 51888, 
@@ -61,7 +120,7 @@ gap> AllSmallNonabelianSimpleGroups([60..20160]);
 [ A5, PSL(2,7), A6, PSL(2,8), PSL(2,11), PSL(2,13), PSL(2,17), A7, PSL(2,19), PSL(2,16), PSL(3,3), PSU(3,3), PSL(2,23), PSL(2,25), M11, PSL(2,27), PSL(2,29), PSL(2,31), A8, PSL(3,4)]
 ```
 
-## Tarefa 3:
+## Tarefa 5
 
 Agora você precisa responder a seguinte questão 
 
@@ -71,7 +130,7 @@ Tente para os grupos da tarefa anterior.
 
 <!--Compute $|Cent(PSL(2,23)|$ e $|Cent(A7)|$ e verifique se esses esses grupos são isomorfos.-->
 
-## Tarefa 4:
+## Tarefa 6
 
 E se restringirmos a função para sabermos a quantidade de centralizadores abelianos de um grupo? Será que se dois grupos simples não abelianos tiverem a mesma quantidade de centralizadores abelianos de elementos, esses grupos são necessariamente isomorfos? 
 
