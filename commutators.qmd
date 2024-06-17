@@ -109,7 +109,9 @@ gap> List( [1..15], x -> commutator_set_is_subgroup( SmallGroup( 24, x )));
   true, true, true ]
 ```
 
+## Tarefa 5
 
+O COMPRIMENTO DOS PRODUTOS
 
 <!-- 
 nr_comms := function( G )

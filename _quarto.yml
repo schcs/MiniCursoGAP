@@ -20,6 +20,8 @@ book:
     - rsa.qmd
     - centralizers.qmd
     - commutators.qmd
+    - groebner1.qmd
+    - genord.qmd
 
 format:
   html:
