@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./groebner1.html" rel="next">
 <link href="./centralizers.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -229,6 +230,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./groebner1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Carateres de um grupo e a ordem generalizada</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -244,6 +257,7 @@ window.Quarto = {
   <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">10.3</span> Tarefa 2</a></li>
   <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">10.4</span> Tarefa 3</a></li>
   <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">10.5</span> Tarefa 4</a></li>
+  <li><a href="#tarefa-5" id="toc-tarefa-5" class="nav-link" data-scroll-target="#tarefa-5"><span class="header-section-number">10.6</span> Tarefa 5</a></li>
   </ul>
 </nav>
     </div>
@@ -354,6 +368,10 @@ G'=\left&lt;[x,y]\mid x,y\in G\right&gt;.
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( [<span class="fl">1</span>.<span class="fl">.15</span>]<span class="op">,</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="va">commutator_set_is_subgroup</span>( <span class="va">SmallGroup</span>( <span class="fl">24</span><span class="op">,</span> <span class="va">x</span> )))<span class="op">;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>[ <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> </span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tarefa-5" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="tarefa-5"><span class="header-section-number">10.6</span> Tarefa 5</h2>
+<p>O COMPRIMENTO DOS PRODUTOS</p>
 <!-- 
 nr_comms := function( G )
     return Size( Set( Tuples( Elements( G ), 2 ), t->Comm( t[1],t[2])));
@@ -780,6 +798,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./groebner1.html" class="pagination-link" aria-label="Polynômios, ideais, e um problema de triângulos">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

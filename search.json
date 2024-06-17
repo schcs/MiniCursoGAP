@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Álgebra Computacional com GAP",
     "section": "",
-    "text": "1 MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP que foi realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA\nConceitos básicos com grupos\nUma exploração dos centralizadores\nHomomorfismos, automorfismos, etc, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nGrupos de permutação\nGrupos de matrizes\nÁlgebras de Lie\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos",
+    "text": "1 MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP que foi realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA\nConceitos básicos com grupos\nUma exploração dos centralizadores\nHomomorfismos, automorfismos, etc, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nGrupos de permutação\nGrupos de matrizes\nCarateres de um grupo e a ordem generalizada\nÁlgebras de Lie\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos (coloração)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>MiniCursoGAP</span>"
     ]
@@ -314,7 +314,7 @@
     "href": "rsa.html#tarefa-1-exploração-interativa",
     "title": "8  Criptografia RSA",
     "section": "8.2 Tarefa 1: Exploração interativa",
-    "text": "8.2 Tarefa 1: Exploração interativa\nAssuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits. Usando NextPrimeInt ache dois primos pe q tal que o produto é um numero composto entre \\(2^{99}\\) e \\(2^{100}-1\\). Por motivos de segurança, é recomendável que os primos p e q não sejam próximos, mas também não queremos que um deles seja pequeno. Nós vamos atingir este critério por escolher o primo p com 60 bits, enquanto o primo q terá de 40 bits.\ngap&gt; p := NextPrimeInt( Random( 2^59, 2^60 ));\n1086726084099436427\ngap&gt; q := NextPrimeInt( Random( 2^39, 2^40 ));\n1073930166469\ngap&gt; n := p*q;\n1167067924403112255997192566263\ngap&gt; n &lt;= 2^100;\ntrue\nPara criar as chaves ce d, usaremos aritmética modular. Vamos criar os anéis R e R1 de classes residuais módulo ne \\(\\varphi(n)=(p-1)(q-1)\\).\ngap&gt; R := ZmodnZ( n );\n(Integers mod 1167067924403112255997192566263)\ngap&gt; R1 := ZmodnZ( (p-1)*(q-1) );\n(Integers mod 1167067924402025528839162963368)\ngap&gt; c := Random( R1 );\nZmodnZObj( 449601717067465409204371741486, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\nfalse\ngap&gt; c := Random( R1 );\nZmodnZObj( 564525934207952237103150572399, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\ntrue\ngap&gt; d := c^-1;\nZmodnZObj( 477861003212806940664702229055, 1167067924402025528839162963368 )\ngap&gt; c := Int( c );\n564525934207952237103150572399\ngap&gt; d := Int( d );\n477861003212806940664702229055\nTendo criado, estes números, assuma que temos uma mensagem a que é um número entre 2 e n. Vamos criptografar e descriptografar a mensagem.\ngap&gt; msg2 := 2*One( R );\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg2_cript := msg2^c;\nZmodnZObj( 409777624988356516250582182849, 1167067924403112255997192566263 )\ngap&gt; msg2_descript := msg2_cript^d;\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg_rand := Random( R );\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_cript := msg_rand^c;\nZmodnZObj( 117680927883705414410064163455, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript := msg_rand_cript^d;\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript = msg_rand;\ntrue",
+    "text": "8.2 Tarefa 1: Exploração interativa\nAssuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits. Usando NextPrimeInt ache dois primos pe q tal que o produto é um numero composto entre \\(2^{99}\\) e \\(2^{100}-1\\). Por motivos de segurança, é recomendável que os primos p e q não sejam próximos, mas também não queremos que um deles seja pequeno. Nós vamos atingir este critério por escolher o primo p com 60 bits, enquanto o primo q terá de 40 bits.\ngap&gt; p := NextPrimeInt( Random( 2^59, 2^60 ));\n1086726084099436427\ngap&gt; q := NextPrimeInt( Random( 2^39, 2^40 ));\n1073930166469\ngap&gt; n := p*q;\n1167067924403112255997192566263\ngap&gt; n &lt;= 2^100;\ntrue\nEXPLICAR QUE RANDOM NÃO VAI DEVOLVER A MESMA COISA\nPara criar as chaves ce d, usaremos aritmética modular. Vamos criar os anéis R e R1 de classes residuais módulo ne \\(\\varphi(n)=(p-1)(q-1)\\).\nREFAZER USANDO MDC CALCULAR 2^c DIRETAMENTE. CONTROL C CHAMAR ATENÇÃO À EXPONENCIAÇÃO RÁPIDA\ngap&gt; R := ZmodnZ( n );\n(Integers mod 1167067924403112255997192566263)\ngap&gt; R1 := ZmodnZ( (p-1)*(q-1) );\n(Integers mod 1167067924402025528839162963368)\ngap&gt; c := Random( R1 );\nZmodnZObj( 449601717067465409204371741486, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\nfalse\ngap&gt; c := Random( R1 );\nZmodnZObj( 564525934207952237103150572399, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\ntrue\ngap&gt; d := c^-1;\nZmodnZObj( 477861003212806940664702229055, 1167067924402025528839162963368 )\ngap&gt; c := Int( c );\n564525934207952237103150572399\ngap&gt; d := Int( d );\n477861003212806940664702229055\nTendo criado, estes números, assuma que temos uma mensagem a que é um número entre 2 e n. Vamos criptografar e descriptografar a mensagem.\ngap&gt; msg2 := 2*One( R );\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg2_cript := msg2^c;\nZmodnZObj( 409777624988356516250582182849, 1167067924403112255997192566263 )\ngap&gt; msg2_descript := msg2_cript^d;\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg_rand := Random( R );\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_cript := msg_rand^c;\nZmodnZObj( 117680927883705414410064163455, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript := msg_rand_cript^d;\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript = msg_rand;\ntrue",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
     ]
@@ -344,7 +344,7 @@
     "href": "centralizers.html",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "",
-    "text": "9.1 Os fundamentos teóricos\nRecordamos que o centralizador de um elemento \\(x\\) em um grupo \\(G\\) é definido por \\[\nC_{G}(x) = \\{g \\in G | \\ gx=xg \\}.\n\\]\nDenote por \\(\\mbox{Cent}(G)\\) o conjunto de todos os centralizadores de elementos de \\(G\\). O estudo de \\(\\mbox{Cent}(G)\\) tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar \\(\\mbox{Cent}(G)|\\) é responder essencialmente duas questões:\nNeste projeto, queremos usar o GAP para resolver algumas questões para grupos simples finitos.",
+    "text": "9.1 Os fundamentos teóricos\nRecordamos que o centralizador de um elemento \\(x\\) em um grupo \\(G\\) é definido por \\[\nC_{G}(x) = \\{g \\in G | \\ gx=xg \\}.\n\\]\nDenote por \\(\\mbox{Cent}(G)\\) o conjunto de todos os centralizadores de elementos de \\(G\\). O estudo de \\(\\mbox{Cent}(G)\\) tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar \\(\\mbox{Cent}(G)|\\) é responder essencialmente duas questões:\nNeste projeto, queremos usar o GAP para resolver algumas questões para grupos simples finitos.\nFAZER UM EXEMPLO PEQUENO S3",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
@@ -374,7 +374,7 @@
     "href": "centralizers.html#tarefa-2",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "9.3 Tarefa 2",
-    "text": "9.3 Tarefa 2\nPara investigar o problema em cima, nós precisamos determinar o conjunto dos centralizadores em um grupo dado. Vamos fazer esta computação com o grupo \\(S_5\\).\ngap&gt; G := SymmetricGroup( 5 );\nSym( [ 1 .. 5 ] )\ngap&gt; cents := Set( Elements( G ), x-&gt;Centralizer( G, x ));\n[ Group([ (1,5), (2,5), (3,5), (4,5) ]), Group([ (1,2), (3,5), (4,5) ]), \n  Group([ (2,3), (2,4)(3,5), (4,5) ]), Group([ (1,3), (2,3), (4,5) ]), \n  Group([ (1,5), (2,3), (4,5) ]), Group([ (1,3), (2,5), (4,5) ]), \n  Group([ (1,2), (1,4)(2,5), (4,5) ]), Group([ (1,3,2), (4,5) ]), \n  Group([ (1,3), (1,4)(3,5), (4,5) ]), Group([ (1,5), (2,4), (3,4) ]), \n  Group([ (2,5), (2,3)(4,5), (3,4) ]), Group([ (1,5), (2,5), (3,4) ]), \n  Group([ (1,4), (2,5), (3,4) ]), Group([ (1,2), (1,3)(2,4), (3,4) ]), \n  Group([ (1,2,5), (3,4) ]), Group([ (1,5), (1,3)(4,5), (3,4) ]), \n  Group([ (1,2), (3,5,4) ]), Group([ (1,4), (2,5), (3,5) ]), \n  Group([ (2,4), (2,3)(4,5), (3,5) ]), Group([ (1,4), (2,4), (3,5) ]), \n  Group([ (1,5), (2,4), (3,5) ]), Group([ (1,2), (1,3)(2,5), (3,5) ]), \n  Group([ (1,2,4), (3,5) ]), Group([ (1,4), (1,3)(4,5), (3,5) ]), \n  Group([ (1,4), (1,2)(3,4), (2,3) ]), Group([ (1,5), (1,2)(3,5), (2,3) ]), \n  Group([ (1,4,5), (2,3) ]), Group([ (2,4,3,5) ]), Group([ (1,5), (2,3,4) ]), \n  Group([ (2,3,4,5) ]), Group([ (2,4,5,3) ]), Group([ (1,4), (2,3,5) ]), \n  Group([ (1,5), (1,2)(4,5), (2,4) ]), Group([ (1,3), (1,2)(3,4), (2,4) ]), \n  Group([ (1,5,3), (2,4) ]), Group([ (1,3), (2,4,5) ]), \n  Group([ (1,4), (1,2)(4,5), (2,5) ]), Group([ (1,3), (1,2)(3,5), (2,5) ]), \n  Group([ (1,4,3), (2,5) ]), Group([ (1,4,2,5) ]), Group([ (1,4,2,3) ]), \n  Group([ (1,5,2,3) ]), Group([ (1,4,3,2) ]), Group([ (1,3,5,2,4) ]), \n  Group([ (1,5,2,4,3) ]), Group([ (1,2,3,5) ]), Group([ (1,2,4,3) ]), \n  Group([ (1,3,5,4,2) ]), Group([ (1,2,4,5) ]), Group([ (1,5,3,4,2) ]), \n  Group([ (1,4,2,3,5) ]), Group([ (1,3,5,2) ]), Group([ (1,2,5,4) ]), \n  Group([ (1,4,3,5,2) ]), Group([ (1,4,3,5) ]), Group([ (1,3,4,5) ]), \n  Group([ (1,4,5,3) ]) ]\ngap&gt; Size( cents );\n57\nOu seja, \\(S_5\\) possui 57 centralizadores. Note que usamos a função Set que vai devolver um conjunto; ou seja, todo elemento do output será aparece apenas uma vez.",
+    "text": "9.3 Tarefa 2\nFAZER EXEMPLO MENOR PRIMEIRO COM LIST E DEPOIS COM SET\nPara investigar o problema em cima, nós precisamos determinar o conjunto dos centralizadores em um grupo dado. Vamos fazer esta computação com o grupo \\(S_5\\).\ngap&gt; G := SymmetricGroup( 3 );\nSym( [ 1 .. 3 ] )\ngap&gt; cent := List( G, x-&gt;Centralizer( G, x ));\n[ Group([ (1,3), (2,3) ]), Group([ (2,3) ]), Group([ (1,3) ]), Group([ (1,3,2) ]), \n  Group([ (1,2,3) ]), Group([ (1,2) ]) ]\ngap&gt; cent[5] = cent[6];\nfalse\ngap&gt; cent[4] = cent[5];\ntrue\ngap&gt; cent_set := Set( G, x-&gt;Centralizer( G, x ));\n[ Group([ (2,3) ]), Group([ (1,3), (2,3) ]), Group([ (1,2) ]), Group([ (1,3,2) ]), \n  Group([ (1,3) ]) ]\ngap&gt; Size( cent );\n6\ngap&gt; Size( cent_set );\n5\nOu seja, \\(S_3\\) possui 5 centralizadores. Note que usamos a função Set que vai devolver um conjunto; ou seja, todo elemento do output será aparece apenas uma vez.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
@@ -384,7 +384,7 @@
     "href": "centralizers.html#tarefa-3",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "9.4 Tarefa 3",
-    "text": "9.4 Tarefa 3\nEscreva uma função Cent(G) para computar o conjunto de todos os centralizadores de elementos de um grupo \\(G\\) dado. Use a função Centralizer(G,x).\nSua função deve verificar:\ngap&gt; Size(Cent(SymmetricGroup(3)));\n5\ngap&gt; Size(Cent(AlternatingGroup(5)));\n22 \ngap&gt; Size(Cent(AlternatingGroup(6)));\n137\ngap&gt; Size(Cent(AlternatingGroup(5)));\n807\ngap&gt; Size(Cent(PSL(2,7));\n79\ngap&gt; Size(Cent(PSL(3,3));\n1185\ngap&gt; Size(Cent(DihedralGroup(8)));\n4\ngap&gt; Size(SmallGroup(16,7));\n6\ngap&gt; Size(Cent(MathieuGroup(11));\n2081",
+    "text": "9.4 Tarefa 3\nEscreva uma função Cent(G) para computar o conjunto de todos os centralizadores de elementos de um grupo \\(G\\) dado. Use a função Centralizer(G,x).\nFAZER EXEMPLOS SEM SIZE\nSua função deve verificar:\ngap&gt; Size(Cent(SymmetricGroup(3)));\n5\ngap&gt; Size(Cent(AlternatingGroup(5)));\n22 \ngap&gt; Size(Cent(AlternatingGroup(6)));\n137\ngap&gt; Size(Cent(AlternatingGroup(5)));\n807\ngap&gt; Size(Cent(PSL(2,7));\n79\ngap&gt; Size(Cent(PSL(3,3));\n1185\ngap&gt; Size(Cent(DihedralGroup(8)));\n4\ngap&gt; Size(SmallGroup(16,7));\n6\ngap&gt; Size(Cent(MathieuGroup(11));\n2081",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
@@ -414,7 +414,7 @@
     "href": "centralizers.html#tarefa-6",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "9.7 Tarefa 6",
-    "text": "9.7 Tarefa 6\nE se restringirmos a função para sabermos a quantidade de centralizadores abelianos de um grupo? Será que se dois grupos simples não abelianos tiverem a mesma quantidade de centralizadores abelianos de elementos, esses grupos são necessariamente isomorfos?\nFaça uma mudança no seu código e crie uma função abCent(G) para computar o conjunto de centralizadores abelianos de elementos. Posteriormente, responda a questão desta tarefa.\nPor fim, o que podemos dizer para o caso de centralizadores não abelianos de elementos?",
+    "text": "9.7 Tarefa 6\nE se restringirmos a função para sabermos a quantidade de centralizadores abelianos de um grupo? Será que se dois grupos simples não abelianos tiverem a mesma quantidade de centralizadores abelianos de elementos, esses grupos são necessariamente isomorfos?\nFaça uma mudança no seu código e crie uma função abCent(G) para computar o conjunto de centralizadores abelianos de elementos. Posteriormente, responda a questão desta tarefa.\nPor fim, o que podemos dizer para o caso de centralizadores não abelianos de elementos?\nCOLOCAR ISOCLINISMO!!!",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
@@ -467,6 +467,166 @@
     "text": "10.5 Tarefa 4\nUsando a função SmallGroup( n, k ), ache o menor grupo G tal que o conjunto de comutadores de G não é o grupo derivado. Por exemplo, vamos verificar que entre os grupos de ordem 24 isso não ocorre.\ngap&gt; max_k := NrSmallGroups( 24 );\n15\ngap&gt; List( [1..15], x -&gt; commutator_set_is_subgroup( SmallGroup( 24, x )));\n[ true, true, true, true, true, true, true, true, true, true, true, true, \n  true, true, true ]",
     "crumbs": [
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projeto: Comutadores</span>"
+    ]
+  },
+  {
+    "objectID": "commutators.html#tarefa-5",
+    "href": "commutators.html#tarefa-5",
+    "title": "10  Projeto: Comutadores",
+    "section": "10.6 Tarefa 5",
+    "text": "10.6 Tarefa 5\nO COMPRIMENTO DOS PRODUTOS",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projeto: Comutadores</span>"
+    ]
+  },
+  {
+    "objectID": "groebner1.html",
+    "href": "groebner1.html",
+    "title": "11  Polynômios, ideais, e um problema de triângulos",
+    "section": "",
+    "text": "11.1 Polynômios em GAP\nIndeterminados, polinômios e anéis de polinômios podem ser definidos em GAP na maneira seguinte.\nNote que podemos também definir ideais\nConsidere \\[\nh=x^2yz-xz^3-x^3-xz^2+xy-z^2.\n\\] Verifiquemos se \\(h\\) pertence ao ideal \\(I=(f,g)\\).\nPortanto \\(h\\) pode ser escrito na forma \\[\nh=uf+vg\\quad\\mbox{com}\\quad u,v\\in\\mathbb Q[x,y,z].\n\\] Vamos ver como achar os polinômios \\(u\\) e \\(v\\).\nO resultado indica que o resto de \\(h\\) em relação ao ideal \\(I\\) é \\(0\\) e os dois polinômios do segundo componente do output podem ser tomados para \\(u\\) e \\(v\\).",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Polynômios, ideais, e um problema de triângulos</span>"
+    ]
+  },
+  {
+    "objectID": "groebner1.html#polynômios-em-gap",
+    "href": "groebner1.html#polynômios-em-gap",
+    "title": "11  Polynômios, ideais, e um problema de triângulos",
+    "section": "",
+    "text": "gap&gt; x := Indeterminate( Rationals, \"x\" );\nx\ngap&gt; y := Indeterminate( Rationals, \"y\" );\ny\ngap&gt; z := Indeterminate( Rationals, \"z\" );\nz\ngap&gt; P := PolynomialRing( Rationals, [x,y,z] );\nRationals[x,y,z]\ngap&gt; f := x*y-z^2;\nx*y-z^2\ngap&gt; g := x^2+z^2;\nx^2+z^2\ngap&gt; f*g;\nx^3*y-x^2*z^2+x*y*z^2-z^4\n\ngap&gt; I := Ideal( P, [f,g] );\n&lt;two-sided ideal in Rationals[x,y,z], (2 generators)&gt;\n\ngap&gt; h := h=x^2*y*z-x*z^3-x^3-x*z^2+x*y-z^2;\ngap&gt; I := Ideal( P, [f,g] );\n&lt;two-sided ideal in Rationals[x,y,z], (2 generators)&gt;\ngap&gt; h in I;\ntrue\n\ngap&gt; PolynomialReduction( h, [f,g], MonomialLexOrdering() );\n[ 0, [ x*z+1, -x ] ]\n\ngap&gt; h = (x*z+1)*f-x*g\ntrue",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Polynômios, ideais, e um problema de triângulos</span>"
+    ]
+  },
+  {
+    "objectID": "groebner1.html#as-medianas-de-um-triângulo",
+    "href": "groebner1.html#as-medianas-de-um-triângulo",
+    "title": "11  Polynômios, ideais, e um problema de triângulos",
+    "section": "11.2 As medianas de um triângulo",
+    "text": "11.2 As medianas de um triângulo\nSeja \\(\\Delta=ABC\\) um triângulo no plano. A reta que conecta uma ponta de \\(\\Delta\\) com o ponto meio do lado oposto chama-se mediana. Está bem conhecido que as medianas se interceptam em um ponto chamado de baricentro de \\(\\Delta\\). Neste projeto provaremos este fato usando álgebra comutativa.",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Polynômios, ideais, e um problema de triângulos</span>"
+    ]
+  },
+  {
+    "objectID": "groebner1.html#o-modelo-algébrico",
+    "href": "groebner1.html#o-modelo-algébrico",
+    "title": "11  Polynômios, ideais, e um problema de triângulos",
+    "section": "11.3 O modelo algébrico",
+    "text": "11.3 O modelo algébrico\nAssuma sem perder generalidade que as três pontas do triângulo são \\[\\begin{align*}\nA & = (0,0);\\\\\nB & = (1,0);\\\\\nC & = (x,y).\n\\end{align*}\\] Assuma que \\(P\\), \\(Q\\) e \\(R\\) são os pontos médios dos lados \\(BC\\), \\(AC\\) e \\(AB\\). Portanto, \\[\\begin{align*}\nP & = ((x+1)/2,y/2);\\\\\nQ & = (x/2,y/2);\\\\\nR & = (1/2,0).\n\\end{align*}\\] Assuma que \\(S=(u,v)\\) é o pnnto de interseção das retas \\(AP\\) e \\(BQ\\). Precisa provar que a reta \\(CR\\) passa pelo ponto \\(S\\). Os fatos que \\(S\\) está na reta \\(AP\\) e que \\(S\\) está na reta \\(BQ\\) podem ser expressas das equações \\[\\begin{align*}\n\\frac uv=\\frac{x+1}y;\\\\\n\\frac{x-2}y=\\frac{u-1}v.\n\\end{align*}\\] Como o triângulo não é degenerado, temos que \\(u\\neq 0\\), \\(v\\neq 0\\) e \\(y\\neq 0\\) e estas equações são equivalentes com as equações \\[\\begin{align*}\nf_1&=uy-v(x+1)=0;\\\\\nf_2&=(x-2)u-(u-1)y=0.\n\\end{align*}\\] Similarmente, o fato que \\(S\\) está na reta \\(CR\\) pode ser expressa pela equação \\[\n\\frac{u-1/2}v=\\frac{x-1/2}y;\n\\] ou seja, \\[\nf_3=-2xv+2yu-y+v=0.\n\\]\nNote que o fato que \\(S\\) está na reta \\(CR\\) é equivalente à afirmação que \\[\nf_3=(f_1,f_2).\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Polynômios, ideais, e um problema de triângulos</span>"
+    ]
+  },
+  {
+    "objectID": "groebner1.html#tarefa-1",
+    "href": "groebner1.html#tarefa-1",
+    "title": "11  Polynômios, ideais, e um problema de triângulos",
+    "section": "11.4 Tarefa 1",
+    "text": "11.4 Tarefa 1\nFaça as seguintes computações com GAP.\n\nDefina o anel de polinômios \\(\\mathbb Q[x,y,u,v]\\).\nDefina os polinômios \\(f_1,f_2,f_3\\) em cima.\nVerifique se \\(f_3\\in(f_1,f_2)\\).\nEscreva \\(f_3\\) na forma \\[\nf_3=h_1f_1+h_2f_2\n\\] onde \\(h_i\\in\\mathbb Q[x,y,u,v]\\).",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Polynômios, ideais, e um problema de triângulos</span>"
+    ]
+  },
+  {
+    "objectID": "groebner1.html#tarefa-2",
+    "href": "groebner1.html#tarefa-2",
+    "title": "11  Polynômios, ideais, e um problema de triângulos",
+    "section": "11.5 Tarefa 2",
+    "text": "11.5 Tarefa 2\nO modelo algébrico não incluiu a informação que o triângulo é não degenerado; ou seja, \\(y\\neq 0\\). Esta condição pode ser incluída no modelo por introduzir uma nova variável \\(Y\\) e uma nova equação \\[\nf_4=Yy-1=0.\n\\]\n\nFaça as computações na Tarefa 1 incluindo o polinômio \\(f_4\\).",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Polynômios, ideais, e um problema de triângulos</span>"
+    ]
+  },
+  {
+    "objectID": "groebner1.html#tarefa-3",
+    "href": "groebner1.html#tarefa-3",
+    "title": "11  Polynômios, ideais, e um problema de triângulos",
+    "section": "11.6 Tarefa 3",
+    "text": "11.6 Tarefa 3\nDemonstre que o ponto \\(S\\) divide as medianas em duas partes cuja razão é \\(1:2\\). Note que esta afirmação é equivalente à equação \\[\n3|RS|=3(u-1/2,v)=(x-1/2,y)=|RC|.\n\\] Ou seja, precisa verificar que \\[\n3u-x-1,\\ 3v-y\\in (f_1,f_2).\n\\]\n\nVerifique se estes dois polinômios estão no ideal \\((f_1,f_2)\\).\nEscreve-os na forma \\[\nh_1f_1+h_2f_2.\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Polynômios, ideais, e um problema de triângulos</span>"
+    ]
+  },
+  {
+    "objectID": "genord.html",
+    "href": "genord.html",
+    "title": "12  Carateres de um grupo e a ordem generalizada",
+    "section": "",
+    "text": "12.1 Carateres de grupos\nSeja \\(G\\) um grupo finito e seja \\(\\varrho:G\\to \\operatorname{GL}(n,\\mathbb C)\\) um homomorfismo. O homomorfismo \\(\\varrho\\) chama-se também uma representação linear de \\(G\\). O carater associado com \\(\\varrho\\) é \\[\n\\chi:G\\to\\mathbb C,\\quad \\chi(g)=\\mbox{trace}(\\varrho(g)).\n\\] Note que \\(\\mbox{trace}\\) significa o traço da matriz \\(\\varrho(g)\\); ou seja, a soma dos elementos na diagonal principal. É bem conhecido que o caracter carrega muita informação sobre \\(\\varrho\\).\nEm GAP, carateres podem ser calculados na seguinte maneira. Note que estamos interessados principalmente nos carateres que correspondem às representações irredutíveis.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Carateres de um grupo e a ordem generalizada</span>"
+    ]
+  },
+  {
+    "objectID": "genord.html#carateres-de-grupos",
+    "href": "genord.html#carateres-de-grupos",
+    "title": "12  Carateres de um grupo e a ordem generalizada",
+    "section": "",
+    "text": "gap&gt; G := SmallGroup( 24, 10 );\n&lt;pc group of size 24 with 4 generators&gt;\ngap&gt; t := CharacterTable( G );\nCharacterTable( &lt;pc group of size 24 with 4 generators&gt; )\ngap&gt; irr := Irr( t );\n[ Character( CharacterTable( &lt;pc group of size 24 with 4 generators&gt; ),\n  [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ] ), \n  Character( CharacterTable( &lt;pc group of size 24 with 4 generators&gt; ),\n  [ 1, -1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, 1, 1 ] ), \n...etc...\ngap&gt; irr[3];\nCharacter( CharacterTable( &lt;pc group of size 24 with 4 generators&gt; ),\n [ 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, 1, 1, -1 ] )",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Carateres de um grupo e a ordem generalizada</span>"
+    ]
+  },
+  {
+    "objectID": "genord.html#a-ordem-generalizada",
+    "href": "genord.html#a-ordem-generalizada",
+    "title": "12  Carateres de um grupo e a ordem generalizada",
+    "section": "12.2 A ordem generalizada",
+    "text": "12.2 A ordem generalizada\nSeja \\(G\\) um grupo e \\(x\\in G\\). A ordem generalizada \\([x]\\) de \\(x\\) é o menor número natural \\(k\\) tal que a identidade \\(1\\) de \\(G\\) pode ser escrito como um produto de \\(k\\) conjugados de \\(x\\). Ou seja, \\([x]\\) é o menor natural \\(k\\) tal que \\[\nx^{g_1}\\cdots x^{g_k}=1\n\\] com algum \\(g_1,\\ldots,g_k\\in G\\).",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Carateres de um grupo e a ordem generalizada</span>"
+    ]
+  },
+  {
+    "objectID": "genord.html#a-ordem-generalizada-usando-carateres",
+    "href": "genord.html#a-ordem-generalizada-usando-carateres",
+    "title": "12  Carateres de um grupo e a ordem generalizada",
+    "section": "12.3 A ordem generalizada usando carateres",
+    "text": "12.3 A ordem generalizada usando carateres\n\nTeorema 12.1 Seja \\(G\\) um grupo finito e seja \\(g\\in G\\). Defina \\[\n\\alpha_{g,k}=\\frac {|G|^{k-1}}{|C_G(g)|^k}\\sum_{\\chi\\in\\mbox{Irr}(G)}\\frac{\\chi(g)^k}{\\chi(1)^{k-2}}.\n\\] Então \\(\\alpha_{g,k}\\) é um número natural e ele é igual ao número de maneiras de escrever a identidade \\(1\\) de \\(G\\) como produto de conjugados de \\(g\\). Em particular, \\[\n[g]=\\min\\{k\\geq 1\\mid \\alpha_{g,k}\\geq 1\\}.\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Carateres de um grupo e a ordem generalizada</span>"
+    ]
+  },
+  {
+    "objectID": "genord.html#tarefa-1",
+    "href": "genord.html#tarefa-1",
+    "title": "12  Carateres de um grupo e a ordem generalizada",
+    "section": "12.4 Tarefa 1",
+    "text": "12.4 Tarefa 1\nVamos calcular a ordem generalizada de um elemento do grupo dihedral \\(D_8\\). Usando a fórmula anterior.\ngap&gt; D8 := DihedralGroup( 8 );\n&lt;pc group of size 8 with 3 generators&gt;\ngap&gt; t := CharacterTable( D8 );\nCharacterTable( &lt;pc group of size 8 with 3 generators&gt; )\ngap&gt; OrdersClassRepresentatives( t );\n[ 1, 2, 4, 2, 2 ]\ngap&gt; irr := Irr( t );\n[ Character( CharacterTable( &lt;pc group of size 8 with 3 generators&gt; ),\n  [ 1, 1, 1, 1, 1 ] ), Character( CharacterTable( &lt;pc group of size 8 with \n    3 generators&gt; ), [ 1, -1, 1, 1, -1 ] ), \n  Character( CharacterTable( &lt;pc group of size 8 with 3 generators&gt; ),\n  [ 1, 1, -1, 1, -1 ] ), Character( CharacterTable( &lt;pc group of size 8 with \n    3 generators&gt; ), [ 1, -1, -1, 1, 1 ] ), \n  Character( CharacterTable( &lt;pc group of size 8 with 3 generators&gt; ),\n  [ 2, 0, 0, -2, 0 ] ) ]\ngap&gt; k := 1;; Sum( List( irr, x-&gt;x[3]^k/x[1]^(k-2) ));\n0\ngap&gt; k := 2;; Sum( List( irr, x-&gt;x[3]^k/x[1]^(k-2) ));\n4\nNote que obtemos que o ordem generalizada de \\(a\\) é \\(8\\).",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Carateres de um grupo e a ordem generalizada</span>"
+    ]
+  },
+  {
+    "objectID": "genord.html#tarefa-2",
+    "href": "genord.html#tarefa-2",
+    "title": "12  Carateres de um grupo e a ordem generalizada",
+    "section": "12.5 Tarefa 2",
+    "text": "12.5 Tarefa 2",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Carateres de um grupo e a ordem generalizada</span>"
+    ]
+  },
+  {
+    "objectID": "genord.html#tarefa-3",
+    "href": "genord.html#tarefa-3",
+    "title": "12  Carateres de um grupo e a ordem generalizada",
+    "section": "12.6 Tarefa 3",
+    "text": "12.6 Tarefa 3",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Carateres de um grupo e a ordem generalizada</span>"
+    ]
+  },
+  {
+    "objectID": "genord.html#tarefa-4",
+    "href": "genord.html#tarefa-4",
+    "title": "12  Carateres de um grupo e a ordem generalizada",
+    "section": "12.7 Tarefa 4",
+    "text": "12.7 Tarefa 4",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Carateres de um grupo e a ordem generalizada</span>"
     ]
   }
 ]

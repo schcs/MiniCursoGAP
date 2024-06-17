@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Álgebra Computacional com GAP - 7&nbsp; Projeto: A sequência alíquota</title>
+<title>Álgebra Computacional com GAP - 11&nbsp; Polynômios, ideais, e um problema de triângulos</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./rsa.html" rel="next">
-<link href="./collatz.html" rel="prev">
+<link href="./genord.html" rel="next">
+<link href="./commutators.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./aliquot.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./groebner1.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -208,7 +208,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./aliquot.html" class="sidebar-item-text sidebar-link active">
+  <a href="./aliquot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></span></a>
   </div>
 </li>
@@ -232,7 +232,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./groebner1.html" class="sidebar-item-text sidebar-link">
+  <a href="./groebner1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></span></a>
   </div>
 </li>
@@ -252,11 +252,12 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link active" data-scroll-target="#tarefa-1"><span class="header-section-number">7.1</span> Tarefa 1</a></li>
-  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">7.2</span> Tarefa 2</a></li>
-  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">7.3</span> Tarefa 3</a></li>
-  <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">7.4</span> Tarefa 4</a></li>
-  <li><a href="#tarefa-5" id="toc-tarefa-5" class="nav-link" data-scroll-target="#tarefa-5"><span class="header-section-number">7.5</span> Tarefa 5</a></li>
+  <li><a href="#polynômios-em-gap" id="toc-polynômios-em-gap" class="nav-link active" data-scroll-target="#polynômios-em-gap"><span class="header-section-number">11.1</span> Polynômios em GAP</a></li>
+  <li><a href="#as-medianas-de-um-triângulo" id="toc-as-medianas-de-um-triângulo" class="nav-link" data-scroll-target="#as-medianas-de-um-triângulo"><span class="header-section-number">11.2</span> As medianas de um triângulo</a></li>
+  <li><a href="#o-modelo-algébrico" id="toc-o-modelo-algébrico" class="nav-link" data-scroll-target="#o-modelo-algébrico"><span class="header-section-number">11.3</span> O modelo algébrico</a></li>
+  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">11.4</span> Tarefa 1</a></li>
+  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">11.5</span> Tarefa 2</a></li>
+  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">11.6</span> Tarefa 3</a></li>
   </ul>
 </nav>
     </div>
@@ -265,7 +266,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></h1>
 </div>
 
 
@@ -282,119 +283,106 @@ window.Quarto = {
 </header>
 
 
-<p>Seja <span class="math inline">\(n\in\mathbb N_0\)</span>. Denote por <span class="math inline">\(\sigma(n)\)</span> a soma dos divisores de <span class="math inline">\(n\)</span> entre <span class="math inline">\(1\)</span> e <span class="math inline">\(n-1\)</span> (ou seja, <span class="math inline">\(n\)</span> está desconsiderado). Em outras palavras, <span class="math display">\[
-\sigma(n)=\sum_{d\mid n,\ d&lt;n}d.
-\]</span> Por exemplo <span class="math display">\[
-\sigma(8)=1+2+4=7
-\]</span> e <span class="math display">\[
-\sigma(24)=1+2+3+4+6+8+12=36.
-\]</span> Nós definimos também <span class="math display">\[
-\sigma(1)=0\quad\mbox{e}\quad \sigma(0)=0.
+<section id="polynômios-em-gap" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="polynômios-em-gap"><span class="header-section-number">11.1</span> Polynômios em GAP</h2>
+<p>Indeterminados, polinômios e anéis de polinômios podem ser definidos em <code>GAP</code> na maneira seguinte.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">x</span> <span class="op">:=</span> <span class="va">Indeterminate</span>( <span class="va">Rationals</span><span class="op">,</span> <span class="st">"x"</span> )<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">x</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">y</span> <span class="op">:=</span> <span class="va">Indeterminate</span>( <span class="va">Rationals</span><span class="op">,</span> <span class="st">"y"</span> )<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">y</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">z</span> <span class="op">:=</span> <span class="va">Indeterminate</span>( <span class="va">Rationals</span><span class="op">,</span> <span class="st">"z"</span> )<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">z</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">P</span> <span class="op">:=</span> <span class="va">PolynomialRing</span>( <span class="va">Rationals</span><span class="op">,</span> [<span class="va">x</span><span class="op">,</span><span class="va">y</span><span class="op">,</span><span class="va">z</span>] )<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">Rationals</span>[<span class="va">x</span><span class="op">,</span><span class="va">y</span><span class="op">,</span><span class="va">z</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f</span> <span class="op">:=</span> <span class="va">x</span><span class="op">*</span><span class="va">y</span><span class="op">-</span><span class="va">z</span><span class="op">^</span><span class="fl">2</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">x</span><span class="op">*</span><span class="va">y</span><span class="op">-</span><span class="va">z</span><span class="op">^</span><span class="fl">2</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">g</span> <span class="op">:=</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">z</span><span class="op">^</span><span class="fl">2</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">z</span><span class="op">^</span><span class="fl">2</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f</span><span class="op">*</span><span class="va">g</span><span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="va">x</span><span class="op">^</span><span class="fl">3</span><span class="op">*</span><span class="va">y</span><span class="op">-</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="va">z</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">x</span><span class="op">*</span><span class="va">y</span><span class="op">*</span><span class="va">z</span><span class="op">^</span><span class="fl">2</span><span class="op">-</span><span class="va">z</span><span class="op">^</span><span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note que podemos também definir ideais</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">I</span> <span class="op">:=</span> <span class="va">Ideal</span>( <span class="va">P</span><span class="op">,</span> [<span class="va">f</span><span class="op">,</span><span class="va">g</span>] )<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">two</span><span class="op">-</span><span class="va">sided</span> <span class="va">ideal</span> <span class="va">in</span> <span class="va">Rationals</span>[<span class="va">x</span><span class="op">,</span><span class="va">y</span><span class="op">,</span><span class="va">z</span>]<span class="op">,</span> (<span class="fl">2</span> <span class="va">generators</span>)<span class="op">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Considere <span class="math display">\[
+h=x^2yz-xz^3-x^3-xz^2+xy-z^2.
+\]</span> Verifiquemos se <span class="math inline">\(h\)</span> pertence ao ideal <span class="math inline">\(I=(f,g)\)</span>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">h</span> <span class="op">:=</span> <span class="va">h</span><span class="op">=</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="va">y</span><span class="op">*</span><span class="va">z</span><span class="op">-</span><span class="va">x</span><span class="op">*</span><span class="va">z</span><span class="op">^</span><span class="fl">3</span><span class="op">-</span><span class="va">x</span><span class="op">^</span><span class="fl">3</span><span class="op">-</span><span class="va">x</span><span class="op">*</span><span class="va">z</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">x</span><span class="op">*</span><span class="va">y</span><span class="op">-</span><span class="va">z</span><span class="op">^</span><span class="fl">2</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">I</span> <span class="op">:=</span> <span class="va">Ideal</span>( <span class="va">P</span><span class="op">,</span> [<span class="va">f</span><span class="op">,</span><span class="va">g</span>] )<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">two</span><span class="op">-</span><span class="va">sided</span> <span class="va">ideal</span> <span class="va">in</span> <span class="va">Rationals</span>[<span class="va">x</span><span class="op">,</span><span class="va">y</span><span class="op">,</span><span class="va">z</span>]<span class="op">,</span> (<span class="fl">2</span> <span class="va">generators</span>)<span class="op">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">h</span> <span class="va">in</span> <span class="va">I</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Portanto <span class="math inline">\(h\)</span> pode ser escrito na forma <span class="math display">\[
+h=uf+vg\quad\mbox{com}\quad u,v\in\mathbb Q[x,y,z].
+\]</span> Vamos ver como achar os polinômios <span class="math inline">\(u\)</span> e <span class="math inline">\(v\)</span>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">PolynomialReduction</span>( <span class="va">h</span><span class="op">,</span> [<span class="va">f</span><span class="op">,</span><span class="va">g</span>]<span class="op">,</span> <span class="va">MonomialLexOrdering</span>() )<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">0</span><span class="op">,</span> [ <span class="va">x</span><span class="op">*</span><span class="va">z</span><span class="op">+</span><span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="va">x</span> ] ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O resultado indica que o resto de <span class="math inline">\(h\)</span> em relação ao ideal <span class="math inline">\(I\)</span> é <span class="math inline">\(0\)</span> e os dois polinômios do segundo componente do output podem ser tomados para <span class="math inline">\(u\)</span> e <span class="math inline">\(v\)</span>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">h</span> <span class="op">=</span> (<span class="va">x</span><span class="op">*</span><span class="va">z</span><span class="op">+</span><span class="fl">1</span>)<span class="op">*</span><span class="va">f</span><span class="op">-</span><span class="va">x</span><span class="op">*</span><span class="va">g</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="as-medianas-de-um-triângulo" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="as-medianas-de-um-triângulo"><span class="header-section-number">11.2</span> As medianas de um triângulo</h2>
+<p>Seja <span class="math inline">\(\Delta=ABC\)</span> um triângulo no plano. A reta que conecta uma ponta de <span class="math inline">\(\Delta\)</span> com o ponto meio do lado oposto chama-se <em>mediana</em>. Está bem conhecido que as medianas se interceptam em um ponto chamado de <em>baricentro</em> de <span class="math inline">\(\Delta\)</span>. Neste projeto provaremos este fato usando álgebra comutativa.</p>
+</section>
+<section id="o-modelo-algébrico" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="o-modelo-algébrico"><span class="header-section-number">11.3</span> O modelo algébrico</h2>
+<p>Assuma sem perder generalidade que as três pontas do triângulo são <span class="math display">\[\begin{align*}
+A &amp; = (0,0);\\
+B &amp; = (1,0);\\
+C &amp; = (x,y).
+\end{align*}\]</span> Assuma que <span class="math inline">\(P\)</span>, <span class="math inline">\(Q\)</span> e <span class="math inline">\(R\)</span> são os pontos médios dos lados <span class="math inline">\(BC\)</span>, <span class="math inline">\(AC\)</span> e <span class="math inline">\(AB\)</span>. Portanto, <span class="math display">\[\begin{align*}
+P &amp; = ((x+1)/2,y/2);\\
+Q &amp; = (x/2,y/2);\\
+R &amp; = (1/2,0).
+\end{align*}\]</span> Assuma que <span class="math inline">\(S=(u,v)\)</span> é o pnnto de interseção das retas <span class="math inline">\(AP\)</span> e <span class="math inline">\(BQ\)</span>. Precisa provar que a reta <span class="math inline">\(CR\)</span> passa pelo ponto <span class="math inline">\(S\)</span>. Os fatos que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(AP\)</span> e que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(BQ\)</span> podem ser expressas das equações <span class="math display">\[\begin{align*}
+\frac uv=\frac{x+1}y;\\
+\frac{x-2}y=\frac{u-1}v.
+\end{align*}\]</span> Como o triângulo não é degenerado, temos que <span class="math inline">\(u\neq 0\)</span>, <span class="math inline">\(v\neq 0\)</span> e <span class="math inline">\(y\neq 0\)</span> e estas equações são equivalentes com as equações <span class="math display">\[\begin{align*}
+f_1&amp;=uy-v(x+1)=0;\\
+f_2&amp;=(x-2)u-(u-1)y=0.
+\end{align*}\]</span> Similarmente, o fato que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(CR\)</span> pode ser expressa pela equação <span class="math display">\[
+\frac{u-1/2}v=\frac{x-1/2}y;
+\]</span> ou seja, <span class="math display">\[
+f_3=-2xv+2yu-y+v=0.
 \]</span></p>
-<section id="tarefa-1" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">7.1</span> Tarefa 1</h2>
-<p>Escreva uma função <code>sum_divisors( n )</code> em <code>GAP</code> que dado um numero <code>n</code> devolve <span class="math inline">\(\sigma(n)\)</span>. Pode usar a função <code>DivisorsInt</code>. A sua função deve se comportar como no seguinte exemplo.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">sum_divisors</span>( <span class="fl">8</span> )<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">7</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">sum_divisors</span>( <span class="fl">9</span> )<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">sum_divisors</span>( <span class="fl">11</span> )<span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note que o fato que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(CR\)</span> é equivalente à afirmação que <span class="math display">\[
+f_3=(f_1,f_2).
+\]</span></p>
 </section>
-<section id="tarefa-2" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">7.2</span> Tarefa 2</h2>
-<p>Um número <span class="math inline">\(n\)</span> chama-se <em>perfeito</em> se <span class="math inline">\(\sigma(n)=n\)</span>.</p>
+<section id="tarefa-1" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">11.4</span> Tarefa 1</h2>
+<p>Faça as seguintes computações com <code>GAP</code>.</p>
 <ol type="1">
-<li>Escreva uma função <code>is_perfect( n )</code> que devolva <code>true</code> se <code>n</code> é perfeito e <code>false</code> se <code>n</code> não é perfeito.</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_perfect</span>( <span class="fl">6</span> )<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_perfect</span>( <span class="fl">20</span> )<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_perfect</span>( <span class="fl">28</span> )<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Ache todos os números perfeitos entre <code>1</code> e <code>1000000</code>.</li>
+<li>Defina o anel de polinômios <span class="math inline">\(\mathbb Q[x,y,u,v]\)</span>.</li>
+<li>Defina os polinômios <span class="math inline">\(f_1,f_2,f_3\)</span> em cima.</li>
+<li>Verifique se <span class="math inline">\(f_3\in(f_1,f_2)\)</span>.</li>
+<li>Escreva <span class="math inline">\(f_3\)</span> na forma <span class="math display">\[
+f_3=h_1f_1+h_2f_2
+\]</span> onde <span class="math inline">\(h_i\in\mathbb Q[x,y,u,v]\)</span>.</li>
 </ol>
 </section>
-<section id="tarefa-3" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">7.3</span> Tarefa 3</h2>
-<p>Um número <span class="math inline">\(n\)</span> chama-se <em>abundante</em>, se <span class="math inline">\(\sigma(n)&gt;n\)</span>. Ache todos os número abundantes entre <code>1</code> e <code>1000</code>.</p>
-</section>
-<section id="tarefa-4" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">7.4</span> Tarefa 4</h2>
-<p>Dois números <span class="math inline">\(n\)</span> e <span class="math inline">\(m\)</span> são chamados de amigáveis se <span class="math inline">\(\sigma(n)=m\)</span> e <span class="math inline">\(\sigma(m)=n\)</span>.</p>
+<section id="tarefa-2" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">11.5</span> Tarefa 2</h2>
+<p>O modelo algébrico não incluiu a informação que o triângulo é não degenerado; ou seja, <span class="math inline">\(y\neq 0\)</span>. Esta condição pode ser incluída no modelo por introduzir uma nova variável <span class="math inline">\(Y\)</span> e uma nova equação <span class="math display">\[
+f_4=Yy-1=0.
+\]</span></p>
 <ol type="1">
-<li>Escreva uma função <code>is_friendly( n )</code> que verifica se um número <code>n</code> é membro de um par amigável. A função deve devolver o par de <code>n</code> caso sim, e <code>0</code> caso não.</li>
-</ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_friendly</span>( <span class="fl">6</span> )<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">6</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_friendly</span>( <span class="fl">220</span> )<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">284</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_friendly</span>( <span class="fl">284</span> )<span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fl">220</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_friendly</span>( <span class="fl">200</span> )<span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fl">0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Ache todos os pares amigáveis de números entre <code>1</code> e <code>1000000</code>.</li>
+<li>Faça as computações na Tarefa 1 incluindo o polinômio <span class="math inline">\(f_4\)</span>.</li>
 </ol>
 </section>
-<section id="tarefa-5" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="tarefa-5"><span class="header-section-number">7.5</span> Tarefa 5</h2>
-<p>Seja <span class="math inline">\(a_0\in\mathbb N\)</span> arbitrário. Defina a sequência que começa por <span class="math inline">\(a_0\)</span> e para <span class="math inline">\(i\geq 1\)</span>, <span class="math inline">\(a_i=\sigma(a_{i-1})\)</span>. Por exemplo, se <span class="math inline">\(a_0=8\)</span>, então <span class="math display">\[
-a_0=8,\quad a_1=\sigma(8)=7,\quad a_2=\sigma(7)=1, a_3=\sigma(1)=0, \quad a_4=\sigma(0)=0.
-\]</span> Este tipo de sequência chama-se <a href="https://en.wikipedia.org/wiki/Aliquot_sequence">sequência alíquota</a> (aliquot sequence).</p>
+<section id="tarefa-3" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">11.6</span> Tarefa 3</h2>
+<p>Demonstre que o ponto <span class="math inline">\(S\)</span> divide as medianas em duas partes cuja razão é <span class="math inline">\(1:2\)</span>. Note que esta afirmação é equivalente à equação <span class="math display">\[
+3|RS|=3(u-1/2,v)=(x-1/2,y)=|RC|.
+\]</span> Ou seja, precisa verificar que <span class="math display">\[
+3u-x-1,\ 3v-y\in (f_1,f_2).
+\]</span></p>
 <ol type="1">
-<li>Escreva uma função <code>aliquot_sequence( a0, k )</code> que, dado <code>a0</code> e um número <code>k</code>, devolve os primeiros <code>k</code> termos da sequência alíquota que inicia-se com <code>a0</code>.</li>
+<li>Verifique se estes dois polinômios estão no ideal <span class="math inline">\((f_1,f_2)\)</span>.</li>
+<li>Escreve-os na forma <span class="math display">\[
+h_1f_1+h_2f_2.
+\]</span></li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence</span>( <span class="fl">8</span><span class="op">,</span> <span class="fl">4</span> )<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">8</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence</span>( <span class="fl">24</span><span class="op">,</span> <span class="fl">6</span> )<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">24</span><span class="op">,</span> <span class="fl">36</span><span class="op">,</span> <span class="fl">55</span><span class="op">,</span> <span class="fl">17</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence</span>( <span class="fl">30</span><span class="op">,</span> <span class="fl">15</span> )<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">30</span><span class="op">,</span> <span class="fl">42</span><span class="op">,</span> <span class="fl">54</span><span class="op">,</span> <span class="fl">66</span><span class="op">,</span> <span class="fl">78</span><span class="op">,</span> <span class="fl">90</span><span class="op">,</span> <span class="fl">144</span><span class="op">,</span> <span class="fl">259</span><span class="op">,</span> <span class="fl">45</span><span class="op">,</span> <span class="fl">33</span><span class="op">,</span> <span class="fl">15</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">1</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Modifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica.</li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence_until_repeat</span>( <span class="fl">21</span> )<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">21</span><span class="op">,</span> <span class="fl">11</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence_until_repeat</span>( <span class="fl">42</span> )<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">42</span><span class="op">,</span> <span class="fl">54</span><span class="op">,</span> <span class="fl">66</span><span class="op">,</span> <span class="fl">78</span><span class="op">,</span> <span class="fl">90</span><span class="op">,</span> <span class="fl">144</span><span class="op">,</span> <span class="fl">259</span><span class="op">,</span> <span class="fl">45</span><span class="op">,</span> <span class="fl">33</span><span class="op">,</span> <span class="fl">15</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence_until_repeat</span>( <span class="fl">34</span> )<span class="op">;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">34</span><span class="op">,</span> <span class="fl">20</span><span class="op">,</span> <span class="fl">22</span><span class="op">,</span> <span class="fl">14</span><span class="op">,</span> <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span><span class="op">,</span> <span class="fl">0</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="3" type="1">
-<li>O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre <span class="math inline">\(1\)</span> e <span class="math inline">\(1000\)</span> que produz o sequência com maior comprimento.</li>
-</ol>
-<p>Este projeto foi inspirado pelo seguinte vídeo</p>
-<div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y" width="560" height="315" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<!--
-aliquot_sequence := function( a0, k )
-    local i, seq;
-    seq := [a0];
-    for i in [1..k-1] do
-        Add( seq, sum_divisors( seq[i] ));
-    od;
-    return seq;
-end;
-
-
-aliquot_sequence_until_repeat := function( a0 )
-    local i, seq, next_term;
-    seq := [a0];
-    i := 1;
-    while true do
-        next_term := sum_divisors( seq[i] );
-        if next_term in seq then
-            Add( seq, next_term );
-            break;
-        fi;
-        Add( seq, next_term );
-        i := i + 1;
-    od;
-    return seq;
-end;
-
--->
 
 
 </section>
@@ -811,13 +799,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./collatz.html" class="pagination-link" aria-label="A conjetura de Collatz">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></span>
+      <a href="./commutators.html" class="pagination-link" aria-label="Projeto: Comutadores">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rsa.html" class="pagination-link" aria-label="Criptografia RSA">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Criptografia RSA</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./genord.html" class="pagination-link" aria-label="Carateres de um grupo e a ordem generalizada">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Carateres de um grupo e a ordem generalizada</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

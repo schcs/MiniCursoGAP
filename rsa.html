@@ -230,6 +230,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./groebner1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Carateres de um grupo e a ordem generalizada</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -309,7 +321,9 @@ D( b_1)=\mbox{o resto de $b_1^c$ módulo $n$}.
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fl">1167067924403112255997192566263</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">2</span><span class="op">^</span><span class="fl">100</span><span class="op">;</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>EXPLICAR QUE RANDOM NÃO VAI DEVOLVER A MESMA COISA</p>
 <p>Para criar as chaves <code>c</code>e <code>d</code>, usaremos aritmética modular. Vamos criar os anéis <code>R</code> e <code>R1</code> de classes residuais módulo <code>n</code>e <span class="math inline">\(\varphi(n)=(p-1)(q-1)\)</span>.</p>
+<p>REFAZER USANDO MDC CALCULAR 2^c DIRETAMENTE. CONTROL C CHAMAR ATENÇÃO À EXPONENCIAÇÃO RÁPIDA</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">R</span> <span class="op">:=</span> <span class="va">ZmodnZ</span>( <span class="va">n</span> )<span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(<span class="va">Integers</span> <span class="va">mod</span> <span class="fl">1167067924403112255997192566263</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">R1</span> <span class="op">:=</span> <span class="va">ZmodnZ</span>( (<span class="va">p</span><span class="op">-</span><span class="fl">1</span>)<span class="op">*</span>(<span class="va">q</span><span class="op">-</span><span class="fl">1</span>) )<span class="op">;</span></span>
