@@ -1,0 +1,299 @@
+---
+title: "Grupos livres e o cubo mágico"
+number-sections: true
+lang: pt-BR
+---
+
+
+ 
+## O cubo mágico
+
+O cubo mágico, como outros brincedos de lógica, pode ser analisado usando o sistema `GAP`. O cubo tem 48 peças cujas posições estão ilustradas no seguinte diagrama.
+
+```
+                     +--------------+
+                     |              |
+                     |  1    2    3 |
+                     |              |
+                     |  4  CIMA   5 |
+                     |              |
+                     |  6    7    8 |
+                     |              |
+      +--------------+--------------+--------------+--------------+
+      |              |              |              |              |
+      |  9   10   11 | 17   18   19 | 25   26   27 | 33   34   35 |
+      |              |              |              |              |
+      | 12  ESQ   13 | 20 FRENTE 21 | 28 DIREIT 29 | 36  TRAS  37 |
+      |              |              |              |              |
+      | 14   15   16 | 22   23   24 | 30   31   32 | 38   39   40 |
+      |              |              |              |              |
+      +--------------+--------------+--------------+--------------+
+                     |              |
+                     | 41   42   43 |
+                     |              |
+                     | 44  BAIX  45 |
+                     |              |
+                     | 46   47   48 |
+                     |              |
+                     +--------------+
+```
+
+## O grupo do cubo mágico
+
+ Todo movimento pode ser visto como uma permutação dessas peças. Por exemplo girar o topo induz a permutação seguinte. 
+
+```matlab
+gap> c := (1,6,8,3)(2,4,7,5)(9,17,25,33)(10,18,26,34)(11,19,27,35);
+```
+
+Nós definimos similarmente as outras permutações que correspondem  a girar os outros lados. O grupo de permutações que corresponde ao cubo é o subgrupo de $S_{48}$ gerado por essas permutações.
+
+```matlab 
+gap> e := (1,40,41,17)(4,37,44,20)(6,35,46,22)(9,14,16,11)(10,12,15,13);
+gap> f := (6,16,43,25)(7,13,42,28)(8,11,41,30)(17,22,24,19)(18,20,23,21);
+gap> d := (3,19,43,38)(5,21,45,36)(8,24,48,33)(25,30,32,27)(26,28,31,29);
+gap> t := (1,27,48,14)(2,29,47,12)(3,32,46,9)(33,38,40,35)(34,36,39,37);
+gap> b := (14,38,30,22)(15,39,31,23)(16,40,32,24)(41,46,48,43)(42,44,47,45);
+gap> G := Group( c, e, f, d, t, b );
+<permutation group with 6 generators>
+```
+
+Calculemos a ordem de `G`. A ordem de `G` coincide com o número de configurações do cubo.
+
+```matlab 
+gap> Size( G );                     
+43252003274489856000
+gap> Factors( last );              
+[ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 
+  2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 5, 5, 7, 7, 11 ]
+gap> Collected( last );
+[ [ 2, 27 ], [ 3, 14 ], [ 5, 3 ], [ 7, 2 ], [ 11, 1 ] ]
+```
+
+## Tarefa 1
+
+Vamos ver como transformar uma configuração a um elemento de $G$. Considere por exemplo a seguinte configuração.
+
+
+```
+                     +--------------+
+                     |              |
+                     |  16   4   46 |
+                     |              |
+                     |  13 CIMA  31 |
+                     |              |
+                     |  38   39   8 |
+                     |              |
+      +--------------+--------------+--------------+--------------+
+      |              |              |              |              |
+      |  22  20   32 | 48   47   19 | 25   45   14 | 40   10   41 |
+      |              |              |              |              |
+      | 29  ESQ   42 | 23 FRENTE  5 | 26 DIREIT 12 | 37   TRAS 36 |
+      |              |              |              |              |
+      | 27   15   43 | 24   21   11 | 6     7    9 | 35   34   33 |
+      |              |              |              |              |
+      +--------------+--------------+--------------+--------------+
+                     |              |
+                     | 30   28   17 |
+                     |              |
+                     | 44  BAIX  18 |
+                     |              |
+                     | 3     2   1  |
+                     |              |
+                     +--------------+
+```
+
+Note que, a peça `16` aparece no lugar de `1`, `4` no lugar de `2`, `46` no lugar de `3`, etc. Nós precisamos construir a permutação que leva 
+$$
+1\mapsto 16,\quad 2\mapsto 4,\quad 3\mapsto 46,\ldots
+$$ 
+Esta permutação pode ser construída usando as seguintes instruções.
+
+```matlab 
+gap> s := [16,4,46,13,31,38,39,8,22,20,32,29,42,27,15,43,48,47,19,23,5,24,21,11,25,45,14,26,12,6,7,9,40,10,41,37,36,35,34,33,30,28,17,44,18,3,2,1];
+gap> x := PermList( s );            
+(1,16,43,17,48)(2,4,13,42,28,26,45,18,47)(3,46)(5,31,7,39,34,10,20,23,21)(6,
+38,35,41,30)(9,22,24,11,32)(12,29)(14,27)(33,40)(36,37)
+gap> x in G;
+true
+```
+
+## Tarefa 2
+
+Seja $X$ um grupo. Lembre que uma série 
+$$
+X_0>X_1>X_2>\cdots>X_m=1
+$$
+de subgrupos é dita *série de composição* se $X_{i+1}$ é um subgrupo normal em $X_i$ e $X_i/X_{i+1}$ é um grupo simples para todo $i$ (ou seja, $X_i/X_{i+1}$ não possui subgrupo normal próprio e não trivial).   A série de composição em um grupo, pode não ser única, mas sabemos pelo Teorema de Jordan-Holder que o comprimento da séries e os tipos de isomorfismo dos fatores (os *fatores de composição*) são unicamente determinados por $X$. Estes fatores podem ser vistos como os blocos elementares do grupo similarmente aos fatores primos dos números naturais.
+
+No seguinte exempolo simples vamos determinar os fatores de composição do grupo dihedral $D_5$ (os simetrias do pentágono).
+
+```matlab
+gap> G := DihedralGroup( 10 );
+<pc group of size 10 with 2 generators>
+gap> C := CompositionSeries( G );
+[ Group([ f1, f2 ]), Group([ f2 ]), Group([  ]) ]
+gap> List( [1..2], i->C[i]/C[i+1] );
+[ Group([ f1, <identity> of ... ]), Group([ f2 ]) ]
+gap> List( [1..2], i->StructureDescription(C[i]/C[i+1]) );
+[ "C2", "C5" ]
+```
+
+Temos que a série de composição de $D_5$ tem comprimento $2$ e os dois fatores são cíclicos de ordem $2$ e $5$. 
+
+Agora responda às seguintes perguntas sobre o grupo $G$ do cubo mágico.
+
+1. Qual é o comprimento da série de composição do grupo $G$?
+2. Quantos fatores são abelianos e quantos são não abelianos. 
+3. Os fatores abelianos, sendo grupos simples, são cíclicos; determine as suas ordens.
+
+<!--
+```matlab 
+gap> comp := CompositionSeries( G );
+ <permutation group of size 43252003274489856000 with 6 generators>, 
+  <permutation group of size 21626001637244928000 with 12 generators>, 
+  <permutation group of size 1072718335180800 with 9 generators>, 
+  <permutation group of size 357572778393600 with 8 generators>, 
+  <permutation group of size 119190926131200 with 7 generators>, 
+  <permutation group of size 39730308710400 with 6 generators>, 
+  <permutation group of size 13243436236800 with 5 generators>, 
+  <permutation group of size 4414478745600 with 4 generators>, 
+  <permutation group of size 1471492915200 with 3 generators>, 
+  <permutation group of size 490497638400 with 21 generators>, 
+  <permutation group of size 2048 with 11 generators>, 
+  <permutation group of size 1024 with 10 generators>, 
+  <permutation group of size 512 with 9 generators>, 
+  <permutation group of size 256 with 8 generators>, 
+  <permutation group of size 128 with 7 generators>, 
+  <permutation group of size 64 with 6 generators>, 
+  <permutation group of size 32 with 5 generators>, 
+  <permutation group of size 16 with 4 generators>, 
+  <permutation group of size 8 with 3 generators>, Group([ (4,10)
+  (21,28), (2,34)(21,28) ]), Group([ (4,10)(21,28) ]), Group(()) ]
+gap> factors := List( [1..21], x-> comp[x]/comp[x+1] );
+[ Group([ (1,2), (1,2), (1,2), (1,2), (1,2), (1,2) ]), 
+  <permutation group with 12 generators>, Group([ (), (), (), (), (), (), (),
+   (), (1,2,3) ]), Group([ (), (), (), (), (), (), (), (1,2,3) ]), 
+  Group([ (), (), (), (), (), (), (1,2,3) ]), Group([ (), (), (), (), (), (1,
+   2,3) ]), Group([ (), (), (), (), (1,2,3) ]), Group([ (), (), (), (1,2,
+   3) ]), Group([ (), (), (1,2,3) ]), <permutation group with 21 generators>,
+  Group([ (), (), (), (), (), (), (), (), (), (), (1,2) ]), 
+  Group([ (), (), (), (), (), (), (), (), (), (1,2) ]), Group([ (), (), (),
+    (), (), (), (), (), (1,2) ]), Group([ (), (), (), (), (), (), (), (1,
+   2) ]), Group([ (), (), (), (), (), (), (1,2) ]), Group([ (), (), (), (),
+    (), (1,2) ]), Group([ (), (), (), (), (1,2) ]), Group([ (), (), (), (1,
+   2) ]), Group([ (), (), (1,2) ]), Group([ (), (1,2) ]), Group([ (4,10)
+  (21,28) ]) ]
+gap> List( factors, StructureDescription );
+[ "C2", "A8", "C3", "C3", "C3", "C3", "C3", "C3", "C3", "A12", "C2", "C2", 
+  "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2" ]
+```
+-->
+
+## Tarefa 3
+
+Vamos estudar a estrutura permutacional do grupo $G$.
+
+1. Determine as órbitas de $G$ agindo no conjunto das 48 peças. 
+2. Dê uma intepretação destas órbitas.
+3. Lembre que um subconjunto $\Delta$ das peças chama-se *bloco* se $\Delta g=\Delta$ ou $\Delta g\cap \Delta=\emptyset$. Determine os blocos contidos nas órbitas de $G$.
+4. Dê interpretação destes blocos.
+
+<!--
+```matlab
+gap> orbs := Orbits( G );
+[ [ 1, 3, 17, 14, 8, 38, 9, 41, 19, 48, 22, 6, 30, 33, 43, 11, 46, 40, 24, 
+      27, 25, 35, 16, 32 ], 
+  [ 2, 5, 12, 7, 36, 10, 47, 4, 28, 45, 34, 13, 29, 44, 20, 42, 26, 21, 37, 
+      15, 31, 18, 23, 39 ] ]
+gap> b1 := Blocks( G, orbs[1] );
+[ [ 1, 9, 35 ], [ 3, 27, 33 ], [ 6, 11, 17 ], [ 8, 19, 25 ], [ 14, 40, 46 ], 
+  [ 16, 22, 41 ], [ 24, 30, 43 ], [ 32, 38, 48 ] ]
+gap> b2 := Blocks( G, orbs[2] );
+[ [ 2, 34 ], [ 4, 10 ], [ 5, 26 ], [ 7, 18 ], [ 12, 37 ], [ 13, 20 ], 
+  [ 15, 44 ], [ 21, 28 ], [ 23, 42 ], [ 29, 36 ], [ 31, 45 ], [ 39, 47 ] ]
+```
+-->
+
+
+## Tarefa 4
+
+Finalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em `G`. Seja $F$ o grupo livre gerado pelos geradores $C$, $E$, $F$, $D$, $T$, $B$. Note que $F$ é gerado por $6$ elementos e cada gerador de $F$ corresponde a um gerador de $G$. A propriedade universal do grupo livre implica que  o mapa 
+$$
+C\mapsto c,\ E\mapsto e, F\mapsto f,\ D\mapsto d,\ T\mapsto t,\ B\mapsto b
+$$
+pode ser extendido a um único homomorfismo $f:F\to G$. Se $g\in G$ e $w$ é uma pré-imagem de $g$, então $w$ mostra como escrever $g$ em uma palavra nas geradores de $G$. Ou seja, $w$ monstra como obter a configuração que corresponde ao elemento $g$ como uma sequência dos $6$ movimentos básicos. 
+
+Ilustramos esta ideia com um exemplo simpes usando o grupo $D_5$. 
+
+```matlab
+gap> a := (1,2,3,4,5); b := (2,5)(3,4);
+(1,2,3,4,5)
+(2,5)(3,4)
+gap> G := Group( a, b );
+Group([ (1,2,3,4,5), (2,5)(3,4) ])
+gap> F := FreeGroup( "A", "B" );
+<free group on the generators [ A, B ]>
+gap> hom := GroupHomomorphismByImages( F, G, GeneratorsOfGroup( F ), GeneratorsOfGroup( G ));
+[ A, B ] -> [ (1,2,3,4,5), (2,5)(3,4) ]
+gap> x := Random( G );
+(1,4)(2,3)
+gap> PreImagesRepresentative( hom, x );
+A^-1*B^-1*A^-3
+```
+
+O resultado diz que a permutação $x=(1,4)(2,3)$ pode ser obtida como a composição $a^{-1}*b^{-1}*a^{-3}$. De fato
+
+```matlab
+gap> a^-1*b^-1*a^-3 = x;
+true
+```
+
+1. Construa o grupo $F$ em cima em `GAP` usando `FreeGroup`.
+2. Construa o homomorfismo $f$ em cima usando `GroupHomomorphismByImages`.
+3. Considere a configuração do cubo na Tarefa 1. Construa a sequência dos movimentos que resulta nesta configuração.
+4. Considere uma configuração aleatória do cubo por escolhendo um elemento aleatório de $G$ (usando `Random( G )`). Construa a sequência dos movimentos que resulta nesta configuração aleatória.
+5. Usando um dos cubos disponibilizados por Igor e Csaba, obtenha a configuração da Tarefa 1.
+
+<!--
+gap> PreImagesRepresentative( hom, x );
+C*T*D^-1*T^-1*F*T^-2
+-->
+
+
+<!--
+```matlab
+gap> fr := FreeGroup("C","E","F","D","T","B");
+<free group on the generators [ C, E, F, D, T, B ]>
+gap> hom := GroupHomomorphismByImages( fr, G, GeneratorsOfGroup(fr),
+> GeneratorsOfGroup(G) );
+[ C, E, F, D, T, B ] -> 
+[ (1,3,8,6)(2,5,7,4)(9,33,25,17)(10,34,26,18)(11,35,27,19), 
+  (1,17,41,40)(4,20,44,37)(6,22,46,35)(9,11,16,14)(10,13,15,12), 
+  (6,25,43,16)(7,28,42,13)(8,30,41,11)(17,19,24,22)(18,21,23,20), 
+  (3,38,43,19)(5,36,45,21)(8,33,48,24)(25,27,32,30)(26,29,31,28), 
+  (1,14,48,27)(2,12,47,29)(3,9,46,32)(33,35,40,38)(34,37,39,36), 
+  (14,22,30,38)(15,23,31,39)(16,24,32,40)(41,43,48,46)(42,45,47,44) ]
+gap> x := Random( G );
+(1,17)(2,5,37,18,36,23,31)(3,38,27,32,33,48)(4,10)(6,35)(7,29,42,45,34,26,
+12)(8,30,40,25,43,14,19,24,46)(9,11)(13,39,21)(15,44)(20,47,28)
+gap> PreImagesRepresentative( hom,  x );
+C*F*D*C*D^-1*C^-1*F^-1*C^-1*E^-1*C^-1*T^-1*C*T*C^-1*E*C*E*F^-1*E^-1*F^-2*C*F^-\
+1*C^-1*F^-1*E*F^2*C*F^-1*C^-1*E^-1*C^2*F*C*D*C^-1*D^-1*F^-1*C^-2*E^-1*C*E*F^-1\
+*E*F*(E^-1*C)^2*E*F*C*F^-1*E*C*T*E^-1*T^-1*C^2*F^-1*E^-1*F*E*T^-1*C^-1*T*E^-1*\
+F*E*F*E^-1*F^-1*C^-1*F^-1*C^2*(F*E^-1)^2*E^-1*B*D^-1*B^-1*C^-2*T*B^2*T^-1*E*T*\
+B^-1*T^-1*D^-2*C^-1*B^-2*F^-1
+```
+--> 
+
+
+
+
+
+
+## Tarefa 5
+
+1. Verifique que $G$ pode ser gerado por 2 elementos. Dica: Pegue usando `Random( G )` dois elementos aliatórios em $G$ e verifique se o grupo gerado por eles coincide com $G$.
+2. Ache um subconjunto  mínimo $S$ do conjunto $\{c,e,f,d,t,b\}$ de geradores tal que $\left<S\right>=G$.
+3. Construa a configuração da Tarefa 1 usando apenas os movimentos do conjunto $S$ no ponto anterior.
+3. Seja $C$ o conjunto de 8 peças de canto (as peças que possuem 3 cores). O grupo $G$ age sobre o conjunto $C$.  Mostre que $G$ induz $S_{8}$ sobre o conjunto  dessas peças. Similarmente, seja $L$ o conjunto das 12 peças  laterias (as peças que possuem 2 cores). Mostre que $G$  induz $S_{12}$ sobre $L$. (Isso explica os grupos $A_8$ e $A_{12}$ entre os fatores de composição de $G$). Use [`Action( G, conj, act )`](http://www.gap-system.org/Manuals/doc/ref/chap41.html#X85A8E93D786C3C9C).
