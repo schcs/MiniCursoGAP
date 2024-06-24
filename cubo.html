@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Álgebra Computacional com GAP - 13&nbsp; Grupos livres e o cubo mágico</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./grafos.html" rel="next">
+<link href="./genord.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cubo.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Grupos livres e o cubo mágico</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Álgebra Computacional com GAP</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">MiniCursoGAP</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./arith.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Aritmética básica</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A linguagem de programação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./list_mat_perm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Listas, matrizes e permutações</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./estrut.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O primeiro encontro com grupos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./collatz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./aliquot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rsa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Criptografia RSA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./centralizers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Projeto: Uma exploração dos centralizadores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./commutators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./groebner1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Carateres de um grupo e a ordem generalizada</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cubo.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Grupos livres e o cubo mágico</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./grafos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./algebras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Anéis e álgebras</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#o-cubo-mágico" id="toc-o-cubo-mágico" class="nav-link active" data-scroll-target="#o-cubo-mágico"><span class="header-section-number">13.1</span> O cubo mágico</a></li>
+  <li><a href="#o-grupo-do-cubo-mágico" id="toc-o-grupo-do-cubo-mágico" class="nav-link" data-scroll-target="#o-grupo-do-cubo-mágico"><span class="header-section-number">13.2</span> O grupo do cubo mágico</a></li>
+  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">13.3</span> Tarefa 1</a></li>
+  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">13.4</span> Tarefa 2</a></li>
+  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">13.5</span> Tarefa 3</a></li>
+  <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">13.6</span> Tarefa 4</a></li>
+  <li><a href="#tarefa-5" id="toc-tarefa-5" class="nav-link" data-scroll-target="#tarefa-5"><span class="header-section-number">13.7</span> Tarefa 5</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Grupos livres e o cubo mágico</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="o-cubo-mágico" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="o-cubo-mágico"><span class="header-section-number">13.1</span> O cubo mágico</h2>
+<p>O cubo mágico, como outros brincedos de lógica, pode ser analisado usando o sistema <code>GAP</code>. O cubo tem 48 peças cujas posições estão ilustradas no seguinte diagrama.</p>
+<pre><code>                     +--------------+
+                     |              |
+                     |  1    2    3 |
+                     |              |
+                     |  4  CIMA   5 |
+                     |              |
+                     |  6    7    8 |
+                     |              |
+      +--------------+--------------+--------------+--------------+
+      |              |              |              |              |
+      |  9   10   11 | 17   18   19 | 25   26   27 | 33   34   35 |
+      |              |              |              |              |
+      | 12  ESQ   13 | 20 FRENTE 21 | 28 DIREIT 29 | 36  TRAS  37 |
+      |              |              |              |              |
+      | 14   15   16 | 22   23   24 | 30   31   32 | 38   39   40 |
+      |              |              |              |              |
+      +--------------+--------------+--------------+--------------+
+                     |              |
+                     | 41   42   43 |
+                     |              |
+                     | 44  BAIX  45 |
+                     |              |
+                     | 46   47   48 |
+                     |              |
+                     +--------------+</code></pre>
+</section>
+<section id="o-grupo-do-cubo-mágico" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="o-grupo-do-cubo-mágico"><span class="header-section-number">13.2</span> O grupo do cubo mágico</h2>
+<p>Todo movimento pode ser visto como uma permutação dessas peças. Por exemplo girar o topo induz a permutação seguinte.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">c</span> <span class="op">:=</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">8</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">7</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">9</span><span class="op">,</span><span class="fl">17</span><span class="op">,</span><span class="fl">25</span><span class="op">,</span><span class="fl">33</span>)(<span class="fl">10</span><span class="op">,</span><span class="fl">18</span><span class="op">,</span><span class="fl">26</span><span class="op">,</span><span class="fl">34</span>)(<span class="fl">11</span><span class="op">,</span><span class="fl">19</span><span class="op">,</span><span class="fl">27</span><span class="op">,</span><span class="fl">35</span>)<span class="op">;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nós definimos similarmente as outras permutações que correspondem a girar os outros lados. O grupo de permutações que corresponde ao cubo é o subgrupo de <span class="math inline">\(S_{48}\)</span> gerado por essas permutações.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">e</span> <span class="op">:=</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">40</span><span class="op">,</span><span class="fl">41</span><span class="op">,</span><span class="fl">17</span>)(<span class="fl">4</span><span class="op">,</span><span class="fl">37</span><span class="op">,</span><span class="fl">44</span><span class="op">,</span><span class="fl">20</span>)(<span class="fl">6</span><span class="op">,</span><span class="fl">35</span><span class="op">,</span><span class="fl">46</span><span class="op">,</span><span class="fl">22</span>)(<span class="fl">9</span><span class="op">,</span><span class="fl">14</span><span class="op">,</span><span class="fl">16</span><span class="op">,</span><span class="fl">11</span>)(<span class="fl">10</span><span class="op">,</span><span class="fl">12</span><span class="op">,</span><span class="fl">15</span><span class="op">,</span><span class="fl">13</span>)<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f</span> <span class="op">:=</span> (<span class="fl">6</span><span class="op">,</span><span class="fl">16</span><span class="op">,</span><span class="fl">43</span><span class="op">,</span><span class="fl">25</span>)(<span class="fl">7</span><span class="op">,</span><span class="fl">13</span><span class="op">,</span><span class="fl">42</span><span class="op">,</span><span class="fl">28</span>)(<span class="fl">8</span><span class="op">,</span><span class="fl">11</span><span class="op">,</span><span class="fl">41</span><span class="op">,</span><span class="fl">30</span>)(<span class="fl">17</span><span class="op">,</span><span class="fl">22</span><span class="op">,</span><span class="fl">24</span><span class="op">,</span><span class="fl">19</span>)(<span class="fl">18</span><span class="op">,</span><span class="fl">20</span><span class="op">,</span><span class="fl">23</span><span class="op">,</span><span class="fl">21</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">d</span> <span class="op">:=</span> (<span class="fl">3</span><span class="op">,</span><span class="fl">19</span><span class="op">,</span><span class="fl">43</span><span class="op">,</span><span class="fl">38</span>)(<span class="fl">5</span><span class="op">,</span><span class="fl">21</span><span class="op">,</span><span class="fl">45</span><span class="op">,</span><span class="fl">36</span>)(<span class="fl">8</span><span class="op">,</span><span class="fl">24</span><span class="op">,</span><span class="fl">48</span><span class="op">,</span><span class="fl">33</span>)(<span class="fl">25</span><span class="op">,</span><span class="fl">30</span><span class="op">,</span><span class="fl">32</span><span class="op">,</span><span class="fl">27</span>)(<span class="fl">26</span><span class="op">,</span><span class="fl">28</span><span class="op">,</span><span class="fl">31</span><span class="op">,</span><span class="fl">29</span>)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">t</span> <span class="op">:=</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">27</span><span class="op">,</span><span class="fl">48</span><span class="op">,</span><span class="fl">14</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">29</span><span class="op">,</span><span class="fl">47</span><span class="op">,</span><span class="fl">12</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">32</span><span class="op">,</span><span class="fl">46</span><span class="op">,</span><span class="fl">9</span>)(<span class="fl">33</span><span class="op">,</span><span class="fl">38</span><span class="op">,</span><span class="fl">40</span><span class="op">,</span><span class="fl">35</span>)(<span class="fl">34</span><span class="op">,</span><span class="fl">36</span><span class="op">,</span><span class="fl">39</span><span class="op">,</span><span class="fl">37</span>)<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">b</span> <span class="op">:=</span> (<span class="fl">14</span><span class="op">,</span><span class="fl">38</span><span class="op">,</span><span class="fl">30</span><span class="op">,</span><span class="fl">22</span>)(<span class="fl">15</span><span class="op">,</span><span class="fl">39</span><span class="op">,</span><span class="fl">31</span><span class="op">,</span><span class="fl">23</span>)(<span class="fl">16</span><span class="op">,</span><span class="fl">40</span><span class="op">,</span><span class="fl">32</span><span class="op">,</span><span class="fl">24</span>)(<span class="fl">41</span><span class="op">,</span><span class="fl">46</span><span class="op">,</span><span class="fl">48</span><span class="op">,</span><span class="fl">43</span>)(<span class="fl">42</span><span class="op">,</span><span class="fl">44</span><span class="op">,</span><span class="fl">47</span><span class="op">,</span><span class="fl">45</span>)<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="va">Group</span>( <span class="va">c</span><span class="op">,</span> <span class="va">e</span><span class="op">,</span> <span class="va">f</span><span class="op">,</span> <span class="va">d</span><span class="op">,</span> <span class="va">t</span><span class="op">,</span> <span class="va">b</span> )<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">permutation</span> <span class="va">group</span> <span class="va">with</span> <span class="fl">6</span> <span class="va">generators</span><span class="op">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Calculemos a ordem de <code>G</code>. A ordem de <code>G</code> coincide com o número de configurações do cubo.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">G</span> )<span class="op">;</span>                     </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fl">43252003274489856000</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Factors</span>( <span class="va">last</span> )<span class="op">;</span>              </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">11</span> ]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Collected</span>( <span class="va">last</span> )<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">2</span><span class="op">,</span> <span class="fl">27</span> ]<span class="op">,</span> [ <span class="fl">3</span><span class="op">,</span> <span class="fl">14</span> ]<span class="op">,</span> [ <span class="fl">5</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">7</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">11</span><span class="op">,</span> <span class="fl">1</span> ] ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tarefa-1" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">13.3</span> Tarefa 1</h2>
+<p>Vamos ver como transformar uma configuração a um elemento de <span class="math inline">\(G\)</span>. Considere por exemplo a seguinte configuração.</p>
+<pre><code>                     +--------------+
+                     |              |
+                     |  16   4   46 |
+                     |              |
+                     |  13 CIMA  31 |
+                     |              |
+                     |  38   39   8 |
+                     |              |
+      +--------------+--------------+--------------+--------------+
+      |              |              |              |              |
+      |  22  20   32 | 48   47   19 | 25   45   14 | 40   10   41 |
+      |              |              |              |              |
+      | 29  ESQ   42 | 23 FRENTE  5 | 26 DIREIT 12 | 37   TRAS 36 |
+      |              |              |              |              |
+      | 27   15   43 | 24   21   11 | 6     7    9 | 35   34   33 |
+      |              |              |              |              |
+      +--------------+--------------+--------------+--------------+
+                     |              |
+                     | 30   28   17 |
+                     |              |
+                     | 44  BAIX  18 |
+                     |              |
+                     | 3     2   1  |
+                     |              |
+                     +--------------+</code></pre>
+<p>Note que, a peça <code>16</code> aparece no lugar de <code>1</code>, <code>4</code> no lugar de <code>2</code>, <code>46</code> no lugar de <code>3</code>, etc. Nós precisamos construir a permutação que leva <span class="math display">\[
+1\mapsto 16,\quad 2\mapsto 4,\quad 3\mapsto 46,\ldots
+\]</span> Esta permutação pode ser construída usando as seguintes instruções.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">s</span> <span class="op">:=</span> [<span class="fl">16</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">46</span><span class="op">,</span><span class="fl">13</span><span class="op">,</span><span class="fl">31</span><span class="op">,</span><span class="fl">38</span><span class="op">,</span><span class="fl">39</span><span class="op">,</span><span class="fl">8</span><span class="op">,</span><span class="fl">22</span><span class="op">,</span><span class="fl">20</span><span class="op">,</span><span class="fl">32</span><span class="op">,</span><span class="fl">29</span><span class="op">,</span><span class="fl">42</span><span class="op">,</span><span class="fl">27</span><span class="op">,</span><span class="fl">15</span><span class="op">,</span><span class="fl">43</span><span class="op">,</span><span class="fl">48</span><span class="op">,</span><span class="fl">47</span><span class="op">,</span><span class="fl">19</span><span class="op">,</span><span class="fl">23</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">24</span><span class="op">,</span><span class="fl">21</span><span class="op">,</span><span class="fl">11</span><span class="op">,</span><span class="fl">25</span><span class="op">,</span><span class="fl">45</span><span class="op">,</span><span class="fl">14</span><span class="op">,</span><span class="fl">26</span><span class="op">,</span><span class="fl">12</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">7</span><span class="op">,</span><span class="fl">9</span><span class="op">,</span><span class="fl">40</span><span class="op">,</span><span class="fl">10</span><span class="op">,</span><span class="fl">41</span><span class="op">,</span><span class="fl">37</span><span class="op">,</span><span class="fl">36</span><span class="op">,</span><span class="fl">35</span><span class="op">,</span><span class="fl">34</span><span class="op">,</span><span class="fl">33</span><span class="op">,</span><span class="fl">30</span><span class="op">,</span><span class="fl">28</span><span class="op">,</span><span class="fl">17</span><span class="op">,</span><span class="fl">44</span><span class="op">,</span><span class="fl">18</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">1</span>]<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">x</span> <span class="op">:=</span> <span class="va">PermList</span>( <span class="va">s</span> )<span class="op">;</span>            </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">16</span><span class="op">,</span><span class="fl">43</span><span class="op">,</span><span class="fl">17</span><span class="op">,</span><span class="fl">48</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">13</span><span class="op">,</span><span class="fl">42</span><span class="op">,</span><span class="fl">28</span><span class="op">,</span><span class="fl">26</span><span class="op">,</span><span class="fl">45</span><span class="op">,</span><span class="fl">18</span><span class="op">,</span><span class="fl">47</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">46</span>)(<span class="fl">5</span><span class="op">,</span><span class="fl">31</span><span class="op">,</span><span class="fl">7</span><span class="op">,</span><span class="fl">39</span><span class="op">,</span><span class="fl">34</span><span class="op">,</span><span class="fl">10</span><span class="op">,</span><span class="fl">20</span><span class="op">,</span><span class="fl">23</span><span class="op">,</span><span class="fl">21</span>)(<span class="fl">6</span><span class="op">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fl">38</span><span class="op">,</span><span class="fl">35</span><span class="op">,</span><span class="fl">41</span><span class="op">,</span><span class="fl">30</span>)(<span class="fl">9</span><span class="op">,</span><span class="fl">22</span><span class="op">,</span><span class="fl">24</span><span class="op">,</span><span class="fl">11</span><span class="op">,</span><span class="fl">32</span>)(<span class="fl">12</span><span class="op">,</span><span class="fl">29</span>)(<span class="fl">14</span><span class="op">,</span><span class="fl">27</span>)(<span class="fl">33</span><span class="op">,</span><span class="fl">40</span>)(<span class="fl">36</span><span class="op">,</span><span class="fl">37</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">x</span> <span class="va">in</span> <span class="va">G</span><span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tarefa-2" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">13.4</span> Tarefa 2</h2>
+<p>Seja <span class="math inline">\(X\)</span> um grupo. Lembre que uma série <span class="math display">\[
+X_0&gt;X_1&gt;X_2&gt;\cdots&gt;X_m=1
+\]</span> de subgrupos é dita <em>série de composição</em> se <span class="math inline">\(X_{i+1}\)</span> é um subgrupo normal em <span class="math inline">\(X_i\)</span> e <span class="math inline">\(X_i/X_{i+1}\)</span> é um grupo simples para todo <span class="math inline">\(i\)</span> (ou seja, <span class="math inline">\(X_i/X_{i+1}\)</span> não possui subgrupo normal próprio e não trivial). A série de composição em um grupo, pode não ser única, mas sabemos pelo Teorema de Jordan-Holder que o comprimento da séries e os tipos de isomorfismo dos fatores (os <em>fatores de composição</em>) são unicamente determinados por <span class="math inline">\(X\)</span>. Estes fatores podem ser vistos como os blocos elementares do grupo similarmente aos fatores primos dos números naturais.</p>
+<p>No seguinte exempolo simples vamos determinar os fatores de composição do grupo dihedral <span class="math inline">\(D_5\)</span> (os simetrias do pentágono).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="va">DihedralGroup</span>( <span class="fl">10</span> )<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">10</span> <span class="va">with</span> <span class="fl">2</span> <span class="va">generators</span><span class="op">&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">C</span> <span class="op">:=</span> <span class="va">CompositionSeries</span>( <span class="va">G</span> )<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>[ <span class="va">Group</span>([ <span class="va">f1</span><span class="op">,</span> <span class="va">f2</span> ])<span class="op">,</span> <span class="va">Group</span>([ <span class="va">f2</span> ])<span class="op">,</span> <span class="va">Group</span>([  ]) ]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( [<span class="fl">1</span>.<span class="fl">.2</span>]<span class="op">,</span> <span class="va">i</span><span class="op">-&gt;</span><span class="va">C</span>[<span class="va">i</span>]<span class="op">/</span><span class="va">C</span>[<span class="va">i</span><span class="op">+</span><span class="fl">1</span>] )<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>[ <span class="va">Group</span>([ <span class="va">f1</span><span class="op">,</span> <span class="op">&lt;</span><span class="va">identity</span><span class="op">&gt;</span> <span class="va">of</span> <span class="op">...</span> ])<span class="op">,</span> <span class="va">Group</span>([ <span class="va">f2</span> ]) ]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( [<span class="fl">1</span>.<span class="fl">.2</span>]<span class="op">,</span> <span class="va">i</span><span class="op">-&gt;</span><span class="va">StructureDescription</span>(<span class="va">C</span>[<span class="va">i</span>]<span class="op">/</span><span class="va">C</span>[<span class="va">i</span><span class="op">+</span><span class="fl">1</span>]) )<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>[ <span class="st">"C2"</span><span class="op">,</span> <span class="st">"C5"</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Temos que a série de composição de <span class="math inline">\(D_5\)</span> tem comprimento <span class="math inline">\(2\)</span> e os dois fatores são cíclicos de ordem <span class="math inline">\(2\)</span> e <span class="math inline">\(5\)</span>.</p>
+<p>Agora responda às seguintes perguntas sobre o grupo <span class="math inline">\(G\)</span> do cubo mágico.</p>
+<ol type="1">
+<li>Qual é o comprimento da série de composição do grupo <span class="math inline">\(G\)</span>?</li>
+<li>Quantos fatores são abelianos e quantos são não abelianos.</li>
+<li>Os fatores abelianos, sendo grupos simples, são cíclicos; determine as suas ordens.</li>
+</ol>
+<!--
+```matlab 
+gap> comp := CompositionSeries( G );
+ <permutation group of size 43252003274489856000 with 6 generators>, 
+  <permutation group of size 21626001637244928000 with 12 generators>, 
+  <permutation group of size 1072718335180800 with 9 generators>, 
+  <permutation group of size 357572778393600 with 8 generators>, 
+  <permutation group of size 119190926131200 with 7 generators>, 
+  <permutation group of size 39730308710400 with 6 generators>, 
+  <permutation group of size 13243436236800 with 5 generators>, 
+  <permutation group of size 4414478745600 with 4 generators>, 
+  <permutation group of size 1471492915200 with 3 generators>, 
+  <permutation group of size 490497638400 with 21 generators>, 
+  <permutation group of size 2048 with 11 generators>, 
+  <permutation group of size 1024 with 10 generators>, 
+  <permutation group of size 512 with 9 generators>, 
+  <permutation group of size 256 with 8 generators>, 
+  <permutation group of size 128 with 7 generators>, 
+  <permutation group of size 64 with 6 generators>, 
+  <permutation group of size 32 with 5 generators>, 
+  <permutation group of size 16 with 4 generators>, 
+  <permutation group of size 8 with 3 generators>, Group([ (4,10)
+  (21,28), (2,34)(21,28) ]), Group([ (4,10)(21,28) ]), Group(()) ]
+gap> factors := List( [1..21], x-> comp[x]/comp[x+1] );
+[ Group([ (1,2), (1,2), (1,2), (1,2), (1,2), (1,2) ]), 
+  <permutation group with 12 generators>, Group([ (), (), (), (), (), (), (),
+   (), (1,2,3) ]), Group([ (), (), (), (), (), (), (), (1,2,3) ]), 
+  Group([ (), (), (), (), (), (), (1,2,3) ]), Group([ (), (), (), (), (), (1,
+   2,3) ]), Group([ (), (), (), (), (1,2,3) ]), Group([ (), (), (), (1,2,
+   3) ]), Group([ (), (), (1,2,3) ]), <permutation group with 21 generators>,
+  Group([ (), (), (), (), (), (), (), (), (), (), (1,2) ]), 
+  Group([ (), (), (), (), (), (), (), (), (), (1,2) ]), Group([ (), (), (),
+    (), (), (), (), (), (1,2) ]), Group([ (), (), (), (), (), (), (), (1,
+   2) ]), Group([ (), (), (), (), (), (), (1,2) ]), Group([ (), (), (), (),
+    (), (1,2) ]), Group([ (), (), (), (), (1,2) ]), Group([ (), (), (), (1,
+   2) ]), Group([ (), (), (1,2) ]), Group([ (), (1,2) ]), Group([ (4,10)
+  (21,28) ]) ]
+gap> List( factors, StructureDescription );
+[ "C2", "A8", "C3", "C3", "C3", "C3", "C3", "C3", "C3", "A12", "C2", "C2", 
+  "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2" ]
+```
+-->
+</section>
+<section id="tarefa-3" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">13.5</span> Tarefa 3</h2>
+<p>Vamos estudar a estrutura permutacional do grupo <span class="math inline">\(G\)</span>.</p>
+<ol type="1">
+<li>Determine as órbitas de <span class="math inline">\(G\)</span> agindo no conjunto das 48 peças.</li>
+<li>Dê uma intepretação destas órbitas.</li>
+<li>Lembre que um subconjunto <span class="math inline">\(\Delta\)</span> das peças chama-se <em>bloco</em> se <span class="math inline">\(\Delta g=\Delta\)</span> ou <span class="math inline">\(\Delta g\cap \Delta=\emptyset\)</span>. Determine os blocos contidos nas órbitas de <span class="math inline">\(G\)</span>.</li>
+<li>Dê interpretação destes blocos.</li>
+</ol>
+<!--
+```matlab
+gap> orbs := Orbits( G );
+[ [ 1, 3, 17, 14, 8, 38, 9, 41, 19, 48, 22, 6, 30, 33, 43, 11, 46, 40, 24, 
+      27, 25, 35, 16, 32 ], 
+  [ 2, 5, 12, 7, 36, 10, 47, 4, 28, 45, 34, 13, 29, 44, 20, 42, 26, 21, 37, 
+      15, 31, 18, 23, 39 ] ]
+gap> b1 := Blocks( G, orbs[1] );
+[ [ 1, 9, 35 ], [ 3, 27, 33 ], [ 6, 11, 17 ], [ 8, 19, 25 ], [ 14, 40, 46 ], 
+  [ 16, 22, 41 ], [ 24, 30, 43 ], [ 32, 38, 48 ] ]
+gap> b2 := Blocks( G, orbs[2] );
+[ [ 2, 34 ], [ 4, 10 ], [ 5, 26 ], [ 7, 18 ], [ 12, 37 ], [ 13, 20 ], 
+  [ 15, 44 ], [ 21, 28 ], [ 23, 42 ], [ 29, 36 ], [ 31, 45 ], [ 39, 47 ] ]
+```
+-->
+</section>
+<section id="tarefa-4" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">13.6</span> Tarefa 4</h2>
+<p>Finalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em <code>G</code>. Seja <span class="math inline">\(F\)</span> o grupo livre gerado pelos geradores <span class="math inline">\(C\)</span>, <span class="math inline">\(E\)</span>, <span class="math inline">\(F\)</span>, <span class="math inline">\(D\)</span>, <span class="math inline">\(T\)</span>, <span class="math inline">\(B\)</span>. Note que <span class="math inline">\(F\)</span> é gerado por <span class="math inline">\(6\)</span> elementos e cada gerador de <span class="math inline">\(F\)</span> corresponde a um gerador de <span class="math inline">\(G\)</span>. A propriedade universal do grupo livre implica que o mapa <span class="math display">\[
+C\mapsto c,\ E\mapsto e, F\mapsto f,\ D\mapsto d,\ T\mapsto t,\ B\mapsto b
+\]</span> pode ser extendido a um único homomorfismo <span class="math inline">\(f:F\to G\)</span>. Se <span class="math inline">\(g\in G\)</span> e <span class="math inline">\(w\)</span> é uma pré-imagem de <span class="math inline">\(g\)</span>, então <span class="math inline">\(w\)</span> mostra como escrever <span class="math inline">\(g\)</span> em uma palavra nas geradores de <span class="math inline">\(G\)</span>. Ou seja, <span class="math inline">\(w\)</span> monstra como obter a configuração que corresponde ao elemento <span class="math inline">\(g\)</span> como uma sequência dos <span class="math inline">\(6\)</span> movimentos básicos.</p>
+<p>Ilustramos esta ideia com um exemplo simpes usando o grupo <span class="math inline">\(D_5\)</span>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">a</span> <span class="op">:=</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">;</span> <span class="va">b</span> <span class="op">:=</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>(<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="va">Group</span>( <span class="va">a</span><span class="op">,</span> <span class="va">b</span> )<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>) ])</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">F</span> <span class="op">:=</span> <span class="va">FreeGroup</span>( <span class="st">"A"</span><span class="op">,</span> <span class="st">"B"</span> )<span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">free</span> <span class="va">group</span> <span class="va">on</span> <span class="va">the</span> <span class="va">generators</span> [ <span class="va">A</span><span class="op">,</span> <span class="va">B</span> ]<span class="op">&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">hom</span> <span class="op">:=</span> <span class="va">GroupHomomorphismByImages</span>( <span class="va">F</span><span class="op">,</span> <span class="va">G</span><span class="op">,</span> <span class="va">GeneratorsOfGroup</span>( <span class="va">F</span> )<span class="op">,</span> <span class="va">GeneratorsOfGroup</span>( <span class="va">G</span> ))<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>[ <span class="va">A</span><span class="op">,</span> <span class="va">B</span> ] <span class="op">-&gt;</span> [ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">,</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>) ]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">x</span> <span class="op">:=</span> <span class="va">Random</span>( <span class="va">G</span> )<span class="op">;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">4</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">PreImagesRepresentative</span>( <span class="va">hom</span><span class="op">,</span> <span class="va">x</span> )<span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="va">A</span><span class="op">^-</span><span class="fl">1</span><span class="op">*</span><span class="va">B</span><span class="op">^-</span><span class="fl">1</span><span class="op">*</span><span class="va">A</span><span class="op">^-</span><span class="fl">3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O resultado diz que a permutação <span class="math inline">\(x=(1,4)(2,3)\)</span> pode ser obtida como a composição <span class="math inline">\(a^{-1}*b^{-1}*a^{-3}\)</span>. De fato</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">a</span><span class="op">^-</span><span class="fl">1</span><span class="op">*</span><span class="va">b</span><span class="op">^-</span><span class="fl">1</span><span class="op">*</span><span class="va">a</span><span class="op">^-</span><span class="fl">3</span> <span class="op">=</span> <span class="va">x</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li>Construa o grupo <span class="math inline">\(F\)</span> em cima em <code>GAP</code> usando <code>FreeGroup</code>.</li>
+<li>Construa o homomorfismo <span class="math inline">\(f\)</span> em cima usando <code>GroupHomomorphismByImages</code>.</li>
+<li>Considere a configuração do cubo na Tarefa 1. Construa a sequência dos movimentos que resulta nesta configuração.</li>
+<li>Considere uma configuração aleatória do cubo por escolhendo um elemento aleatório de <span class="math inline">\(G\)</span> (usando <code>Random( G )</code>). Construa a sequência dos movimentos que resulta nesta configuração aleatória.</li>
+<li>Usando um dos cubos disponibilizados por Igor e Csaba, obtenha a configuração da Tarefa 1.</li>
+</ol>
+<!--
+gap> PreImagesRepresentative( hom, x );
+C*T*D^-1*T^-1*F*T^-2
+-->
+<!--
+```matlab
+gap> fr := FreeGroup("C","E","F","D","T","B");
+<free group on the generators [ C, E, F, D, T, B ]>
+gap> hom := GroupHomomorphismByImages( fr, G, GeneratorsOfGroup(fr),
+> GeneratorsOfGroup(G) );
+[ C, E, F, D, T, B ] -> 
+[ (1,3,8,6)(2,5,7,4)(9,33,25,17)(10,34,26,18)(11,35,27,19), 
+  (1,17,41,40)(4,20,44,37)(6,22,46,35)(9,11,16,14)(10,13,15,12), 
+  (6,25,43,16)(7,28,42,13)(8,30,41,11)(17,19,24,22)(18,21,23,20), 
+  (3,38,43,19)(5,36,45,21)(8,33,48,24)(25,27,32,30)(26,29,31,28), 
+  (1,14,48,27)(2,12,47,29)(3,9,46,32)(33,35,40,38)(34,37,39,36), 
+  (14,22,30,38)(15,23,31,39)(16,24,32,40)(41,43,48,46)(42,45,47,44) ]
+gap> x := Random( G );
+(1,17)(2,5,37,18,36,23,31)(3,38,27,32,33,48)(4,10)(6,35)(7,29,42,45,34,26,
+12)(8,30,40,25,43,14,19,24,46)(9,11)(13,39,21)(15,44)(20,47,28)
+gap> PreImagesRepresentative( hom,  x );
+C*F*D*C*D^-1*C^-1*F^-1*C^-1*E^-1*C^-1*T^-1*C*T*C^-1*E*C*E*F^-1*E^-1*F^-2*C*F^-\
+1*C^-1*F^-1*E*F^2*C*F^-1*C^-1*E^-1*C^2*F*C*D*C^-1*D^-1*F^-1*C^-2*E^-1*C*E*F^-1\
+*E*F*(E^-1*C)^2*E*F*C*F^-1*E*C*T*E^-1*T^-1*C^2*F^-1*E^-1*F*E*T^-1*C^-1*T*E^-1*\
+F*E*F*E^-1*F^-1*C^-1*F^-1*C^2*(F*E^-1)^2*E^-1*B*D^-1*B^-1*C^-2*T*B^2*T^-1*E*T*\
+B^-1*T^-1*D^-2*C^-1*B^-2*F^-1
+```
+-->
+</section>
+<section id="tarefa-5" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="tarefa-5"><span class="header-section-number">13.7</span> Tarefa 5</h2>
+<ol type="1">
+<li>Verifique que <span class="math inline">\(G\)</span> pode ser gerado por 2 elementos. Dica: Pegue usando <code>Random( G )</code> dois elementos aliatórios em <span class="math inline">\(G\)</span> e verifique se o grupo gerado por eles coincide com <span class="math inline">\(G\)</span>.</li>
+<li>Ache um subconjunto mínimo <span class="math inline">\(S\)</span> do conjunto <span class="math inline">\(\{c,e,f,d,t,b\}\)</span> de geradores tal que <span class="math inline">\(\left&lt;S\right&gt;=G\)</span>.</li>
+<li>Construa a configuração da Tarefa 1 usando apenas os movimentos do conjunto <span class="math inline">\(S\)</span> no ponto anterior.</li>
+<li>Seja <span class="math inline">\(C\)</span> o conjunto de 8 peças de canto (as peças que possuem 3 cores). O grupo <span class="math inline">\(G\)</span> age sobre o conjunto <span class="math inline">\(C\)</span>. Mostre que <span class="math inline">\(G\)</span> induz <span class="math inline">\(S_{8}\)</span> sobre o conjunto dessas peças. Similarmente, seja <span class="math inline">\(L\)</span> o conjunto das 12 peças laterias (as peças que possuem 2 cores). Mostre que <span class="math inline">\(G\)</span> induz <span class="math inline">\(S_{12}\)</span> sobre <span class="math inline">\(L\)</span>. (Isso explica os grupos <span class="math inline">\(A_8\)</span> e <span class="math inline">\(A_{12}\)</span> entre os fatores de composição de <span class="math inline">\(G\)</span>). Use <a href="http://www.gap-system.org/Manuals/doc/ref/chap41.html#X85A8E93D786C3C9C"><code>Action( G, conj, act )</code></a>.</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./genord.html" class="pagination-link" aria-label="Carateres de um grupo e a ordem generalizada">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Carateres de um grupo e a ordem generalizada</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./grafos.html" class="pagination-link" aria-label="Grafos em GAP">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

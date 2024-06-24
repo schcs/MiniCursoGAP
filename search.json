@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Álgebra Computacional com GAP",
     "section": "",
-    "text": "1 MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP que foi realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA\nConceitos básicos com grupos\nUma exploração dos centralizadores\nHomomorfismos, automorfismos, etc, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nGrupos de permutação\nGrupos de matrizes\nCarateres de um grupo e a ordem generalizada\nÁlgebras de Lie\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos (coloração)",
+    "text": "1 MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP que foi realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA\nConceitos básicos com grupos\nUma exploração dos centralizadores\nHomomorfismos, automorfismos, etc, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nGrupos de permutação\nGrupos de matrizes\nCarateres de um grupo e a ordem generalizada\nÁlgebras de Lie\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>MiniCursoGAP</span>"
     ]
@@ -627,6 +627,166 @@
     "text": "12.7 Tarefa 4",
     "crumbs": [
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Carateres de um grupo e a ordem generalizada</span>"
+    ]
+  },
+  {
+    "objectID": "cubo.html",
+    "href": "cubo.html",
+    "title": "13  Grupos livres e o cubo mágico",
+    "section": "",
+    "text": "13.1 O cubo mágico\nO cubo mágico, como outros brincedos de lógica, pode ser analisado usando o sistema GAP. O cubo tem 48 peças cujas posições estão ilustradas no seguinte diagrama.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Grupos livres e o cubo mágico</span>"
+    ]
+  },
+  {
+    "objectID": "cubo.html#o-cubo-mágico",
+    "href": "cubo.html#o-cubo-mágico",
+    "title": "13  Grupos livres e o cubo mágico",
+    "section": "",
+    "text": "+--------------+\n                     |              |\n                     |  1    2    3 |\n                     |              |\n                     |  4  CIMA   5 |\n                     |              |\n                     |  6    7    8 |\n                     |              |\n      +--------------+--------------+--------------+--------------+\n      |              |              |              |              |\n      |  9   10   11 | 17   18   19 | 25   26   27 | 33   34   35 |\n      |              |              |              |              |\n      | 12  ESQ   13 | 20 FRENTE 21 | 28 DIREIT 29 | 36  TRAS  37 |\n      |              |              |              |              |\n      | 14   15   16 | 22   23   24 | 30   31   32 | 38   39   40 |\n      |              |              |              |              |\n      +--------------+--------------+--------------+--------------+\n                     |              |\n                     | 41   42   43 |\n                     |              |\n                     | 44  BAIX  45 |\n                     |              |\n                     | 46   47   48 |\n                     |              |\n                     +--------------+",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Grupos livres e o cubo mágico</span>"
+    ]
+  },
+  {
+    "objectID": "cubo.html#o-grupo-do-cubo-mágico",
+    "href": "cubo.html#o-grupo-do-cubo-mágico",
+    "title": "13  Grupos livres e o cubo mágico",
+    "section": "13.2 O grupo do cubo mágico",
+    "text": "13.2 O grupo do cubo mágico\nTodo movimento pode ser visto como uma permutação dessas peças. Por exemplo girar o topo induz a permutação seguinte.\ngap&gt; c := (1,6,8,3)(2,4,7,5)(9,17,25,33)(10,18,26,34)(11,19,27,35);\nNós definimos similarmente as outras permutações que correspondem a girar os outros lados. O grupo de permutações que corresponde ao cubo é o subgrupo de \\(S_{48}\\) gerado por essas permutações.\ngap&gt; e := (1,40,41,17)(4,37,44,20)(6,35,46,22)(9,14,16,11)(10,12,15,13);\ngap&gt; f := (6,16,43,25)(7,13,42,28)(8,11,41,30)(17,22,24,19)(18,20,23,21);\ngap&gt; d := (3,19,43,38)(5,21,45,36)(8,24,48,33)(25,30,32,27)(26,28,31,29);\ngap&gt; t := (1,27,48,14)(2,29,47,12)(3,32,46,9)(33,38,40,35)(34,36,39,37);\ngap&gt; b := (14,38,30,22)(15,39,31,23)(16,40,32,24)(41,46,48,43)(42,44,47,45);\ngap&gt; G := Group( c, e, f, d, t, b );\n&lt;permutation group with 6 generators&gt;\nCalculemos a ordem de G. A ordem de G coincide com o número de configurações do cubo.\ngap&gt; Size( G );                     \n43252003274489856000\ngap&gt; Factors( last );              \n[ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, \n  2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 5, 5, 7, 7, 11 ]\ngap&gt; Collected( last );\n[ [ 2, 27 ], [ 3, 14 ], [ 5, 3 ], [ 7, 2 ], [ 11, 1 ] ]",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Grupos livres e o cubo mágico</span>"
+    ]
+  },
+  {
+    "objectID": "cubo.html#tarefa-1",
+    "href": "cubo.html#tarefa-1",
+    "title": "13  Grupos livres e o cubo mágico",
+    "section": "13.3 Tarefa 1",
+    "text": "13.3 Tarefa 1\nVamos ver como transformar uma configuração a um elemento de \\(G\\). Considere por exemplo a seguinte configuração.\n                     +--------------+\n                     |              |\n                     |  16   4   46 |\n                     |              |\n                     |  13 CIMA  31 |\n                     |              |\n                     |  38   39   8 |\n                     |              |\n      +--------------+--------------+--------------+--------------+\n      |              |              |              |              |\n      |  22  20   32 | 48   47   19 | 25   45   14 | 40   10   41 |\n      |              |              |              |              |\n      | 29  ESQ   42 | 23 FRENTE  5 | 26 DIREIT 12 | 37   TRAS 36 |\n      |              |              |              |              |\n      | 27   15   43 | 24   21   11 | 6     7    9 | 35   34   33 |\n      |              |              |              |              |\n      +--------------+--------------+--------------+--------------+\n                     |              |\n                     | 30   28   17 |\n                     |              |\n                     | 44  BAIX  18 |\n                     |              |\n                     | 3     2   1  |\n                     |              |\n                     +--------------+\nNote que, a peça 16 aparece no lugar de 1, 4 no lugar de 2, 46 no lugar de 3, etc. Nós precisamos construir a permutação que leva \\[\n1\\mapsto 16,\\quad 2\\mapsto 4,\\quad 3\\mapsto 46,\\ldots\n\\] Esta permutação pode ser construída usando as seguintes instruções.\ngap&gt; s := [16,4,46,13,31,38,39,8,22,20,32,29,42,27,15,43,48,47,19,23,5,24,21,11,25,45,14,26,12,6,7,9,40,10,41,37,36,35,34,33,30,28,17,44,18,3,2,1];\ngap&gt; x := PermList( s );            \n(1,16,43,17,48)(2,4,13,42,28,26,45,18,47)(3,46)(5,31,7,39,34,10,20,23,21)(6,\n38,35,41,30)(9,22,24,11,32)(12,29)(14,27)(33,40)(36,37)\ngap&gt; x in G;\ntrue",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Grupos livres e o cubo mágico</span>"
+    ]
+  },
+  {
+    "objectID": "cubo.html#tarefa-2",
+    "href": "cubo.html#tarefa-2",
+    "title": "13  Grupos livres e o cubo mágico",
+    "section": "13.4 Tarefa 2",
+    "text": "13.4 Tarefa 2\nSeja \\(X\\) um grupo. Lembre que uma série \\[\nX_0&gt;X_1&gt;X_2&gt;\\cdots&gt;X_m=1\n\\] de subgrupos é dita série de composição se \\(X_{i+1}\\) é um subgrupo normal em \\(X_i\\) e \\(X_i/X_{i+1}\\) é um grupo simples para todo \\(i\\) (ou seja, \\(X_i/X_{i+1}\\) não possui subgrupo normal próprio e não trivial). A série de composição em um grupo, pode não ser única, mas sabemos pelo Teorema de Jordan-Holder que o comprimento da séries e os tipos de isomorfismo dos fatores (os fatores de composição) são unicamente determinados por \\(X\\). Estes fatores podem ser vistos como os blocos elementares do grupo similarmente aos fatores primos dos números naturais.\nNo seguinte exempolo simples vamos determinar os fatores de composição do grupo dihedral \\(D_5\\) (os simetrias do pentágono).\ngap&gt; G := DihedralGroup( 10 );\n&lt;pc group of size 10 with 2 generators&gt;\ngap&gt; C := CompositionSeries( G );\n[ Group([ f1, f2 ]), Group([ f2 ]), Group([  ]) ]\ngap&gt; List( [1..2], i-&gt;C[i]/C[i+1] );\n[ Group([ f1, &lt;identity&gt; of ... ]), Group([ f2 ]) ]\ngap&gt; List( [1..2], i-&gt;StructureDescription(C[i]/C[i+1]) );\n[ \"C2\", \"C5\" ]\nTemos que a série de composição de \\(D_5\\) tem comprimento \\(2\\) e os dois fatores são cíclicos de ordem \\(2\\) e \\(5\\).\nAgora responda às seguintes perguntas sobre o grupo \\(G\\) do cubo mágico.\n\nQual é o comprimento da série de composição do grupo \\(G\\)?\nQuantos fatores são abelianos e quantos são não abelianos.\nOs fatores abelianos, sendo grupos simples, são cíclicos; determine as suas ordens.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Grupos livres e o cubo mágico</span>"
+    ]
+  },
+  {
+    "objectID": "cubo.html#tarefa-3",
+    "href": "cubo.html#tarefa-3",
+    "title": "13  Grupos livres e o cubo mágico",
+    "section": "13.5 Tarefa 3",
+    "text": "13.5 Tarefa 3\nVamos estudar a estrutura permutacional do grupo \\(G\\).\n\nDetermine as órbitas de \\(G\\) agindo no conjunto das 48 peças.\nDê uma intepretação destas órbitas.\nLembre que um subconjunto \\(\\Delta\\) das peças chama-se bloco se \\(\\Delta g=\\Delta\\) ou \\(\\Delta g\\cap \\Delta=\\emptyset\\). Determine os blocos contidos nas órbitas de \\(G\\).\nDê interpretação destes blocos.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Grupos livres e o cubo mágico</span>"
+    ]
+  },
+  {
+    "objectID": "cubo.html#tarefa-4",
+    "href": "cubo.html#tarefa-4",
+    "title": "13  Grupos livres e o cubo mágico",
+    "section": "13.6 Tarefa 4",
+    "text": "13.6 Tarefa 4\nFinalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em G. Seja \\(F\\) o grupo livre gerado pelos geradores \\(C\\), \\(E\\), \\(F\\), \\(D\\), \\(T\\), \\(B\\). Note que \\(F\\) é gerado por \\(6\\) elementos e cada gerador de \\(F\\) corresponde a um gerador de \\(G\\). A propriedade universal do grupo livre implica que o mapa \\[\nC\\mapsto c,\\ E\\mapsto e, F\\mapsto f,\\ D\\mapsto d,\\ T\\mapsto t,\\ B\\mapsto b\n\\] pode ser extendido a um único homomorfismo \\(f:F\\to G\\). Se \\(g\\in G\\) e \\(w\\) é uma pré-imagem de \\(g\\), então \\(w\\) mostra como escrever \\(g\\) em uma palavra nas geradores de \\(G\\). Ou seja, \\(w\\) monstra como obter a configuração que corresponde ao elemento \\(g\\) como uma sequência dos \\(6\\) movimentos básicos.\nIlustramos esta ideia com um exemplo simpes usando o grupo \\(D_5\\).\ngap&gt; a := (1,2,3,4,5); b := (2,5)(3,4);\n(1,2,3,4,5)\n(2,5)(3,4)\ngap&gt; G := Group( a, b );\nGroup([ (1,2,3,4,5), (2,5)(3,4) ])\ngap&gt; F := FreeGroup( \"A\", \"B\" );\n&lt;free group on the generators [ A, B ]&gt;\ngap&gt; hom := GroupHomomorphismByImages( F, G, GeneratorsOfGroup( F ), GeneratorsOfGroup( G ));\n[ A, B ] -&gt; [ (1,2,3,4,5), (2,5)(3,4) ]\ngap&gt; x := Random( G );\n(1,4)(2,3)\ngap&gt; PreImagesRepresentative( hom, x );\nA^-1*B^-1*A^-3\nO resultado diz que a permutação \\(x=(1,4)(2,3)\\) pode ser obtida como a composição \\(a^{-1}*b^{-1}*a^{-3}\\). De fato\ngap&gt; a^-1*b^-1*a^-3 = x;\ntrue\n\nConstrua o grupo \\(F\\) em cima em GAP usando FreeGroup.\nConstrua o homomorfismo \\(f\\) em cima usando GroupHomomorphismByImages.\nConsidere a configuração do cubo na Tarefa 1. Construa a sequência dos movimentos que resulta nesta configuração.\nConsidere uma configuração aleatória do cubo por escolhendo um elemento aleatório de \\(G\\) (usando Random( G )). Construa a sequência dos movimentos que resulta nesta configuração aleatória.\nUsando um dos cubos disponibilizados por Igor e Csaba, obtenha a configuração da Tarefa 1.",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Grupos livres e o cubo mágico</span>"
+    ]
+  },
+  {
+    "objectID": "cubo.html#tarefa-5",
+    "href": "cubo.html#tarefa-5",
+    "title": "13  Grupos livres e o cubo mágico",
+    "section": "13.7 Tarefa 5",
+    "text": "13.7 Tarefa 5\n\nVerifique que \\(G\\) pode ser gerado por 2 elementos. Dica: Pegue usando Random( G ) dois elementos aliatórios em \\(G\\) e verifique se o grupo gerado por eles coincide com \\(G\\).\nAche um subconjunto mínimo \\(S\\) do conjunto \\(\\{c,e,f,d,t,b\\}\\) de geradores tal que \\(\\left&lt;S\\right&gt;=G\\).\nConstrua a configuração da Tarefa 1 usando apenas os movimentos do conjunto \\(S\\) no ponto anterior.\nSeja \\(C\\) o conjunto de 8 peças de canto (as peças que possuem 3 cores). O grupo \\(G\\) age sobre o conjunto \\(C\\). Mostre que \\(G\\) induz \\(S_{8}\\) sobre o conjunto dessas peças. Similarmente, seja \\(L\\) o conjunto das 12 peças laterias (as peças que possuem 2 cores). Mostre que \\(G\\) induz \\(S_{12}\\) sobre \\(L\\). (Isso explica os grupos \\(A_8\\) e \\(A_{12}\\) entre os fatores de composição de \\(G\\)). Use Action( G, conj, act ).",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Grupos livres e o cubo mágico</span>"
+    ]
+  },
+  {
+    "objectID": "grafos.html",
+    "href": "grafos.html",
+    "title": "14  Grafos em GAP",
+    "section": "",
+    "text": "14.1 O grafo de Petersen\nO grafo de Petersené um grafo com muitas propriedades interessantes. O grafo de Petersen pode ser construído como o grafo com o conjunto de vértices \\[\nV=\\{\\{x,y\\}\\mid 1\\leq x&lt;y\\leq 5\\}\n\\] onde dois vértices \\(\\{x,y\\}\\) e \\(\\{u,v\\}\\) são conexos se e só se \\(\\{x,y\\}\\cap \\{u,v\\}=\\emptyset\\).\nVamos construir o grafo de Petersen em GAP. Primeiro construímos o conjunto de vértices.\nO conjunto de vértices de um grafo em GAP tem de ser uma lista [1..k]. No nosso caso, o conjunto de vértices será [1..10]. Dois vértices i e j serão conexos se Intersection( ver[i], ver[j] ) = [].\nPara construir o grafo de Petersen, nós precisamos do pacote GRAPE de GAP. O grafo vai ser construído pela função",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Grafos em GAP</span>"
+    ]
+  },
+  {
+    "objectID": "grafos.html#o-grafo-de-petersen",
+    "href": "grafos.html#o-grafo-de-petersen",
+    "title": "14  Grafos em GAP",
+    "section": "",
+    "text": "gap&gt; ver := Combinations( [1..5], 2 );\n[ [ 1, 2 ], [ 1, 3 ], [ 1, 4 ], [ 1, 5 ], [ 2, 3 ], [ 2, 4 ], [ 2, 5 ], \n  [ 3, 4 ], [ 3, 5 ], [ 4, 5 ] ]\n\ngap&gt; ares := [];\ngap&gt; for i in [1..10] do\n&gt; for j in [1..10] do\n&gt; if Intersection( ver[i], ver[j] ) = [] then\n&gt; Add( ares, [i,j] );\n&gt; fi;\n&gt; od;\n&gt; od;\ngap&gt; ares;\n[ [ 1, 8 ], [ 1, 9 ], [ 1, 10 ], [ 2, 6 ], [ 2, 7 ], [ 2, 10 ], [ 3, 5 ], \n  [ 3, 7 ], [ 3, 9 ], [ 4, 5 ], [ 4, 6 ], [ 4, 8 ], [ 5, 3 ], [ 5, 4 ], \n  [ 5, 10 ], [ 6, 2 ], [ 6, 4 ], [ 6, 9 ], [ 7, 2 ], [ 7, 3 ], [ 7, 8 ], \n  [ 8, 1 ], [ 8, 4 ], [ 8, 7 ], [ 9, 1 ], [ 9, 3 ], [ 9, 6 ], [ 10, 1 ], \n  [ 10, 2 ], [ 10, 5 ] ]\n\n\ngap&gt; LoadPackage( \"grape\" );\ntrue\ngap&gt; EdgeOrbitsGraph( Group(()), ares, 10 );\nrec( adjacencies := [ [ 8, 9, 10 ], [ 6, 7, 10 ], [ 5, 7, 9 ], [ 5, 6, 8 ], \n      [ 3, 4, 10 ], [ 2, 4, 9 ], [ 2, 3, 8 ], [ 1, 4, 7 ], [ 1, 3, 6 ], \n      [ 1, 2, 5 ] ], group := Group(()), isGraph := true, order := 10, \n  representatives := [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ], \n  schreierVector := [ -1, -2, -3, -4, -5, -6, -7, -8, -9, -10 ] )\ngap&gt; \ngap&gt; IsConnectedGraph( G );\ntrue\ngap&gt; Diameter( G );\n2\ngap&gt; Girth( G );\n5\ngap&gt; IsConnectedGraph( G );\ntrue",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Grafos em GAP</span>"
+    ]
+  },
+  {
+    "objectID": "grafos.html#tarefa",
+    "href": "grafos.html#tarefa",
+    "title": "14  Grafos em GAP",
+    "section": "14.2 Tarefa",
+    "text": "14.2 Tarefa\nSe \\(G\\) é um grupo, então definimos o grafo não comutante de \\(G\\) como sendo o grafo cujo conjunto de vértices é \\(G\\setminus Z(G)\\) e dois vertices \\(g,\\ h\\) são conexos se e só se \\(xy\\neq yx\\); ou seja, \\([x,y]=x^{-1}y^{-1}xy\\neq 1\\).\n\nEscreva uma função non_commuting_graph( G ) que devolve o grafo não comutante para um grupo finito \\(G\\).\nUse a função non_commuting_graph( G ) para investigar grafos associados a grupos finitos de ordem pequena (use a função SmallGroup). Verifique se os grafos são conexos, determine o diâmetro.\n\nAlgumas propriedades interessentas de grafos não comutantes são demonstradas neste artigo.",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Grafos em GAP</span>"
+    ]
+  },
+  {
+    "objectID": "algebras.html",
+    "href": "algebras.html",
+    "title": "15  Anéis e álgebras",
+    "section": "",
+    "text": "15.1 Idempotentes e elementos nilpotentes em \\(\\mathbb Z_n\\)\nSeja \\(n\\geq 2\\) um inteiro e consideramos o anel \\(\\mathbb Z_n\\) de inteiros moduló \\(n\\) com a adição e multiplicação usuais. Em GAP esse anel pode ser construído como no seguinte exemplo.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Anéis e álgebras</span>"
+    ]
+  },
+  {
+    "objectID": "algebras.html#idempotentes-e-elementos-nilpotentes-em-mathbb-z_n",
+    "href": "algebras.html#idempotentes-e-elementos-nilpotentes-em-mathbb-z_n",
+    "title": "15  Anéis e álgebras",
+    "section": "",
+    "text": "gap&gt; R := ZmodZ(12 );\n(Integers mod 12)",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Anéis e álgebras</span>"
+    ]
+  },
+  {
+    "objectID": "algebras.html#tarefa-1",
+    "href": "algebras.html#tarefa-1",
+    "title": "15  Anéis e álgebras",
+    "section": "15.2 Tarefa 1",
+    "text": "15.2 Tarefa 1\nUm elemento \\(a\\in\\mathbb Z_n\\) chama-se nilpotente se \\(a^k=0\\) com algum \\(k\\geq 1\\) e o menor tal \\(k\\) é chamado de grau de nilpotência de \\(a\\). Um elemento \\(a\\in\\mathbb Z_n\\) chama-se idempotente se \\(a^2=a\\).\ngap&gt; a := 3*One( R );\n3\ngap&gt; IsIdempotent( a );\nfalse\n\nEscreva uma função nr_idempotents_of_zn( n ) que devolve o número de idempotentes em \\(\\mathbb Z_n\\).\nUse a função escrita no item anterior para calcular o número de idempotentes em anéis na forma \\(\\mathbb Z_{p^n}\\) onde \\(p\\) é primo. Formalize uma conjetura.\nEscreva uma função que determina se um elemento de \\(\\mathbb Z_n\\).\nEscreva uma função que devolve o número de elementos nilpotentes em \\(\\mathbb Z_n\\). Experimente a função com vários valores de \\(n\\) e tente formalizar uma conjetura.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Anéis e álgebras</span>"
+    ]
+  },
+  {
+    "objectID": "algebras.html#a-álgebra-dos-quaternions",
+    "href": "algebras.html#a-álgebra-dos-quaternions",
+    "title": "15  Anéis e álgebras",
+    "section": "15.3 A álgebra dos quaternions",
+    "text": "15.3 A álgebra dos quaternions\nSeja \\(\\mathbb F\\) um corpo e \\(\\alpha,\\ \\beta\\in\\mathbb  F\\setminus\\{0\\}\\). A álgebra generalizada dos quatérnions \\(A_{\\alpha,\\beta}\\) é um espaço vetorial de dimensão 4 sobre \\(\\mathbb F\\) gerado com a base \\(B=[1,i,j,k]\\) munido com a multiplicação dada por a tabela seguinte:\n\n\n\n\\(\\cdot\\)\n\\(1\\)\n\\(i\\)\n\\(j\\)\n\\(k\\)\n\n\n\n\n\\(1\\)\n\\(1\\)\n\\(i\\)\n\\(j\\)\n\\(k\\)\n\n\n\\(i\\)\n\\(i\\)\n\\(\\alpha\\)\n\\(k\\)\n\\(\\alpha j\\)\n\n\n\\(j\\)\n\\(j\\)\n\\(-k\\)\n\\(\\beta\\)\n\\(-\\beta i\\)\n\n\n\\(k\\)\n\\(k\\)\n\\(-\\alpha j\\)\n\\(\\beta i\\)\n\\(-\\alpha \\beta\\)\n\n\n\nA álgebra usual dos quaternions pode ser obtida como \\(A_{-1,-1}\\). Vamos construir \\(A_{1,1}\\). Em GAP tal álgebras podem ser construídas com a função AlgebraByStructureConstants. Primeiro nós inicializamos \\(T\\) como uma tabela vazia de constantes de estrutura.\ngap&gt; T := EmptySCTable( 4, 0 );\n[ [ [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ] ], \n  [ [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ] ], \n  [ [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ] ], \n  [ [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ] ], 0, 0 ]\nO primeiro argumento de EmptySCTable é a dimensão da álgebra, o segundo argumento é um zero no domínio de coeficientes.\nA multiplicação em \\(A_{1,1}\\) pode ser definida da maneira seguinte. Primeiro o produto \\(1\\cdot 1=1\\) é definido usando SetEntrySCTable.\ngap&gt; SetEntrySCTable( T, 1, 1, [1,1] );\nO primeiro argumento é o nome da tabela em que definimos o produto. O segundo e o terceiro argumentos significam que definimos o produto B[1]\\cdot B[1]. O último argumento significa que o produto é 1\\cdot B[1].\nContinuando desta maneira, definimos os produtos de \\(A_{1,1}\\).\ngap&gt; SetEntrySCTable( T, 1, 2, [1,2] );\ngap&gt; SetEntrySCTable( T, 1, 3, [1,3] );\ngap&gt; SetEntrySCTable( T, 1, 4, [1,4] );\ngap&gt; SetEntrySCTable( T, 2, 1, [1,2] );\ngap&gt; SetEntrySCTable( T, 2, 2, [1,1] );\ngap&gt; SetEntrySCTable( T, 2, 3, [1,4] );\ngap&gt; SetEntrySCTable( T, 2, 4, [1,3] );\ngap&gt; SetEntrySCTable( T, 3, 1, [1,3] );\ngap&gt; SetEntrySCTable( T, 3, 2, [-1,4] );\ngap&gt; SetEntrySCTable( T, 3, 3, [1,1] );\ngap&gt; SetEntrySCTable( T, 3, 4, [-1,2] );\ngap&gt; SetEntrySCTable( T, 4, 1, [1,4] );\ngap&gt; SetEntrySCTable( T, 4, 2, [-1,3] );\ngap&gt; SetEntrySCTable( T, 4, 3, [1,2] );\ngap&gt; SetEntrySCTable( T, 4, 4, [-1,1] );\ngap&gt; A := AlgebraByStructureConstants( F, T );",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Anéis e álgebras</span>"
+    ]
+  },
+  {
+    "objectID": "algebras.html#tarefa-2",
+    "href": "algebras.html#tarefa-2",
+    "title": "15  Anéis e álgebras",
+    "section": "15.4 Tarefa 2",
+    "text": "15.4 Tarefa 2\n\nEscreva uma função quaternion_algebra( F, a, b ) que devolve a álgebra de quatérnions \\(A_{a,b}\\) sobre \\(\\mathbb F\\).\nUse a função quaternion_algebra para construir várias álgebras sobre vários corpos. Verifique se as álgebras são simples (use IsSimpleAlgebra).",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Anéis e álgebras</span>"
     ]
   }
 ]

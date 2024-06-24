@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Álgebra Computacional com GAP - 7&nbsp; Projeto: A sequência alíquota</title>
+<title>Álgebra Computacional com GAP - 15&nbsp; Anéis e álgebras</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./rsa.html" rel="next">
-<link href="./collatz.html" rel="prev">
+<link href="./grafos.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./aliquot.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./algebras.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Anéis e álgebras</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -208,7 +207,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./aliquot.html" class="sidebar-item-text sidebar-link active">
+  <a href="./aliquot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></span></a>
   </div>
 </li>
@@ -256,7 +255,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./algebras.html" class="sidebar-item-text sidebar-link">
+  <a href="./algebras.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Anéis e álgebras</span></span></a>
   </div>
 </li>
@@ -270,11 +269,10 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link active" data-scroll-target="#tarefa-1"><span class="header-section-number">7.1</span> Tarefa 1</a></li>
-  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">7.2</span> Tarefa 2</a></li>
-  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">7.3</span> Tarefa 3</a></li>
-  <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">7.4</span> Tarefa 4</a></li>
-  <li><a href="#tarefa-5" id="toc-tarefa-5" class="nav-link" data-scroll-target="#tarefa-5"><span class="header-section-number">7.5</span> Tarefa 5</a></li>
+  <li><a href="#idempotentes-e-elementos-nilpotentes-em-mathbb-z_n" id="toc-idempotentes-e-elementos-nilpotentes-em-mathbb-z_n" class="nav-link active" data-scroll-target="#idempotentes-e-elementos-nilpotentes-em-mathbb-z_n"><span class="header-section-number">15.1</span> Idempotentes e elementos nilpotentes em <span class="math inline">\(\mathbb Z_n\)</span></a></li>
+  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">15.2</span> Tarefa 1</a></li>
+  <li><a href="#a-álgebra-dos-quaternions" id="toc-a-álgebra-dos-quaternions" class="nav-link" data-scroll-target="#a-álgebra-dos-quaternions"><span class="header-section-number">15.3</span> A álgebra dos quaternions</a></li>
+  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">15.4</span> Tarefa 2</a></li>
   </ul>
 </nav>
     </div>
@@ -283,7 +281,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Anéis e álgebras</span></h1>
 </div>
 
 
@@ -300,119 +298,104 @@ window.Quarto = {
 </header>
 
 
-<p>Seja <span class="math inline">\(n\in\mathbb N_0\)</span>. Denote por <span class="math inline">\(\sigma(n)\)</span> a soma dos divisores de <span class="math inline">\(n\)</span> entre <span class="math inline">\(1\)</span> e <span class="math inline">\(n-1\)</span> (ou seja, <span class="math inline">\(n\)</span> está desconsiderado). Em outras palavras, <span class="math display">\[
-\sigma(n)=\sum_{d\mid n,\ d&lt;n}d.
-\]</span> Por exemplo <span class="math display">\[
-\sigma(8)=1+2+4=7
-\]</span> e <span class="math display">\[
-\sigma(24)=1+2+3+4+6+8+12=36.
-\]</span> Nós definimos também <span class="math display">\[
-\sigma(1)=0\quad\mbox{e}\quad \sigma(0)=0.
-\]</span></p>
-<section id="tarefa-1" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">7.1</span> Tarefa 1</h2>
-<p>Escreva uma função <code>sum_divisors( n )</code> em <code>GAP</code> que dado um numero <code>n</code> devolve <span class="math inline">\(\sigma(n)\)</span>. Pode usar a função <code>DivisorsInt</code>. A sua função deve se comportar como no seguinte exemplo.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">sum_divisors</span>( <span class="fl">8</span> )<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">7</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">sum_divisors</span>( <span class="fl">9</span> )<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">sum_divisors</span>( <span class="fl">11</span> )<span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="idempotentes-e-elementos-nilpotentes-em-mathbb-z_n" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="idempotentes-e-elementos-nilpotentes-em-mathbb-z_n"><span class="header-section-number">15.1</span> Idempotentes e elementos nilpotentes em <span class="math inline">\(\mathbb Z_n\)</span></h2>
+<p>Seja <span class="math inline">\(n\geq 2\)</span> um inteiro e consideramos o anel <span class="math inline">\(\mathbb Z_n\)</span> de inteiros moduló <span class="math inline">\(n\)</span> com a adição e multiplicação usuais. Em <code>GAP</code> esse anel pode ser construído como no seguinte exemplo.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">R</span> <span class="op">:=</span> <span class="va">ZmodZ</span>(<span class="fl">12</span> )<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>(<span class="va">Integers</span> <span class="va">mod</span> <span class="fl">12</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="tarefa-2" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">7.2</span> Tarefa 2</h2>
-<p>Um número <span class="math inline">\(n\)</span> chama-se <em>perfeito</em> se <span class="math inline">\(\sigma(n)=n\)</span>.</p>
+<section id="tarefa-1" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">15.2</span> Tarefa 1</h2>
+<p>Um elemento <span class="math inline">\(a\in\mathbb Z_n\)</span> chama-se <em>nilpotente</em> se <span class="math inline">\(a^k=0\)</span> com algum <span class="math inline">\(k\geq 1\)</span> e o menor tal <span class="math inline">\(k\)</span> é chamado de <em>grau de nilpotência</em> de <span class="math inline">\(a\)</span>. Um elemento <span class="math inline">\(a\in\mathbb Z_n\)</span> chama-se <em>idempotente</em> se <span class="math inline">\(a^2=a\)</span>.</p>
+<pre><code>gap&gt; a := 3*One( R );
+3
+gap&gt; IsIdempotent( a );
+false</code></pre>
 <ol type="1">
-<li>Escreva uma função <code>is_perfect( n )</code> que devolva <code>true</code> se <code>n</code> é perfeito e <code>false</code> se <code>n</code> não é perfeito.</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_perfect</span>( <span class="fl">6</span> )<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_perfect</span>( <span class="fl">20</span> )<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_perfect</span>( <span class="fl">28</span> )<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Ache todos os números perfeitos entre <code>1</code> e <code>1000000</code>.</li>
+<li>Escreva uma função <code>nr_idempotents_of_zn( n )</code> que devolve o número de idempotentes em <span class="math inline">\(\mathbb Z_n\)</span>.</li>
+<li>Use a função escrita no item anterior para calcular o número de idempotentes em anéis na forma <span class="math inline">\(\mathbb Z_{p^n}\)</span> onde <span class="math inline">\(p\)</span> é primo. Formalize uma conjetura.</li>
+<li>Escreva uma função que determina se um elemento de <span class="math inline">\(\mathbb Z_n\)</span>.</li>
+<li>Escreva uma função que devolve o número de elementos nilpotentes em <span class="math inline">\(\mathbb Z_n\)</span>. Experimente a função com vários valores de <span class="math inline">\(n\)</span> e tente formalizar uma conjetura.</li>
 </ol>
 </section>
-<section id="tarefa-3" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">7.3</span> Tarefa 3</h2>
-<p>Um número <span class="math inline">\(n\)</span> chama-se <em>abundante</em>, se <span class="math inline">\(\sigma(n)&gt;n\)</span>. Ache todos os número abundantes entre <code>1</code> e <code>1000</code>.</p>
+<section id="a-álgebra-dos-quaternions" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="a-álgebra-dos-quaternions"><span class="header-section-number">15.3</span> A álgebra dos quaternions</h2>
+<p>Seja <span class="math inline">\(\mathbb F\)</span> um corpo e <span class="math inline">\(\alpha,\ \beta\in\mathbb  F\setminus\{0\}\)</span>. A álgebra generalizada dos quatérnions <span class="math inline">\(A_{\alpha,\beta}\)</span> é um espaço vetorial de dimensão 4 sobre <span class="math inline">\(\mathbb F\)</span> gerado com a base <span class="math inline">\(B=[1,i,j,k]\)</span> munido com a multiplicação dada por a tabela seguinte:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(\cdot\)</span></th>
+<th><span class="math inline">\(1\)</span></th>
+<th><span class="math inline">\(i\)</span></th>
+<th><span class="math inline">\(j\)</span></th>
+<th><span class="math inline">\(k\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(i\)</span></td>
+<td><span class="math inline">\(j\)</span></td>
+<td><span class="math inline">\(k\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(i\)</span></td>
+<td><span class="math inline">\(i\)</span></td>
+<td><span class="math inline">\(\alpha\)</span></td>
+<td><span class="math inline">\(k\)</span></td>
+<td><span class="math inline">\(\alpha j\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(j\)</span></td>
+<td><span class="math inline">\(j\)</span></td>
+<td><span class="math inline">\(-k\)</span></td>
+<td><span class="math inline">\(\beta\)</span></td>
+<td><span class="math inline">\(-\beta i\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(k\)</span></td>
+<td><span class="math inline">\(k\)</span></td>
+<td><span class="math inline">\(-\alpha j\)</span></td>
+<td><span class="math inline">\(\beta i\)</span></td>
+<td><span class="math inline">\(-\alpha \beta\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>A álgebra usual dos quaternions pode ser obtida como <span class="math inline">\(A_{-1,-1}\)</span>. Vamos construir <span class="math inline">\(A_{1,1}\)</span>. Em <code>GAP</code> tal álgebras podem ser construídas com a função <a href="http://www.gap-system.org/Manuals/doc/ref/chap62.html#X7CC58DFD816E6B65"><code>AlgebraByStructureConstants</code></a>. Primeiro nós inicializamos <span class="math inline">\(T\)</span> como uma tabela vazia de constantes de estrutura.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">T</span> <span class="op">:=</span> <span class="va">EmptySCTable</span>( <span class="fl">4</span><span class="op">,</span> <span class="fl">0</span> )<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[ [ [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ] ]<span class="op">,</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  [ [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ] ]<span class="op">,</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  [ [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ] ]<span class="op">,</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  [ [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ]<span class="op">,</span> [ [  ]<span class="op">,</span> [  ] ] ]<span class="op">,</span> <span class="fl">0</span><span class="op">,</span> <span class="fl">0</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O primeiro argumento de <code>EmptySCTable</code> é a dimensão da álgebra, o segundo argumento é um zero no domínio de coeficientes.</p>
+<p>A multiplicação em <span class="math inline">\(A_{1,1}\)</span> pode ser definida da maneira seguinte. Primeiro o produto <span class="math inline">\(1\cdot 1=1\)</span> é definido usando <a href="http://www.gap-system.org/Manuals/doc/ref/chap62.html#X817BD086876EC1C4">SetEntrySCTable</a>.</p>
+<pre><code>gap&gt; SetEntrySCTable( T, 1, 1, [1,1] );</code></pre>
+<p>O primeiro argumento é o nome da tabela em que definimos o produto. O segundo e o terceiro argumentos significam que definimos o produto <code>B[1]\cdot B[1]</code>. O último argumento significa que o produto é <code>1\cdot B[1]</code>.</p>
+<p>Continuando desta maneira, definimos os produtos de <span class="math inline">\(A_{1,1}\)</span>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>] )<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>] )<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">4</span>] )<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>] )<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">1</span>] )<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">4</span>] )<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>] )<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>] )<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> [<span class="op">-</span><span class="fl">1</span><span class="op">,</span><span class="fl">4</span>] )<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">1</span>] )<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> [<span class="op">-</span><span class="fl">1</span><span class="op">,</span><span class="fl">2</span>] )<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">4</span>] )<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> [<span class="op">-</span><span class="fl">1</span><span class="op">,</span><span class="fl">3</span>] )<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>] )<span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SetEntrySCTable</span>( <span class="va">T</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> [<span class="op">-</span><span class="fl">1</span><span class="op">,</span><span class="fl">1</span>] )<span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A</span> <span class="op">:=</span> <span class="va">AlgebraByStructureConstants</span>( <span class="va">F</span><span class="op">,</span> <span class="va">T</span> )<span class="op">;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="tarefa-4" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">7.4</span> Tarefa 4</h2>
-<p>Dois números <span class="math inline">\(n\)</span> e <span class="math inline">\(m\)</span> são chamados de amigáveis se <span class="math inline">\(\sigma(n)=m\)</span> e <span class="math inline">\(\sigma(m)=n\)</span>.</p>
+<section id="tarefa-2" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">15.4</span> Tarefa 2</h2>
 <ol type="1">
-<li>Escreva uma função <code>is_friendly( n )</code> que verifica se um número <code>n</code> é membro de um par amigável. A função deve devolver o par de <code>n</code> caso sim, e <code>0</code> caso não.</li>
+<li>Escreva uma função <code>quaternion_algebra( F, a, b )</code> que devolve a álgebra de quatérnions <span class="math inline">\(A_{a,b}\)</span> sobre <span class="math inline">\(\mathbb F\)</span>.</li>
+<li>Use a função <code>quaternion_algebra</code> para construir várias álgebras sobre vários corpos. Verifique se as álgebras são simples (use <a href="http://www.gap-system.org/Manuals/doc/ref/chap62.html#X877DF13387831A6A"><code>IsSimpleAlgebra</code></a>).</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_friendly</span>( <span class="fl">6</span> )<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">6</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_friendly</span>( <span class="fl">220</span> )<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">284</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_friendly</span>( <span class="fl">284</span> )<span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fl">220</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_friendly</span>( <span class="fl">200</span> )<span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fl">0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Ache todos os pares amigáveis de números entre <code>1</code> e <code>1000000</code>.</li>
-</ol>
-</section>
-<section id="tarefa-5" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="tarefa-5"><span class="header-section-number">7.5</span> Tarefa 5</h2>
-<p>Seja <span class="math inline">\(a_0\in\mathbb N\)</span> arbitrário. Defina a sequência que começa por <span class="math inline">\(a_0\)</span> e para <span class="math inline">\(i\geq 1\)</span>, <span class="math inline">\(a_i=\sigma(a_{i-1})\)</span>. Por exemplo, se <span class="math inline">\(a_0=8\)</span>, então <span class="math display">\[
-a_0=8,\quad a_1=\sigma(8)=7,\quad a_2=\sigma(7)=1, a_3=\sigma(1)=0, \quad a_4=\sigma(0)=0.
-\]</span> Este tipo de sequência chama-se <a href="https://en.wikipedia.org/wiki/Aliquot_sequence">sequência alíquota</a> (aliquot sequence).</p>
-<ol type="1">
-<li>Escreva uma função <code>aliquot_sequence( a0, k )</code> que, dado <code>a0</code> e um número <code>k</code>, devolve os primeiros <code>k</code> termos da sequência alíquota que inicia-se com <code>a0</code>.</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence</span>( <span class="fl">8</span><span class="op">,</span> <span class="fl">4</span> )<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">8</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence</span>( <span class="fl">24</span><span class="op">,</span> <span class="fl">6</span> )<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">24</span><span class="op">,</span> <span class="fl">36</span><span class="op">,</span> <span class="fl">55</span><span class="op">,</span> <span class="fl">17</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence</span>( <span class="fl">30</span><span class="op">,</span> <span class="fl">15</span> )<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">30</span><span class="op">,</span> <span class="fl">42</span><span class="op">,</span> <span class="fl">54</span><span class="op">,</span> <span class="fl">66</span><span class="op">,</span> <span class="fl">78</span><span class="op">,</span> <span class="fl">90</span><span class="op">,</span> <span class="fl">144</span><span class="op">,</span> <span class="fl">259</span><span class="op">,</span> <span class="fl">45</span><span class="op">,</span> <span class="fl">33</span><span class="op">,</span> <span class="fl">15</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">1</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Modifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica.</li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence_until_repeat</span>( <span class="fl">21</span> )<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">21</span><span class="op">,</span> <span class="fl">11</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence_until_repeat</span>( <span class="fl">42</span> )<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">42</span><span class="op">,</span> <span class="fl">54</span><span class="op">,</span> <span class="fl">66</span><span class="op">,</span> <span class="fl">78</span><span class="op">,</span> <span class="fl">90</span><span class="op">,</span> <span class="fl">144</span><span class="op">,</span> <span class="fl">259</span><span class="op">,</span> <span class="fl">45</span><span class="op">,</span> <span class="fl">33</span><span class="op">,</span> <span class="fl">15</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence_until_repeat</span>( <span class="fl">34</span> )<span class="op">;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">34</span><span class="op">,</span> <span class="fl">20</span><span class="op">,</span> <span class="fl">22</span><span class="op">,</span> <span class="fl">14</span><span class="op">,</span> <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span><span class="op">,</span> <span class="fl">0</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="3" type="1">
-<li>O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre <span class="math inline">\(1\)</span> e <span class="math inline">\(1000\)</span> que produz o sequência com maior comprimento.</li>
-</ol>
-<p>Este projeto foi inspirado pelo seguinte vídeo</p>
-<div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y" width="560" height="315" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<!--
-aliquot_sequence := function( a0, k )
-    local i, seq;
-    seq := [a0];
-    for i in [1..k-1] do
-        Add( seq, sum_divisors( seq[i] ));
-    od;
-    return seq;
-end;
-
-
-aliquot_sequence_until_repeat := function( a0 )
-    local i, seq, next_term;
-    seq := [a0];
-    i := 1;
-    while true do
-        next_term := sum_divisors( seq[i] );
-        if next_term in seq then
-            Add( seq, next_term );
-            break;
-        fi;
-        Add( seq, next_term );
-        i := i + 1;
-    od;
-    return seq;
-end;
-
--->
 
 
 </section>
@@ -829,14 +812,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./collatz.html" class="pagination-link" aria-label="A conjetura de Collatz">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></span>
+      <a href="./grafos.html" class="pagination-link" aria-label="Grafos em GAP">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rsa.html" class="pagination-link" aria-label="Criptografia RSA">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Criptografia RSA</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
