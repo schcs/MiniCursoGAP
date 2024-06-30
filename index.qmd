@@ -14,13 +14,14 @@ Este material foi preparado para o minicurso de *Álgebra Computacional com GAP*
 - [Uma exploração dos centralizadores](centralizers.qmd)
 - Homomorfismos, automorfismos, etc, de grupos
 - [Comutadores de grupos](commutators.qmd)
-- Grupos livres, homomorfismos, Exploração do cubo mágico
+- [Grupos livres, homomorfismos, Exploração do cubo mágico](cubo.qmd)
 - Grupos de permutação
 - Grupos de matrizes
+- [Carateres de um grupo e a ordem generalizada](genord.qmd)
 - Álgebras de Lie
-- Álgebras associativas
+- [Álgebras associativas](algebras.qmd)
 - Álgebra comutativa
-- Bases de Grobner
+- [Bases de Grobner](groebner1.qmd)
 - Teoria de Galois
-- Teoria de grafos
+- [Teoria de grafos](grafos.qmd)
   

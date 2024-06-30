@@ -61,8 +61,16 @@ gap> n <= 2^100;
 true
 ```
 
+EXPLICAR QUE RANDOM NÃO VAI DEVOLVER A MESMA COISA
+
 
 Para criar as chaves `c`e `d`, usaremos aritmética modular. Vamos criar os anéis `R` e `R1` de classes residuais módulo `n`e $\varphi(n)=(p-1)(q-1)$. 
+
+
+REFAZER USANDO MDC
+CALCULAR 2^c DIRETAMENTE.
+CONTROL C
+CHAMAR ATENÇÃO À EXPONENCIAÇÃO RÁPIDA
 
 ```matlab
 gap> R := ZmodnZ( n );

@@ -1,0 +1,86 @@
+---
+title: "Carateres de um grupo e a ordem generalizada"
+number-sections: true
+lang: pt-BR
+---
+
+## Carateres de grupos
+
+Seja $G$ um grupo finito e seja $\varrho:G\to \operatorname{GL}(n,\mathbb C)$ um homomorfismo. O homomorfismo $\varrho$ chama-se também uma *representação linear* de $G$. O carater associado com $\varrho$ é 
+$$
+\chi:G\to\mathbb C,\quad \chi(g)=\mbox{trace}(\varrho(g)). 
+$$
+Note que $\mbox{trace}$ significa o traço da matriz $\varrho(g)$; ou seja, a soma dos elementos na diagonal principal. É bem conhecido que o caracter carrega muita informação sobre $\varrho$.
+
+Em `GAP`, carateres podem ser calculados na seguinte maneira. Note que estamos interessados principalmente nos carateres que correspondem às representações irredutíveis.
+
+```matlab
+gap> G := SmallGroup( 24, 10 );
+<pc group of size 24 with 4 generators>
+gap> t := CharacterTable( G );
+CharacterTable( <pc group of size 24 with 4 generators> )
+gap> irr := Irr( t );
+[ Character( CharacterTable( <pc group of size 24 with 4 generators> ),
+  [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ] ), 
+  Character( CharacterTable( <pc group of size 24 with 4 generators> ),
+  [ 1, -1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, 1, 1 ] ), 
+...etc...
+gap> irr[3];
+Character( CharacterTable( <pc group of size 24 with 4 generators> ),
+ [ 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, 1, 1, -1 ] )
+```
+
+## A ordem generalizada
+
+Seja $G$ um grupo e $x\in G$. A *ordem generalizada* $[x]$ de $x$ é o menor número natural $k$ tal que a identidade $1$ de $G$ pode ser escrito como um produto de $k$ conjugados de $x$. Ou seja, $[x]$ é o menor natural $k$ tal que 
+$$
+x^{g_1}\cdots x^{g_k}=1
+$$
+com algum $g_1,\ldots,g_k\in G$. 
+
+## A ordem generalizada usando carateres
+
+:::{#thm-ord-gen}
+Seja $G$ um grupo finito e seja $g\in G$. Defina
+$$
+\alpha_{g,k}=\frac {|G|^{k-1}}{|C_G(g)|^k}\sum_{\chi\in\mbox{Irr}(G)}\frac{\chi(g)^k}{\chi(1)^{k-2}}.
+$$
+Então $\alpha_{g,k}$ é um número natural e ele é igual ao número de maneiras de escrever a identidade $1$ de $G$ como produto de conjugados de $g$. Em particular, 
+$$
+[g]=\min\{k\geq 1\mid \alpha_{g,k}\geq 1\}.
+$$
+:::
+
+## Tarefa 1
+
+Vamos calcular a ordem generalizada de um elemento do grupo dihedral $D_8$. Usando a fórmula anterior.
+
+```matlab
+gap> D8 := DihedralGroup( 8 );
+<pc group of size 8 with 3 generators>
+gap> t := CharacterTable( D8 );
+CharacterTable( <pc group of size 8 with 3 generators> )
+gap> OrdersClassRepresentatives( t );
+[ 1, 2, 4, 2, 2 ]
+gap> irr := Irr( t );
+[ Character( CharacterTable( <pc group of size 8 with 3 generators> ),
+  [ 1, 1, 1, 1, 1 ] ), Character( CharacterTable( <pc group of size 8 with 
+    3 generators> ), [ 1, -1, 1, 1, -1 ] ), 
+  Character( CharacterTable( <pc group of size 8 with 3 generators> ),
+  [ 1, 1, -1, 1, -1 ] ), Character( CharacterTable( <pc group of size 8 with 
+    3 generators> ), [ 1, -1, -1, 1, 1 ] ), 
+  Character( CharacterTable( <pc group of size 8 with 3 generators> ),
+  [ 2, 0, 0, -2, 0 ] ) ]
+gap> k := 1;; Sum( List( irr, x->x[3]^k/x[1]^(k-2) ));
+0
+gap> k := 2;; Sum( List( irr, x->x[3]^k/x[1]^(k-2) ));
+4
+```
+
+Note que obtemos que o ordem generalizada de $a$ é $8$. 
+
+## Tarefa 2
+
+## Tarefa 3
+
+## Tarefa 4

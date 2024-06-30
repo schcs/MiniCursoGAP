@@ -20,6 +20,11 @@ book:
     - rsa.qmd
     - centralizers.qmd
     - commutators.qmd
+    - groebner1.qmd
+    - genord.qmd
+    - cubo.qmd
+    - grafos.qmd
+    - algebras.qmd
 
 format:
   html:
