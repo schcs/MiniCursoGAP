@@ -104,7 +104,7 @@ gap> aliquot_sequence_until_repeat( 34 );
 
 Este projeto foi inspirado pelo seguinte vídeo
 
-{{< video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width="560" height="315" >}}
+{< video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width="560" height="315" >}
 
 <!--
 aliquot_sequence := function( a0, k )

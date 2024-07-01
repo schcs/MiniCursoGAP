@@ -134,7 +134,38 @@ Faça uma mudança no seu código e crie uma função `abCent(G)` para computar 
 Por fim, o que podemos dizer para o caso de centralizadores não abelianos de elementos?
 
 
-COLOCAR ISOCLINISMO!!!
+## Tarefa 7
+
+Nesta próxima tarefa, vamos usar o conceito de grupos isoclínicos (desenvolvido por P. Hall em [seu artigo influenciador](https://www.degruyter.com/document/doi/10.1515/crll.1940.182.130/pdf) de 1940). Dois grupos $G$ e $H$ são ditos isoclínicos se existem dois isomorfismos 
+$$
+\phi: \frac{G}{Z(G)} \rightarrow \frac{H}{Z(H)}\quad \mbox{e} \quad\psi: G' \rightarrow H'
+$$ 
+tais que se 
+$$
+\phi(g_1Z(G))=h_1Z(H)\quad\mbox{e} \quad\phi(g_2Z(G))=h_2Z(H)
+$$
+para $g_1,g_2 \in G$ e $h_1,h_2 \in H$, então $\psi([g_1,g_2])= [h_1,h_2]$. É possível mostrar que isoclinismo é uma relação de equivalência e que grupos abelianos são isoclínicos ao grupo trivial. 
+
+
+Por exemplo, pode se verificar que o grupo dihedral $D_8$ e o grupo de quaternions $Q_8$ são isoclínicos.
+
+```matlab
+gap> LoadPackage( "xmod" );
+true
+gap> AreIsoclinic( DihedralGroup(8), QuaternionGroup(8));
+true
+gap> f := Isoclinism( DihedralGroup(8), QuaternionGroup(8));
+[ [ f1, f2 ] -> [ f2, f1*f2 ], [ f3 ] -> [ y2 ] ]
+```
+
+
+
+M. Zarrin usou o isoclinismo para estender os resultados sobre centralizados de elementos para grupos infinitos. Em particular, ele provou que se $G$ e $H$ são isoclínicos, então $|Cent(G)| = |Cent(H)|$.
+Nesta tarefa vamos verificar a seguinte questão de [Khoramshahi and M. Zarrin](https://www.worldscientific.com/doi/10.1142/S0219498821500122).
+
+- Ache dois grupos $G$ e $H$ tal que $|\mbox{Cent}(G)|=|\mbox{Cent}(H)|$, $|H|=|G|$, $|G'|=|H'|$, mas  $G$ e $H$ não são isoclínicos.
+- Khoromshahi e Zarrin mostrou que se $G$ e $H$ são como no item anterior, então   $|\mbox{Cent}(G)|\leq 5$. Ache exemplos com $|\mbox{Cent}(G)|=6$ para verificar que esta quota superior não pode ser melhorada.  
+
 <!--
 
 gap> f:=function(g)                               
