@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Álgebra Computacional com GAP - 14&nbsp; Grafos em GAP</title>
+<title>Álgebra Computacional com GAP - 16&nbsp; Produto semidireto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./algebras.html" rel="next">
-<link href="./cubo.html" rel="prev">
+<link href="./algebras.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -145,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./grafos.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./semidirect.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Produto semidireto</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -250,7 +249,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./grafos.html" class="sidebar-item-text sidebar-link active">
+  <a href="./grafos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></span></a>
   </div>
 </li>
@@ -262,7 +261,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./semidirect.html" class="sidebar-item-text sidebar-link">
+  <a href="./semidirect.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Produto semidireto</span></span></a>
   </div>
 </li>
@@ -276,8 +275,9 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#o-grafo-de-petersen" id="toc-o-grafo-de-petersen" class="nav-link active" data-scroll-target="#o-grafo-de-petersen"><span class="header-section-number">14.1</span> O grafo de Petersen</a></li>
-  <li><a href="#tarefa" id="toc-tarefa" class="nav-link" data-scroll-target="#tarefa"><span class="header-section-number">14.2</span> Tarefa</a></li>
+  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link active" data-scroll-target="#tarefa-1"><span class="header-section-number">16.1</span> Tarefa 1</a></li>
+  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">16.2</span> Tarefa 2</a></li>
+  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">16.3</span> Tarefa 3</a></li>
   </ul>
 </nav>
     </div>
@@ -286,7 +286,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Produto semidireto</span></h1>
 </div>
 
 
@@ -303,66 +303,45 @@ window.Quarto = {
 </header>
 
 
-<section id="o-grafo-de-petersen" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="o-grafo-de-petersen"><span class="header-section-number">14.1</span> O grafo de Petersen</h2>
-<p>O <a href="http://pt.wikipedia.org/wiki/Grafo_de_Petersen">grafo de Petersen</a>é um grafo com muitas propriedades interessantes. O grafo de Petersen pode ser construído como o grafo com o conjunto de vértices <span class="math display">\[
-V=\{\{x,y\}\mid 1\leq x&lt;y\leq 5\}
-\]</span> onde dois vértices <span class="math inline">\(\{x,y\}\)</span> e <span class="math inline">\(\{u,v\}\)</span> são conexos se e só se <span class="math inline">\(\{x,y\}\cap \{u,v\}=\emptyset\)</span>.</p>
-<p>Vamos construir o grafo de Petersen em <code>GAP</code>. Primeiro construímos o conjunto de vértices.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">ver</span> <span class="op">:=</span> <span class="va">Combinations</span>( [<span class="fl">1</span>.<span class="fl">.5</span>]<span class="op">,</span> <span class="fl">2</span> )<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  [ <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span> ] ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O conjunto de vértices de um grafo em <code>GAP</code> tem de ser uma lista <code>[1..k]</code>. No nosso caso, o conjunto de vértices será <code>[1..10]</code>. Dois vértices <code>i</code> e <code>j</code> serão conexos se <code>Intersection( ver[i], ver[j] ) = []</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">ares</span> <span class="op">:=</span> []<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="va">i</span> <span class="va">in</span> [<span class="fl">1</span>.<span class="fl">.10</span>] <span class="va">do</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">for</span> <span class="va">j</span> <span class="va">in</span> [<span class="fl">1</span>.<span class="fl">.10</span>] <span class="va">do</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">if</span> <span class="va">Intersection</span>( <span class="va">ver</span>[<span class="va">i</span>]<span class="op">,</span> <span class="va">ver</span>[<span class="va">j</span>] ) <span class="op">=</span> [] <span class="va">then</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">Add</span>( <span class="va">ares</span><span class="op">,</span> [<span class="va">i</span><span class="op">,</span><span class="va">j</span>] )<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">fi</span><span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">od</span><span class="op">;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">od</span><span class="op">;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">ares</span><span class="op">;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">6</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">7</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  [ <span class="fl">3</span><span class="op">,</span> <span class="fl">7</span> ]<span class="op">,</span> [ <span class="fl">3</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">6</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> [ <span class="fl">5</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">5</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> </span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  [ <span class="fl">5</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">6</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">6</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">6</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">7</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">7</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">7</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> </span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  [ <span class="fl">8</span><span class="op">,</span> <span class="fl">1</span> ]<span class="op">,</span> [ <span class="fl">8</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">8</span><span class="op">,</span> <span class="fl">7</span> ]<span class="op">,</span> [ <span class="fl">9</span><span class="op">,</span> <span class="fl">1</span> ]<span class="op">,</span> [ <span class="fl">9</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">9</span><span class="op">,</span> <span class="fl">6</span> ]<span class="op">,</span> [ <span class="fl">10</span><span class="op">,</span> <span class="fl">1</span> ]<span class="op">,</span> </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  [ <span class="fl">10</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">10</span><span class="op">,</span> <span class="fl">5</span> ] ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Para construir o grafo de Petersen, nós precisamos do pacote GRAPE de <code>GAP</code>. O grafo vai ser construído pela função</p>
-<!--http://www.gap-system.org/Manuals/pkg/grape/htm/CHAP002.htm#SECT002</Link><LinkText><Code>EdgeOrbitsGraph( G, ares, n )</Code></LinkText></URL>. 
-O argumento <Arg>G</Arg> é um grupo que age sobre o conjunto de vértices, 
-<Arg>ares</Arg> é um conjunto de arestas, e <Arg>n</Arg> é o número de 
-vértices. O grafo construído pela função vai ter <Code>[1..n]</Code>
-como conjunto de vértices, e o <M>G</M>-fecho de <Arg>ares</Arg> como 
-conjunto de arestas. Nos nossos exemplos nós vamos trabalhar com <M>G=1</M>, 
-e neste caso o conjunto de arestas vai ser <Arg>ares</Arg>.
-
--->
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">LoadPackage</span>( <span class="st">"grape"</span> )<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">EdgeOrbitsGraph</span>( <span class="va">Group</span>(())<span class="op">,</span> <span class="va">ares</span><span class="op">,</span> <span class="fl">10</span> )<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">rec</span>( <span class="va">adjacencies</span> <span class="op">:=</span> [ [ <span class="fl">8</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">6</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      [ <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">7</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">6</span> ]<span class="op">,</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      [ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">5</span> ] ]<span class="op">,</span> <span class="va">group</span> <span class="op">:=</span> <span class="va">Group</span>(())<span class="op">,</span> <span class="va">isGraph</span> <span class="op">:=</span> <span class="va">true</span><span class="op">,</span> <span class="va">order</span> <span class="op">:=</span> <span class="fl">10</span><span class="op">,</span> </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">representatives</span> <span class="op">:=</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">schreierVector</span> <span class="op">:=</span> [ <span class="op">-</span><span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">2</span><span class="op">,</span> <span class="op">-</span><span class="fl">3</span><span class="op">,</span> <span class="op">-</span><span class="fl">4</span><span class="op">,</span> <span class="op">-</span><span class="fl">5</span><span class="op">,</span> <span class="op">-</span><span class="fl">6</span><span class="op">,</span> <span class="op">-</span><span class="fl">7</span><span class="op">,</span> <span class="op">-</span><span class="fl">8</span><span class="op">,</span> <span class="op">-</span><span class="fl">9</span><span class="op">,</span> <span class="op">-</span><span class="fl">10</span> ] )</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsConnectedGraph</span>( <span class="va">G</span> )<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Diameter</span>( <span class="va">G</span> )<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Girth</span>( <span class="va">G</span> )<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsConnectedGraph</span>( <span class="va">G</span> )<span class="op">;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Dados dois grupos <span class="math inline">\(N\)</span> e <span class="math inline">\(H\)</span> e um homomorfismo <span class="math inline">\(\alpha:H\to\mbox{Aut}(H)\)</span>, construimos o <em>produto semidireto</em> <span class="math inline">\(G=N\rtimes H\)</span> na segiunte forma. O conjunto de <span class="math inline">\(G\)</span> é o produto cartesiano <span class="math inline">\(N\times H\)</span> e a multiplicação está definida pela seguinte regra: <span class="math display">\[
+(n_1,h_1)(n_2,h_2)=(n_1\cdot \alpha(h_1)(n_2),h_1h_2).
+\]</span> É um exercício fácil mostrar que esta regra define um grupo.</p>
+<p>Primeiramente, vamos construir um homomorfismo <span class="math inline">\(a\)</span> de <span class="math inline">\(H\)</span> no grupo de automorfismos de <span class="math inline">\(N\)</span>. Em seguida usaremos a função <code>SemidirectProduct(H, a, N)</code> para construir alguns grupos, em particular todos os grupos de ordem <span class="math inline">\(12\)</span>.</p>
+<section id="tarefa-1" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">16.1</span> Tarefa 1</h2>
+<p>Usando a função <code>AutomorphismGroup(G)</code>, vamos construir alguns automorfimos.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">AutomorphismGroup</span>(<span class="va">SmallGroup</span>(<span class="fl">4</span><span class="op">,</span> <span class="fl">2</span>))<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">group</span> <span class="va">with</span> <span class="fl">4</span> <span class="va">generators</span><span class="op">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">StructureDescrition</span>(<span class="va">last</span>)<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">"S3"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">AutomorphismGroup</span>(<span class="va">DirectProduct</span>(<span class="va">CyclicGroup</span>(<span class="fl">2</span>)<span class="op">,</span> <span class="va">CyclicGroup</span>(<span class="fl">2</span>)))<span class="op">;</span>$</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">StructureDescrition</span>(<span class="va">last</span>)<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">AutomorphismGroup</span>(<span class="va">CyclicGroup</span>(<span class="fl">3</span>))<span class="op">;</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">StructureDescrition</span>(<span class="va">last</span>)<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">group</span> <span class="va">with</span> <span class="fl">1</span> <span class="va">generator</span><span class="op">&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">StructureDescription</span>( <span class="va">last</span> )<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">"C2"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="tarefa" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="tarefa"><span class="header-section-number">14.2</span> Tarefa</h2>
-<p>Se <span class="math inline">\(G\)</span> é um grupo, então definimos o <em>grafo não comutante</em> de <span class="math inline">\(G\)</span> como sendo o grafo cujo conjunto de vértices é <span class="math inline">\(G\setminus Z(G)\)</span> e dois vertices <span class="math inline">\(g,\ h\)</span> são conexos se e só se <span class="math inline">\(xy\neq yx\)</span>; ou seja, <span class="math inline">\([x,y]=x^{-1}y^{-1}xy\neq 1\)</span>.</p>
+<section id="tarefa-2" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">16.2</span> Tarefa 2</h2>
+<p>Agora vamos construir alguns homomorfismos de um grupo <span class="math inline">\(H\)</span> para o grupo de automorfismos de <span class="math inline">\(N\)</span>, nos casos em que tais grupos são: <span class="math inline">\(C_2 \times C_2\)</span> ou <span class="math inline">\(C_4\)</span> ou <span class="math inline">\(C_3\)</span>. Usaremos a função <code>GroupHomomorphismByImages( H, AutomorphismGroup(N), gens, imgs )</code>, onde <code>gens</code> é uma lista de geradores de <code>H</code> de mesmo tamanho da lista de respectivas imagens <code>imgs</code> em <code>AutomorphismGroup(N)</code>.</p>
+<p>Primeiro, vamos fazer um exemplo e construir um homomorfismo do grupo grupo simétrico <span class="math inline">\(S_4=&lt;(1,2), (1,2,3,4)&gt;\)</span> para o grupo <span class="math inline">\(Aut(S_3) \cong S_3 =&lt;(1,2), (1,2,3)&gt;\)</span>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">s4</span> <span class="op">:=</span> <span class="va">SymmetricGroup</span>(<span class="fl">4</span>)<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">gens</span><span class="op">:=</span><span class="va">GeneratorsOfGroup</span>(<span class="va">s4</span>)<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">s3</span><span class="op">:=</span><span class="va">SymmetricGroup</span>(<span class="fl">3</span>)<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">imgs</span><span class="op">:=</span>[(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>)<span class="op">,</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)]<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">GroupHomomorphismByImages</span>(<span class="va">s4</span><span class="op">,</span> <span class="va">s3</span><span class="op">,</span> <span class="va">gens</span><span class="op">,</span> <span class="va">imgs</span>)<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Image</span>(<span class="va">f</span><span class="op">,</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span>))<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Image</span>(<span class="va">f</span><span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">4</span>))<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Image</span>(<span class="va">f</span><span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)<span class="op">*</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>))<span class="op">;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
-<li>Escreva uma função <code>non_commuting_graph( G )</code> que devolve o grafo não comutante para um grupo finito <span class="math inline">\(G\)</span>.</li>
-<li>Use a função <code>non_commuting_graph( G )</code> para investigar grafos associados a grupos finitos de ordem pequena (use a função <code>SmallGroup</code>). Verifique se os grafos são conexos, determine o diâmetro.</li>
+<li>Agora, construa um homomorfismo <span class="math inline">\(f\)</span> de <span class="math inline">\(h:=C_4\)</span> para <span class="math inline">\(n:=Aut(C_3) \cong C_2\)</span>. Verifique qual é imagem de <span class="math inline">\(a^3\)</span> por <span class="math inline">\(f\)</span>, onde <span class="math inline">\(&lt;a&gt;=C_4\)</span>.</li>
+<li>Faça o mesmo para <span class="math inline">\(h:=C_2 \times C_2\)</span> para <span class="math inline">\(n:=Aut(C_3) \cong C_2\)</span>. \ Use a função DirectProduct e também GeneratorsOfGroup.</li>
 </ol>
-<p>Algumas propriedades interessentas de grafos não comutantes são demonstradas <a href="http://www.sciencedirect.com/science/article/pii/S002186930600113X#">neste artigo</a>.</p>
+</section>
+<section id="tarefa-3" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">16.3</span> Tarefa 3</h2>
+<p>Agora vamos usar a função <span class="math inline">\(SemidirectProduct(H, \alpha, N)\)</span>.</p>
 
 
 </section>
@@ -779,14 +758,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./cubo.html" class="pagination-link" aria-label="Grupos livres e o cubo mágico">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Grupos livres e o cubo mágico</span></span>
+      <a href="./algebras.html" class="pagination-link" aria-label="Anéis e álgebras">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Anéis e álgebras</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./algebras.html" class="pagination-link" aria-label="Anéis e álgebras">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Anéis e álgebras</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

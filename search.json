@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Álgebra Computacional com GAP",
     "section": "",
-    "text": "1 MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP que foi realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA\nConceitos básicos com grupos\nUma exploração dos centralizadores\nHomomorfismos, automorfismos, etc, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nGrupos de permutação\nGrupos de matrizes\nCarateres de um grupo e a ordem generalizada\nÁlgebras de Lie\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos",
+    "text": "1 MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP que foi realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá\n\nRodar o sistema, criar, salvar e carregar arquivos\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA\nUma exploração dos centralizadores\nHomomorfismos, automorfismos, de grupos\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nCarateres de um grupo e a ordem generalizada\nÁlgebras associativas\nÁlgebra comutativa\nBases de Grobner\nTeoria de Galois\nTeoria de grafos",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>MiniCursoGAP</span>"
     ]
@@ -284,7 +284,7 @@
     "href": "aliquot.html#tarefa-5",
     "title": "7  Projeto: A sequência alíquota",
     "section": "7.5 Tarefa 5",
-    "text": "7.5 Tarefa 5\nSeja \\(a_0\\in\\mathbb N\\) arbitrário. Defina a sequência que começa por \\(a_0\\) e para \\(i\\geq 1\\), \\(a_i=\\sigma(a_{i-1})\\). Por exemplo, se \\(a_0=8\\), então \\[\na_0=8,\\quad a_1=\\sigma(8)=7,\\quad a_2=\\sigma(7)=1, a_3=\\sigma(1)=0, \\quad a_4=\\sigma(0)=0.\n\\] Este tipo de sequência chama-se sequência alíquota (aliquot sequence).\n\nEscreva uma função aliquot_sequence( a0, k ) que, dado a0 e um número k, devolve os primeiros k termos da sequência alíquota que inicia-se com a0.\n\ngap&gt; aliquot_sequence( 8, 4 );\n[ 8, 7, 1, 0 ]\ngap&gt; aliquot_sequence( 24, 6 );\n[ 24, 36, 55, 17, 1, 0 ]\ngap&gt; aliquot_sequence( 30, 15 );\n[ 30, 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1 ]\n\nModifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica.\n\ngap&gt; aliquot_sequence_until_repeat( 21 );\n[ 21, 11, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 42 );\n[ 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 34 );\n[ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]\n\nO comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre \\(1\\) e \\(1000\\) que produz o sequência com maior comprimento.\n\nEste projeto foi inspirado pelo seguinte vídeo",
+    "text": "7.5 Tarefa 5\nSeja \\(a_0\\in\\mathbb N\\) arbitrário. Defina a sequência que começa por \\(a_0\\) e para \\(i\\geq 1\\), \\(a_i=\\sigma(a_{i-1})\\). Por exemplo, se \\(a_0=8\\), então \\[\na_0=8,\\quad a_1=\\sigma(8)=7,\\quad a_2=\\sigma(7)=1, a_3=\\sigma(1)=0, \\quad a_4=\\sigma(0)=0.\n\\] Este tipo de sequência chama-se sequência alíquota (aliquot sequence).\n\nEscreva uma função aliquot_sequence( a0, k ) que, dado a0 e um número k, devolve os primeiros k termos da sequência alíquota que inicia-se com a0.\n\ngap&gt; aliquot_sequence( 8, 4 );\n[ 8, 7, 1, 0 ]\ngap&gt; aliquot_sequence( 24, 6 );\n[ 24, 36, 55, 17, 1, 0 ]\ngap&gt; aliquot_sequence( 30, 15 );\n[ 30, 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1 ]\n\nModifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica.\n\ngap&gt; aliquot_sequence_until_repeat( 21 );\n[ 21, 11, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 42 );\n[ 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 34 );\n[ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]\n\nO comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre \\(1\\) e \\(1000\\) que produz o sequência com maior comprimento.\n\nEste projeto foi inspirado pelo seguinte vídeo\n{&lt; video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width=“560” height=“315” &gt;}",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Projeto: A sequência alíquota</span>"
     ]
@@ -414,7 +414,17 @@
     "href": "centralizers.html#tarefa-6",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "9.7 Tarefa 6",
-    "text": "9.7 Tarefa 6\nE se restringirmos a função para sabermos a quantidade de centralizadores abelianos de um grupo? Será que se dois grupos simples não abelianos tiverem a mesma quantidade de centralizadores abelianos de elementos, esses grupos são necessariamente isomorfos?\nFaça uma mudança no seu código e crie uma função abCent(G) para computar o conjunto de centralizadores abelianos de elementos. Posteriormente, responda a questão desta tarefa.\nPor fim, o que podemos dizer para o caso de centralizadores não abelianos de elementos?\nCOLOCAR ISOCLINISMO!!!",
+    "text": "9.7 Tarefa 6\nE se restringirmos a função para sabermos a quantidade de centralizadores abelianos de um grupo? Será que se dois grupos simples não abelianos tiverem a mesma quantidade de centralizadores abelianos de elementos, esses grupos são necessariamente isomorfos?\nFaça uma mudança no seu código e crie uma função abCent(G) para computar o conjunto de centralizadores abelianos de elementos. Posteriormente, responda a questão desta tarefa.\nPor fim, o que podemos dizer para o caso de centralizadores não abelianos de elementos?",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
+    ]
+  },
+  {
+    "objectID": "centralizers.html#tarefa-7",
+    "href": "centralizers.html#tarefa-7",
+    "title": "9  Projeto: Uma exploração dos centralizadores",
+    "section": "9.8 Tarefa 7",
+    "text": "9.8 Tarefa 7\nNesta próxima tarefa, vamos usar o conceito de grupos isoclínicos (desenvolvido por P. Hall em seu artigo influenciador de 1940). Dois grupos \\(G\\) e \\(H\\) são ditos isoclínicos se existem dois isomorfismos \\[\n\\phi: \\frac{G}{Z(G)} \\rightarrow \\frac{H}{Z(H)}\\quad \\mbox{e} \\quad\\psi: G' \\rightarrow H'\n\\] tais que se \\[\n\\phi(g_1Z(G))=h_1Z(H)\\quad\\mbox{e} \\quad\\phi(g_2Z(G))=h_2Z(H)\n\\] para \\(g_1,g_2 \\in G\\) e \\(h_1,h_2 \\in H\\), então \\(\\psi([g_1,g_2])= [h_1,h_2]\\). É possível mostrar que isoclinismo é uma relação de equivalência e que grupos abelianos são isoclínicos ao grupo trivial.\nPor exemplo, pode se verificar que o grupo dihedral \\(D_8\\) e o grupo de quaternions \\(Q_8\\) são isoclínicos.\ngap&gt; LoadPackage( \"xmod\" );\ntrue\ngap&gt; AreIsoclinic( DihedralGroup(8), QuaternionGroup(8));\ntrue\ngap&gt; f := Isoclinism( DihedralGroup(8), QuaternionGroup(8));\n[ [ f1, f2 ] -&gt; [ f2, f1*f2 ], [ f3 ] -&gt; [ y2 ] ]\nM. Zarrin usou o isoclinismo para estender os resultados sobre centralizados de elementos para grupos infinitos. Em particular, ele provou que se \\(G\\) e \\(H\\) são isoclínicos, então \\(|Cent(G)| = |Cent(H)|\\). Nesta tarefa vamos verificar a seguinte questão de Khoramshahi and M. Zarrin.\n\nAche dois grupos \\(G\\) e \\(H\\) tal que \\(|\\mbox{Cent}(G)|=|\\mbox{Cent}(H)|\\), \\(|H|=|G|\\), \\(|G'|=|H'|\\), mas \\(G\\) e \\(H\\) não são isoclínicos.\nKhoromshahi e Zarrin mostrou que se \\(G\\) e \\(H\\) são como no item anterior, então \\(|\\mbox{Cent}(G)|\\leq 5\\). Ache exemplos com \\(|\\mbox{Cent}(G)|=6\\) para verificar que esta quota superior não pode ser melhorada.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
@@ -424,7 +434,7 @@
     "href": "commutators.html",
     "title": "10  Projeto: Comutadores",
     "section": "",
-    "text": "10.1 A Teoria\nSeja \\(G\\) um grupo. Se \\(x,y\\in G\\), então o comutador \\([x,y]\\) está definido como \\[\n[x,y]=x^{-1}y^{-1}xy.\n\\] O subgrupo derivado \\(G'\\) de \\(G\\) é definido como o subgrupo de \\(G\\) gerado por todos os comutadores; ou seja, \\[\nG'=\\left&lt;[x,y]\\mid x,y\\in G\\right&gt;.\n\\] É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o subgrupo gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequeno \\(G'\\) coincide com o conjunto de comutadores.",
+    "text": "10.1 A Teoria\nSeja \\(G\\) um grupo. Se \\(x,y\\in G\\), o comutador \\([x,y]\\) está definido como \\[\n[x,y]=x^{-1}y^{-1}xy.\n\\] O subgrupo derivado \\(G'\\) de \\(G\\) é definido como o subgrupo de \\(G\\) gerado por todos os comutadores; ou seja, \\[\nG'=\\left&lt;[x,y]\\mid x,y\\in G\\right&gt;.\n\\] É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o subgrupo gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequeno \\(G'\\) coincide com o conjunto de comutadores.",
     "crumbs": [
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projeto: Comutadores</span>"
     ]
@@ -787,6 +797,46 @@
     "text": "15.4 Tarefa 2\n\nEscreva uma função quaternion_algebra( F, a, b ) que devolve a álgebra de quatérnions \\(A_{a,b}\\) sobre \\(\\mathbb F\\).\nUse a função quaternion_algebra para construir várias álgebras sobre vários corpos. Verifique se as álgebras são simples (use IsSimpleAlgebra).",
     "crumbs": [
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Anéis e álgebras</span>"
+    ]
+  },
+  {
+    "objectID": "semidirect.html",
+    "href": "semidirect.html",
+    "title": "16  Produto semidireto",
+    "section": "",
+    "text": "16.1 Tarefa 1\nUsando a função AutomorphismGroup(G), vamos construir alguns automorfimos.",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Produto semidireto</span>"
+    ]
+  },
+  {
+    "objectID": "semidirect.html#tarefa-1",
+    "href": "semidirect.html#tarefa-1",
+    "title": "16  Produto semidireto",
+    "section": "",
+    "text": "gap&gt; AutomorphismGroup(SmallGroup(4, 2));\n&lt;group with 4 generators&gt;\ngap&gt; StructureDescrition(last);\n\"S3\"\ngap&gt; AutomorphismGroup(DirectProduct(CyclicGroup(2), CyclicGroup(2)));$\ngap&gt; StructureDescrition(last);\ngap&gt; AutomorphismGroup(CyclicGroup(3)); \ngap&gt; StructureDescrition(last);\n&lt;group with 1 generator&gt;\ngap&gt; StructureDescription( last );\n\"C2\"",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Produto semidireto</span>"
+    ]
+  },
+  {
+    "objectID": "semidirect.html#tarefa-2",
+    "href": "semidirect.html#tarefa-2",
+    "title": "16  Produto semidireto",
+    "section": "16.2 Tarefa 2",
+    "text": "16.2 Tarefa 2\nAgora vamos construir alguns homomorfismos de um grupo \\(H\\) para o grupo de automorfismos de \\(N\\), nos casos em que tais grupos são: \\(C_2 \\times C_2\\) ou \\(C_4\\) ou \\(C_3\\). Usaremos a função GroupHomomorphismByImages( H, AutomorphismGroup(N), gens, imgs ), onde gens é uma lista de geradores de H de mesmo tamanho da lista de respectivas imagens imgs em AutomorphismGroup(N).\nPrimeiro, vamos fazer um exemplo e construir um homomorfismo do grupo grupo simétrico \\(S_4=&lt;(1,2), (1,2,3,4)&gt;\\) para o grupo \\(Aut(S_3) \\cong S_3 =&lt;(1,2), (1,2,3)&gt;\\).\ngap&gt; s4 := SymmetricGroup(4);\ngap&gt; gens:=GeneratorsOfGroup(s4);\ngap&gt; s3:=SymmetricGroup(3);\ngap&gt; imgs:=[(1,2),(2,3)];\ngap&gt; GroupHomomorphismByImages(s4, s3, gens, imgs);\ngap&gt; Image(f,(1,2,3,4));\ngap&gt; Image(f, (1,3)(2,4));\ngap&gt; Image(f, (1,2,3,4)*(1,2));\n\nAgora, construa um homomorfismo \\(f\\) de \\(h:=C_4\\) para \\(n:=Aut(C_3) \\cong C_2\\). Verifique qual é imagem de \\(a^3\\) por \\(f\\), onde \\(&lt;a&gt;=C_4\\).\nFaça o mesmo para \\(h:=C_2 \\times C_2\\) para \\(n:=Aut(C_3) \\cong C_2\\). \\ Use a função DirectProduct e também GeneratorsOfGroup.",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Produto semidireto</span>"
+    ]
+  },
+  {
+    "objectID": "semidirect.html#tarefa-3",
+    "href": "semidirect.html#tarefa-3",
+    "title": "16  Produto semidireto",
+    "section": "16.3 Tarefa 3",
+    "text": "16.3 Tarefa 3\nAgora vamos usar a função \\(SemidirectProduct(H, \\alpha, N)\\).",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Produto semidireto</span>"
     ]
   }
 ]
