@@ -102,58 +102,6 @@ gap> Concatenation( s1, s2 );
 "Hello World!"
 ```
 
-## Funções
-
-Funções em ```GAP``` podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado ```x``` computa ```3*x+1``` pode ser definida de duas maneiras diferentes.
-```matlab
-gap> f1 := function( x )
-> return 3*x+1;
-> end;
-function( x ) ... end
-gap> f1( 5 );
-16
-```
-```matlab
-gap> f2 := x -> 3*x + 1;
-function( x ) ... end
-gap> f2( -2 );
--5
-gap> f1 = f2;
-false
-# As funções f1 e f2 fazem a mesma coisa, mas são objetos distintos
-```
-
-Nos exemplos anteriores, a função não precisa de variáveis adicionais para executar sua tarefa. Isso pode acontecer com funções simples, mas uma função mais complicada pode precisar introduzir as suas próprias variáveis, chamadas de *variáveis locais*. Considere a seguinte implementação do exemplo em cima.
-```matlab
-gap> f3 := function( x )
-> local y;
-> y := 3*x;
-> return y+1;
-> end;
-function( x ) ... end
-gap> f3(4);
-13
-gap> y;
-Error, Variable: 'y' must have a value
-not in any function at *stdin*:44
-```
-As últimas linhas do exemplo anterior mostram que o variável ```y``` não está visível fora da função. Isso permite que variáveis com o mesmo nome sejam usadas em várias funções sem que sejam confundidas. O mesmo também impede que a varíavel local ```y``` definida dentro da função ```f3``` seja confundida com uma possível variável global também chamada de ```y```. O seguinte código mostra que o nome `y` tem significado diferente dentro e fora da função. 
-```matlab
-gap> f3 := function( x )
-> local y;
-> y := 3*x;
-> Print( "O valor de y é ", y, "\n" );
-> return y+1;
-> end;
-function( x ) ... end
-gap> y := -5;
--5
-gap> f3(10);
-O valor de y é 30
-31
-gap> y;
--5
-```
 
 
 

@@ -1,10 +1,8 @@
 ---
-title: "Projeto: A sequência alíquota"
+title: "A sequência alíquota"
 number-sections: true
 lang: pt-BR
 ---
-
-
 
 Seja $n\in\mathbb N_0$. Denote por $\sigma(n)$ a soma dos divisores de $n$ entre $1$ e $n-1$ (ou seja, $n$ está desconsiderado). Em outras palavras, 
 $$
@@ -20,11 +18,17 @@ $$
 $$
 Nós definimos também 
 $$
-\sigma(1)=0\quad\mbox{e}\quad \sigma(0)=0.
+\sigma(1)=\sigma(0)=0.
 $$
 
 ## Tarefa 1
-Escreva uma função `sum_divisors( n )` em `GAP` que dado um numero `n` devolve $\sigma(n)$. Pode usar a função `DivisorsInt`. A sua função deve se comportar como no seguinte exemplo.
+
+<div class="subproblem">
+Escreva uma função `sum_divisors( n )` em `GAP` que dado um numero `n` devolve $\sigma(n)$.  A sua função deve se comportar como no seguinte exemplo.
+</div>
+
+<div class="hint">
+Pode usar as funções `DivisorsInt` ([manual](https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695)) e `Sum` ([manual](https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695)). Também precisa de `if` para decidir se `n=0`, pois `DivisorsInt( 0 )` não funciona. 
 
 ```matlab
 gap> sum_divisors( 8 );
@@ -34,6 +38,7 @@ gap> sum_divisors( 9 );
 gap> sum_divisors( 11 );
 1
 ```
+</div> 
 
 ## Tarefa 2 
 
