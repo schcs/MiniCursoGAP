@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.557">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Álgebra Computacional com GAP - 6&nbsp; A conjetura de Collatz</title>
+<title>6&nbsp; A conjetura de Collatz – Álgebra Computacional com GAP</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,13 +142,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./collatz.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">A conjetura de Collatz</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -209,7 +209,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./aliquot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A sequência alíquota</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -276,13 +276,11 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#projeto-1-a-conjetura-de-collatz" id="toc-projeto-1-a-conjetura-de-collatz" class="nav-link active" data-scroll-target="#projeto-1-a-conjetura-de-collatz"><span class="header-section-number">6.1</span> Projeto 1: A Conjetura de Collatz</a>
-  <ul class="collapse">
-  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">6.1.1</span> Tarefa 1</a></li>
-  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">6.1.2</span> Tarefa 2</a></li>
-  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">6.1.3</span> Tarefa 3</a></li>
-  <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">6.1.4</span> Tarefa 4</a></li>
-  </ul></li>
+  <li><a href="#a-conjetura-de-collatz" id="toc-a-conjetura-de-collatz" class="nav-link active" data-scroll-target="#a-conjetura-de-collatz"><span class="header-section-number">6.1</span> A Conjetura de Collatz</a></li>
+  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">6.2</span> Tarefa 1</a></li>
+  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">6.3</span> Tarefa 2</a></li>
+  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">6.4</span> Tarefa 3</a></li>
+  <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">6.5</span> Tarefa 4</a></li>
   </ul>
 </nav>
     </div>
@@ -308,91 +306,174 @@ window.Quarto = {
 </header>
 
 
-<section id="projeto-1-a-conjetura-de-collatz" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="projeto-1-a-conjetura-de-collatz"><span class="header-section-number">6.1</span> Projeto 1: A Conjetura de Collatz</h2>
+<section id="a-conjetura-de-collatz" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="a-conjetura-de-collatz"><span class="header-section-number">6.1</span> A Conjetura de Collatz</h2>
 <span class="math inline">\(\newcommand{\N}{\mathbb N}\)</span>
 <div class="problem">
 <p>Considere a seguinte função <span class="math inline">\(f:\N\to \N\)</span>: <span class="math display">\[
     f(n)=\left\{\begin{array}{cc} n/2 &amp; \mbox{se $n$ for par;}\\
     3n+1 &amp; \mbox{se $n$ for ímpar.}\end{array}\right.
-\]</span> A <a href="https://en.wikipedia.org/wiki/Collatz_conjecture">Conjetura de Collatz</a> afirma que para todo <span class="math inline">\(n\in\N\)</span>, existe um número <span class="math inline">\(k\)</span> tal que aplicando a função <span class="math inline">\(f\)</span> <span class="math inline">\(k\)</span> vezes em <span class="math inline">\(n\)</span>, o resultado vai ser igual a <span class="math inline">\(1\)</span>. Em outras, palavras, <span class="math inline">\(f^k(n)=1\)</span>.</p>
+\]</span> A <a href="https://en.wikipedia.org/wiki/Collatz_conjecture">Conjetura de Collatz</a> afirma que para todo <span class="math inline">\(n\in\N\)</span>, existe um número <span class="math inline">\(k\)</span> tal que aplicando a função <span class="math inline">\(f\)</span> consecutivamente <span class="math inline">\(k\)</span> vezes em <span class="math inline">\(n\)</span>, o resultado vai ser igual a <span class="math inline">\(1\)</span>. Em outras, palavras, <span class="math inline">\(f^k(n)=1\)</span>.</p>
 </div>
-<section id="tarefa-1" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">6.1.1</span> Tarefa 1</h3>
+</section>
+<section id="tarefa-1" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">6.2</span> Tarefa 1</h2>
 <div class="subproblem">
 <p>Escreva uma função <code>collatz( n )</code> que toma <span class="math inline">\(n\)</span> como input e devolve <span class="math inline">\(f(n)\)</span>. Faça testes da sua função com vários números.</p>
 </div>
 <div class="hint">
-<p>Precisa testar se o input é par ou ímpar e para isso pode usar a operação <code>mod</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X7B66C8707B5DE10A">(manual)</a>.</p>
+<p>Precisa testar, usando <code>if</code>, (<a href="ling.html#sec-if" class="quarto-xref"><span>Seção 3.1</span></a>) se o input é par ou ímpar e para isso pode usar a operação <code>mod</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X7B66C8707B5DE10A">(manual)</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="fl">3</span> <span class="va">mod</span> <span class="fl">2</span><span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="fl">6</span> <span class="va">mod</span> <span class="fl">2</span><span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fl">0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Além disso, a sua função precisará usar a expressão <code>if</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X875000188622700D">(manual)</a>.</p>
+<p>Se precisar de ajuda com funções, consulte a <a href="ling.html#sec-functions" class="quarto-xref"><span>Seção 3.5</span></a>.</p>
 </div>
 <div class="example_run">
 <p>A sua função deve comportar-se de acordo com os seguintes exemplos:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> collatz( <span class="dv">15</span> )<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">46</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> collatz( <span class="dv">14</span> )<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> collatz( <span class="dv">5</span> )<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">collatz</span>( <span class="fl">15</span> )<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fl">46</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">collatz</span>( <span class="fl">14</span> )<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fl">7</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">collatz</span>( <span class="fl">5</span> )<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fl">16</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<!--
+collatz := function( n )
+
+    if n mod 2 = 0 then 
+        return n/2;
+    else 
+        return 3*n+1;
+    fi;
+end;
+-->
 </section>
-<section id="tarefa-2" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">6.1.2</span> Tarefa 2</h3>
+<section id="tarefa-2" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">6.3</span> Tarefa 2</h2>
 <div class="subproblem">
-<p>Escreva uma função <code>nr_steps( n )</code> que vai calcular o número de vezes a função <span class="math inline">\(f\)</span> precisa ser aplicado em <span class="math inline">\(n\)</span> para obter o número <span class="math inline">\(1\)</span>. Em outras palavras, <code>nr_steps( n )</code> deve devolver o menor número <span class="math inline">\(k\)</span> tal que <span class="math inline">\(f^k(n)=1\)</span>.</p>
+<p>Escreva uma função <code>nr_steps( n )</code> que vai calcular o número de vezes a função <span class="math inline">\(f\)</span> precisa ser aplicada em <span class="math inline">\(n\)</span> para obter o número <span class="math inline">\(1\)</span>. Em outras palavras, <code>nr_steps( n )</code> deve devolver o menor número <span class="math inline">\(k\)</span> tal que <span class="math inline">\(f^k(n)=1\)</span>. Para <span class="math inline">\(n=1\)</span>, nós vamos assumir que <span class="math inline">\(f^0(1)=1\)</span>.</p>
 </div>
+<!--
+nr_steps := function( n )
+    local st;
+
+    st := 0;
+    while n > 1 do 
+        n := collatz( n );
+        st := st+1;
+    od;
+
+    return st;
+end;
+-->
 <div class="hint">
-<p>Você usará a função <code>collatz( n )</code> na tarefa anterior em um laço <code>while</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X87AA46408783383F">(manual)</a> ou <code>repeat</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X87AA46408783383F">(manual)</a>.</p>
+<p>Você usará a função <code>collatz( n )</code> na tarefa anterior em um laço <code>while</code> (<a href="ling.html#sec-while" class="quarto-xref"><span>Seção 3.3</span></a>) ou <code>repeat</code> (<a href="ling.html#sec-repeat" class="quarto-xref"><span>Seção 3.4</span></a>). Vai precisar também de variável local (explicado na <a href="ling.html#sec-functions" class="quarto-xref"><span>Seção 3.5</span></a>).</p>
 </div>
 <div class="example_run">
-<p>A sua função precisa devolver input de acordo com os seguintes exemplos.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> nr_steps( <span class="dv">1</span> )<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> nr_steps( <span class="dv">3</span> )<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> nr_steps( <span class="dv">14</span> )<span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> nr_steps( <span class="dv">32</span> )<span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A sua função precisa devolver o resultado de acordo com os seguintes exemplos.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">nr_steps</span>( <span class="fl">1</span> )<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">0</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">nr_steps</span>( <span class="fl">3</span> )<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">7</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">nr_steps</span>( <span class="fl">14</span> )<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fl">17</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">nr_steps</span>( <span class="fl">32</span> )<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="tarefa-3" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">6.1.3</span> Tarefa 3</h3>
+<section id="tarefa-3" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">6.4</span> Tarefa 3</h2>
 <div class="subproblem">
-<p>Escreva uma função <code>max_nr_steps( n )</code> para determinar o número <span class="math inline">\(k\in\{1,\ldots,n\}\)</span> tal que <code>nr_steps( k )</code> é maior possível.</p>
+<p>Escreva uma função <code>max_nr_steps( n )</code> para determinar o número <span class="math inline">\(k\)</span> tal que <code>nr_steps( k )</code> é maior possível para os números <span class="math inline">\(k\in\{1,\ldots,n\}\)</span>. A função deve devolver uma lista (<a href="list_mat_perm.html#sec-list" class="quarto-xref"><span>Seção 4.1</span></a>) de comprimento <span class="math inline">\(2\)</span> tal que a primeira entrada da lista é o número <span class="math inline">\(k\)</span> e a segunda é o número <code>nr_steps( k )</code>.</p>
 </div>
+<!--
+max_nr_steps := function( n )
+    local max, max_i, i, max_nr_i;
+
+    max := 0; max_i := 1;
+    for i in [1..n] do
+        max_nr_i := nr_steps( i );  
+        if max_nr_i > max then 
+            max := max_nr_i;
+            max_i := i; 
+        fi;
+    od; 
+
+    return [max_i, max];
+end;
+-->
 <div class="hint">
-<p>Pode usar a função <code>nr_steps( k )</code> escrita na tarefa anterior em um laço <code>for</code> <a href="https://docs.gap-system.org/doc/ref/chap4_mj.html#X78783E777867638A">(manual)</a> que roda na lista <code>[1..n]</code>.</p>
+<p>Pode usar a função <code>nr_steps( k )</code> escrita na tarefa anterior em um laço <code>for</code> (<a href="ling.html#sec-for" class="quarto-xref"><span>Seção 3.2</span></a>) que roda na lista <code>[1..n]</code>.</p>
 </div>
 <div class="example_run">
 <p>O comportamento da sua função seguirá os seguintes exemplos:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> max_nr_steps( <span class="dv">1000</span> )<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[ <span class="dv">871</span>, <span class="dv">178</span> ]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> max_nr_steps( <span class="dv">10000</span> )<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[ <span class="dv">6171</span>, <span class="dv">261</span> ]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> max_nr_steps( <span class="dv">100000</span> )<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[ <span class="dv">77031</span>, <span class="dv">350</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">max_nr_steps</span>( <span class="fl">1000</span> )<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">871</span><span class="op">,</span> <span class="fl">178</span> ]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">max_nr_steps</span>( <span class="fl">10000</span> )<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">6171</span><span class="op">,</span> <span class="fl">261</span> ]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">max_nr_steps</span>( <span class="fl">100000</span> )<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">77031</span><span class="op">,</span> <span class="fl">350</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="tarefa-4" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">6.1.4</span> Tarefa 4</h3>
+<section id="tarefa-4" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">6.5</span> Tarefa 4</h2>
 <div class="subproblem">
-<p>Calcular <code>nr_steps( k )</code> separadamente para todo <span class="math inline">\(k\in \{1,\ldots,n\}\)</span> faz muita computação redundante. Por exemplo, calculando <code>max_nr_steps( 6 )</code> deste jeito, fazemos as seguintes contas</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> → <span class="dv">1</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> → <span class="dv">1</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> → <span class="dv">10</span> → <span class="dv">5</span> → <span class="dv">16</span> → <span class="dv">8</span> → <span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> → <span class="dv">16</span> → <span class="dv">8</span> → <span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> → <span class="dv">3</span> → <span class="dv">10</span> → <span class="dv">5</span> → <span class="dv">16</span> → <span class="dv">8</span> → <span class="dv">4</span> → <span class="dv">2</span> → <span class="dv">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ou seja, a computação <code>nr_steps( 6 )</code> deve realizar que <code>nr_steps( 3 )</code> já foi calculado e simplificar a conta por computar que <code>nr_steps( 6 ) = nr_steps( 3 ) + 1</code>. Escreva uma versão da função <code>max_nr_steps( n )</code> utilizando as computações anteriores e compare o tempo de execução das duas versões.</p>
+<p>Vamos otimizar o código que foi escrito para a Tarefa 3. Calcular <code>nr_steps( k )</code> separadamente para todo <span class="math inline">\(k\in \{1,\ldots,n\}\)</span> faz muita computação redundante. Por exemplo, calculando <code>max_nr_steps( 6 )</code> deste jeito, fazemos as seguintes contas</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span> → <span class="fl">1</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span> → <span class="fl">1</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fl">3</span> → <span class="fl">10</span> → <span class="fl">5</span> → <span class="fl">16</span> → <span class="fl">8</span> → <span class="fl">4</span> → <span class="fl">2</span> → <span class="fl">1</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span> → <span class="fl">2</span> → <span class="fl">1</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span> → <span class="fl">16</span> → <span class="fl">8</span> → <span class="fl">4</span> → <span class="fl">2</span> → <span class="fl">1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fl">6</span> → <span class="fl">3</span> → <span class="fl">10</span> → <span class="fl">5</span> → <span class="fl">16</span> → <span class="fl">8</span> → <span class="fl">4</span> → <span class="fl">2</span> → <span class="fl">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A computação <code>nr_steps( 6 )</code> deve realizar que <code>nr_steps( 3 )</code> já foi calculado e simplificar a conta por computar que <code>nr_steps( 6 ) = nr_steps( 3 ) + 1</code>. Escreva uma versão da função <code>max_nr_steps_fast( n )</code> utilizando as computações anteriores e compare o tempo de execução das duas versões.</p>
 </div>
+<div class="hint">
+<p>Denotando por <span class="math inline">\(k_n\)</span> o valor da função <code>nr_steps( n )</code>, guarde o valor de <span class="math inline">\(k_n\)</span> como o <span class="math inline">\(k\)</span>-ésima entrada em uma lista. A lista pode ser uma lista esparsa (<a href="list_mat_perm.html#sec-list" class="quarto-xref"><span>Seção 4.1</span></a>). Provavelmente precisará das expressões <code>break</code> e <code>continue</code> (<a href="ling.html#sec-break-continue" class="quarto-xref"><span>Seção 3.6</span></a>). Pode usar também a variável interna <code>time</code> que devolve o tempo (em milisegundos) que a última instrução tomou (<a href="https://docs.gap-system.org/doc/ref/chap7.html#X7C0F91F982189624">manual</a>).</p>
+</div>
+<div class="example_run">
+<p>De acordo com o seguinte exemplo, calcular o valor maximal de <code>nr_steps( k )</code> para <code>k in [1..1000000]</code> demora mais que 25 segundos usando a função escrita para a Tarefa 3. A nova função faz esta computação em apenas 1,3 segundos.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">max_nr_steps</span>( <span class="fl">1000000</span> )<span class="op">;</span> <span class="va">time</span><span class="op">;</span>   </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">837799</span><span class="op">,</span> <span class="fl">524</span> ]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fl">25391</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">max_nr_steps_fast</span>( <span class="fl">1000000</span> )<span class="op">;</span> <span class="va">time</span><span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">837799</span><span class="op">,</span> <span class="fl">524</span> ]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fl">1335</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+max_nr_steps_fast := function( n )
+    local nr_steps, max_i, max_nr, i, k, i0, nr_steps_local;
+
+    nr_steps := [0];
+
+    max_i := 0; max_nr := 0;
+    for i in [2..n] do
+
+        if IsBound( nr_steps[i]) then 
+            continue;
+        fi;
+
+        k := 0; i0 := i;
+        repeat 
+            i0 := collatz( i0 );
+            k := k+1;
+            if IsBound( nr_steps[i0] ) then
+                nr_steps_local := nr_steps[i0] + k; 
+                nr_steps[i] := nr_steps_local;
+                if nr_steps_local > max_nr then 
+                    max_i := i;
+                    max_nr := nr_steps_local;
+                fi;
+                break;
+            fi;
+        until false; 
+    od; 
+
+    return [max_i,max_nr];    
+end;
+-->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -431,18 +512,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -474,7 +544,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -482,7 +574,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -812,8 +904,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./aliquot.html" class="pagination-link" aria-label="Projeto: A sequência alíquota">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./aliquot.html" class="pagination-link" aria-label="A sequência alíquota">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A sequência alíquota</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

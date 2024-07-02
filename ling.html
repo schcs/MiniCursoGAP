@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.557">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Álgebra Computacional com GAP - 3&nbsp; A linguagem de programação</title>
+<title>3&nbsp; A linguagem de programação – Álgebra Computacional com GAP</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,13 +113,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ling.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A linguagem de programação</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -180,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./aliquot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Projeto: A sequência alíquota</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A sequência alíquota</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -247,10 +247,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#expressões-if-then-else" id="toc-expressões-if-then-else" class="nav-link active" data-scroll-target="#expressões-if-then-else"><span class="header-section-number">3.1</span> Expressões <code>if-then-else</code></a></li>
-  <li><a href="#laço-for" id="toc-laço-for" class="nav-link" data-scroll-target="#laço-for"><span class="header-section-number">3.2</span> Laço <code>for</code></a></li>
-  <li><a href="#laço-while" id="toc-laço-while" class="nav-link" data-scroll-target="#laço-while"><span class="header-section-number">3.3</span> Laço <code>while</code></a></li>
-  <li><a href="#laço-repeat" id="toc-laço-repeat" class="nav-link" data-scroll-target="#laço-repeat"><span class="header-section-number">3.4</span> Laço <code>repeat</code></a></li>
+  <li><a href="#sec-if" id="toc-sec-if" class="nav-link active" data-scroll-target="#sec-if"><span class="header-section-number">3.1</span> Expressões <code>if-then-else</code></a></li>
+  <li><a href="#sec-for" id="toc-sec-for" class="nav-link" data-scroll-target="#sec-for"><span class="header-section-number">3.2</span> Laço <code>for</code></a></li>
+  <li><a href="#sec-while" id="toc-sec-while" class="nav-link" data-scroll-target="#sec-while"><span class="header-section-number">3.3</span> Laço <code>while</code></a></li>
+  <li><a href="#sec-repeat" id="toc-sec-repeat" class="nav-link" data-scroll-target="#sec-repeat"><span class="header-section-number">3.4</span> Laço <code>repeat</code></a></li>
+  <li><a href="#sec-functions" id="toc-sec-functions" class="nav-link" data-scroll-target="#sec-functions"><span class="header-section-number">3.5</span> Funções</a></li>
+  <li><a href="#sec-break-continue" id="toc-sec-break-continue" class="nav-link" data-scroll-target="#sec-break-continue"><span class="header-section-number">3.6</span> Break e continue</a></li>
   </ul>
 </nav>
     </div>
@@ -276,8 +278,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="expressões-if-then-else" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="expressões-if-then-else"><span class="header-section-number">3.1</span> Expressões <code>if-then-else</code></h2>
+<section id="sec-if" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-if"><span class="header-section-number">3.1</span> Expressões <code>if-then-else</code></h2>
 <p>A expressão <code>if-then</code> está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa. Considere o seguinte exemplo:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> a <span class="op">:=</span> <span class="dv">3</span><span class="op">;</span>                <span class="co"># seja a inicialmente 3</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
@@ -311,8 +313,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>gap<span class="op">&gt;</span> a<span class="op">;</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="laço-for" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="laço-for"><span class="header-section-number">3.2</span> Laço <code>for</code></h2>
+<section id="sec-for" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-for"><span class="header-section-number">3.2</span> Laço <code>for</code></h2>
 <p>Usamos <code>for</code> quando queremos executar a mesma peça de código várias vezes. Por exemplo, queremos calcular o quadrado dos números entre <code>1</code> e <code>10</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="va">i</span> <span class="va">in</span> [<span class="fl">1</span>.<span class="fl">.10</span>] <span class="va">do</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">Print</span>( <span class="st">"O quadrado de "</span><span class="op">,</span> <span class="va">i</span><span class="op">,</span> <span class="st">" é "</span><span class="op">,</span> <span class="va">i</span><span class="op">^</span><span class="fl">2</span><span class="op">,</span> <span class="st">"\n"</span> )<span class="op">;</span></span>
@@ -337,8 +339,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>O ciclo executa o código entre as palavras <code>do</code> e <code>od</code> para todo valor <code>i</code> na lista que aparece depois da palavra <code>in</code>.</p>
 </section>
-<section id="laço-while" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="laço-while"><span class="header-section-number">3.3</span> Laço <code>while</code></h2>
+<section id="sec-while" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-while"><span class="header-section-number">3.3</span> Laço <code>while</code></h2>
 <p>Uma outra maneira de criar um laço é usar a construção com <code>while</code>. Considere o seguinte exemplo.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="kw">while</span> <span class="va">i</span> <span class="op">&lt;=</span> <span class="fl">10</span> <span class="va">do</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">Print</span>( <span class="st">"O quadrado de "</span><span class="op">,</span> <span class="va">i</span><span class="op">,</span> <span class="st">" é "</span><span class="op">,</span> <span class="va">i</span><span class="op">^</span><span class="fl">2</span><span class="op">,</span> <span class="st">"\n"</span> )<span class="op">;</span></span>
@@ -363,8 +365,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Note que no laço <code>while</code> o valor da variável <code>i</code> precisa ser incrementado manualmente.</p>
 </section>
-<section id="laço-repeat" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="laço-repeat"><span class="header-section-number">3.4</span> Laço <code>repeat</code></h2>
+<section id="sec-repeat" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-repeat"><span class="header-section-number">3.4</span> Laço <code>repeat</code></h2>
 <p>O terceiro tipo de laço pode ser construída com a palavra <code>repeat</code>. Considere o seguinte exemplo:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">i</span> <span class="op">:=</span> <span class="fl">0</span><span class="op">;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fl">0</span></span>
@@ -403,6 +405,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">i</span> <span class="op">:=</span> <span class="fl">11</span><span class="op">;</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">until</span> <span class="va">i</span> <span class="op">&gt;=</span> <span class="fl">10</span><span class="op">;</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="va">O</span> <span class="va">quadrado</span> <span class="va">de</span> <span class="fl">11</span> é <span class="fl">121</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sec-functions" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="sec-functions"><span class="header-section-number">3.5</span> Funções</h2>
+<p>Funções em <code>GAP</code> podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado <code>x</code> computa <code>3*x+1</code> pode ser definida de duas maneiras diferentes.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f1</span> <span class="op">:=</span> <span class="kw">function</span>( <span class="va">x</span> )</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">return</span> <span class="fl">3</span><span class="op">*</span><span class="va">x</span><span class="op">+</span><span class="fl">1</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">end</span><span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span>( <span class="va">x</span> ) <span class="op">...</span> <span class="kw">end</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f1</span>( <span class="fl">5</span> )<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fl">16</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f2</span> <span class="op">:=</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="fl">3</span><span class="op">*</span><span class="va">x</span> <span class="op">+</span> <span class="fl">1</span><span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span>( <span class="va">x</span> ) <span class="op">...</span> <span class="kw">end</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f2</span>( <span class="op">-</span><span class="fl">2</span> )<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">5</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f1</span> <span class="op">=</span> <span class="va">f2</span><span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a># <span class="va">As</span> <span class="va">funções</span> <span class="va">f1</span> <span class="va">e</span> <span class="va">f2</span> <span class="va">fazem</span> <span class="va">a</span> <span class="va">mesma</span> <span class="va">coisa</span><span class="op">,</span> <span class="va">mas</span> <span class="va">são</span> <span class="va">objetos</span> <span class="va">distintos</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nos exemplos anteriores, a função não precisa de variáveis adicionais para executar sua tarefa. Isso pode acontecer com funções simples, mas uma função mais complicada pode precisar introduzir as suas próprias variáveis, chamadas de <em>variáveis locais</em>. Considere a seguinte implementação do exemplo em cima.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f3</span> <span class="op">:=</span> <span class="kw">function</span>( <span class="va">x</span> )</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">local</span> <span class="va">y</span><span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">y</span> <span class="op">:=</span> <span class="fl">3</span><span class="op">*</span><span class="va">x</span><span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">return</span> <span class="va">y</span><span class="op">+</span><span class="fl">1</span><span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">end</span><span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span>( <span class="va">x</span> ) <span class="op">...</span> <span class="kw">end</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f3</span>(<span class="fl">4</span>)<span class="op">;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fl">13</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">y</span><span class="op">;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="va">Error</span><span class="op">,</span> <span class="va">Variable</span><span class="op">:</span> <span class="ss">'y'</span> <span class="va">must</span> <span class="va">have</span> <span class="va">a</span> <span class="va">value</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="va">not</span> <span class="va">in</span> <span class="va">any</span> <span class="kw">function</span> <span class="va">at</span> <span class="op">*</span><span class="va">stdin</span><span class="op">*:</span><span class="fl">44</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As últimas linhas do exemplo anterior mostram que o variável <code>y</code> não está visível fora da função. Isso permite que variáveis com o mesmo nome sejam usadas em várias funções sem que sejam confundidas. O mesmo também impede que a varíavel local <code>y</code> definida dentro da função <code>f3</code> seja confundida com uma possível variável global também chamada de <code>y</code>. O seguinte código mostra que o nome <code>y</code> tem significado diferente dentro e fora da função.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f3</span> <span class="op">:=</span> <span class="kw">function</span>( <span class="va">x</span> )</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">local</span> <span class="va">y</span><span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">y</span> <span class="op">:=</span> <span class="fl">3</span><span class="op">*</span><span class="va">x</span><span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="va">Print</span>( <span class="st">"O valor de y é "</span><span class="op">,</span> <span class="va">y</span><span class="op">,</span> <span class="st">"\n"</span> )<span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">return</span> <span class="va">y</span><span class="op">+</span><span class="fl">1</span><span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">end</span><span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span>( <span class="va">x</span> ) <span class="op">...</span> <span class="kw">end</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">y</span> <span class="op">:=</span> <span class="op">-</span><span class="fl">5</span><span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">5</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f3</span>(<span class="fl">10</span>)<span class="op">;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="va">O</span> <span class="va">valor</span> <span class="va">de</span> <span class="va">y</span> é <span class="fl">30</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fl">31</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">y</span><span class="op">;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sec-break-continue" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="sec-break-continue"><span class="header-section-number">3.6</span> Break e continue</h2>
+<p>A ser escrito</p>
 
 
 </section>
@@ -443,18 +493,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -486,7 +525,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -494,7 +555,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
