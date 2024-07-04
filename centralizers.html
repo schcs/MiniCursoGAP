@@ -278,7 +278,7 @@ window.Quarto = {
   <ul>
   <li><a href="#os-fundamentos-teóricos" id="toc-os-fundamentos-teóricos" class="nav-link active" data-scroll-target="#os-fundamentos-teóricos"><span class="header-section-number">9.1</span> Os fundamentos teóricos</a></li>
   <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">9.2</span> Tarefa 1</a></li>
-  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">9.3</span> Tarefa 2</a></li>
+  <li><a href="#exploração-interatica" id="toc-exploração-interatica" class="nav-link" data-scroll-target="#exploração-interatica"><span class="header-section-number">9.3</span> Exploração interatica</a></li>
   <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">9.4</span> Tarefa 3</a></li>
   <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">9.5</span> Tarefa 4</a></li>
   <li><a href="#tarefa-5" id="toc-tarefa-5" class="nav-link" data-scroll-target="#tarefa-5"><span class="header-section-number">9.6</span> Tarefa 5</a></li>
@@ -311,19 +311,62 @@ window.Quarto = {
 
 <section id="os-fundamentos-teóricos" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="os-fundamentos-teóricos"><span class="header-section-number">9.1</span> Os fundamentos teóricos</h2>
+<div class="problem">
 <p>Recordamos que o centralizador de um elemento <span class="math inline">\(x\)</span> em um grupo <span class="math inline">\(G\)</span> é definido por <span class="math display">\[
 C_{G}(x) = \{g \in G | \ gx=xg \}.
 \]</span></p>
-<p>Denote por <span class="math inline">\(\mbox{Cent}(G)\)</span> o conjunto de todos os centralizadores de elementos de <span class="math inline">\(G\)</span>. O estudo de <span class="math inline">\(\mbox{Cent}(G)\)</span> tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar <span class="math inline">\(\mbox{Cent}(G)|\)</span> é responder essencialmente duas questões:</p>
+<p>Denote por <span class="math inline">\(\mbox{Cent}(G)\)</span> o conjunto de todos os centralizadores de elementos de <span class="math inline">\(G\)</span>.</p>
+<p>Por exemplo, se <span class="math inline">\(G=S_3\)</span>, então os centralizadores dos elementos <span class="math inline">\(1\)</span>, <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((1,3)\)</span>, <span class="math inline">\((2,3)\)</span>, <span class="math inline">\((1,2,3)\)</span>, e <span class="math inline">\((1,3,2)\)</span>, são <span class="math inline">\(S_3\)</span>, <span class="math inline">\(\left&lt;(1,2)\right&gt;\)</span>, <span class="math inline">\(\left&lt;(1,3)\right&gt;\)</span>, <span class="math inline">\(\left&lt;(2,3)\right&gt;\)</span>, <span class="math inline">\(\left&lt;(1,2,3)\right&gt;\)</span>, e <span class="math inline">\(\left&lt;(1,2,3)\right&gt;\)</span>. Note que o subgrupo <span class="math inline">\(\left&lt;(1,2,3)\right&gt;\)</span> aparece duas vezes, então <span class="math display">\[
+\mbox{cent}(S_3)=\{\left&lt;(1,2)\right&gt;, \left&lt;(1,3)\right&gt;, \left&lt;(2,3)\right&gt;, \left&lt;(1,2,3)\right&gt;\}
+\]</span> e <span class="math display">\[
+|\mbox{cent}(S_3)|=5.
+\]</span></p>
+<p>O estudo de <span class="math inline">\(\mbox{Cent}(G)\)</span> tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar <span class="math inline">\(\mbox{Cent}(G)|\)</span> é responder essencialmente duas questões:</p>
 <ol type="1">
 <li>Dado um grupo <span class="math inline">\(G\)</span>, o que se pode dizer sobre <span class="math inline">\(|\mbox{Cent}(G)|\)</span>?</li>
 <li>Se é conhecido o valor de <span class="math inline">\(|\mbox{Cent}(G)|\)</span>, o que se pode dizer a respeito do grupo <span class="math inline">\(G\)</span>?</li>
 </ol>
 <p>Neste projeto, queremos usar o <code>GAP</code> para resolver algumas questões para grupos simples finitos.</p>
-<p>FAZER UM EXEMPLO PEQUENO S3</p>
+</div>
+<!--:::{.subexample}
+Vamos calcular o conjunto de centralizadores do grupo simétrico $S_3$ e alternado $A_4$. 
+
+```matlab
+ap> s3 := SymmetricGroup( 3 );
+Sym( [ 1 .. 3 ] )
+gap> List( s3, x->Centralizer( s3, x ));         
+[ Group([ (1,3), (2,3) ]), Group([ (2,3) ]), Group([ (1,3) ]), 
+  Group([ (1,3,2) ]), Group([ (1,2,3) ]), Group([ (1,2) ]) ]
+gap> Length( last );                              
+6
+gap> Set( s3, x->Centralizer( s3, x )); 
+[ Group([ (2,3) ]), Group([ (1,3), (2,3) ]), Group([ (1,2) ]), 
+  Group([ (1,3,2) ]), Group([ (1,3) ]) ]
+gap> Length( last );
+5
+gap> a4 := AlternatingGroup( 4 );
+Alt( [ 1 .. 4 ] )
+gap> List( a4, x->Centralizer( a4, x ));
+[ Group([ (1,2,4), (1,3,4) ]), Group([ (2,4,3) ]), Group([ (2,3,4) ]), 
+  Group([ (1,4,3) ]), Group([ (1,2)(3,4), (1,4)(2,3) ]), Group([ (1,4,2) ]), 
+  Group([ (1,3,4) ]), Group([ (1,3,2) ]), Group([ (1,2)(3,4), (1,3)(2,4) ]), 
+  Group([ (1,2,4) ]), Group([ (1,3)(2,4), (1,2)(3,4) ]), Group([ (1,2,3) ]) ]
+gap> Length( last );
+12
+gap> Set( a4, x->Centralizer( a4, x )); 
+[ Group([ (2,4,3) ]), Group([ (1,2,4), (1,3,4) ]), 
+  Group([ (1,2)(3,4), (1,4)(2,3) ]), Group([ (1,3,2) ]), Group([ (1,4,2) ]), 
+  Group([ (1,4,3) ]) ]
+gap> Length( last );
+6
+```
+Obtivemos que $|\mbox{Cent}(S_3)=5|$ e $|\mbox{Cent}(A_4)|=6$. Note como usamos a função `Set` em vez da função `List` para obter cada centralizador apenas uma vez.
+:::
+-->
 </section>
 <section id="tarefa-1" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">9.2</span> Tarefa 1</h2>
+<div class="subproblem">
 <p>Vamos determinar o centralizador de um elemento em um grupo. Considere o seguinte exemplo.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="va">AlternatingGroup</span>( <span class="fl">5</span> )<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">Alt</span>( [ <span class="fl">1</span> .. <span class="fl">5</span> ] )</span>
@@ -336,12 +379,17 @@ C_{G}(x) = \{g \in G | \ gx=xg \}.
 <p>Seguindo o exemplo em cima, determine os seguintes centralizadores <span class="math inline">\(C_G(x)\)</span>.</p>
 <ol type="1">
 <li><span class="math inline">\(G=S_6\)</span>, <span class="math inline">\(x=(1,2,3)(4,5,6)\)</span>.</li>
-<li>etc</li>
+<li><span class="math inline">\(G=D_8\)</span> (diedral de ordem 8) e <span class="math inline">\(x\)</span> é uma rotação por <span class="math inline">\(90\)</span> graus.</li>
+<li><span class="math inline">\(G=\mbox{GL}(2,5)\)</span> e <span class="math inline">\(x\)</span> é a matriz diagonal com <span class="math inline">\((2,3)\)</span> na diagonal principal.</li>
 </ol>
+</div>
+<div class="hint">
+<p>Consulte <a href="estrut.html#sec-grupos" class="quarto-xref"><span>Seção 5.1</span></a> para ver como definir o grupo <code>GL</code> e o grupo diedral.</p>
+</div>
 </section>
-<section id="tarefa-2" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">9.3</span> Tarefa 2</h2>
-<p>FAZER EXEMPLO MENOR PRIMEIRO COM LIST E DEPOIS COM SET</p>
+<section id="exploração-interatica" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="exploração-interatica"><span class="header-section-number">9.3</span> Exploração interatica</h2>
+<div class="subexample">
 <p>Para investigar o problema em cima, nós precisamos determinar o conjunto dos centralizadores em um grupo dado. Vamos fazer esta computação com o grupo <span class="math inline">\(S_5\)</span>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode gap code-with-copy"><code class="sourceCode gap"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="bu">SymmetricGroup</span>( <span class="fl">3</span> )<span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">Sym</span>( [ <span class="fl">1</span> <span class="op">..</span> <span class="fl">3</span> ] )</span>
@@ -360,33 +408,44 @@ C_{G}(x) = \{g \in G | \ gx=xg \}.
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="bu">Size</span>( <span class="va">cent_set</span> )<span class="op">;</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ou seja, <span class="math inline">\(S_3\)</span> possui 5 centralizadores. Note que usamos a função <code>Set</code> que vai devolver um conjunto; ou seja, todo elemento do output será aparece apenas uma vez.</p>
+</div>
 </section>
 <section id="tarefa-3" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">9.4</span> Tarefa 3</h2>
+<div class="subproblem">
 <p>Escreva uma função <code>Cent(G)</code> para computar o conjunto de todos os centralizadores de elementos de um grupo <span class="math inline">\(G\)</span> dado. Use a função <code>Centralizer(G,x)</code>.</p>
 <p>FAZER EXEMPLOS SEM SIZE</p>
 <p>Sua função deve verificar:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">SymmetricGroup</span>(<span class="fl">3</span>)))<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">AlternatingGroup</span>(<span class="fl">5</span>)))<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">22</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">AlternatingGroup</span>(<span class="fl">6</span>)))<span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fl">137</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">AlternatingGroup</span>(<span class="fl">5</span>)))<span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fl">807</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">7</span>))<span class="op">;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fl">79</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">PSL</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">3</span>))<span class="op">;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fl">1185</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">DihedralGroup</span>(<span class="fl">8</span>)))<span class="op">;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">SmallGroup</span>(<span class="fl">16</span><span class="op">,</span><span class="fl">7</span>))<span class="op">;</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fl">6</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">MathieuGroup</span>(<span class="fl">11</span>))<span class="op">;</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fl">2081</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Cent</span>( <span class="va">SymmetricGroup</span>( <span class="fl">3</span> ))<span class="op">;</span>                  </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[ <span class="va">Group</span>([ (<span class="fl">2</span><span class="op">,</span><span class="fl">3</span>) ])<span class="op">,</span> <span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">3</span>) ])<span class="op">,</span> <span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>) ])<span class="op">,</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>) ])<span class="op">,</span> <span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span>) ]) ]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Cent</span>( <span class="va">AlternatingGroup</span>( <span class="fl">4</span> ))<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>[ <span class="va">Group</span>([ (<span class="fl">2</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">3</span>) ])<span class="op">,</span> <span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">4</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span>) ])<span class="op">,</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)<span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">4</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span>) ])<span class="op">,</span> <span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>) ])<span class="op">,</span> <span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">2</span>) ])<span class="op">,</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">Group</span>([ (<span class="fl">1</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">3</span>) ]) ]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Cent</span>( <span class="va">SmallGroup</span>( <span class="fl">16</span><span class="op">,</span><span class="fl">7</span> ))<span class="op">;</span>   </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>[ <span class="va">Group</span>([ <span class="va">f1</span><span class="op">,</span> <span class="va">f4</span> ])<span class="op">,</span> <span class="va">Group</span>([ <span class="va">f2</span><span class="op">,</span> <span class="va">f4</span> ])<span class="op">,</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">16</span> <span class="va">with</span> <span class="fl">4</span> <span class="va">generators</span><span class="op">&gt;,</span> <span class="va">Group</span>([ <span class="va">f1</span><span class="op">*</span><span class="va">f2</span><span class="op">,</span> <span class="va">f3</span><span class="op">,</span> <span class="va">f4</span> ])<span class="op">,</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">Group</span>([ <span class="va">f1</span><span class="op">*</span><span class="va">f3</span><span class="op">,</span> <span class="va">f4</span> ])<span class="op">,</span> <span class="va">Group</span>([ <span class="va">f2</span><span class="op">*</span><span class="va">f3</span><span class="op">,</span> <span class="va">f4</span> ]) ]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">AlternatingGroup</span>(<span class="fl">6</span>)))<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fl">137</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">AlternatingGroup</span>(<span class="fl">5</span>)))<span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fl">807</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">7</span>)))<span class="op">;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fl">79</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">PSL</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)))<span class="op">;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fl">1185</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">DihedralGroup</span>(<span class="fl">8</span>)))<span class="op">;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">SmallGroup</span>(<span class="fl">16</span><span class="op">,</span><span class="fl">7</span>))<span class="op">;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fl">6</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>(<span class="va">Cent</span>(<span class="va">MathieuGroup</span>(<span class="fl">11</span>)))<span class="op">;</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fl">2081</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="tarefa-4" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">9.5</span> Tarefa 4</h2>
+<div class="subproblem">
 <p>A lista a seguir possui somente ordens de grupos simples não abelianos (com repetição):</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>[<span class="fl">60</span><span class="op">,</span> <span class="fl">168</span><span class="op">,</span> <span class="fl">360</span><span class="op">,</span> <span class="fl">504</span><span class="op">,</span> <span class="fl">660</span><span class="op">,</span> <span class="fl">1092</span><span class="op">,</span> <span class="fl">2448</span><span class="op">,</span> <span class="fl">2520</span><span class="op">,</span> <span class="fl">3420</span><span class="op">,</span> <span class="fl">4080</span><span class="op">,</span> <span class="fl">5616</span><span class="op">,</span> <span class="fl">6048</span><span class="op">,</span> <span class="fl">6072</span><span class="op">,</span> <span class="fl">7800</span><span class="op">,</span> <span class="fl">7920</span><span class="op">,</span> </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> <span class="fl">9828</span><span class="op">,</span> <span class="fl">12180</span><span class="op">,</span> <span class="fl">14880</span><span class="op">,</span> <span class="fl">20160</span><span class="op">,</span> <span class="fl">20160</span><span class="op">,</span> <span class="fl">25308</span><span class="op">,</span> <span class="fl">25920</span><span class="op">,</span> <span class="fl">29120</span><span class="op">,</span> <span class="fl">32736</span><span class="op">,</span> <span class="fl">34440</span><span class="op">,</span> <span class="fl">39732</span><span class="op">,</span> <span class="fl">51888</span><span class="op">,</span> </span>
@@ -394,6 +453,7 @@ C_{G}(x) = \{g \in G | \ gx=xg \}.
 <p>Explore a função <code>AllSmallNonabelianSimpleGroups([60..n])</code>, para <span class="math inline">\(n\)</span> no conjunto acima. Por exemplo:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">AllSmallNonabelianSimpleGroups</span>([<span class="fl">60</span>.<span class="fl">.20160</span>])<span class="op">;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[ <span class="va">A5</span><span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">7</span>)<span class="op">,</span> <span class="va">A6</span><span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">8</span>)<span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">11</span>)<span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">13</span>)<span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">17</span>)<span class="op">,</span> <span class="va">A7</span><span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">19</span>)<span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">16</span>)<span class="op">,</span> <span class="va">PSL</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">PSU</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">3</span>)<span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">23</span>)<span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">25</span>)<span class="op">,</span> <span class="va">M11</span><span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">27</span>)<span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">29</span>)<span class="op">,</span> <span class="va">PSL</span>(<span class="fl">2</span><span class="op">,</span><span class="fl">31</span>)<span class="op">,</span> <span class="va">A8</span><span class="op">,</span> <span class="va">PSL</span>(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="tarefa-5" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="tarefa-5"><span class="header-section-number">9.6</span> Tarefa 5</h2>

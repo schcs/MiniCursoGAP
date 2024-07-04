@@ -280,7 +280,6 @@ window.Quarto = {
   <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">7.2</span> Tarefa 2</a></li>
   <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">7.3</span> Tarefa 3</a></li>
   <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">7.4</span> Tarefa 4</a></li>
-  <li><a href="#tarefa-5" id="toc-tarefa-5" class="nav-link" data-scroll-target="#tarefa-5"><span class="header-section-number">7.5</span> Tarefa 5</a></li>
   </ul>
 </nav>
     </div>
@@ -306,6 +305,7 @@ window.Quarto = {
 </header>
 
 
+<div class="problem">
 <p>Seja <span class="math inline">\(n\in\mathbb N_0\)</span>. Denote por <span class="math inline">\(\sigma(n)\)</span> a soma dos divisores de <span class="math inline">\(n\)</span> entre <span class="math inline">\(1\)</span> e <span class="math inline">\(n-1\)</span> (ou seja, <span class="math inline">\(n\)</span> está desconsiderado). Em outras palavras, <span class="math display">\[
 \sigma(n)=\sum_{d\mid n,\ d&lt;n}d.
 \]</span> Por exemplo <span class="math display">\[
@@ -314,14 +314,12 @@ window.Quarto = {
 \sigma(24)=1+2+3+4+6+8+12=36.
 \]</span> Nós definimos também <span class="math display">\[
 \sigma(1)=\sigma(0)=0.
-\]</span></p>
+\]</span> Neste projeto vamos explorar quais tipos de sequências obtemos por sucessivamente aplicar a função <span class="math inline">\(\sigma\)</span> em um número natural.</p>
+</div>
 <section id="tarefa-1" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">7.1</span> Tarefa 1</h2>
 <div class="subproblem">
 <p>Escreva uma função <code>sum_divisors( n )</code> em <code>GAP</code> que dado um numero <code>n</code> devolve <span class="math inline">\(\sigma(n)\)</span>. A sua função deve se comportar como no seguinte exemplo.</p>
-</div>
-<div class="hint">
-<p>Pode usar as funções <code>DivisorsInt</code> (<a href="https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695">manual</a>) e <code>Sum</code> (<a href="https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695">manual</a>). Também precisa de <code>if</code> para decidir se <code>n=0</code>, pois <code>DivisorsInt( 0 )</code> não funciona.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">sum_divisors</span>( <span class="fl">8</span> )<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">7</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">sum_divisors</span>( <span class="fl">9</span> )<span class="op">;</span></span>
@@ -329,9 +327,13 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">sum_divisors</span>( <span class="fl">11</span> )<span class="op">;</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="hint">
+<p>Pode usar as funções <code>DivisorsInt</code> (<a href="https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695">manual</a>) e <code>Sum</code> (<a href="https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695">manual</a>). Também pode precisar de <code>if</code> para decidir se <code>n=0</code>, pois <code>DivisorsInt( 0 )</code> não funciona (<a href="ling.html#sec-if" class="quarto-xref"><span>Seção 3.1</span></a>).</p>
+</div>
 </section>
 <section id="tarefa-2" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">7.2</span> Tarefa 2</h2>
+<div class="subproblem">
 <p>Um número <span class="math inline">\(n\)</span> chama-se <em>perfeito</em> se <span class="math inline">\(\sigma(n)=n\)</span>.</p>
 <ol type="1">
 <li>Escreva uma função <code>is_perfect( n )</code> que devolva <code>true</code> se <code>n</code> é perfeito e <code>false</code> se <code>n</code> não é perfeito.</li>
@@ -344,14 +346,17 @@ window.Quarto = {
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>Ache todos os números perfeitos entre <code>1</code> e <code>1000000</code>.</li>
+<li>Um número <span class="math inline">\(n\)</span> chama-se <em>abundante</em>, se <span class="math inline">\(\sigma(n)&gt;n\)</span>. Escreva uma função <code>is_abundant( n )</code> que devolve <code>true</code> se o número <code>n</code> é abundante e <code>false</code> se não é abundante.</li>
+<li>Ache todos os números abundantes entre <code>1</code> e <code>1000</code>.</li>
 </ol>
+</div>
+<div class="hint">
+<p>Use a funução <code>sum_divisors</code> escrita para a tarefa anterior. Se precisar, revise como trabalhar com valores booleanas (<a href="arith.html#sec-bool" class="quarto-xref"><span>Seção 2.2</span></a>).</p>
+</div>
 </section>
 <section id="tarefa-3" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">7.3</span> Tarefa 3</h2>
-<p>Um número <span class="math inline">\(n\)</span> chama-se <em>abundante</em>, se <span class="math inline">\(\sigma(n)&gt;n\)</span>. Ache todos os número abundantes entre <code>1</code> e <code>1000</code>.</p>
-</section>
-<section id="tarefa-4" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">7.4</span> Tarefa 4</h2>
+<div class="subproblem">
 <p>Dois números <span class="math inline">\(n\)</span> e <span class="math inline">\(m\)</span> são chamados de amigáveis se <span class="math inline">\(\sigma(n)=m\)</span> e <span class="math inline">\(\sigma(m)=n\)</span>.</p>
 <ol type="1">
 <li>Escreva uma função <code>is_friendly( n )</code> que verifica se um número <code>n</code> é membro de um par amigável. A função deve devolver o par de <code>n</code> caso sim, e <code>0</code> caso não.</li>
@@ -367,9 +372,21 @@ window.Quarto = {
 <ol start="2" type="1">
 <li>Ache todos os pares amigáveis de números entre <code>1</code> e <code>1000000</code>.</li>
 </ol>
+</div>
+<div class="hint">
+<p>Use a função <code>sum_divisors</code> escrita para Tarefa 1. Pode usar também a função <code>Filtered</code> sobre <code>[1..1000000]</code> (<a href="list_mat_perm.html#sec-list" class="quarto-xref"><span>Seção 4.1</span></a>).</p>
+</div>
+<!--
+is_friendly := function( n )
+    local n1;
+    n1 := sigma( n );
+    return n <> n1 and sigma( n1 ) = n;
+end;
+-->
 </section>
-<section id="tarefa-5" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="tarefa-5"><span class="header-section-number">7.5</span> Tarefa 5</h2>
+<section id="tarefa-4" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">7.4</span> Tarefa 4</h2>
+<div class="subproblem">
 <p>Seja <span class="math inline">\(a_0\in\mathbb N\)</span> arbitrário. Defina a sequência que começa por <span class="math inline">\(a_0\)</span> e para <span class="math inline">\(i\geq 1\)</span>, <span class="math inline">\(a_i=\sigma(a_{i-1})\)</span>. Por exemplo, se <span class="math inline">\(a_0=8\)</span>, então <span class="math display">\[
 a_0=8,\quad a_1=\sigma(8)=7,\quad a_2=\sigma(7)=1, a_3=\sigma(1)=0, \quad a_4=\sigma(0)=0.
 \]</span> Este tipo de sequência chama-se <a href="https://en.wikipedia.org/wiki/Aliquot_sequence">sequência alíquota</a> (aliquot sequence).</p>
@@ -391,9 +408,13 @@ a_0=8,\quad a_1=\sigma(8)=7,\quad a_2=\sigma(7)=1, a_3=\sigma(1)=0, \quad a_4=\s
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">42</span><span class="op">,</span> <span class="fl">54</span><span class="op">,</span> <span class="fl">66</span><span class="op">,</span> <span class="fl">78</span><span class="op">,</span> <span class="fl">90</span><span class="op">,</span> <span class="fl">144</span><span class="op">,</span> <span class="fl">259</span><span class="op">,</span> <span class="fl">45</span><span class="op">,</span> <span class="fl">33</span><span class="op">,</span> <span class="fl">15</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span><span class="op">,</span> <span class="fl">0</span> ]</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">aliquot_sequence_until_repeat</span>( <span class="fl">34</span> )<span class="op">;</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">34</span><span class="op">,</span> <span class="fl">20</span><span class="op">,</span> <span class="fl">22</span><span class="op">,</span> <span class="fl">14</span><span class="op">,</span> <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span><span class="op">,</span> <span class="fl">0</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="3" type="1">
-<li>O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre <span class="math inline">\(1\)</span> e <span class="math inline">\(1000\)</span> que produz o sequência com maior comprimento.</li>
+<ol type="1">
+<li>O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o números entre <span class="math inline">\(1\)</span> e <span class="math inline">\(1000\)</span> que produzem o sequência particularmente longas.</li>
 </ol>
+</div>
+<div class="hint">
+<p>Além de utulizar a função <code>sum_divisors</code>, vai precisar de listas (<a href="list_mat_perm.html#sec-list" class="quarto-xref"><span>Seção 4.1</span></a>), variáveis locais (<a href="ling.html#sec-functions" class="quarto-xref"><span>Seção 3.5</span></a>), e laços (<a href="ling.html#sec-for" class="quarto-xref"><span>Seção 3.2</span></a> e <a href="ling.html#sec-while" class="quarto-xref"><span>Seção 3.3</span></a>). Pode precisar também a expressão <code>break</code> (<a href="ling.html#sec-break-continue" class="quarto-xref"><span>Seção 3.6</span></a>).</p>
+</div>
 <p>Este projeto foi inspirado pelo seguinte vídeo</p>
 <p>{&lt; video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width=“560” height=“315” &gt;}</p>
 <!--

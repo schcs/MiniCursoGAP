@@ -20,8 +20,8 @@
     ]
   },
   {
-    "objectID": "arith.html#operações-aritméticas",
-    "href": "arith.html#operações-aritméticas",
+    "objectID": "arith.html#sec-ops-arit",
+    "href": "arith.html#sec-ops-arit",
     "title": "2  Aritmética básica",
     "section": "",
     "text": "As operações mais comuns em GAP são + (adição), - (subtração), * (multiplicação), / (divisão), mod, (resto) ^ (exponenciação). Experimente com os seguintes exemplos.\ngap&gt; 2+3;\n5\ngap&gt; 2/4;\n1/2\ngap&gt; (2+3)*(1/2);\n5/2\ngap&gt; 2^3*3;\n24\ngap&gt; 2^-2*3;\n3/4\ngap&gt; 2.0;\n2.\ngap&gt; 2.01+3.11;\n5.12\ngap&gt; 1/3;\n1/3\ngap&gt; 1.0/3;\n0.333333",
@@ -30,8 +30,8 @@
     ]
   },
   {
-    "objectID": "arith.html#operações-lógicas-booleanas",
-    "href": "arith.html#operações-lógicas-booleanas",
+    "objectID": "arith.html#sec-bool",
+    "href": "arith.html#sec-bool",
     "title": "2  Aritmética básica",
     "section": "2.2 Operações lógicas (booleanas)",
     "text": "2.2 Operações lógicas (booleanas)\nPara comparar valores, usamos a operação = cujo valor é um valor lógico ou seja true ou false. As operações com valores lógicos são not, and e or.\ngap&gt; 2 + 3 = 5;\ntrue\ngap&gt; 2 + 3 = 5 or 2 + 3 = 6;\ntrue\ngap&gt; 2 + 3 = 5 and 2 + 3 = 6;\nfalse\ngap&gt; 2 + 3 = 5 and  not 2 + 3 = 6;\ntrue",
@@ -180,8 +180,8 @@
     ]
   },
   {
-    "objectID": "estrut.html#grupos-disponíveis-na-biblioteca",
-    "href": "estrut.html#grupos-disponíveis-na-biblioteca",
+    "objectID": "estrut.html#sec-grupos",
+    "href": "estrut.html#sec-grupos",
     "title": "5  O primeiro encontro com grupos",
     "section": "",
     "text": "gap&gt; G1 := SL( 3, GF(5));\nSL(3,5)\ngap&gt; G1 := SL( 3, 5);\nSL(3,5)\ngap&gt; G1 := SL( 3, 5 );\nSL(3,5)\ngap&gt; G1 := GL( 3, 5 );\nGL(3,5)\ngap&gt; G2 := SL( 3, 5 );\nSL(3,5)\ngap&gt; Order( G1 );\n1488000\ngap&gt; Order( G2 );\n372000\ngap&gt; IsSubgroup( G1, G2 );\ntrue\ngap&gt; IsNormal( G1, G2 );\ntrue\n\ngap&gt; S6 := SymmetricGroup( 6 );\nSym( [ 1 .. 6 ] )\ngap&gt; A6 := AlternatingGroup( 6 );\nAlt( [ 1 .. 6 ] )\ngap&gt; IsSubgroup( S6, A6 );\ntrue\ngap&gt; IsNormal( S6, A6 );\ntrue",
@@ -224,7 +224,7 @@
     "href": "collatz.html",
     "title": "6  A conjetura de Collatz",
     "section": "",
-    "text": "6.1 A Conjetura de Collatz",
+    "text": "6.1 A Conjetura de Collatz\n\\(\\newcommand{\\N}{\\mathbb N}\\)",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
     ]
@@ -234,7 +234,7 @@
     "href": "collatz.html#a-conjetura-de-collatz",
     "title": "6  A conjetura de Collatz",
     "section": "",
-    "text": "\\(\\newcommand{\\N}{\\mathbb N}\\)\n\nConsidere a seguinte função \\(f:\\N\\to \\N\\): \\[\n    f(n)=\\left\\{\\begin{array}{cc} n/2 & \\mbox{se $n$ for par;}\\\\\n    3n+1 & \\mbox{se $n$ for ímpar.}\\end{array}\\right.\n\\] A Conjetura de Collatz afirma que para todo \\(n\\in\\N\\), existe um número \\(k\\) tal que aplicando a função \\(f\\) consecutivamente \\(k\\) vezes em \\(n\\), o resultado vai ser igual a \\(1\\). Em outras, palavras, \\(f^k(n)=1\\).",
+    "text": "Considere a seguinte função \\(f:\\N\\to \\N\\): \\[\n    f(n)=\\left\\{\\begin{array}{cc} n/2 & \\mbox{se $n$ for par;}\\\\\n    3n+1 & \\mbox{se $n$ for ímpar.}\\end{array}\\right.\n\\] A Conjetura de Collatz afirma que para todo \\(n\\in\\N\\), existe um número \\(k\\) tal que aplicando a função \\(f\\) consecutivamente \\(k\\) vezes em \\(n\\), o resultado vai ser igual a \\(1\\). Em outras, palavras, \\(f^k(n)=1\\).",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
     ]
@@ -244,7 +244,7 @@
     "href": "collatz.html#tarefa-1",
     "title": "6  A conjetura de Collatz",
     "section": "6.2 Tarefa 1",
-    "text": "6.2 Tarefa 1\n\nEscreva uma função collatz( n ) que toma \\(n\\) como input e devolve \\(f(n)\\). Faça testes da sua função com vários números.\n\n\nPrecisa testar, usando if, (Seção 3.1) se o input é par ou ímpar e para isso pode usar a operação mod (manual).\ngap&gt; 3 mod 2;\n1\ngap&gt; 6 mod 2;\n0\nSe precisar de ajuda com funções, consulte a Seção 3.5.\n\n\nA sua função deve comportar-se de acordo com os seguintes exemplos:\ngap&gt; collatz( 15 );\n46\ngap&gt; collatz( 14 );\n7\ngap&gt; collatz( 5 );\n16",
+    "text": "6.2 Tarefa 1\n\nEscreva uma função collatz( n ) que toma \\(n\\) como input e devolve \\(f(n)\\). Faça testes da sua função com vários números.\nA sua função deve comportar-se de acordo com os seguintes exemplos:\ngap&gt; collatz( 15 );\n46\ngap&gt; collatz( 14 );\n7\ngap&gt; collatz( 5 );\n16\n\n\nPrecisa testar, usando if, (Seção 3.1) se o input é par ou ímpar e para isso pode usar a operação mod (Seção 2.1). Se precisar de ajuda com funções, consulte a Seção 3.5.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
     ]
@@ -254,7 +254,7 @@
     "href": "collatz.html#tarefa-2",
     "title": "6  A conjetura de Collatz",
     "section": "6.3 Tarefa 2",
-    "text": "6.3 Tarefa 2\n\nEscreva uma função nr_steps( n ) que vai calcular o número de vezes a função \\(f\\) precisa ser aplicada em \\(n\\) para obter o número \\(1\\). Em outras palavras, nr_steps( n ) deve devolver o menor número \\(k\\) tal que \\(f^k(n)=1\\). Para \\(n=1\\), nós vamos assumir que \\(f^0(1)=1\\).\n\n\n\nVocê usará a função collatz( n ) na tarefa anterior em um laço while (Seção 3.3) ou repeat (Seção 3.4). Vai precisar também de variável local (explicado na Seção 3.5).\n\n\nA sua função precisa devolver o resultado de acordo com os seguintes exemplos.\ngap&gt; nr_steps( 1 );\n0\ngap&gt; nr_steps( 3 );\n7\ngap&gt; nr_steps( 14 );\n17\ngap&gt; nr_steps( 32 );\n5",
+    "text": "6.3 Tarefa 2\n\nEscreva uma função nr_steps( n ) que vai calcular o número de vezes a função \\(f\\) precisa ser aplicada em \\(n\\) para obter o número \\(1\\). Em outras palavras, nr_steps( n ) deve devolver o menor número \\(k\\) tal que \\(f^k(n)=1\\). Para \\(n=1\\), nós vamos assumir que \\(f^0(1)=1\\).\nA sua função precisa devolver o resultado de acordo com os seguintes exemplos.\ngap&gt; nr_steps( 1 );\n0\ngap&gt; nr_steps( 3 );\n7\ngap&gt; nr_steps( 14 );\n17\ngap&gt; nr_steps( 32 );\n5\n\n\n\nVocê usará a função collatz( n ) na tarefa anterior em um laço while (Seção 3.3) ou repeat (Seção 3.4). Vai precisar também de variável local (explicado na Seção 3.5).",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
     ]
@@ -264,7 +264,7 @@
     "href": "collatz.html#tarefa-3",
     "title": "6  A conjetura de Collatz",
     "section": "6.4 Tarefa 3",
-    "text": "6.4 Tarefa 3\n\nEscreva uma função max_nr_steps( n ) para determinar o número \\(k\\) tal que nr_steps( k ) é maior possível para os números \\(k\\in\\{1,\\ldots,n\\}\\). A função deve devolver uma lista (Seção 4.1) de comprimento \\(2\\) tal que a primeira entrada da lista é o número \\(k\\) e a segunda é o número nr_steps( k ).\n\n\n\nPode usar a função nr_steps( k ) escrita na tarefa anterior em um laço for (Seção 3.2) que roda na lista [1..n].\n\n\nO comportamento da sua função seguirá os seguintes exemplos:\ngap&gt; max_nr_steps( 1000 );\n[ 871, 178 ]\ngap&gt; max_nr_steps( 10000 );\n[ 6171, 261 ]\ngap&gt; max_nr_steps( 100000 );\n[ 77031, 350 ]",
+    "text": "6.4 Tarefa 3\n\nEscreva uma função max_nr_steps( n ) para determinar o número \\(k\\) tal que nr_steps( k ) é maior possível para os números \\(k\\in\\{1,\\ldots,n\\}\\). A função deve devolver uma lista (Seção 4.1) de comprimento \\(2\\) tal que a primeira entrada da lista é o número \\(k\\) e a segunda é o número nr_steps( k ).\nO comportamento da sua função seguirá os seguintes exemplos:\ngap&gt; max_nr_steps( 1000 );\n[ 871, 178 ]\ngap&gt; max_nr_steps( 10000 );\n[ 6171, 261 ]\ngap&gt; max_nr_steps( 100000 );\n[ 77031, 350 ]\n\n\n\nPode usar a função nr_steps( k ) escrita na tarefa anterior em um laço for (Seção 3.2) que roda na lista [1..n].",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
     ]
@@ -274,7 +274,7 @@
     "href": "collatz.html#tarefa-4",
     "title": "6  A conjetura de Collatz",
     "section": "6.5 Tarefa 4",
-    "text": "6.5 Tarefa 4\n\nVamos otimizar o código que foi escrito para a Tarefa 3. Calcular nr_steps( k ) separadamente para todo \\(k\\in \\{1,\\ldots,n\\}\\) faz muita computação redundante. Por exemplo, calculando max_nr_steps( 6 ) deste jeito, fazemos as seguintes contas\n1 → 1 \n2 → 1\n3 → 10 → 5 → 16 → 8 → 4 → 2 → 1 \n4 → 2 → 1 \n5 → 16 → 8 → 4 → 2 → 1\n6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1\nA computação nr_steps( 6 ) deve realizar que nr_steps( 3 ) já foi calculado e simplificar a conta por computar que nr_steps( 6 ) = nr_steps( 3 ) + 1. Escreva uma versão da função max_nr_steps_fast( n ) utilizando as computações anteriores e compare o tempo de execução das duas versões.\n\n\nDenotando por \\(k_n\\) o valor da função nr_steps( n ), guarde o valor de \\(k_n\\) como o \\(k\\)-ésima entrada em uma lista. A lista pode ser uma lista esparsa (Seção 4.1). Provavelmente precisará das expressões break e continue (Seção 3.6). Pode usar também a variável interna time que devolve o tempo (em milisegundos) que a última instrução tomou (manual).\n\n\nDe acordo com o seguinte exemplo, calcular o valor maximal de nr_steps( k ) para k in [1..1000000] demora mais que 25 segundos usando a função escrita para a Tarefa 3. A nova função faz esta computação em apenas 1,3 segundos.\ngap&gt; max_nr_steps( 1000000 ); time;   \n[ 837799, 524 ]\n25391\ngap&gt; max_nr_steps_fast( 1000000 ); time;\n[ 837799, 524 ]\n1335",
+    "text": "6.5 Tarefa 4\n\nVamos otimizar o código que foi escrito para a Tarefa 3. Calcular nr_steps( k ) separadamente para todo \\(k\\in \\{1,\\ldots,n\\}\\) faz muita computação redundante. Por exemplo, calculando max_nr_steps( 6 ) deste jeito, fazemos as seguintes contas\n1 → 1 \n2 → 1\n3 → 10 → 5 → 16 → 8 → 4 → 2 → 1 \n4 → 2 → 1 \n5 → 16 → 8 → 4 → 2 → 1\n6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1\nA computação nr_steps( 6 ) deve realizar que nr_steps( 3 ) já foi calculado e simplificar a conta por computar que nr_steps( 6 ) = nr_steps( 3 ) + 1. Escreva uma versão da função max_nr_steps_fast( n ) utilizando as computações anteriores e compare o tempo de execução das duas versões.\nDe acordo com o seguinte exemplo, calcular o valor maximal de nr_steps( k ) para k in [1..1000000] demora mais que 25 segundos usando a função escrita para a Tarefa 3. A nova função faz esta computação em apenas 1,3 segundos.\ngap&gt; max_nr_steps( 1000000 ); time;   \n[ 837799, 524 ]\n25391\ngap&gt; max_nr_steps_fast( 1000000 ); time;\n[ 837799, 524 ]\n1335\n\n\nDenotando por \\(k_n\\) o valor da função nr_steps( n ), guarde o valor de \\(k_n\\) como o \\(k\\)-ésima entrada em uma lista. A lista pode ser uma lista esparsa (Seção 4.1). Provavelmente precisará das expressões break e continue (Seção 3.6). Pode usar também a variável interna time que devolve o tempo (em milisegundos) que a última instrução tomou (manual).",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
     ]
@@ -294,7 +294,7 @@
     "href": "aliquot.html#tarefa-1",
     "title": "7  A sequência alíquota",
     "section": "",
-    "text": "Escreva uma função sum_divisors( n ) em GAP que dado um numero n devolve \\(\\sigma(n)\\). A sua função deve se comportar como no seguinte exemplo.\n\n\nPode usar as funções DivisorsInt (manual) e Sum (manual). Também precisa de if para decidir se n=0, pois DivisorsInt( 0 ) não funciona.\ngap&gt; sum_divisors( 8 );\n7\ngap&gt; sum_divisors( 9 );\n4\ngap&gt; sum_divisors( 11 );\n1",
+    "text": "Escreva uma função sum_divisors( n ) em GAP que dado um numero n devolve \\(\\sigma(n)\\). A sua função deve se comportar como no seguinte exemplo.\ngap&gt; sum_divisors( 8 );\n7\ngap&gt; sum_divisors( 9 );\n4\ngap&gt; sum_divisors( 11 );\n1\n\n\nPode usar as funções DivisorsInt (manual) e Sum (manual). Também pode precisar de if para decidir se n=0, pois DivisorsInt( 0 ) não funciona (Seção 3.1).",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>A sequência alíquota</span>"
     ]
@@ -304,7 +304,7 @@
     "href": "aliquot.html#tarefa-2",
     "title": "7  A sequência alíquota",
     "section": "7.2 Tarefa 2",
-    "text": "7.2 Tarefa 2\nUm número \\(n\\) chama-se perfeito se \\(\\sigma(n)=n\\).\n\nEscreva uma função is_perfect( n ) que devolva true se n é perfeito e false se n não é perfeito.\n\ngap&gt; is_perfect( 6 );\ntrue\ngap&gt; is_perfect( 20 );\nfalse\ngap&gt; is_perfect( 28 );\ntrue\n\nAche todos os números perfeitos entre 1 e 1000000.",
+    "text": "7.2 Tarefa 2\n\nUm número \\(n\\) chama-se perfeito se \\(\\sigma(n)=n\\).\n\nEscreva uma função is_perfect( n ) que devolva true se n é perfeito e false se n não é perfeito.\n\ngap&gt; is_perfect( 6 );\ntrue\ngap&gt; is_perfect( 20 );\nfalse\ngap&gt; is_perfect( 28 );\ntrue\n\nAche todos os números perfeitos entre 1 e 1000000.\nUm número \\(n\\) chama-se abundante, se \\(\\sigma(n)&gt;n\\). Escreva uma função is_abundant( n ) que devolve true se o número n é abundante e false se não é abundante.\nAche todos os números abundantes entre 1 e 1000.\n\n\n\nUse a funução sum_divisors escrita para a tarefa anterior. Se precisar, revise como trabalhar com valores booleanas (Seção 2.2).",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>A sequência alíquota</span>"
     ]
@@ -314,7 +314,7 @@
     "href": "aliquot.html#tarefa-3",
     "title": "7  A sequência alíquota",
     "section": "7.3 Tarefa 3",
-    "text": "7.3 Tarefa 3\nUm número \\(n\\) chama-se abundante, se \\(\\sigma(n)&gt;n\\). Ache todos os número abundantes entre 1 e 1000.",
+    "text": "7.3 Tarefa 3\n\nDois números \\(n\\) e \\(m\\) são chamados de amigáveis se \\(\\sigma(n)=m\\) e \\(\\sigma(m)=n\\).\n\nEscreva uma função is_friendly( n ) que verifica se um número n é membro de um par amigável. A função deve devolver o par de n caso sim, e 0 caso não.\n\ngap&gt; is_friendly( 6 );\n6\ngap&gt; is_friendly( 220 );\n284\ngap&gt; is_friendly( 284 );\n220\ngap&gt; is_friendly( 200 );\n0\n\nAche todos os pares amigáveis de números entre 1 e 1000000.\n\n\n\nUse a função sum_divisors escrita para Tarefa 1. Pode usar também a função Filtered sobre [1..1000000] (Seção 4.1).",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>A sequência alíquota</span>"
     ]
@@ -324,17 +324,7 @@
     "href": "aliquot.html#tarefa-4",
     "title": "7  A sequência alíquota",
     "section": "7.4 Tarefa 4",
-    "text": "7.4 Tarefa 4\nDois números \\(n\\) e \\(m\\) são chamados de amigáveis se \\(\\sigma(n)=m\\) e \\(\\sigma(m)=n\\).\n\nEscreva uma função is_friendly( n ) que verifica se um número n é membro de um par amigável. A função deve devolver o par de n caso sim, e 0 caso não.\n\ngap&gt; is_friendly( 6 );\n6\ngap&gt; is_friendly( 220 );\n284\ngap&gt; is_friendly( 284 );\n220\ngap&gt; is_friendly( 200 );\n0\n\nAche todos os pares amigáveis de números entre 1 e 1000000.",
-    "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>A sequência alíquota</span>"
-    ]
-  },
-  {
-    "objectID": "aliquot.html#tarefa-5",
-    "href": "aliquot.html#tarefa-5",
-    "title": "7  A sequência alíquota",
-    "section": "7.5 Tarefa 5",
-    "text": "7.5 Tarefa 5\nSeja \\(a_0\\in\\mathbb N\\) arbitrário. Defina a sequência que começa por \\(a_0\\) e para \\(i\\geq 1\\), \\(a_i=\\sigma(a_{i-1})\\). Por exemplo, se \\(a_0=8\\), então \\[\na_0=8,\\quad a_1=\\sigma(8)=7,\\quad a_2=\\sigma(7)=1, a_3=\\sigma(1)=0, \\quad a_4=\\sigma(0)=0.\n\\] Este tipo de sequência chama-se sequência alíquota (aliquot sequence).\n\nEscreva uma função aliquot_sequence( a0, k ) que, dado a0 e um número k, devolve os primeiros k termos da sequência alíquota que inicia-se com a0.\n\ngap&gt; aliquot_sequence( 8, 4 );\n[ 8, 7, 1, 0 ]\ngap&gt; aliquot_sequence( 24, 6 );\n[ 24, 36, 55, 17, 1, 0 ]\ngap&gt; aliquot_sequence( 30, 15 );\n[ 30, 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1 ]\n\nModifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica.\n\ngap&gt; aliquot_sequence_until_repeat( 21 );\n[ 21, 11, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 42 );\n[ 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 34 );\n[ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]\n\nO comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre \\(1\\) e \\(1000\\) que produz o sequência com maior comprimento.\n\nEste projeto foi inspirado pelo seguinte vídeo\n{&lt; video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width=“560” height=“315” &gt;}",
+    "text": "7.4 Tarefa 4\n\nSeja \\(a_0\\in\\mathbb N\\) arbitrário. Defina a sequência que começa por \\(a_0\\) e para \\(i\\geq 1\\), \\(a_i=\\sigma(a_{i-1})\\). Por exemplo, se \\(a_0=8\\), então \\[\na_0=8,\\quad a_1=\\sigma(8)=7,\\quad a_2=\\sigma(7)=1, a_3=\\sigma(1)=0, \\quad a_4=\\sigma(0)=0.\n\\] Este tipo de sequência chama-se sequência alíquota (aliquot sequence).\n\nEscreva uma função aliquot_sequence( a0, k ) que, dado a0 e um número k, devolve os primeiros k termos da sequência alíquota que inicia-se com a0.\n\ngap&gt; aliquot_sequence( 8, 4 );\n[ 8, 7, 1, 0 ]\ngap&gt; aliquot_sequence( 24, 6 );\n[ 24, 36, 55, 17, 1, 0 ]\ngap&gt; aliquot_sequence( 30, 15 );\n[ 30, 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1 ]\n\nModifique a sua função em tal forma que a execução termina assim que a sequẽncia vira periódica.\n\ngap&gt; aliquot_sequence_until_repeat( 21 );\n[ 21, 11, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 42 );\n[ 42, 54, 66, 78, 90, 144, 259, 45, 33, 15, 9, 4, 3, 1, 0, 0 ]\ngap&gt; aliquot_sequence_until_repeat( 34 );\n[ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]\n\nO comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o números entre \\(1\\) e \\(1000\\) que produzem o sequência particularmente longas.\n\n\n\nAlém de utulizar a função sum_divisors, vai precisar de listas (Seção 4.1), variáveis locais (Seção 3.5), e laços (Seção 3.2 e Seção 3.3). Pode precisar também a expressão break (Seção 3.6).\n\nEste projeto foi inspirado pelo seguinte vídeo\n{&lt; video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width=“560” height=“315” &gt;}",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>A sequência alíquota</span>"
     ]
@@ -344,7 +334,7 @@
     "href": "rsa.html",
     "title": "8  Criptografia RSA",
     "section": "",
-    "text": "8.1 A Teoria da Criptografia\nNa área da criptografia, a suposição geral é que dois parceiros (que podem ser duas pessoas, ou dois computadores) querem trocar informação sigilosa usando um canal de comunicação que está disponível para terceiros. Os dois parceiros geralmente chamam-se A(lice) e B(ob) e um possível terceiro chama-se E(va). Assume-se que as mensagens enviadas por Alice e Bob são números. A Eva consegue interceptar as mensagens enviadas. O objetivo é desenvolver métodos seguros de codificação para as mensagens que podem garantir que Eva não vai conseguir descodificar as mensagens interceptadas.\nUm método, conhecido como criptografia RSA, foi desenvolvido pelos matemáticos Ron Rivest, Adi Shamir, and Leonard Adleman e foi publicado em 1977.\nLembre que a função \\(\\varphi\\) de Euler é definida como \\[\n\\varphi(n)=|\\{a\\in\\{1,\\ldots,n\\}\\mid \\mbox{mdc}(a,n)=1\\}|\n\\] para todo natural \\(n\\). Temos, para primos \\(p\\) e \\(q\\) distintos, que \\[\n\\varphi(pq)=(p-1)(q-1).\n\\]\nAssuma que Alice quer enviar uma mensagem para Bob. Eles seguem os seguintes passos:",
+    "text": "8.1 A Teoria da Criptografia",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
     ]
@@ -354,17 +344,27 @@
     "href": "rsa.html#a-teoria-da-criptografia",
     "title": "8  Criptografia RSA",
     "section": "",
-    "text": "Bob escolhe um número \\(n\\) tal que \\(n\\) é produto de dois primos \\(p\\) e \\(q\\) e escolhe um número \\(c\\in\\{2,\\ldots,n-1\\}\\) tal que \\(\\mbox{mdc}(c,\\varphi(n))=1\\). Isso implica que \\(c\\) é invertível módulo \\(\\varphi(n)\\); ou seja existe \\(d\\in\\{1,\\ldots,\\varphi(n)\\}\\) tal que \\[\ncd\\equiv 1\\pmod{\\varphi(n)}.\n\\]\nBob publica o par \\((n,c)\\) dos números. Este é a chave pública do Bob e está disponível publicamente para toda pessoa que quer enviar mensagem sigilosa para o Bob. Em particular esta chave é conhecida por Alice.\nO Bob guarda os números \\((\\varphi(n),d)\\) em sigilo. Esta é a chave privada do Bob.\nA mensagem da Alice é um número \\(b\\) entre \\(1\\) e \\(n\\). A Alice vai calcular \\[\nC(b)=\\mbox{o resto de $b^c$ por $n$}.\n\\] Note que Alice conhece os números \\(c\\) e \\(n\\) e consegue calcular \\(C(b)\\). O número \\(C(b)\\) é a mensagem codificada.\nAlice envia \\(C(b)\\) para o Bob.\nAo receber a mensagem \\(b_1=C(b)\\) da Alice, Bob calcula \\[\nD( b_1)=\\mbox{o resto de $b_1^c$ módulo $n$}.\n\\] O número obtido \\(D(b_1)\\) é a mensagem descodificada.\nO número \\(D(b_1)\\) coincide com a mensagem original \\(b\\) da Alice; ou seja, o Bob conseguiu descodificar a mensagem da Alice.\n\n\nTeorema 8.1 Usando a notação acima, \\(D(C(b))=b\\) para todo \\(b\\in\\{1,\\ldots,n-1\\}\\). Ou seja, usando a função \\(D\\), o Bob consegue descodificar a mensagem da Alice",
+    "text": "Na área da criptografia, a suposição geral é que dois parceiros (que podem ser duas pessoas, ou dois computadores) querem trocar informação sigilosa usando um canal de comunicação que está disponível para terceiros. Os dois parceiros geralmente chamam-se A(lice) e B(ob) e um possível terceiro chama-se E(va). Assume-se que as mensagens enviadas por Alice e Bob são números. A Eva consegue interceptar as mensagens enviadas. O objetivo é desenvolver métodos seguros de criptografia para as mensagens que podem garantir que Eva não vai conseguir descriptografar as mensagens mesmo conseguindo interceptadá-las.\nUm método, conhecido como criptografia RSA, foi desenvolvido pelos matemáticos Ron Rivest, Adi Shamir, and Leonard Adleman e foi publicado em 1977.\nLembre que a função \\(\\varphi\\) de Euler é definida como \\[\n\\varphi(n)=|\\{a\\in\\{1,\\ldots,n\\}\\mid \\mbox{mdc}(a,n)=1\\}|\n\\] para todo natural \\(n\\). Temos, para primos \\(p\\) e \\(q\\) distintos, que \\[\n\\varphi(pq)=(p-1)(q-1).\n\\]\nAssuma que Alice quer enviar uma mensagem para Bob. Eles seguem os seguintes passos:\n\nBob escolhe um número \\(n\\) tal que \\(n\\) é produto de dois primos \\(p\\) e \\(q\\) e escolhe um número \\(c\\in\\{2,\\ldots,n-1\\}\\) tal que \\(\\mbox{mdc}(c,\\varphi(n))=1\\). Isso implica que \\(c\\) é invertível módulo \\(\\varphi(n)\\); ou seja existe \\(d\\in\\{1,\\ldots,\\varphi(n)\\}\\) tal que \\[\ncd\\equiv 1\\pmod{\\varphi(n)}.\n\\]\nBob publica o par \\((n,c)\\) dos números. Este é a chave pública do Bob e está disponível publicamente para toda pessoa que quer enviar mensagem sigilosa para o Bob. Em particular esta chave é conhecida por Alice.\nO Bob guarda os números \\((\\varphi(n),d)\\) em sigilo. Esta é a chave privada do Bob.\nA mensagem da Alice é um número \\(b\\) entre \\(1\\) e \\(n\\). A Alice vai calcular \\[\nC(b)=\\mbox{o resto de $b^c$ por $n$}.\n\\] Note que Alice conhece os números \\(c\\) e \\(n\\) e consegue calcular \\(C(b)\\). O número \\(C(b)\\) é a mensagem criptografada.\nAlice envia \\(C(b)\\) para o Bob.\nAo receber a mensagem \\(b_1=C(b)\\) da Alice, Bob calcula \\[\nD( b_1)=\\mbox{o resto de $b_1^c$ módulo $n$}.\n\\] O número obtido \\(D(b_1)\\) é a mensagem descriptografada.\nO número \\(D(b_1)\\) coincide com a mensagem original \\(b\\) da Alice; ou seja, o Bob conseguiu descriptografar a mensagem da Alice.\n\n\nTeorema 8.1 Usando a notação acima, \\(D(C(b))=b\\) para todo \\(b\\in\\{1,\\ldots,n-1\\}\\). Ou seja, usando a função \\(D\\), o Bob consegue descodificar a mensagem da Alice",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
     ]
   },
   {
-    "objectID": "rsa.html#tarefa-1-exploração-interativa",
-    "href": "rsa.html#tarefa-1-exploração-interativa",
+    "objectID": "rsa.html#exploração-interativa",
+    "href": "rsa.html#exploração-interativa",
     "title": "8  Criptografia RSA",
-    "section": "8.2 Tarefa 1: Exploração interativa",
-    "text": "8.2 Tarefa 1: Exploração interativa\nAssuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits. Usando NextPrimeInt ache dois primos pe q tal que o produto é um numero composto entre \\(2^{99}\\) e \\(2^{100}-1\\). Por motivos de segurança, é recomendável que os primos p e q não sejam próximos, mas também não queremos que um deles seja pequeno. Nós vamos atingir este critério por escolher o primo p com 60 bits, enquanto o primo q terá de 40 bits.\ngap&gt; p := NextPrimeInt( Random( 2^59, 2^60 ));\n1086726084099436427\ngap&gt; q := NextPrimeInt( Random( 2^39, 2^40 ));\n1073930166469\ngap&gt; n := p*q;\n1167067924403112255997192566263\ngap&gt; n &lt;= 2^100;\ntrue\nEXPLICAR QUE RANDOM NÃO VAI DEVOLVER A MESMA COISA\nPara criar as chaves ce d, usaremos aritmética modular. Vamos criar os anéis R e R1 de classes residuais módulo ne \\(\\varphi(n)=(p-1)(q-1)\\).\nREFAZER USANDO MDC CALCULAR 2^c DIRETAMENTE. CONTROL C CHAMAR ATENÇÃO À EXPONENCIAÇÃO RÁPIDA\ngap&gt; R := ZmodnZ( n );\n(Integers mod 1167067924403112255997192566263)\ngap&gt; R1 := ZmodnZ( (p-1)*(q-1) );\n(Integers mod 1167067924402025528839162963368)\ngap&gt; c := Random( R1 );\nZmodnZObj( 449601717067465409204371741486, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\nfalse\ngap&gt; c := Random( R1 );\nZmodnZObj( 564525934207952237103150572399, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\ntrue\ngap&gt; d := c^-1;\nZmodnZObj( 477861003212806940664702229055, 1167067924402025528839162963368 )\ngap&gt; c := Int( c );\n564525934207952237103150572399\ngap&gt; d := Int( d );\n477861003212806940664702229055\nTendo criado, estes números, assuma que temos uma mensagem a que é um número entre 2 e n. Vamos criptografar e descriptografar a mensagem.\ngap&gt; msg2 := 2*One( R );\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg2_cript := msg2^c;\nZmodnZObj( 409777624988356516250582182849, 1167067924403112255997192566263 )\ngap&gt; msg2_descript := msg2_cript^d;\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg_rand := Random( R );\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_cript := msg_rand^c;\nZmodnZObj( 117680927883705414410064163455, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript := msg_rand_cript^d;\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript = msg_rand;\ntrue",
+    "section": "8.2 Exploração interativa",
+    "text": "8.2 Exploração interativa\n\nAssuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits (digitos binários). Usando NextPrimeInt ache dois primos pe q tal que o produto é um numero composto entre \\(2^{99}\\) e \\(2^{100}-1\\). Por motivos de segurança, é recomendável que os primos p e q não sejam próximos, mas também não queremos que um deles seja pequeno. Nós vamos atingir este critério por escolher o primo p com 60 bits, enquanto o primo q terá de 40 bits.\ngap&gt; p := NextPrimeInt( Random( 2^59, 2^60 ));\n1086726084099436427\ngap&gt; q := NextPrimeInt( Random( 2^39, 2^40 ));\n1073930166469\ngap&gt; n := p*q;\n1167067924403112255997192566263\ngap&gt; n &lt;= 2^100;\ntrue\nNote que na sua computação você vai obter primos diferentes, pois os primos obtidos são aleatórios.\nVamos criar as chaves \\(c\\) e \\(d\\) em dois métodos diferentes. Primeiro usamos aritmética ingegral calculando MDC.\nPara criar as chaves \\(c\\) e \\(d\\), usaremos aritmética modular. Vamos criar os anéis \\(R\\) e \\(R_1\\) de classes residuais módulo \\(n\\) e calcular \\(\\varphi(n)=(p-1)(q-1)\\).\ngap&gt; phi_n := (p-1)*(q-1);\n1167067924402025528839162963368\ngap&gt; c := Random( 2, phi_n );\n176805719378978229840699134270\ngap&gt; gcd_rec := Gcdex( c, phi_n );\nrec( coeff1 := 79157182339546985315507365253, \n  coeff2 := -77535409344988357319333137017, \n  coeff3 := -194511320733670921473193827228, \n  coeff4 := 190526171214974642831565237209, gcd := 6 )\ngap&gt; c := Random( 2, phi_n );     \n1102805946491101901632051878773\ngap&gt; gcd_rec := Gcdex( c, phi_n );\nrec( coeff1 := -121794025824117152741759339875, \n  coeff2 := 115087710935716733897683004232, \n  coeff3 := 1167067924402025528839162963368, \n  coeff4 := -1102805946491101901632051878773, gcd := 1 )\ngap&gt; gcd_rec.coeff1*c + gcd_rec.coeff2*phi_n;\n1\ngap&gt; gcd_rec.coeff1*c mod phi_n;             \n1\ngap&gt; d := gcd_rec.coeff2;\n115087710935716733897683004232\ngap&gt; 2^c mod n;\nError, Integer operands: &lt;exponent&gt; is too large\nnot in any function at *stdin*:112\ntype 'quit;' to quit to outer loop\nbrk&gt; quit;\nNote que a expressão 2^1102805946491101901632051878773 não foi aceita pelo GAP, pois o expoente é muito grande. Para fazer esta conta, vamos utulizar anéis residuais.\ngap&gt; R := ZmodnZ( n );\n(Integers mod 1167067924403112255997192566263)\ngap&gt; R1 := ZmodnZ( (p-1)*(q-1) );\n(Integers mod 1167067924402025528839162963368)\ngap&gt; c := Random( R1 );\nZmodnZObj( 449601717067465409204371741486, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\nfalse\ngap&gt; c := Random( R1 );\nZmodnZObj( 564525934207952237103150572399, 1167067924402025528839162963368 )\ngap&gt; IsUnit( c );\ntrue\ngap&gt; d := c^-1;\nZmodnZObj( 477861003212806940664702229055, 1167067924402025528839162963368 )\ngap&gt; c := Int( c );\n564525934207952237103150572399\ngap&gt; d := Int( d );\n477861003212806940664702229055\nTendo criado, estes números, assuma que temos uma mensagem a que é um número entre 2 e n. Vamos criptografar e descriptografar a mensagem.\ngap&gt; msg2 := 2*One( R );\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg2_cript := msg2^c;\nZmodnZObj( 409777624988356516250582182849, 1167067924403112255997192566263 )\ngap&gt; msg2_descript := msg2_cript^d;\nZmodnZObj( 2, 1167067924403112255997192566263 )\ngap&gt; msg_rand := Random( R );\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_cript := msg_rand^c;\nZmodnZObj( 117680927883705414410064163455, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript := msg_rand_cript^d;\nZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )\ngap&gt; msg_rand_descript = msg_rand;\ntrue\nNote que a criptografia criada neste exemplo não é segura, pois o número \\(n\\) pode ser fatorado (devido ao tamanho relativamente pequeno de fatores).\ngap&gt; Factors( n );\n[ 1073930166469, 1086726084099436427 ]",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
+    ]
+  },
+  {
+    "objectID": "rsa.html#tarefa-1",
+    "href": "rsa.html#tarefa-1",
+    "title": "8  Criptografia RSA",
+    "section": "8.3 Tarefa 1",
+    "text": "8.3 Tarefa 1\n\nRepita a computação anterior, mas agora com números maiores. Em vez de trabalhar com chave de comprimento de 100 bits, trabalhe com chave de 2048 bits que é o usual com protocolos modernos de criptografia RSA. O comprimento de p será de 1228 bits, enquanto o comprimento de q será de 820 bits. (Ou seja, p é um primo entre \\(2^{1227}\\) e \\(2^{1228}-1\\)) e q é primo entre \\(2^{819}\\) e \\(2^{820}-1\\).\nVerifique que o número \\(n\\) obtida desta vez não pode ser fatorado usando Factors( n ).\n\n\nÚnica coisa que precisa modificar é que a função NextPrimeInt não funciona para estes típos de números e precisa usar NextProbablyPrimeInt.",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
     ]
@@ -373,18 +373,8 @@
     "objectID": "rsa.html#tarefa-2",
     "href": "rsa.html#tarefa-2",
     "title": "8  Criptografia RSA",
-    "section": "8.3 Tarefa 2",
-    "text": "8.3 Tarefa 2\nRepita a computação anterior, mas agora com números maiores. Em vez de trabalhar com chave de comprimento de 100 bits, trabalhe com chave de 2048 bits que é o usual com protocolos modernos de criptografia RSA. O comprimento de p será de 1228 bits, enquanto o comprimento de q será de 820 bits. (Ou seja, p é um primo entre \\(2^{1227}\\) e \\(2^{1228}-1\\)) e q é primo entre \\(2^{819}\\) e \\(2^{820}-1\\).\nÚnica coisa que precisa modificar é que a função NextPrimeInt não funciona para estes típos de números e precisa usar NextProbablyPrimeInt.",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
-    ]
-  },
-  {
-    "objectID": "rsa.html#tarefa-3",
-    "href": "rsa.html#tarefa-3",
-    "title": "8  Criptografia RSA",
-    "section": "8.4 Tarefa 3",
-    "text": "8.4 Tarefa 3\nEscreva uma função RSA_keys( nr_bits ) que gera dados necessários para criptografia RSA usando nr_bits. Ou seja, RSA_keys( nr_bits ) devolve\n\no número n que é produto dos primos p e q (mas não devolve os números p e q);\ndevolve a chave pública c e a chave privada d.",
+    "section": "8.4 Tarefa 2",
+    "text": "8.4 Tarefa 2\n\nEscreva uma função RSA_keys( nr_bits ) que gera dados necessários para criptografia RSA usando nr_bits. Ou seja, RSA_keys( nr_bits ) devolve\n\no número n que é produto dos primos p e q (mas não devolve os números p e q);\ndevolve a chave pública c e a chave privada d.",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Criptografia RSA</span>"
     ]
@@ -394,7 +384,7 @@
     "href": "centralizers.html",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "",
-    "text": "9.1 Os fundamentos teóricos\nRecordamos que o centralizador de um elemento \\(x\\) em um grupo \\(G\\) é definido por \\[\nC_{G}(x) = \\{g \\in G | \\ gx=xg \\}.\n\\]\nDenote por \\(\\mbox{Cent}(G)\\) o conjunto de todos os centralizadores de elementos de \\(G\\). O estudo de \\(\\mbox{Cent}(G)\\) tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar \\(\\mbox{Cent}(G)|\\) é responder essencialmente duas questões:\nNeste projeto, queremos usar o GAP para resolver algumas questões para grupos simples finitos.\nFAZER UM EXEMPLO PEQUENO S3",
+    "text": "9.1 Os fundamentos teóricos",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
@@ -404,7 +394,7 @@
     "href": "centralizers.html#os-fundamentos-teóricos",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "",
-    "text": "Dado um grupo \\(G\\), o que se pode dizer sobre \\(|\\mbox{Cent}(G)|\\)?\nSe é conhecido o valor de \\(|\\mbox{Cent}(G)|\\), o que se pode dizer a respeito do grupo \\(G\\)?",
+    "text": "Recordamos que o centralizador de um elemento \\(x\\) em um grupo \\(G\\) é definido por \\[\nC_{G}(x) = \\{g \\in G | \\ gx=xg \\}.\n\\]\nDenote por \\(\\mbox{Cent}(G)\\) o conjunto de todos os centralizadores de elementos de \\(G\\).\nPor exemplo, se \\(G=S_3\\), então os centralizadores dos elementos \\(1\\), \\((1,2)\\), \\((1,3)\\), \\((2,3)\\), \\((1,2,3)\\), e \\((1,3,2)\\), são \\(S_3\\), \\(\\left&lt;(1,2)\\right&gt;\\), \\(\\left&lt;(1,3)\\right&gt;\\), \\(\\left&lt;(2,3)\\right&gt;\\), \\(\\left&lt;(1,2,3)\\right&gt;\\), e \\(\\left&lt;(1,2,3)\\right&gt;\\). Note que o subgrupo \\(\\left&lt;(1,2,3)\\right&gt;\\) aparece duas vezes, então \\[\n\\mbox{cent}(S_3)=\\{\\left&lt;(1,2)\\right&gt;, \\left&lt;(1,3)\\right&gt;, \\left&lt;(2,3)\\right&gt;, \\left&lt;(1,2,3)\\right&gt;\\}\n\\] e \\[\n|\\mbox{cent}(S_3)|=5.\n\\]\nO estudo de \\(\\mbox{Cent}(G)\\) tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar \\(\\mbox{Cent}(G)|\\) é responder essencialmente duas questões:\n\nDado um grupo \\(G\\), o que se pode dizer sobre \\(|\\mbox{Cent}(G)|\\)?\nSe é conhecido o valor de \\(|\\mbox{Cent}(G)|\\), o que se pode dizer a respeito do grupo \\(G\\)?\n\nNeste projeto, queremos usar o GAP para resolver algumas questões para grupos simples finitos.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
@@ -414,17 +404,17 @@
     "href": "centralizers.html#tarefa-1",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "9.2 Tarefa 1",
-    "text": "9.2 Tarefa 1\nVamos determinar o centralizador de um elemento em um grupo. Considere o seguinte exemplo.\ngap&gt; G := AlternatingGroup( 5 );\nAlt( [ 1 .. 5 ] )\ngap&gt; x := (1,2,3);\n(1,2,3)\ngap&gt; Cx := Centralizer( G, x );\nGroup([ (1,2,3) ])\ngap&gt; Size( Cx );\n3\nSeguindo o exemplo em cima, determine os seguintes centralizadores \\(C_G(x)\\).\n\n\\(G=S_6\\), \\(x=(1,2,3)(4,5,6)\\).\netc",
+    "text": "9.2 Tarefa 1\n\nVamos determinar o centralizador de um elemento em um grupo. Considere o seguinte exemplo.\ngap&gt; G := AlternatingGroup( 5 );\nAlt( [ 1 .. 5 ] )\ngap&gt; x := (1,2,3);\n(1,2,3)\ngap&gt; Cx := Centralizer( G, x );\nGroup([ (1,2,3) ])\ngap&gt; Size( Cx );\n3\nSeguindo o exemplo em cima, determine os seguintes centralizadores \\(C_G(x)\\).\n\n\\(G=S_6\\), \\(x=(1,2,3)(4,5,6)\\).\n\\(G=D_8\\) (diedral de ordem 8) e \\(x\\) é uma rotação por \\(90\\) graus.\n\\(G=\\mbox{GL}(2,5)\\) e \\(x\\) é a matriz diagonal com \\((2,3)\\) na diagonal principal.\n\n\n\nConsulte Seção 5.1 para ver como definir o grupo GL e o grupo diedral.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
   },
   {
-    "objectID": "centralizers.html#tarefa-2",
-    "href": "centralizers.html#tarefa-2",
+    "objectID": "centralizers.html#exploração-interatica",
+    "href": "centralizers.html#exploração-interatica",
     "title": "9  Projeto: Uma exploração dos centralizadores",
-    "section": "9.3 Tarefa 2",
-    "text": "9.3 Tarefa 2\nFAZER EXEMPLO MENOR PRIMEIRO COM LIST E DEPOIS COM SET\nPara investigar o problema em cima, nós precisamos determinar o conjunto dos centralizadores em um grupo dado. Vamos fazer esta computação com o grupo \\(S_5\\).\ngap&gt; G := SymmetricGroup( 3 );\nSym( [ 1 .. 3 ] )\ngap&gt; cent := List( G, x-&gt;Centralizer( G, x ));\n[ Group([ (1,3), (2,3) ]), Group([ (2,3) ]), Group([ (1,3) ]), Group([ (1,3,2) ]), \n  Group([ (1,2,3) ]), Group([ (1,2) ]) ]\ngap&gt; cent[5] = cent[6];\nfalse\ngap&gt; cent[4] = cent[5];\ntrue\ngap&gt; cent_set := Set( G, x-&gt;Centralizer( G, x ));\n[ Group([ (2,3) ]), Group([ (1,3), (2,3) ]), Group([ (1,2) ]), Group([ (1,3,2) ]), \n  Group([ (1,3) ]) ]\ngap&gt; Size( cent );\n6\ngap&gt; Size( cent_set );\n5\nOu seja, \\(S_3\\) possui 5 centralizadores. Note que usamos a função Set que vai devolver um conjunto; ou seja, todo elemento do output será aparece apenas uma vez.",
+    "section": "9.3 Exploração interatica",
+    "text": "9.3 Exploração interatica\n\nPara investigar o problema em cima, nós precisamos determinar o conjunto dos centralizadores em um grupo dado. Vamos fazer esta computação com o grupo \\(S_5\\).\ngap&gt; G := SymmetricGroup( 3 );\nSym( [ 1 .. 3 ] )\ngap&gt; cent := List( G, x-&gt;Centralizer( G, x ));\n[ Group([ (1,3), (2,3) ]), Group([ (2,3) ]), Group([ (1,3) ]), Group([ (1,3,2) ]), \n  Group([ (1,2,3) ]), Group([ (1,2) ]) ]\ngap&gt; cent[5] = cent[6];\nfalse\ngap&gt; cent[4] = cent[5];\ntrue\ngap&gt; cent_set := Set( G, x-&gt;Centralizer( G, x ));\n[ Group([ (2,3) ]), Group([ (1,3), (2,3) ]), Group([ (1,2) ]), Group([ (1,3,2) ]), \n  Group([ (1,3) ]) ]\ngap&gt; Size( cent );\n6\ngap&gt; Size( cent_set );\n5\nOu seja, \\(S_3\\) possui 5 centralizadores. Note que usamos a função Set que vai devolver um conjunto; ou seja, todo elemento do output será aparece apenas uma vez.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
@@ -434,7 +424,7 @@
     "href": "centralizers.html#tarefa-3",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "9.4 Tarefa 3",
-    "text": "9.4 Tarefa 3\nEscreva uma função Cent(G) para computar o conjunto de todos os centralizadores de elementos de um grupo \\(G\\) dado. Use a função Centralizer(G,x).\nFAZER EXEMPLOS SEM SIZE\nSua função deve verificar:\ngap&gt; Size(Cent(SymmetricGroup(3)));\n5\ngap&gt; Size(Cent(AlternatingGroup(5)));\n22 \ngap&gt; Size(Cent(AlternatingGroup(6)));\n137\ngap&gt; Size(Cent(AlternatingGroup(5)));\n807\ngap&gt; Size(Cent(PSL(2,7));\n79\ngap&gt; Size(Cent(PSL(3,3));\n1185\ngap&gt; Size(Cent(DihedralGroup(8)));\n4\ngap&gt; Size(SmallGroup(16,7));\n6\ngap&gt; Size(Cent(MathieuGroup(11));\n2081",
+    "text": "9.4 Tarefa 3\n\nEscreva uma função Cent(G) para computar o conjunto de todos os centralizadores de elementos de um grupo \\(G\\) dado. Use a função Centralizer(G,x).\nFAZER EXEMPLOS SEM SIZE\nSua função deve verificar:\ngap&gt; Cent( SymmetricGroup( 3 ));                  \n[ Group([ (2,3) ]), Group([ (1,3), (2,3) ]), Group([ (1,2) ]), \n  Group([ (1,3,2) ]), Group([ (1,3) ]) ]\ngap&gt; Cent( AlternatingGroup( 4 ));\n[ Group([ (2,4,3) ]), Group([ (1,2,4), (1,3,4) ]), \n  Group([ (1,2)(3,4), (1,4)(2,3) ]), Group([ (1,3,2) ]), Group([ (1,4,2) ]), \n  Group([ (1,4,3) ]) ]\ngap&gt; Cent( SmallGroup( 16,7 ));   \n[ Group([ f1, f4 ]), Group([ f2, f4 ]), \n  &lt;pc group of size 16 with 4 generators&gt;, Group([ f1*f2, f3, f4 ]), \n  Group([ f1*f3, f4 ]), Group([ f2*f3, f4 ]) ]\ngap&gt; Size(Cent(AlternatingGroup(6)));\n137\ngap&gt; Size(Cent(AlternatingGroup(5)));\n807\ngap&gt; Size(Cent(PSL(2,7)));\n79\ngap&gt; Size(Cent(PSL(3,3)));\n1185\ngap&gt; Size(Cent(DihedralGroup(8)));\n4\ngap&gt; Size(SmallGroup(16,7));\n6\ngap&gt; Size(Cent(MathieuGroup(11)));\n2081",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
@@ -444,7 +434,7 @@
     "href": "centralizers.html#tarefa-4",
     "title": "9  Projeto: Uma exploração dos centralizadores",
     "section": "9.5 Tarefa 4",
-    "text": "9.5 Tarefa 4\nA lista a seguir possui somente ordens de grupos simples não abelianos (com repetição):\n[60, 168, 360, 504, 660, 1092, 2448, 2520, 3420, 4080, 5616, 6048, 6072, 7800, 7920, \n 9828, 12180, 14880, 20160, 20160, 25308, 25920, 29120, 32736, 34440, 39732, 51888, \n 58800, 62400, 74412, 95040, 102660, 113460, 126000, 150348]\nExplore a função AllSmallNonabelianSimpleGroups([60..n]), para \\(n\\) no conjunto acima. Por exemplo:\ngap&gt; AllSmallNonabelianSimpleGroups([60..20160]);\n[ A5, PSL(2,7), A6, PSL(2,8), PSL(2,11), PSL(2,13), PSL(2,17), A7, PSL(2,19), PSL(2,16), PSL(3,3), PSU(3,3), PSL(2,23), PSL(2,25), M11, PSL(2,27), PSL(2,29), PSL(2,31), A8, PSL(3,4)]",
+    "text": "9.5 Tarefa 4\n\nA lista a seguir possui somente ordens de grupos simples não abelianos (com repetição):\n[60, 168, 360, 504, 660, 1092, 2448, 2520, 3420, 4080, 5616, 6048, 6072, 7800, 7920, \n 9828, 12180, 14880, 20160, 20160, 25308, 25920, 29120, 32736, 34440, 39732, 51888, \n 58800, 62400, 74412, 95040, 102660, 113460, 126000, 150348]\nExplore a função AllSmallNonabelianSimpleGroups([60..n]), para \\(n\\) no conjunto acima. Por exemplo:\ngap&gt; AllSmallNonabelianSimpleGroups([60..20160]);\n[ A5, PSL(2,7), A6, PSL(2,8), PSL(2,11), PSL(2,13), PSL(2,17), A7, PSL(2,19), PSL(2,16), PSL(3,3), PSU(3,3), PSL(2,23), PSL(2,25), M11, PSL(2,27), PSL(2,29), PSL(2,31), A8, PSL(3,4)]",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Projeto: Uma exploração dos centralizadores</span>"
     ]
