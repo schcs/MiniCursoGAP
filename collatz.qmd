@@ -8,32 +8,21 @@ lang: pt-BR
 
 
 $\newcommand{\N}{\mathbb N}$
-<div class="problem">
+
+:::{.problem}
 Considere a seguinte função $f:\N\to \N$:
 $$
     f(n)=\left\{\begin{array}{cc} n/2 & \mbox{se $n$ for par;}\\
     3n+1 & \mbox{se $n$ for ímpar.}\end{array}\right.
 $$
 A [Conjetura de Collatz](https://en.wikipedia.org/wiki/Collatz_conjecture) afirma que para todo $n\in\N$, existe um número $k$ tal que aplicando a função $f$ consecutivamente $k$ vezes em $n$, o resultado vai ser igual a $1$. Em outras, palavras, $f^k(n)=1$.
-</div>
+:::
 
 ## Tarefa 1
-<div class="subproblem">
+
+:::{.subproblem}
 Escreva uma função `collatz( n )` que toma $n$ como input e devolve $f(n)$. Faça testes da sua função com vários números. 
-</div>
 
-<div class="hint">
-Precisa testar, usando `if`, (@sec-if) se o input é par ou ímpar e para isso pode usar a operação `mod` [(manual)](https://docs.gap-system.org/doc/ref/chap4_mj.html#X7B66C8707B5DE10A).
-```matlab
-gap> 3 mod 2;
-1
-gap> 6 mod 2;
-0
-```
-Se precisar de ajuda com funções, consulte a @sec-functions.
-</div>
-
-<div class="example_run">
 A sua função deve comportar-se de acordo com os seguintes exemplos:
 ```matlab
 gap> collatz( 15 );
@@ -43,7 +32,13 @@ gap> collatz( 14 );
 gap> collatz( 5 );
 16
 ```
-</div>
+:::
+
+:::{.hint}
+Precisa testar, usando `if`, (@sec-if) se o input é par ou ímpar e para isso pode usar a operação `mod` (@sec-ops-arit). Se precisar de ajuda com funções, consulte a @sec-functions.
+:::
+
+
 
 <!--
 collatz := function( n )
@@ -57,9 +52,22 @@ end;
 -->
 
 ## Tarefa 2
-<div class="subproblem">
+
+:::{.subproblem}
 Escreva uma função `nr_steps( n )` que vai calcular o número de vezes a função $f$ precisa ser aplicada em $n$ para obter o número $1$. Em outras palavras,  `nr_steps( n )` deve devolver o menor número $k$ tal que $f^k(n)=1$. Para $n=1$, nós vamos assumir que $f^0(1)=1$. 
-</div>
+
+A sua função precisa devolver o resultado de acordo com os seguintes exemplos.
+```matlab
+gap> nr_steps( 1 );
+0
+gap> nr_steps( 3 );
+7
+gap> nr_steps( 14 );
+17
+gap> nr_steps( 32 );
+5
+```
+:::
 
 <!--
 nr_steps := function( n )
@@ -75,29 +83,27 @@ nr_steps := function( n )
 end;
 -->
 
-<div class="hint">
+:::{.hint}
 Você usará a função `collatz( n )` na tarefa anterior em um laço `while` (@sec-while) ou `repeat` (@sec-repeat). Vai precisar também de variável local (explicado na @sec-functions).
-</div>
+:::
 
-<div class="example_run">
-A sua função precisa devolver o resultado de acordo com os seguintes exemplos.
-```matlab
-gap> nr_steps( 1 );
-0
-gap> nr_steps( 3 );
-7
-gap> nr_steps( 14 );
-17
-gap> nr_steps( 32 );
-5
-```
-</div>
 
 
 ## Tarefa 3
-<div class="subproblem">
+
+:::{.subproblem}
 Escreva uma função `max_nr_steps( n )` para determinar o número $k$ tal que `nr_steps( k )` é maior possível para os números $k\in\{1,\ldots,n\}$. A função deve devolver uma lista (@sec-list) de comprimento $2$ tal que a primeira entrada da lista é o número $k$ e a segunda é o número `nr_steps( k )`. 
-</div>
+
+O comportamento da sua função seguirá os seguintes exemplos:
+```matlab
+gap> max_nr_steps( 1000 );
+[ 871, 178 ]
+gap> max_nr_steps( 10000 );
+[ 6171, 261 ]
+gap> max_nr_steps( 100000 );
+[ 77031, 350 ]
+```
+:::
 
 <!--
 max_nr_steps := function( n )
@@ -116,24 +122,14 @@ max_nr_steps := function( n )
 end;
 -->
 
-<div class="hint">
+:::{.hint}
 Pode usar a função `nr_steps( k )` escrita na tarefa anterior em um laço  `for` (@sec-for) que roda na lista `[1..n]`. 
-</div>
-
-<div class="example_run">
-O comportamento da sua função seguirá os seguintes exemplos:
-```matlab
-gap> max_nr_steps( 1000 );
-[ 871, 178 ]
-gap> max_nr_steps( 10000 );
-[ 6171, 261 ]
-gap> max_nr_steps( 100000 );
-[ 77031, 350 ]
-```
-</div>
+:::
 
 ## Tarefa 4
-<div class="subproblem">
+
+
+:::{.subproblem}
 Vamos otimizar o código que foi escrito para a Tarefa 3. Calcular `nr_steps( k )` separadamente para todo $k\in \{1,\ldots,n\}$ faz muita computação redundante. Por exemplo, calculando `max_nr_steps( 6 )` deste jeito, fazemos as seguintes contas 
 ```matlab
 1 → 1 
@@ -144,13 +140,7 @@ Vamos otimizar o código que foi escrito para a Tarefa 3. Calcular `nr_steps( k 
 6 → 3 → 10 → 5 → 16 → 8 → 4 → 2 → 1
 ```
 A computação `nr_steps( 6 )` deve realizar que `nr_steps( 3 )` já foi calculado e simplificar a conta por computar que `nr_steps( 6 ) = nr_steps( 3 ) + 1`. Escreva uma versão da função `max_nr_steps_fast( n )` utilizando as computações anteriores e compare o tempo de execução das duas versões.
-</div>
 
-<div class="hint">
-Denotando por $k_n$ o valor da função `nr_steps( n )`, guarde o valor de $k_n$ como o $k$-ésima entrada em uma lista. A lista pode ser uma lista esparsa (@sec-list). Provavelmente precisará das expressões `break` e `continue` (@sec-break-continue). Pode usar também a variável interna `time` que devolve o tempo (em milisegundos) que a última instrução tomou ([manual](https://docs.gap-system.org/doc/ref/chap7.html#X7C0F91F982189624)).
-</div>
-
-<div class="example_run">
 De acordo com o seguinte exemplo, calcular o valor maximal de `nr_steps( k )` para `k in [1..1000000]` demora mais que 25 segundos usando a função escrita para a Tarefa 3. A nova função faz esta computação em apenas 1,3 segundos. 
 ```matlab
 gap> max_nr_steps( 1000000 ); time;   
@@ -160,7 +150,12 @@ gap> max_nr_steps_fast( 1000000 ); time;
 [ 837799, 524 ]
 1335
 ```
-</div>
+:::
+
+:::{.hint}
+Denotando por $k_n$ o valor da função `nr_steps( n )`, guarde o valor de $k_n$ como o $k$-ésima entrada em uma lista. A lista pode ser uma lista esparsa (@sec-list). Provavelmente precisará das expressões `break` e `continue` (@sec-break-continue). Pode usar também a variável interna `time` que devolve o tempo (em milisegundos) que a última instrução tomou ([manual](https://docs.gap-system.org/doc/ref/chap7.html#X7C0F91F982189624)).
+:::
+
 
 
 <!--
