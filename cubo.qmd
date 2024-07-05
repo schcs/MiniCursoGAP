@@ -8,7 +8,15 @@ lang: pt-BR
  
 ## O cubo mágico
 
-O cubo mágico, como outros brincedos de lógica, pode ser analisado usando o sistema `GAP`. O cubo tem 48 peças cujas posições estão ilustradas no seguinte diagrama.
+
+:::{.problem}
+O cubo mágico, como outros brincedos de lógica, pode ser analisado usando o sistema `GAP`. Neste projeto vamos analizar o grupo associado com o cubo mágico e vamos criar um algoritmo baseado na teoria dos grupos livres para a solução do cubo.
+:::
+
+## Exploração interativa
+
+:::{.subexample}
+O cubo tem 48 peças cujas posições estão ilustradas no seguinte diagrama.
 
 ```
                      +--------------+
@@ -37,8 +45,6 @@ O cubo mágico, como outros brincedos de lógica, pode ser analisado usando o si
                      |              |
                      +--------------+
 ```
-
-## O grupo do cubo mágico
 
  Todo movimento pode ser visto como uma permutação dessas peças. Por exemplo girar o topo induz a permutação seguinte. 
 
@@ -69,8 +75,6 @@ gap> Factors( last );
 gap> Collected( last );
 [ [ 2, 27 ], [ 3, 14 ], [ 5, 3 ], [ 7, 2 ], [ 11, 1 ] ]
 ```
-
-## Tarefa 1
 
 Vamos ver como transformar uma configuração a um elemento de $G$. Considere por exemplo a seguinte configuração.
 
@@ -117,9 +121,11 @@ gap> x := PermList( s );
 gap> x in G;
 true
 ```
+:::
 
-## Tarefa 2
+## Tarefa 1
 
+:::{.subproblem}
 Seja $X$ um grupo. Lembre que uma série 
 $$
 X_0>X_1>X_2>\cdots>X_m=1
@@ -189,9 +195,11 @@ gap> List( factors, StructureDescription );
   "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2", "C2" ]
 ```
 -->
+:::
 
-## Tarefa 3
+## Tarefa 2
 
+:::{.subproblem}
 Vamos estudar a estrutura permutacional do grupo $G$.
 
 1. Determine as órbitas de $G$ agindo no conjunto das 48 peças. 
@@ -214,17 +222,20 @@ gap> b2 := Blocks( G, orbs[2] );
   [ 15, 44 ], [ 21, 28 ], [ 23, 42 ], [ 29, 36 ], [ 31, 45 ], [ 39, 47 ] ]
 ```
 -->
+:::
 
+:::{.hint}
+Use as funções `Orbits` ([manual](https://docs.gap-system.org/doc/ref/chap41.html#X81E0FF0587C54543)) e `Blocks` ([manual](https://docs.gap-system.org/doc/ref/chap41.html#X84FE699F85371643)).
+:::
 
 ## Tarefa 4
 
-Usar letra diferente para o grupo F.
-
-Finalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em `G`. Seja $Fr$ o grupo livre gerado pelos geradores $C$, $E$, $F$, $D$, $T$, $B$. Note que $F$ é gerado por $6$ elementos e cada gerador de $F$ corresponde a um gerador de $G$. A propriedade universal do grupo livre implica que  o mapa 
+:::{.subproblem}
+Finalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em $G$. Seja $\mathcal F$ o grupo livre gerado pelos geradores $C$, $E$, $F$, $D$, $T$, $B$. Note que $\mathcal F$ é gerado por $6$ elementos e cada gerador de $\mathcal F$ corresponde a um gerador de $G$. A propriedade universal do grupo livre implica que  o mapa 
 $$
 C\mapsto c,\ E\mapsto e, F\mapsto f,\ D\mapsto d,\ T\mapsto t,\ B\mapsto b
 $$
-pode ser extendido a um único homomorfismo $f:F\to G$. Se $g\in G$ e $w$ é uma pré-imagem de $g$, então $w$ mostra como escrever $g$ em uma palavra nos geradores de $G$. Ou seja, $w$ monstra como obter a configuração que corresponde ao elemento $g$ como uma sequência dos $6$ movimentos básicos. 
+pode ser extendido a um único homomorfismo $f:\mathcal F\to G$. Se $g\in G$ e $w$ é uma pré-imagem de $g$, então $w$ mostra como escrever $g$ em uma palavra nos geradores de $G$. Ou seja, $w$ monstra como obter a configuração que corresponde ao elemento $g$ como uma sequência dos $6$ movimentos básicos. 
 
 Ilustramos esta ideia com um exemplo simpes usando o grupo $D_{10}$. 
 
@@ -234,9 +245,9 @@ gap> a := (1,2,3,4,5); b := (2,5)(3,4);
 (2,5)(3,4)
 gap> G := Group( a, b );
 Group([ (1,2,3,4,5), (2,5)(3,4) ])
-gap> F := FreeGroup( "A", "B" );
+gap> Fr := FreeGroup( "A", "B" );
 <free group on the generators [ A, B ]>
-gap> hom := GroupHomomorphismByImages( F, G, GeneratorsOfGroup( F ), GeneratorsOfGroup( G ));
+gap> hom := GroupHomomorphismByImages( Fr, G, GeneratorsOfGroup( Fr ), GeneratorsOfGroup( G ));
 [ A, B ] -> [ (1,2,3,4,5), (2,5)(3,4) ]
 gap> x := Random( G );
 (1,4)(2,3)
@@ -251,11 +262,12 @@ gap> a^-1*b^-1*a^-3 = x;
 true
 ```
 
-1. Construa o grupo $F$ em cima em `GAP` usando `FreeGroup`.
-2. Construa o homomorfismo $f$ em cima usando `GroupHomomorphismByImages`.
+1. Construa o grupo $F$ em cima em `GAP` usando `FreeGroup` ([manual](https://docs.gap-system.org/doc/ref/chap37.html#X8215999E835290F0)).
+2. Construa o homomorfismo $f$ em cima usando `GroupHomomorphismByImages` ([manual](https://docs.gap-system.org/doc/ref/chap40.html#X7F348F497C813BE0)).
 3. Considere a configuração do cubo na Tarefa 1. Construa a sequência dos movimentos que resulta nesta configuração.
 4. Considere uma configuração aleatória do cubo por escolhendo um elemento aleatório de $G$ (usando `Random( G )`). Construa a sequência dos movimentos que resulta nesta configuração aleatória.
 5. Usando um dos cubos disponibilizados por Igor e Csaba, obtenha a configuração da Tarefa 1.
+:::
 
 <!--
 gap> PreImagesRepresentative( hom, x );
@@ -295,7 +307,9 @@ B^-1*T^-1*D^-2*C^-1*B^-2*F^-1
 
 ## Tarefa 5
 
+:::{.subproblem}
 1. Verifique que $G$ pode ser gerado por 2 elementos. Dica: Pegue usando `Random( G )` dois elementos aliatórios em $G$ e verifique se o grupo gerado por eles coincide com $G$.
 2. Ache um subconjunto  mínimo $S$ do conjunto $\{c,e,f,d,t,b\}$ de geradores tal que $\left<S\right>=G$.
 3. Construa a configuração da Tarefa 1 usando apenas os movimentos do conjunto $S$ no ponto anterior.
-3. Seja $C$ o conjunto de 8 peças de canto (as peças que possuem 3 cores). O grupo $G$ age sobre o conjunto $C$.  Mostre que $G$ induz $S_{8}$ sobre o conjunto  dessas peças. Similarmente, seja $L$ o conjunto das 12 peças  laterias (as peças que possuem 2 cores). Mostre que $G$  induz $S_{12}$ sobre $L$. (Isso explica os grupos $A_8$ e $A_{12}$ entre os fatores de composição de $G$). Use [`Action( G, conj, act )`](http://www.gap-system.org/Manuals/doc/ref/chap41.html#X85A8E93D786C3C9C).
+3. Seja $C$ o conjunto de 8 peças de canto (as peças que possuem 3 cores). O grupo $G$ age sobre o conjunto $C$.  Mostre que $G$ induz $S_{8}$ sobre o conjunto  dessas peças. Similarmente, seja $L$ o conjunto das 12 peças  laterias (as peças que possuem 2 cores). Mostre que $G$  induz $S_{12}$ sobre $L$. (Isso explica os grupos $A_8$ e $A_{12}$ entre os fatores de composição de $G$). Use `Action( G, conj, act )`([manual](http://www.gap-system.org/Manuals/doc/ref/chap41.html#X85A8E93D786C3C9C)).
+:::

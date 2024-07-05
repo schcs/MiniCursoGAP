@@ -1,11 +1,12 @@
 ---
-title: "Projeto: Comutadores"
+title: "Comutadores em grupos"
 number-sections: true
 lang: pt-BR
 ---
 
-## A Teoria
+## O problema
 
+:::{.problem}
 Seja $G$ um grupo. Se $x,y\in G$,  o comutador $[x,y]$ está definido como 
 $$
 [x,y]=x^{-1}y^{-1}xy.
@@ -15,9 +16,11 @@ $$
 G'=\left<[x,y]\mid x,y\in G\right>.
 $$
 É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o subgrupo gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequeno $G'$ coincide com o conjunto de comutadores. 
+:::
 
-## Tarefa 1
+## Exploração interativa
 
+:::{.subexample}
 Vamos explorar o conjunto de comutadores em um grupo dado. Considere por exemplo o grupo `SymmetricGroup( 5 )`. Vamos primeiro calcular o comutador de dois elementos. 
 
 ```matlab
@@ -54,12 +57,16 @@ gap> Size( comms );
 60
 gap> comms = Set( DerivedSubgroup( G ));
 true
+gap> DerivedSubgroup( G ) = AlternatingGroup( 5 );
+true
 ```
-A computação em cima mostra que, no caso do grupo $S_5$, o subgrupo derivado coincide com o conjunto de comutadores. 
+A computação em cima mostra que, no caso do grupo $S_5$, o subgrupo derivado (ou seja, o subgrupo $A_5$) coincide com o conjunto de comutadores. 
+:::
 
-## Tarefa 2
+## Tarefa 1
 
-Escreva uma função `nr_comps( G )` que para um grupo `G` dado, computa o número de comutadores distintos de `G`. A sua função deve verificar:
+:::{.subproblem}
+Escreva uma função `nr_commutators( G )` que para um grupo `G` dado, computa o número de comutadores distintos de `G`. A sua função deve verificar:
 
 ```matlab
 gap> nr_comms( SymmetricGroup( 5 ));
@@ -81,11 +88,16 @@ gap> Size( DerivedSubgroup( DihedralGroup( 10 )));
 gap> Size( DerivedSubgroup( PGL( 2,7 )));
 168
 ```
+:::
 
-## Tarefa 3
+:::{.hint}
+Escreva uma função encapsulando o código no exemplo anterior em uma função.
+:::
 
-Escreva uma função `commutator_set_is_subgroup( G )` para verificar se o conjunto de comutadores é igual ao subgrupo derivado de um grupo `G`. A função deve devolver `true` ou `false`. Note que é suficiente verificar se 
-a cardinalidade do conjunto de comutadores é igual à cardinalidade do subgrupo derivado. A sua função deve seguir os seguintes exemplos. 
+## Tarefa 2
+
+:::{.subproblem}
+Escreva uma função `commutator_set_is_subgroup( G )` para verificar se o conjunto de comutadores é igual ao subgrupo derivado de um grupo `G`. A função deve devolver `true` ou `false`. Note que é suficiente verificar se  a cardinalidade do conjunto de comutadores é igual à cardinalidade do subgrupo derivado. A sua função deve seguir os seguintes exemplos. 
 ```matlab 
 gap> commutator_set_is_subgroup( SymmetricGroup( 5 ));
 true
@@ -96,22 +108,28 @@ true
 gap> commutator_set_is_subgroup( PGL( 2, 7 ));
 true
 ```
+:::
 
-## Tarefa 4
+## Tarefa 3
 
-Usando a função `SmallGroup( n, k )`, ache o menor grupo `G` tal que o conjunto de comutadores de `G` não é o grupo derivado. Por exemplo, vamos verificar que entre os grupos de ordem 24 isso não ocorre. 
+:::{.subproblem}
+Usando a função `AllSmallGroups( Size, list )`, ache o menor grupo `G` tal que o conjunto de comutadores de `G` não é o grupo derivado. Por exemplo, vamos verificar que entre os grupos de ordem 24 isso não ocorre. 
 
 ```matlab
-gap> max_k := NrSmallGroups( 24 );
-15
-gap> List( [1..15], x -> commutator_set_is_subgroup( SmallGroup( 24, x )));
+gap> List( AllSmallGroups( Size, [24] ), G -> commutator_set_is_subgroup( G ));
 [ true, true, true, true, true, true, true, true, true, true, true, true, 
   true, true, true ]
 ```
+:::
 
 ## Tarefa 5
 
-O COMPRIMENTO DOS PRODUTOS
+:::{.subproblem}
+Seja $G$ o grupo encontrado na tarefa anterior.
+
+1. Faça a lista dos elementos do subgrupo derivado $G'$ que não são comutadores. 
+2. Escreva estes elementos como produto de comutadores de $G$. Demonstre que todo elemento de $G'$ pode ser escrito na forma $[x_1,x_2][y_1,y_2]$ com $x_i,y_i\in G$.
+:::
 
 <!-- 
 nr_comms := function( G )

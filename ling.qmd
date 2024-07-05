@@ -204,6 +204,8 @@ gap> y;
 -5
 ```
 
+FUNCTIONS WITH OPTIONAL ARGUMENT
+
 ## Break e continue {#sec-break-continue}
 
 

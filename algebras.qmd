@@ -4,17 +4,28 @@ number-sections: true
 lang: pt-BR
 ---
  
+Neste projeto vamos aprender como trabalhar com anéis e álgebra no sistema `GAP`. 
+
 ## Idempotentes e elementos nilpotentes em $\mathbb Z_n$
 
+
+:::{.subexample}
 Seja $n\geq 2$ um inteiro e  consideramos o anel $\mathbb Z_n$ de inteiros moduló $n$ com  a adição e multiplicação usuais. Em `GAP` esse anel pode ser construído como no seguinte exemplo.
 
 ```matlab
-gap> R := ZmodZ(12 );
+gap> R := ZmodnZ(12 );
 (Integers mod 12)
 ```
+Para acessar os elementos de `R`, precisamos considerar $a\cdot 1_R$ onde $1_R$ é a identidade de $R$. Por exemplo, o elemento `3` em `R` pode ser escrito nesta forma.
+```
+gap> a := 3*One( R );
+ZmodnZObj( 3, 12 )
+```
+:::
 
 ## Tarefa 1
 
+:::{.subproblem}
 Um elemento $a\in\mathbb Z_n$ chama-se *nilpotente* se $a^k=0$ com algum $k\geq 1$ e o menor tal $k$ é chamado de *grau de nilpotência* de $a$. Um elemento $a\in\mathbb Z_n$ chama-se *idempotente* se $a^2=a$. 
 
 ```matlab
@@ -28,10 +39,15 @@ false
 2. Use a função escrita no item anterior para calcular o número de  idempotentes em anéis na forma $\mathbb Z_{p^n}$ onde $p$ é primo. Formalize uma conjetura.
 3. Escreva uma função que determina se um elemento de  $\mathbb Z_n$ é nilpotente.
 4. Escreva uma função que devolve o número de elementos nilpotentes  em $\mathbb Z_n$. Experimente a função com vários valores de $n$ e tente formalizar uma conjetura.
+:::
 
+:::{.hint}
+Use a função `IsIdempotent` e `Filtered` (@sec-list). Para verificar se um elemento é nilpotente, observe que $a\in\mathbb Z_n$ é nilpotente se e somente se $a^n=0$. Pense se dâ para verificar a nilpotência de $a$ usando um expoente menor. 
+:::
 
 ## A álgebra dos quaternions
 
+:::{.problem}
 Seja $\mathbb F$ um corpo e $\alpha,\ \beta\in\mathbb  F\setminus\{0\}$. A álgebra generalizada dos quatérnions $A_{\alpha,\beta}$ é um espaço vetorial de dimensão 4 sobre $\mathbb F$ gerado com a base $B=[1,i,j,k]$ munido  com a multiplicação dada por a tabela seguinte:
 
 | $\cdot$ | $1$  |    $i$    | $j$ | $k$       |
@@ -42,7 +58,11 @@ Seja $\mathbb F$ um corpo e $\alpha,\ \beta\in\mathbb  F\setminus\{0\}$. A álge
 | $k$     | $k$  | $-\alpha j$ | $\beta i$ | $-\alpha \beta$ |
 
 
-A álgebra usual dos quaternions pode ser obtida como $A_{-1,-1}$. Vamos construir $A_{1,1}$. Em `GAP` tal álgebras podem ser construídas com a função 
+A álgebra usual dos quaternions pode ser obtida como $A_{-1,-1}$. 
+:::
+
+:::{.subexample}
+Vamos construir $A_{1,1}$. Em `GAP` tal álgebras podem ser construídas com a função 
 [`AlgebraByStructureConstants`](http://www.gap-system.org/Manuals/doc/ref/chap62.html#X7CC58DFD816E6B65).
 Primeiro nós inicializamos $T$ como uma tabela vazia  de constantes de estrutura.
 
@@ -61,7 +81,7 @@ A multiplicação em $A_{1,1}$ pode ser definida da maneira seguinte.  Primeiro 
 ```
 gap> SetEntrySCTable( T, 1, 1, [1,1] );
 ```
-O primeiro argumento é o nome da tabela em que definimos o produto. O segundo e o terceiro argumentos significam que definimos o produto `B[1]\cdot B[1]`. O último argumento significa que o produto é `1\cdot B[1]`.
+O primeiro argumento é o nome da tabela em que definimos o produto. O segundo e o terceiro argumentos significam que definimos o produto `B[1]•B[1]`. O último argumento significa que o produto é `1•B[1]`.
 
 Continuando desta maneira, definimos os produtos de $A_{1,1}$.
 ```matlab
@@ -82,13 +102,16 @@ gap> SetEntrySCTable( T, 4, 3, [1,2] );
 gap> SetEntrySCTable( T, 4, 4, [-1,1] );
 gap> A := AlgebraByStructureConstants( F, T );
 ```
+:::
+
 
 ## Tarefa 2
 
+:::{.subproblem}
 1. Escreva uma função `quaternion_algebra( F, a, b )` que devolve a álgebra de quatérnions $A_{a,b}$ sobre $\mathbb F$.
 2. Use a função `quaternion_algebra`  para construir várias álgebras sobre vários corpos. Verifique se as álgebras
 são simples (use [`IsSimpleAlgebra`](http://www.gap-system.org/Manuals/doc/ref/chap62.html#X877DF13387831A6A)). 
-
+:::
 
 
 

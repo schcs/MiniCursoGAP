@@ -5,8 +5,11 @@ lang: pt-BR
 ---
 
 
+Neste projeto aprendemos como trabalhar com polinômios, anéis polinomiais, ideais em `GAP` e resolvemos um problema de geometria plana.
+
 ## Polynômios em GAP
 
+:::{.subexample}
 Indeterminados, polinômios e anéis de polinômios podem ser definidos em `GAP` na maneira seguinte.
 
 ```matlab
@@ -25,6 +28,7 @@ x^2+z^2
 gap> f*g;
 x^3*y-x^2*z^2+x*y*z^2-z^4
 ```
+
 
 Note que podemos também definir ideais
 
@@ -63,13 +67,14 @@ O resultado indica que o resto de $h$ em relação ao ideal $I$ é $0$ e os dois
 gap> h = (x*z+1)*f-x*g
 true
 ```
-
+:::
 
 ## As medianas de um triângulo
 
+
+:::{.problem}
 Seja $\Delta=ABC$ um triângulo no plano. A reta que conecta uma ponta de $\Delta$ com o ponto meio do lado oposto chama-se *mediana*. Está bem conhecido que as medianas se interceptam em um ponto chamado de *baricentro* de $\Delta$. Neste projeto provaremos este fato usando álgebra comutativa.
 
-## O modelo algébrico 
 
 Assuma sem perder generalidade que as três pontas do triângulo são 
 \begin{align*}
@@ -83,7 +88,7 @@ P & = ((x+1)/2,y/2);\\
 Q & = (x/2,y/2);\\
 R & = (1/2,0).
 \end{align*}
-Assuma que $S=(u,v)$ é o pnnto de interseção das retas $AP$ e $BQ$.  Precisa provar que a reta $CR$ passa pelo ponto $S$. 
+Assuma que $S=(u,v)$ é o ponto de interseção das retas $AP$ e $BQ$.  Precisa provar que a reta $CR$ passa pelo ponto $S$. 
 Os fatos que $S$ está na reta $AP$ e que $S$ está na reta $BQ$ podem ser expressas das equações
 \begin{align*}
 \frac uv=\frac{x+1}y;\\
@@ -103,14 +108,15 @@ $$
 f_3=-2xv+2yu-y+v=0.
 $$
 
-Note que o fato que $S$ está na reta $CR$ é equivalente à afirmação que 
+Para provar que $S$ está na reta $CR$, é suficiente provar que  que 
 $$
-f_3=(f_1,f_2).
+f_3\in(f_1,f_2).
 $$
-
+:::
 
 ## Tarefa 1
 
+:::{.subproblem}
 Faça as seguintes computações com `GAP`.
 
 1. Defina o anel de polinômios $\mathbb Q[x,y,u,v]$. 
@@ -121,20 +127,26 @@ $$
 f_3=h_1f_1+h_2f_2
 $$ 
 onde $h_i\in\mathbb Q[x,y,u,v]$. 
+:::
 
+:::{.dica}
+Segue os passos na computação em cima.
+:::
 
 ## Tarefa 2
 
+:::{.subproblem}
 O modelo algébrico não incluiu a informação que o triângulo é não degenerado; ou seja, $y\neq 0$. Esta condição pode ser incluída no modelo por introduzir uma nova variável $Y$ e uma nova equação 
 $$
 f_4=Yy-1=0.
 $$
 
-1. Faça as computações na Tarefa 1 incluindo o polinômio $f_4$.
-
+1. Faça as computações na Tarefa 1 incluindo o polinômio $f_4$. Verifique se o resultado é diferente.
+:::
 
 ## Tarefa 3
 
+:::{.subproblem}
 Demonstre que o ponto $S$ divide as medianas em duas partes cuja razão é $1:2$. Note que esta afirmação é equivalente à equação 
 $$
 3|RS|=3(u-1/2,v)=(x-1/2,y)=|RC|.
@@ -149,3 +161,4 @@ $$
 $$
 h_1f_1+h_2f_2.
 $$
+:::

@@ -4,9 +4,12 @@ number-sections: true
 lang: pt-BR
 ---
 
+Neste projeto iremos trabalhar com grafos. 
 
 ## O grafo de Petersen
 
+
+:::{.subexample}
 O [grafo de Petersen](http://pt.wikipedia.org/wiki/Grafo_de_Petersen)é um grafo com muitas  propriedades interessantes. O grafo de Petersen pode
 ser construído como o grafo com o conjunto de vértices 
 $$
@@ -77,10 +80,12 @@ gap> Girth( G );
 gap> IsConnectedGraph( G );
 true
 ```
+:::
+
 ## Tarefa
 
 
-
+:::{.subproblem}
 Se $G$ é um grupo, então definimos o *grafo não comutante* de $G$ como sendo o grafo cujo conjunto de vértices é $G\setminus Z(G)$ e dois vertices $g,\ h$ são conectados se e só se $xy\neq yx$; ou seja, $[x,y]=x^{-1}y^{-1}xy\neq 1$.
 
 
@@ -89,3 +94,4 @@ Se $G$ é um grupo, então definimos o *grafo não comutante* de $G$ como sendo 
 `SmallGroup`). Verifique se os grafos são conexos, determine o diâmetro.
 
 Algumas propriedades interessentas de grafos não comutantes são demonstradas [neste artigo](http://www.sciencedirect.com/science/article/pii/S002186930600113X#).
+:::

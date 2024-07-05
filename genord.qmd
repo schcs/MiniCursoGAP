@@ -4,9 +4,35 @@ number-sections: true
 lang: pt-BR
 ---
 
-## Carateres de grupos
 
-Seja $G$ um grupo finito e seja $\varrho:G\to \operatorname{GL}(n,\mathbb C)$ um homomorfismo. O homomorfismo $\varrho$ chama-se também uma *representação linear* de $G$. O carater associado com $\varrho$ é 
+Neste projeto vamos ver como trabalhar com carateres de grupos e vamos resolver um problema relacionado com a ordem generalizada de elementos (veja o [artigo](https://link.springer.com/article/10.1007/s00013-023-01931-5) para a teoria mais detalhada). 
+
+## A ordem generalizada
+
+:::{.problem}
+Seja $G$ um grupo e $x\in G$. A *ordem generalizada* $[x]$ de $x$ é o menor número natural $k$ tal que a identidade $1$ de $G$ pode ser escrito como um produto de $k$ conjugados de $x$. Ou seja, $[x]$ é o menor natural $k$ tal que 
+$$
+x^{g_1}\cdots x^{g_k}=1
+$$
+com algum $g_1,\ldots,g_k\in G$. 
+
+
+:::{#thm-ord-gen}
+Seja $G$ um grupo finito, seja $g\in G$ e sejam $\chi_1,\ldots,\chi_m$ os carateres irredutíveis de $G$. Defina, para $k\geq 1$, 
+$$
+\alpha_{g,k}=\frac {|G|^{k-1}}{|C_G(g)|^k}\sum_{i=1}^m\frac{\chi_i(g)^k}{\chi_i(1)^{k-2}}.
+$${#eq-genord}
+Então $\alpha_{g,k}$ é um número natural e ele é igual ao número de maneiras de escrever a identidade $1$ de $G$ como produto de conjugados de $g$. Em particular, 
+$$
+[g]=\min\{k\geq 1\mid \alpha_{g,k}\geq 1\}.
+$$
+:::
+:::
+
+## Carateres em `GAP`
+
+:::{.subexample}
+Vamos ver primeiro como trabalhar com carateres em `GAP`. Seja $G$ um grupo finito e seja $\varrho:G\to \operatorname{GL}(n,\mathbb C)$ um homomorfismo. O homomorfismo $\varrho$ chama-se também uma *representação linear* de $G$. O carater associado com $\varrho$ é 
 $$
 \chi:G\to\mathbb C,\quad \chi(g)=\mbox{trace}(\varrho(g)). 
 $$
@@ -29,31 +55,12 @@ gap> irr[3];
 Character( CharacterTable( <pc group of size 24 with 4 generators> ),
  [ 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, 1, 1, -1 ] )
 ```
-
-## A ordem generalizada
-
-Seja $G$ um grupo e $x\in G$. A *ordem generalizada* $[x]$ de $x$ é o menor número natural $k$ tal que a identidade $1$ de $G$ pode ser escrito como um produto de $k$ conjugados de $x$. Ou seja, $[x]$ é o menor natural $k$ tal que 
-$$
-x^{g_1}\cdots x^{g_k}=1
-$$
-com algum $g_1,\ldots,g_k\in G$. 
-
-## A ordem generalizada usando carateres
-
-:::{#thm-ord-gen}
-Seja $G$ um grupo finito e seja $g\in G$. Defina
-$$
-\alpha_{g,k}=\frac {|G|^{k-1}}{|C_G(g)|^k}\sum_{\chi\in\mbox{Irr}(G)}\frac{\chi(g)^k}{\chi(1)^{k-2}}.
-$$
-Então $\alpha_{g,k}$ é um número natural e ele é igual ao número de maneiras de escrever a identidade $1$ de $G$ como produto de conjugados de $g$. Em particular, 
-$$
-[g]=\min\{k\geq 1\mid \alpha_{g,k}\geq 1\}.
-$$
 :::
 
-## Tarefa 1
 
-Vamos calcular a ordem generalizada de um elemento do grupo dihedral $D_8$. Usando a fórmula anterior.
+
+:::{.subexample}
+Vamos calcular a ordem generalizada de um elemento do grupo dihedral $D_8$, usando a equação @eq-genord.
 
 ```matlab
 gap> D8 := DihedralGroup( 8 );
@@ -77,10 +84,60 @@ gap> k := 2;; Sum( List( irr, x->x[3]^k/x[1]^(k-2) ));
 4
 ```
 
-Note que obtemos que o ordem generalizada de $a$ é $8$. 
+Note que obtemos que o ordem generalizada de $a$ é $2$. Note que a ordem do mesmo elemento é $4$. 
+:::
+
+## Tarefa 1
+:::{.problem}
+1. Escreva uma função `generalized_order( G, i )` que dado um grupo $G$ e $i\geq 1$, devolve a ordem generalizada de um elemento na $i$-ésima class de conjugação de $G$ usando a equação @eq-genord.  
+2. Escreva uma função `generalized_orders( G )` que calcula a lista das ordens generalizadas das classes de conjugação de $G$.
+
+O resultado do seu código deve seguir os seguintes exemplos.
+```matlab
+gap> generalized_order( SymmetricGroup( 5 ), 2 );
+2
+gap> generalized_order( SmallGroup( 18, 3 ), 2 );
+2
+gap> generalized_order( SmallGroup( 18, 3 ), 5 );
+6
+gap> generalized_orders( AlternatingGroup( 5 ));
+[ 1, 2, 2, 2, 2 ]
+gap> generalized_orders( AlternatingGroup( 7 ));
+[ 1, 2, 2, 2, 2, 2, 2, 3, 3 ]
+```
+:::
+
+:::{.hint}
+Calcule a soma na equação @eq-genord para todo $k$ até ela vira não nula. Usa o laço `repeat` (@sec-repeat).
+:::
+
+<!--
+generalized_orders := G -> List( [1..NrConjugacyClasses( G )], x->generalized_order( G, x ));
+-->
+
+<!--
+generalized_order := function( G, x )
+  local t, irr, k;
+
+  t := CharacterTable( G );
+  irr := Irr( t );
+  k := 0; 
+  repeat
+    k := k+1;
+  until Sum( List( irr, chi->chi[x]^k/chi[1]^(k-2))) > 0;
+
+  return k;
+end;
+-->
 
 ## Tarefa 2
+:::{.subproblem}
+1. Usando as funções na tarefa anterior, ache um grupo $G$ que possui elemento $x\in G$ tal que $[x]$ não é divisor de $|G|$. 
+2. Ache um grupo $G$ que possui um elemento $x\in G$ tal que $[x]$ é coprimo com $|G|$.
+3. Ache um grupo $G$ que possui um elemento $x\in G$ tal que $[x]$ é um primo $p$ tal que $p\nmid |G|$. 
+:::
 
-## Tarefa 3
+:::{.hint}
+Escreva uma função para cada um dos itens nesta tarefa. A função deve devolver `true` se o grupo sataisfaz a condição procurada, e `false` caso contrário. Use `Filtered` sobre `AllSmallGroups( Size, list )` (veja a @sec-list).
+:::
 
-## Tarefa 4
