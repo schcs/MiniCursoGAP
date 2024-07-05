@@ -10,6 +10,9 @@ Este material foi preparado para o minicurso de *Álgebra Computacional com GAP*
 - [A Conjetura de Collatz](collatz.qmd)
 - [Números perfeitos, abundantes, e sequências alíquotas](aliquot.qmd)
 - [Criptografia RSA](rsa.qmd)
+
+  Conhecimento prévio: Aritmética modular, variáveis, funções 
+
 - Conceitos básicos com grupos
 - [Uma exploração dos centralizadores](centralizers.qmd)
 - Homomorfismos, automorfismos, etc, de grupos
@@ -21,7 +24,7 @@ Este material foi preparado para o minicurso de *Álgebra Computacional com GAP*
 - Álgebras de Lie
 - [Álgebras associativas](algebras.qmd)
 - Álgebra comutativa
-- [Bases de Grobner](groebner1.qmd)
+- [Um problema de álgebra comutativa](groebner1.qmd)
 - Teoria de Galois
 - [Teoria de grafos](grafos.qmd)
   

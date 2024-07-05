@@ -126,7 +126,7 @@ X_0>X_1>X_2>\cdots>X_m=1
 $$
 de subgrupos é dita *série de composição* se $X_{i+1}$ é um subgrupo normal em $X_i$ e $X_i/X_{i+1}$ é um grupo simples para todo $i$ (ou seja, $X_i/X_{i+1}$ não possui subgrupo normal próprio e não trivial).   A série de composição em um grupo, pode não ser única, mas sabemos pelo Teorema de Jordan-Holder que o comprimento da séries e os tipos de isomorfismo dos fatores (os *fatores de composição*) são unicamente determinados por $X$. Estes fatores podem ser vistos como os blocos elementares do grupo similarmente aos fatores primos dos números naturais.
 
-No seguinte exempolo simples vamos determinar os fatores de composição do grupo dihedral $D_5$ (os simetrias do pentágono).
+No seguinte exemplo simples vamos determinar os fatores de composição do grupo dihedral $D_{10}$ (as simetrias do pentágono).
 
 ```matlab
 gap> G := DihedralGroup( 10 );
@@ -139,7 +139,7 @@ gap> List( [1..2], i->StructureDescription(C[i]/C[i+1]) );
 [ "C2", "C5" ]
 ```
 
-Temos que a série de composição de $D_5$ tem comprimento $2$ e os dois fatores são cíclicos de ordem $2$ e $5$. 
+Temos que a série de composição de $D_{10}$ tem comprimento $2$ e os dois fatores são cíclicos de ordem $2$ e $5$. 
 
 Agora responda às seguintes perguntas sobre o grupo $G$ do cubo mágico.
 
@@ -218,13 +218,15 @@ gap> b2 := Blocks( G, orbs[2] );
 
 ## Tarefa 4
 
-Finalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em `G`. Seja $F$ o grupo livre gerado pelos geradores $C$, $E$, $F$, $D$, $T$, $B$. Note que $F$ é gerado por $6$ elementos e cada gerador de $F$ corresponde a um gerador de $G$. A propriedade universal do grupo livre implica que  o mapa 
+Usar letra diferente para o grupo F.
+
+Finalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em `G`. Seja $Fr$ o grupo livre gerado pelos geradores $C$, $E$, $F$, $D$, $T$, $B$. Note que $F$ é gerado por $6$ elementos e cada gerador de $F$ corresponde a um gerador de $G$. A propriedade universal do grupo livre implica que  o mapa 
 $$
 C\mapsto c,\ E\mapsto e, F\mapsto f,\ D\mapsto d,\ T\mapsto t,\ B\mapsto b
 $$
-pode ser extendido a um único homomorfismo $f:F\to G$. Se $g\in G$ e $w$ é uma pré-imagem de $g$, então $w$ mostra como escrever $g$ em uma palavra nas geradores de $G$. Ou seja, $w$ monstra como obter a configuração que corresponde ao elemento $g$ como uma sequência dos $6$ movimentos básicos. 
+pode ser extendido a um único homomorfismo $f:F\to G$. Se $g\in G$ e $w$ é uma pré-imagem de $g$, então $w$ mostra como escrever $g$ em uma palavra nos geradores de $G$. Ou seja, $w$ monstra como obter a configuração que corresponde ao elemento $g$ como uma sequência dos $6$ movimentos básicos. 
 
-Ilustramos esta ideia com um exemplo simpes usando o grupo $D_5$. 
+Ilustramos esta ideia com um exemplo simpes usando o grupo $D_{10}$. 
 
 ```matlab
 gap> a := (1,2,3,4,5); b := (2,5)(3,4);
@@ -242,7 +244,7 @@ gap> PreImagesRepresentative( hom, x );
 A^-1*B^-1*A^-3
 ```
 
-O resultado diz que a permutação $x=(1,4)(2,3)$ pode ser obtida como a composição $a^{-1}*b^{-1}*a^{-3}$. De fato
+O resultado diz que a permutação $x=(1,4)(2,3)$ pode ser obtida como a composição $a^{-1}b^{-1}a^{-3}$. De fato
 
 ```matlab
 gap> a^-1*b^-1*a^-3 = x;

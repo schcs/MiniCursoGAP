@@ -17,7 +17,7 @@ gap> R := ZmodZ(12 );
 
 Um elemento $a\in\mathbb Z_n$ chama-se *nilpotente* se $a^k=0$ com algum $k\geq 1$ e o menor tal $k$ é chamado de *grau de nilpotência* de $a$. Um elemento $a\in\mathbb Z_n$ chama-se *idempotente* se $a^2=a$. 
 
-```
+```matlab
 gap> a := 3*One( R );
 3
 gap> IsIdempotent( a );
@@ -26,7 +26,7 @@ false
 
 1. Escreva uma função `nr_idempotents_of_zn( n )` que devolve o número de idempotentes em $\mathbb Z_n$.
 2. Use a função escrita no item anterior para calcular o número de  idempotentes em anéis na forma $\mathbb Z_{p^n}$ onde $p$ é primo. Formalize uma conjetura.
-3. Escreva uma função que determina se um elemento de  $\mathbb Z_n$.
+3. Escreva uma função que determina se um elemento de  $\mathbb Z_n$ é nilpotente.
 4. Escreva uma função que devolve o número de elementos nilpotentes  em $\mathbb Z_n$. Experimente a função com vários valores de $n$ e tente formalizar uma conjetura.
 
 

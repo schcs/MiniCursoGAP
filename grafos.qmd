@@ -12,7 +12,7 @@ ser construído como o grafo com o conjunto de vértices
 $$
 V=\{\{x,y\}\mid 1\leq x<y\leq 5\}
 $$
-onde dois vértices $\{x,y\}$ e $\{u,v\}$ são conexos se e só se $\{x,y\}\cap \{u,v\}=\emptyset$.
+onde dois vértices $\{x,y\}$ e $\{u,v\}$ são conectados se e só se $\{x,y\}\cap \{u,v\}=\emptyset$.
 
 
 Vamos construir o grafo de Petersen em `GAP`. Primeiro  construímos o conjunto de vértices. 
@@ -81,7 +81,7 @@ true
 
 
 
-Se $G$ é um grupo, então definimos o *grafo não comutante* de $G$ como sendo o grafo cujo conjunto de vértices é $G\setminus Z(G)$ e dois vertices $g,\ h$ são conexos se e só se $xy\neq yx$; ou seja, $[x,y]=x^{-1}y^{-1}xy\neq 1$.
+Se $G$ é um grupo, então definimos o *grafo não comutante* de $G$ como sendo o grafo cujo conjunto de vértices é $G\setminus Z(G)$ e dois vertices $g,\ h$ são conectados se e só se $xy\neq yx$; ou seja, $[x,y]=x^{-1}y^{-1}xy\neq 1$.
 
 
 1. Escreva uma função `non_commuting_graph( G )` que devolve o grafo não comutante para um grupo finito $G$.
