@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Projeto: Comutadores – Álgebra Computacional com GAP</title>
+<title>10&nbsp; Comutadores em grupos – Álgebra Computacional com GAP</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./commutators.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./commutators.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comutadores em grupos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -227,7 +227,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./commutators.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comutadores em grupos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -276,11 +276,11 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#a-teoria" id="toc-a-teoria" class="nav-link active" data-scroll-target="#a-teoria"><span class="header-section-number">10.1</span> A Teoria</a></li>
-  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">10.2</span> Tarefa 1</a></li>
-  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">10.3</span> Tarefa 2</a></li>
-  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">10.4</span> Tarefa 3</a></li>
-  <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">10.5</span> Tarefa 4</a></li>
+  <li><a href="#o-problema" id="toc-o-problema" class="nav-link active" data-scroll-target="#o-problema"><span class="header-section-number">10.1</span> O problema</a></li>
+  <li><a href="#exploração-interativa" id="toc-exploração-interativa" class="nav-link" data-scroll-target="#exploração-interativa"><span class="header-section-number">10.2</span> Exploração interativa</a></li>
+  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">10.3</span> Tarefa 1</a></li>
+  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">10.4</span> Tarefa 2</a></li>
+  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">10.5</span> Tarefa 3</a></li>
   <li><a href="#tarefa-5" id="toc-tarefa-5" class="nav-link" data-scroll-target="#tarefa-5"><span class="header-section-number">10.6</span> Tarefa 5</a></li>
   </ul>
 </nav>
@@ -290,7 +290,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comutadores em grupos</span></h1>
 </div>
 
 
@@ -307,16 +307,19 @@ window.Quarto = {
 </header>
 
 
-<section id="a-teoria" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="a-teoria"><span class="header-section-number">10.1</span> A Teoria</h2>
+<section id="o-problema" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="o-problema"><span class="header-section-number">10.1</span> O problema</h2>
+<div class="problem">
 <p>Seja <span class="math inline">\(G\)</span> um grupo. Se <span class="math inline">\(x,y\in G\)</span>, o comutador <span class="math inline">\([x,y]\)</span> está definido como <span class="math display">\[
 [x,y]=x^{-1}y^{-1}xy.
 \]</span> O subgrupo derivado <span class="math inline">\(G'\)</span> de <span class="math inline">\(G\)</span> é definido como o subgrupo de <span class="math inline">\(G\)</span> gerado por todos os comutadores; ou seja, <span class="math display">\[
 G'=\left&lt;[x,y]\mid x,y\in G\right&gt;.
 \]</span> É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o subgrupo gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequeno <span class="math inline">\(G'\)</span> coincide com o conjunto de comutadores.</p>
+</div>
 </section>
-<section id="tarefa-1" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">10.2</span> Tarefa 1</h2>
+<section id="exploração-interativa" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="exploração-interativa"><span class="header-section-number">10.2</span> Exploração interativa</h2>
+<div class="subexample">
 <p>Vamos explorar o conjunto de comutadores em um grupo dado. Considere por exemplo o grupo <code>SymmetricGroup( 5 )</code>. Vamos primeiro calcular o comutador de dois elementos.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="va">SymmetricGroup</span>( <span class="fl">5</span> )<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">Sym</span>( [ <span class="fl">1</span> .. <span class="fl">5</span> ] )</span>
@@ -347,12 +350,16 @@ G'=\left&lt;[x,y]\mid x,y\in G\right&gt;.
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">comms</span> )<span class="op">;</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fl">60</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">comms</span> <span class="op">=</span> <span class="va">Set</span>( <span class="va">DerivedSubgroup</span>( <span class="va">G</span> ))<span class="op">;</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A computação em cima mostra que, no caso do grupo <span class="math inline">\(S_5\)</span>, o subgrupo derivado coincide com o conjunto de comutadores.</p>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">DerivedSubgroup</span>( <span class="va">G</span> ) <span class="op">=</span> <span class="va">AlternatingGroup</span>( <span class="fl">5</span> )<span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A computação em cima mostra que, no caso do grupo <span class="math inline">\(S_5\)</span>, o subgrupo derivado (ou seja, o subgrupo <span class="math inline">\(A_5\)</span>) coincide com o conjunto de comutadores.</p>
+</div>
 </section>
-<section id="tarefa-2" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">10.3</span> Tarefa 2</h2>
-<p>Escreva uma função <code>nr_comps( G )</code> que para um grupo <code>G</code> dado, computa o número de comutadores distintos de <code>G</code>. A sua função deve verificar:</p>
+<section id="tarefa-1" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">10.3</span> Tarefa 1</h2>
+<div class="subproblem">
+<p>Escreva uma função <code>nr_commutators( G )</code> que para um grupo <code>G</code> dado, computa o número de comutadores distintos de <code>G</code>. A sua função deve verificar:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">nr_comms</span>( <span class="va">SymmetricGroup</span>( <span class="fl">5</span> ))<span class="op">;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">60</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">nr_comms</span>( <span class="va">AlternatingGroup</span>( <span class="fl">5</span> ))<span class="op">;</span></span>
@@ -371,9 +378,14 @@ G'=\left&lt;[x,y]\mid x,y\in G\right&gt;.
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Size</span>( <span class="va">DerivedSubgroup</span>( <span class="va">PGL</span>( <span class="fl">2</span><span class="op">,</span><span class="fl">7</span> )))<span class="op">;</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fl">168</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="hint">
+<p>Escreva uma função encapsulando o código no exemplo anterior em uma função.</p>
+</div>
 </section>
-<section id="tarefa-3" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">10.4</span> Tarefa 3</h2>
+<section id="tarefa-2" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">10.4</span> Tarefa 2</h2>
+<div class="subproblem">
 <p>Escreva uma função <code>commutator_set_is_subgroup( G )</code> para verificar se o conjunto de comutadores é igual ao subgrupo derivado de um grupo <code>G</code>. A função deve devolver <code>true</code> ou <code>false</code>. Note que é suficiente verificar se a cardinalidade do conjunto de comutadores é igual à cardinalidade do subgrupo derivado. A sua função deve seguir os seguintes exemplos.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">commutator_set_is_subgroup</span>( <span class="va">SymmetricGroup</span>( <span class="fl">5</span> ))<span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
@@ -383,19 +395,26 @@ G'=\left&lt;[x,y]\mid x,y\in G\right&gt;.
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">commutator_set_is_subgroup</span>( <span class="va">PGL</span>( <span class="fl">2</span><span class="op">,</span> <span class="fl">7</span> ))<span class="op">;</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="tarefa-4" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">10.5</span> Tarefa 4</h2>
-<p>Usando a função <code>SmallGroup( n, k )</code>, ache o menor grupo <code>G</code> tal que o conjunto de comutadores de <code>G</code> não é o grupo derivado. Por exemplo, vamos verificar que entre os grupos de ordem 24 isso não ocorre.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">max_k</span> <span class="op">:=</span> <span class="va">NrSmallGroups</span>( <span class="fl">24</span> )<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fl">15</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( [<span class="fl">1</span>.<span class="fl">.15</span>]<span class="op">,</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="va">commutator_set_is_subgroup</span>( <span class="va">SmallGroup</span>( <span class="fl">24</span><span class="op">,</span> <span class="va">x</span> )))<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>[ <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="tarefa-3" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">10.5</span> Tarefa 3</h2>
+<div class="subproblem">
+<p>Usando a função <code>AllSmallGroups( Size, list )</code>, ache o menor grupo <code>G</code> tal que o conjunto de comutadores de <code>G</code> não é o grupo derivado. Por exemplo, vamos verificar que entre os grupos de ordem 24 isso não ocorre.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( <span class="va">AllSmallGroups</span>( <span class="va">Size</span><span class="op">,</span> [<span class="fl">24</span>] )<span class="op">,</span> <span class="va">G</span> <span class="op">-&gt;</span> <span class="va">commutator_set_is_subgroup</span>( <span class="va">G</span> ))<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[ <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">true</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="va">true</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="tarefa-5" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="tarefa-5"><span class="header-section-number">10.6</span> Tarefa 5</h2>
-<p>O COMPRIMENTO DOS PRODUTOS</p>
+<div class="subproblem">
+<p>Seja <span class="math inline">\(G\)</span> o grupo encontrado na tarefa anterior.</p>
+<ol type="1">
+<li>Faça a lista dos elementos do subgrupo derivado <span class="math inline">\(G'\)</span> que não são comutadores.</li>
+<li>Escreva estes elementos como produto de comutadores de <span class="math inline">\(G\)</span>. Demonstre que todo elemento de <span class="math inline">\(G'\)</span> pode ser escrito na forma <span class="math inline">\([x_1,x_2][y_1,y_2]\)</span> com <span class="math inline">\(x_i,y_i\in G\)</span>.</li>
+</ol>
+</div>
 <!-- 
 nr_comms := function( G )
     return Size( Set( Tuples( Elements( G ), 2 ), t->Comm( t[1],t[2])));

@@ -227,7 +227,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./commutators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comutadores em grupos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -278,10 +278,9 @@ window.Quarto = {
   <ul>
   <li><a href="#polynômios-em-gap" id="toc-polynômios-em-gap" class="nav-link active" data-scroll-target="#polynômios-em-gap"><span class="header-section-number">11.1</span> Polynômios em GAP</a></li>
   <li><a href="#as-medianas-de-um-triângulo" id="toc-as-medianas-de-um-triângulo" class="nav-link" data-scroll-target="#as-medianas-de-um-triângulo"><span class="header-section-number">11.2</span> As medianas de um triângulo</a></li>
-  <li><a href="#o-modelo-algébrico" id="toc-o-modelo-algébrico" class="nav-link" data-scroll-target="#o-modelo-algébrico"><span class="header-section-number">11.3</span> O modelo algébrico</a></li>
-  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">11.4</span> Tarefa 1</a></li>
-  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">11.5</span> Tarefa 2</a></li>
-  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">11.6</span> Tarefa 3</a></li>
+  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">11.3</span> Tarefa 1</a></li>
+  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">11.4</span> Tarefa 2</a></li>
+  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">11.5</span> Tarefa 3</a></li>
   </ul>
 </nav>
     </div>
@@ -307,8 +306,10 @@ window.Quarto = {
 </header>
 
 
+<p>Neste projeto aprendemos como trabalhar com polinômios, anéis polinomiais, ideais em <code>GAP</code> e resolvemos um problema de geometria plana.</p>
 <section id="polynômios-em-gap" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="polynômios-em-gap"><span class="header-section-number">11.1</span> Polynômios em GAP</h2>
+<div class="subexample">
 <p>Indeterminados, polinômios e anéis de polinômios podem ser definidos em <code>GAP</code> na maneira seguinte.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">x</span> <span class="op">:=</span> <span class="va">Indeterminate</span>( <span class="va">Rationals</span><span class="op">,</span> <span class="st">"x"</span> )<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">x</span></span>
@@ -343,13 +344,12 @@ h=uf+vg\quad\mbox{com}\quad u,v\in\mathbb Q[x,y,z].
 <p>O resultado indica que o resto de <span class="math inline">\(h\)</span> em relação ao ideal <span class="math inline">\(I\)</span> é <span class="math inline">\(0\)</span> e os dois polinômios do segundo componente do output podem ser tomados para <span class="math inline">\(u\)</span> e <span class="math inline">\(v\)</span>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">h</span> <span class="op">=</span> (<span class="va">x</span><span class="op">*</span><span class="va">z</span><span class="op">+</span><span class="fl">1</span>)<span class="op">*</span><span class="va">f</span><span class="op">-</span><span class="va">x</span><span class="op">*</span><span class="va">g</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="as-medianas-de-um-triângulo" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="as-medianas-de-um-triângulo"><span class="header-section-number">11.2</span> As medianas de um triângulo</h2>
+<div class="problem">
 <p>Seja <span class="math inline">\(\Delta=ABC\)</span> um triângulo no plano. A reta que conecta uma ponta de <span class="math inline">\(\Delta\)</span> com o ponto meio do lado oposto chama-se <em>mediana</em>. Está bem conhecido que as medianas se interceptam em um ponto chamado de <em>baricentro</em> de <span class="math inline">\(\Delta\)</span>. Neste projeto provaremos este fato usando álgebra comutativa.</p>
-</section>
-<section id="o-modelo-algébrico" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="o-modelo-algébrico"><span class="header-section-number">11.3</span> O modelo algébrico</h2>
 <p>Assuma sem perder generalidade que as três pontas do triângulo são <span class="math display">\[\begin{align*}
 A &amp; = (0,0);\\
 B &amp; = (1,0);\\
@@ -358,7 +358,7 @@ C &amp; = (x,y).
 P &amp; = ((x+1)/2,y/2);\\
 Q &amp; = (x/2,y/2);\\
 R &amp; = (1/2,0).
-\end{align*}\]</span> Assuma que <span class="math inline">\(S=(u,v)\)</span> é o pnnto de interseção das retas <span class="math inline">\(AP\)</span> e <span class="math inline">\(BQ\)</span>. Precisa provar que a reta <span class="math inline">\(CR\)</span> passa pelo ponto <span class="math inline">\(S\)</span>. Os fatos que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(AP\)</span> e que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(BQ\)</span> podem ser expressas das equações <span class="math display">\[\begin{align*}
+\end{align*}\]</span> Assuma que <span class="math inline">\(S=(u,v)\)</span> é o ponto de interseção das retas <span class="math inline">\(AP\)</span> e <span class="math inline">\(BQ\)</span>. Precisa provar que a reta <span class="math inline">\(CR\)</span> passa pelo ponto <span class="math inline">\(S\)</span>. Os fatos que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(AP\)</span> e que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(BQ\)</span> podem ser expressas das equações <span class="math display">\[\begin{align*}
 \frac uv=\frac{x+1}y;\\
 \frac{x-2}y=\frac{u-1}v.
 \end{align*}\]</span> Como o triângulo não é degenerado, temos que <span class="math inline">\(u\neq 0\)</span>, <span class="math inline">\(v\neq 0\)</span> e <span class="math inline">\(y\neq 0\)</span> e estas equações são equivalentes com as equações <span class="math display">\[\begin{align*}
@@ -369,12 +369,14 @@ f_2&amp;=(x-2)u-(u-1)y=0.
 \]</span> ou seja, <span class="math display">\[
 f_3=-2xv+2yu-y+v=0.
 \]</span></p>
-<p>Note que o fato que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(CR\)</span> é equivalente à afirmação que <span class="math display">\[
-f_3=(f_1,f_2).
+<p>Para provar que <span class="math inline">\(S\)</span> está na reta <span class="math inline">\(CR\)</span>, é suficiente provar que que <span class="math display">\[
+f_3\in(f_1,f_2).
 \]</span></p>
+</div>
 </section>
-<section id="tarefa-1" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">11.4</span> Tarefa 1</h2>
+<section id="tarefa-1" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">11.3</span> Tarefa 1</h2>
+<div class="subproblem">
 <p>Faça as seguintes computações com <code>GAP</code>.</p>
 <ol type="1">
 <li>Defina o anel de polinômios <span class="math inline">\(\mathbb Q[x,y,u,v]\)</span>.</li>
@@ -384,18 +386,25 @@ f_3=(f_1,f_2).
 f_3=h_1f_1+h_2f_2
 \]</span> onde <span class="math inline">\(h_i\in\mathbb Q[x,y,u,v]\)</span>.</li>
 </ol>
+</div>
+<div class="dica">
+<p>Segue os passos na computação em cima.</p>
+</div>
 </section>
-<section id="tarefa-2" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">11.5</span> Tarefa 2</h2>
+<section id="tarefa-2" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">11.4</span> Tarefa 2</h2>
+<div class="subproblem">
 <p>O modelo algébrico não incluiu a informação que o triângulo é não degenerado; ou seja, <span class="math inline">\(y\neq 0\)</span>. Esta condição pode ser incluída no modelo por introduzir uma nova variável <span class="math inline">\(Y\)</span> e uma nova equação <span class="math display">\[
 f_4=Yy-1=0.
 \]</span></p>
 <ol type="1">
-<li>Faça as computações na Tarefa 1 incluindo o polinômio <span class="math inline">\(f_4\)</span>.</li>
+<li>Faça as computações na Tarefa 1 incluindo o polinômio <span class="math inline">\(f_4\)</span>. Verifique se o resultado é diferente.</li>
 </ol>
+</div>
 </section>
-<section id="tarefa-3" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">11.6</span> Tarefa 3</h2>
+<section id="tarefa-3" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">11.5</span> Tarefa 3</h2>
+<div class="subproblem">
 <p>Demonstre que o ponto <span class="math inline">\(S\)</span> divide as medianas em duas partes cuja razão é <span class="math inline">\(1:2\)</span>. Note que esta afirmação é equivalente à equação <span class="math display">\[
 3|RS|=3(u-1/2,v)=(x-1/2,y)=|RC|.
 \]</span> Ou seja, precisa verificar que <span class="math display">\[
@@ -407,6 +416,7 @@ f_4=Yy-1=0.
 h_1f_1+h_2f_2.
 \]</span></li>
 </ol>
+</div>
 
 
 </section>
@@ -834,8 +844,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./commutators.html" class="pagination-link" aria-label="Projeto: Comutadores">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span>
+      <a href="./commutators.html" class="pagination-link" aria-label="Comutadores em grupos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comutadores em grupos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

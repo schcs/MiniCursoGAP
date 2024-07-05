@@ -227,7 +227,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./commutators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comutadores em grupos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -276,13 +276,10 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#carateres-de-grupos" id="toc-carateres-de-grupos" class="nav-link active" data-scroll-target="#carateres-de-grupos"><span class="header-section-number">12.1</span> Carateres de grupos</a></li>
-  <li><a href="#a-ordem-generalizada" id="toc-a-ordem-generalizada" class="nav-link" data-scroll-target="#a-ordem-generalizada"><span class="header-section-number">12.2</span> A ordem generalizada</a></li>
-  <li><a href="#a-ordem-generalizada-usando-carateres" id="toc-a-ordem-generalizada-usando-carateres" class="nav-link" data-scroll-target="#a-ordem-generalizada-usando-carateres"><span class="header-section-number">12.3</span> A ordem generalizada usando carateres</a></li>
-  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">12.4</span> Tarefa 1</a></li>
-  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">12.5</span> Tarefa 2</a></li>
-  <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">12.6</span> Tarefa 3</a></li>
-  <li><a href="#tarefa-4" id="toc-tarefa-4" class="nav-link" data-scroll-target="#tarefa-4"><span class="header-section-number">12.7</span> Tarefa 4</a></li>
+  <li><a href="#a-ordem-generalizada" id="toc-a-ordem-generalizada" class="nav-link active" data-scroll-target="#a-ordem-generalizada"><span class="header-section-number">12.1</span> A ordem generalizada</a></li>
+  <li><a href="#carateres-em-gap" id="toc-carateres-em-gap" class="nav-link" data-scroll-target="#carateres-em-gap"><span class="header-section-number">12.2</span> Carateres em <code>GAP</code></a></li>
+  <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">12.3</span> Tarefa 1</a></li>
+  <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">12.4</span> Tarefa 2</a></li>
   </ul>
 </nav>
     </div>
@@ -308,9 +305,26 @@ window.Quarto = {
 </header>
 
 
-<section id="carateres-de-grupos" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="carateres-de-grupos"><span class="header-section-number">12.1</span> Carateres de grupos</h2>
-<p>Seja <span class="math inline">\(G\)</span> um grupo finito e seja <span class="math inline">\(\varrho:G\to \operatorname{GL}(n,\mathbb C)\)</span> um homomorfismo. O homomorfismo <span class="math inline">\(\varrho\)</span> chama-se também uma <em>representação linear</em> de <span class="math inline">\(G\)</span>. O carater associado com <span class="math inline">\(\varrho\)</span> é <span class="math display">\[
+<p>Neste projeto vamos ver como trabalhar com carateres de grupos e vamos resolver um problema relacionado com a ordem generalizada de elementos (veja o <a href="https://link.springer.com/article/10.1007/s00013-023-01931-5">artigo</a> para a teoria mais detalhada).</p>
+<section id="a-ordem-generalizada" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="a-ordem-generalizada"><span class="header-section-number">12.1</span> A ordem generalizada</h2>
+<div class="problem">
+<p>Seja <span class="math inline">\(G\)</span> um grupo e <span class="math inline">\(x\in G\)</span>. A <em>ordem generalizada</em> <span class="math inline">\([x]\)</span> de <span class="math inline">\(x\)</span> é o menor número natural <span class="math inline">\(k\)</span> tal que a identidade <span class="math inline">\(1\)</span> de <span class="math inline">\(G\)</span> pode ser escrito como um produto de <span class="math inline">\(k\)</span> conjugados de <span class="math inline">\(x\)</span>. Ou seja, <span class="math inline">\([x]\)</span> é o menor natural <span class="math inline">\(k\)</span> tal que <span class="math display">\[
+x^{g_1}\cdots x^{g_k}=1
+\]</span> com algum <span class="math inline">\(g_1,\ldots,g_k\in G\)</span>.</p>
+<div id="thm-ord-gen" class="theorem">
+<p><span class="theorem-title"><strong>Teorema 12.1</strong></span> Seja <span class="math inline">\(G\)</span> um grupo finito, seja <span class="math inline">\(g\in G\)</span> e sejam <span class="math inline">\(\chi_1,\ldots,\chi_m\)</span> os carateres irredutíveis de <span class="math inline">\(G\)</span>. Defina, para <span class="math inline">\(k\geq 1\)</span>, <span id="eq-genord"><span class="math display">\[
+\alpha_{g,k}=\frac {|G|^{k-1}}{|C_G(g)|^k}\sum_{i=1}^m\frac{\chi_i(g)^k}{\chi_i(1)^{k-2}}.
+\tag{12.1}\]</span></span> Então <span class="math inline">\(\alpha_{g,k}\)</span> é um número natural e ele é igual ao número de maneiras de escrever a identidade <span class="math inline">\(1\)</span> de <span class="math inline">\(G\)</span> como produto de conjugados de <span class="math inline">\(g\)</span>. Em particular, <span class="math display">\[
+[g]=\min\{k\geq 1\mid \alpha_{g,k}\geq 1\}.
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="carateres-em-gap" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="carateres-em-gap"><span class="header-section-number">12.2</span> Carateres em <code>GAP</code></h2>
+<div class="subexample">
+<p>Vamos ver primeiro como trabalhar com carateres em <code>GAP</code>. Seja <span class="math inline">\(G\)</span> um grupo finito e seja <span class="math inline">\(\varrho:G\to \operatorname{GL}(n,\mathbb C)\)</span> um homomorfismo. O homomorfismo <span class="math inline">\(\varrho\)</span> chama-se também uma <em>representação linear</em> de <span class="math inline">\(G\)</span>. O carater associado com <span class="math inline">\(\varrho\)</span> é <span class="math display">\[
 \chi:G\to\mathbb C,\quad \chi(g)=\mbox{trace}(\varrho(g)).
 \]</span> Note que <span class="math inline">\(\mbox{trace}\)</span> significa o traço da matriz <span class="math inline">\(\varrho(g)\)</span>; ou seja, a soma dos elementos na diagonal principal. É bem conhecido que o caracter carrega muita informação sobre <span class="math inline">\(\varrho\)</span>.</p>
 <p>Em <code>GAP</code>, carateres podem ser calculados na seguinte maneira. Note que estamos interessados principalmente nos carateres que correspondem às representações irredutíveis.</p>
@@ -327,26 +341,9 @@ window.Quarto = {
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">irr</span>[<span class="fl">3</span>]<span class="op">;</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">Character</span>( <span class="va">CharacterTable</span>( <span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">24</span> <span class="va">with</span> <span class="fl">4</span> <span class="va">generators</span><span class="op">&gt;</span> )<span class="op">,</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a> [ <span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span> ] )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="a-ordem-generalizada" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="a-ordem-generalizada"><span class="header-section-number">12.2</span> A ordem generalizada</h2>
-<p>Seja <span class="math inline">\(G\)</span> um grupo e <span class="math inline">\(x\in G\)</span>. A <em>ordem generalizada</em> <span class="math inline">\([x]\)</span> de <span class="math inline">\(x\)</span> é o menor número natural <span class="math inline">\(k\)</span> tal que a identidade <span class="math inline">\(1\)</span> de <span class="math inline">\(G\)</span> pode ser escrito como um produto de <span class="math inline">\(k\)</span> conjugados de <span class="math inline">\(x\)</span>. Ou seja, <span class="math inline">\([x]\)</span> é o menor natural <span class="math inline">\(k\)</span> tal que <span class="math display">\[
-x^{g_1}\cdots x^{g_k}=1
-\]</span> com algum <span class="math inline">\(g_1,\ldots,g_k\in G\)</span>.</p>
-</section>
-<section id="a-ordem-generalizada-usando-carateres" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="a-ordem-generalizada-usando-carateres"><span class="header-section-number">12.3</span> A ordem generalizada usando carateres</h2>
-<div id="thm-ord-gen" class="theorem">
-<p><span class="theorem-title"><strong>Teorema 12.1</strong></span> Seja <span class="math inline">\(G\)</span> um grupo finito e seja <span class="math inline">\(g\in G\)</span>. Defina <span class="math display">\[
-\alpha_{g,k}=\frac {|G|^{k-1}}{|C_G(g)|^k}\sum_{\chi\in\mbox{Irr}(G)}\frac{\chi(g)^k}{\chi(1)^{k-2}}.
-\]</span> Então <span class="math inline">\(\alpha_{g,k}\)</span> é um número natural e ele é igual ao número de maneiras de escrever a identidade <span class="math inline">\(1\)</span> de <span class="math inline">\(G\)</span> como produto de conjugados de <span class="math inline">\(g\)</span>. Em particular, <span class="math display">\[
-[g]=\min\{k\geq 1\mid \alpha_{g,k}\geq 1\}.
-\]</span></p>
 </div>
-</section>
-<section id="tarefa-1" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">12.4</span> Tarefa 1</h2>
-<p>Vamos calcular a ordem generalizada de um elemento do grupo dihedral <span class="math inline">\(D_8\)</span>. Usando a fórmula anterior.</p>
+<div class="subexample">
+<p>Vamos calcular a ordem generalizada de um elemento do grupo dihedral <span class="math inline">\(D_8\)</span>, usando a equação <a href="#eq-genord" class="quarto-xref">Equação&nbsp;<span>12.1</span></a>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">D8</span> <span class="op">:=</span> <span class="va">DihedralGroup</span>( <span class="fl">8</span> )<span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">8</span> <span class="va">with</span> <span class="fl">3</span> <span class="va">generators</span><span class="op">&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">t</span> <span class="op">:=</span> <span class="va">CharacterTable</span>( <span class="va">D8</span> )<span class="op">;</span></span>
@@ -366,16 +363,62 @@ x^{g_1}\cdots x^{g_k}=1
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fl">0</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">k</span> <span class="op">:=</span> <span class="fl">2</span><span class="op">;;</span> <span class="va">Sum</span>( <span class="va">List</span>( <span class="va">irr</span><span class="op">,</span> <span class="va">x</span><span class="op">-&gt;</span><span class="va">x</span>[<span class="fl">3</span>]<span class="op">^</span><span class="va">k</span><span class="op">/</span><span class="va">x</span>[<span class="fl">1</span>]<span class="op">^</span>(<span class="va">k</span><span class="op">-</span><span class="fl">2</span>) ))<span class="op">;</span></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note que obtemos que o ordem generalizada de <span class="math inline">\(a\)</span> é <span class="math inline">\(8\)</span>.</p>
+<p>Note que obtemos que o ordem generalizada de <span class="math inline">\(a\)</span> é <span class="math inline">\(2\)</span>. Note que a ordem do mesmo elemento é <span class="math inline">\(4\)</span>.</p>
+</div>
 </section>
-<section id="tarefa-2" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">12.5</span> Tarefa 2</h2>
+<section id="tarefa-1" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="tarefa-1"><span class="header-section-number">12.3</span> Tarefa 1</h2>
+<div class="problem">
+<ol type="1">
+<li>Escreva uma função <code>generalized_order( G, i )</code> que dado um grupo <span class="math inline">\(G\)</span> e <span class="math inline">\(i\geq 1\)</span>, devolve a ordem generalizada de um elemento na <span class="math inline">\(i\)</span>-ésima class de conjugação de <span class="math inline">\(G\)</span> usando a equação <a href="#eq-genord" class="quarto-xref">Equação&nbsp;<span>12.1</span></a>.<br>
+</li>
+<li>Escreva uma função <code>generalized_orders( G )</code> que calcula a lista das ordens generalizadas das classes de conjugação de <span class="math inline">\(G\)</span>.</li>
+</ol>
+<p>O resultado do seu código deve seguir os seguintes exemplos.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">generalized_order</span>( <span class="va">SymmetricGroup</span>( <span class="fl">5</span> )<span class="op">,</span> <span class="fl">2</span> )<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">generalized_order</span>( <span class="va">SmallGroup</span>( <span class="fl">18</span><span class="op">,</span> <span class="fl">3</span> )<span class="op">,</span> <span class="fl">2</span> )<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">generalized_order</span>( <span class="va">SmallGroup</span>( <span class="fl">18</span><span class="op">,</span> <span class="fl">3</span> )<span class="op">,</span> <span class="fl">5</span> )<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fl">6</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">generalized_orders</span>( <span class="va">AlternatingGroup</span>( <span class="fl">5</span> ))<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span> ]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">generalized_orders</span>( <span class="va">AlternatingGroup</span>( <span class="fl">7</span> ))<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">3</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="hint">
+<p>Calcule a soma na equação <a href="#eq-genord" class="quarto-xref">Equação&nbsp;<span>12.1</span></a> para todo <span class="math inline">\(k\)</span> até ela vira não nula. Usa o laço <code>repeat</code> (<a href="ling.html#sec-repeat" class="quarto-xref"><span>Seção 3.4</span></a>).</p>
+</div>
+<!--
+generalized_orders := G -> List( [1..NrConjugacyClasses( G )], x->generalized_order( G, x ));
+-->
+<!--
+generalized_order := function( G, x )
+  local t, irr, k;
+
+  t := CharacterTable( G );
+  irr := Irr( t );
+  k := 0; 
+  repeat
+    k := k+1;
+  until Sum( List( irr, chi->chi[x]^k/chi[1]^(k-2))) > 0;
+
+  return k;
+end;
+-->
 </section>
-<section id="tarefa-3" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="tarefa-3"><span class="header-section-number">12.6</span> Tarefa 3</h2>
-</section>
-<section id="tarefa-4" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">12.7</span> Tarefa 4</h2>
+<section id="tarefa-2" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">12.4</span> Tarefa 2</h2>
+<div class="subproblem">
+<ol type="1">
+<li>Usando as funções na tarefa anterior, ache um grupo <span class="math inline">\(G\)</span> que possui elemento <span class="math inline">\(x\in G\)</span> tal que <span class="math inline">\([x]\)</span> não é divisor de <span class="math inline">\(|G|\)</span>.</li>
+<li>Ache um grupo <span class="math inline">\(G\)</span> que possui um elemento <span class="math inline">\(x\in G\)</span> tal que <span class="math inline">\([x]\)</span> é coprimo com <span class="math inline">\(|G|\)</span>.</li>
+<li>Ache um grupo <span class="math inline">\(G\)</span> que possui um elemento <span class="math inline">\(x\in G\)</span> tal que <span class="math inline">\([x]\)</span> é um primo <span class="math inline">\(p\)</span> tal que <span class="math inline">\(p\nmid |G|\)</span>.</li>
+</ol>
+</div>
+<div class="hint">
+<p>Escreva uma função para cada um dos itens nesta tarefa. A função deve devolver <code>true</code> se o grupo sataisfaz a condição procurada, e <code>false</code> caso contrário. Use <code>Filtered</code> sobre <code>AllSmallGroups( Size, list )</code> (veja a <a href="list_mat_perm.html#sec-list" class="quarto-xref"><span>Seção 4.1</span></a>).</p>
+</div>
 
 
 </section>

@@ -227,7 +227,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./commutators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projeto: Comutadores</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comutadores em grupos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -303,11 +303,13 @@ window.Quarto = {
 </header>
 
 
+<p>Neste projeto iremos trabalhar com grafos.</p>
 <section id="o-grafo-de-petersen" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="o-grafo-de-petersen"><span class="header-section-number">14.1</span> O grafo de Petersen</h2>
+<div class="subexample">
 <p>O <a href="http://pt.wikipedia.org/wiki/Grafo_de_Petersen">grafo de Petersen</a>é um grafo com muitas propriedades interessantes. O grafo de Petersen pode ser construído como o grafo com o conjunto de vértices <span class="math display">\[
 V=\{\{x,y\}\mid 1\leq x&lt;y\leq 5\}
-\]</span> onde dois vértices <span class="math inline">\(\{x,y\}\)</span> e <span class="math inline">\(\{u,v\}\)</span> são conexos se e só se <span class="math inline">\(\{x,y\}\cap \{u,v\}=\emptyset\)</span>.</p>
+\]</span> onde dois vértices <span class="math inline">\(\{x,y\}\)</span> e <span class="math inline">\(\{u,v\}\)</span> são conectados se e só se <span class="math inline">\(\{x,y\}\cap \{u,v\}=\emptyset\)</span>.</p>
 <p>Vamos construir o grafo de Petersen em <code>GAP</code>. Primeiro construímos o conjunto de vértices.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">ver</span> <span class="op">:=</span> <span class="va">Combinations</span>( [<span class="fl">1</span>.<span class="fl">.5</span>]<span class="op">,</span> <span class="fl">2</span> )<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> </span>
@@ -354,15 +356,18 @@ e neste caso o conjunto de arestas vai ser <Arg>ares</Arg>.
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsConnectedGraph</span>( <span class="va">G</span> )<span class="op">;</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="tarefa" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="tarefa"><span class="header-section-number">14.2</span> Tarefa</h2>
-<p>Se <span class="math inline">\(G\)</span> é um grupo, então definimos o <em>grafo não comutante</em> de <span class="math inline">\(G\)</span> como sendo o grafo cujo conjunto de vértices é <span class="math inline">\(G\setminus Z(G)\)</span> e dois vertices <span class="math inline">\(g,\ h\)</span> são conexos se e só se <span class="math inline">\(xy\neq yx\)</span>; ou seja, <span class="math inline">\([x,y]=x^{-1}y^{-1}xy\neq 1\)</span>.</p>
+<div class="subproblem">
+<p>Se <span class="math inline">\(G\)</span> é um grupo, então definimos o <em>grafo não comutante</em> de <span class="math inline">\(G\)</span> como sendo o grafo cujo conjunto de vértices é <span class="math inline">\(G\setminus Z(G)\)</span> e dois vertices <span class="math inline">\(g,\ h\)</span> são conectados se e só se <span class="math inline">\(xy\neq yx\)</span>; ou seja, <span class="math inline">\([x,y]=x^{-1}y^{-1}xy\neq 1\)</span>.</p>
 <ol type="1">
 <li>Escreva uma função <code>non_commuting_graph( G )</code> que devolve o grafo não comutante para um grupo finito <span class="math inline">\(G\)</span>.</li>
 <li>Use a função <code>non_commuting_graph( G )</code> para investigar grafos associados a grupos finitos de ordem pequena (use a função <code>SmallGroup</code>). Verifique se os grafos são conexos, determine o diâmetro.</li>
 </ol>
 <p>Algumas propriedades interessentas de grafos não comutantes são demonstradas <a href="http://www.sciencedirect.com/science/article/pii/S002186930600113X#">neste artigo</a>.</p>
+</div>
 
 
 </section>
