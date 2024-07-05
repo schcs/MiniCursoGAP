@@ -6,7 +6,8 @@ lang: pt-BR
 
 ## A Teoria da Criptografia
 
-Na área da criptografia, a suposição geral é que dois parceiros (que podem ser duas pessoas, ou dois computadores) querem trocar informação sigilosa usando um canal de comunicação que está disponível para terceiros. Os dois parceiros geralmente chamam-se A(lice) e B(ob) e um possível terceiro chama-se E(va). Assume-se que as mensagens enviadas por Alice e Bob são números. A Eva consegue interceptar as mensagens enviadas. O objetivo é desenvolver métodos seguros de codificação para as mensagens que podem garantir que Eva não vai conseguir descodificar as mensagens interceptadas.
+:::{.problem}
+Na área da criptografia, a suposição geral é que dois parceiros (que podem ser duas pessoas, ou dois computadores) querem trocar informação sigilosa usando um canal de comunicação que está disponível para terceiros. Os dois parceiros geralmente chamam-se A(lice) e B(ob) e um possível terceiro chama-se E(va). Assume-se que as mensagens enviadas por Alice e Bob são números. A Eva consegue interceptar as mensagens enviadas. O objetivo é desenvolver métodos seguros de criptografia para as mensagens que podem garantir que Eva não vai conseguir descriptografar as mensagens mesmo conseguindo interceptadá-las.
 
 Um método, conhecido como criptografia RSA, foi desenvolvido pelos matemáticos  <a title="Ron Rivest" href="https://en.wikipedia.org/wiki/Ron_Rivest">Ron Rivest</a>, <a title="Adi Shamir" href="https://en.wikipedia.org/wiki/Adi_Shamir">Adi Shamir</a>, and <a title="Leonard Adleman" href="https://en.wikipedia.org/wiki/Leonard_Adleman">Leonard Adleman</a> e foi publicado em 1977.
 
@@ -31,24 +32,25 @@ $$
 $$
 C(b)=\mbox{o resto de $b^c$ por $n$}.
 $$
-Note que Alice conhece os números $c$ e $n$ e consegue calcular $C(b)$. O número $C(b)$ é a mensagem codificada.
+Note que Alice conhece os números $c$ e $n$ e consegue calcular $C(b)$. O número $C(b)$ é a mensagem criptografada.
 5.  Alice envia $C(b)$ para o Bob.
 6.  Ao receber a mensagem $b_1=C(b)$ da Alice, Bob calcula
 $$
 D( b_1)=\mbox{o resto de $b_1^c$ módulo $n$}.
 $$
-O número obtido $D(b_1)$ é a mensagem descodificada.
-6.  O número $D(b_1)$ coincide com a mensagem original $b$ da Alice; ou seja, o Bob conseguiu descodificar a mensagem da Alice.
+O número obtido $D(b_1)$ é a mensagem descriptografada.
+6.  O número $D(b_1)$ coincide com a mensagem original $b$ da Alice; ou seja, o Bob conseguiu descriptografar a mensagem da Alice.
 
 
 :::{#thm-}
 Usando a notação acima, $D(C(b))=b$ para todo $b\in\{1,\ldots,n-1\}$. Ou seja, usando a função $D$, o Bob consegue descodificar a mensagem da Alice
 :::
+:::
 
+## Exploração interativa
 
-## Tarefa 1: Exploração interativa
-
-Assuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits. Usando `NextPrimeInt` ache dois primos `p`e `q` tal que o produto é um numero composto entre $2^{99}$ e $2^{100}-1$. Por motivos de segurança, é recomendável que os primos `p` e `q` não sejam próximos, mas também não queremos que um deles seja pequeno.  Nós vamos atingir este critério por escolher o primo `p` com 60 bits, enquanto o primo `q` terá de 40 bits.
+:::{.subexample}
+Assuma que trabalhamos com um protocolo simplificado; ou seja, vamos criar um protocolo de criptografia de 100 bits (digitos binários). Usando `NextPrimeInt` ache dois primos `p`e `q` tal que o produto é um numero composto entre $2^{99}$ e $2^{100}-1$. Por motivos de segurança, é recomendável que os primos `p` e `q` não sejam próximos, mas também não queremos que um deles seja pequeno.  Nós vamos atingir este critério por escolher o primo `p` com 60 bits, enquanto o primo `q` terá de 40 bits.
 
 ```matlab
 gap> p := NextPrimeInt( Random( 2^59, 2^60 ));
@@ -61,16 +63,45 @@ gap> n <= 2^100;
 true
 ```
 
-EXPLICAR QUE RANDOM NÃO VAI DEVOLVER A MESMA COISA
+Note que na sua computação você vai obter primos diferentes, pois os primos obtidos são aleatórios. 
+
+Vamos criar as chaves $c$ e $d$ em dois métodos diferentes. Primeiro usamos aritmética ingegral calculando MDC.
 
 
-Para criar as chaves `c`e `d`, usaremos aritmética modular. Vamos criar os anéis `R` e `R1` de classes residuais módulo `n`e $\varphi(n)=(p-1)(q-1)$. 
 
+Para criar as chaves $c$ e $d$, usaremos aritmética modular. Vamos criar os anéis $R$ e $R_1$ de classes residuais módulo $n$ e calcular $\varphi(n)=(p-1)(q-1)$. 
 
-REFAZER USANDO MDC
-CALCULAR 2^c DIRETAMENTE.
-CONTROL C
-CHAMAR ATENÇÃO À EXPONENCIAÇÃO RÁPIDA
+```matlab
+gap> phi_n := (p-1)*(q-1);
+1167067924402025528839162963368
+gap> c := Random( 2, phi_n );
+176805719378978229840699134270
+gap> gcd_rec := Gcdex( c, phi_n );
+rec( coeff1 := 79157182339546985315507365253, 
+  coeff2 := -77535409344988357319333137017, 
+  coeff3 := -194511320733670921473193827228, 
+  coeff4 := 190526171214974642831565237209, gcd := 6 )
+gap> c := Random( 2, phi_n );     
+1102805946491101901632051878773
+gap> gcd_rec := Gcdex( c, phi_n );
+rec( coeff1 := -121794025824117152741759339875, 
+  coeff2 := 115087710935716733897683004232, 
+  coeff3 := 1167067924402025528839162963368, 
+  coeff4 := -1102805946491101901632051878773, gcd := 1 )
+gap> gcd_rec.coeff1*c + gcd_rec.coeff2*phi_n;
+1
+gap> gcd_rec.coeff1*c mod phi_n;             
+1
+gap> d := gcd_rec.coeff2;
+115087710935716733897683004232
+gap> 2^c mod n;
+Error, Integer operands: <exponent> is too large
+not in any function at *stdin*:112
+type 'quit;' to quit to outer loop
+brk> quit;
+```
+Note que a expressão `2^1102805946491101901632051878773` não foi aceita pelo `GAP`, pois o expoente é muito grande. Para fazer esta conta, vamos utulizar anéis residuais. 
+
 
 ```matlab
 gap> R := ZmodnZ( n );
@@ -111,19 +142,33 @@ gap> msg_rand_descript = msg_rand;
 true
 ```
 
-## Tarefa 2
+Note que a criptografia criada neste exemplo não é segura, pois o número $n$ pode ser fatorado (devido ao tamanho relativamente pequeno de fatores).
+```matlab
+gap> Factors( n );
+[ 1073930166469, 1086726084099436427 ]
+```
+:::
 
+## Tarefa 1
+
+:::{.subproblem}
 Repita a computação anterior, mas agora com números maiores. Em vez de trabalhar com chave de comprimento de `100` bits, trabalhe com chave de `2048` bits que é o usual com protocolos modernos de criptografia RSA. O comprimento de `p` será de `1228` bits, enquanto o comprimento de `q` será de `820` bits. (Ou seja, `p` é um primo entre $2^{1227}$ e $2^{1228}-1$) e `q` é primo entre $2^{819}$ e $2^{820}-1$.
 
+Verifique que o número $n$ obtida desta vez não pode ser fatorado usando `Factors( n )`.
+:::
+
+:::{.hint}
 Única coisa que precisa modificar é que a função `NextPrimeInt` não funciona para estes típos de números e precisa usar `NextProbablyPrimeInt`. 
+:::
 
-## Tarefa 3
+## Tarefa 2
 
-
+:::{.subproblem}
 Escreva uma função `RSA_keys( nr_bits )` que gera dados necessários para criptografia RSA usando `nr_bits`. Ou seja, `RSA_keys( nr_bits )` devolve 
 
 1. o número `n` que é produto dos primos `p` e `q` (mas não devolve os números `p` e `q`);
 2. devolve a chave pública `c` e a chave privada `d`.
+:::
 
 <!--
 RSA_keys := function( nr_bits )

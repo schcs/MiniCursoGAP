@@ -6,7 +6,7 @@ lang: pt-BR
 
 ## A Teoria
 
-Seja $G$ um grupo. Se $x,y\in G$, então o comutador $[x,y]$ está definido como 
+Seja $G$ um grupo. Se $x,y\in G$,  o comutador $[x,y]$ está definido como 
 $$
 [x,y]=x^{-1}y^{-1}xy.
 $$

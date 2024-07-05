@@ -6,12 +6,24 @@ lang: pt-BR
 
 ## Os fundamentos teóricos
 
+:::{.problem}
 Recordamos que o centralizador de um elemento $x$ em um grupo $G$ é definido por 
 $$
 C_{G}(x) = \{g \in G | \ gx=xg \}.
 $$
 
-Denote por $\mbox{Cent}(G)$ o conjunto de todos os centralizadores de elementos de $G$. O estudo de $\mbox{Cent}(G)$ tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar $\mbox{Cent}(G)|$ é responder essencialmente duas questões:
+Denote por $\mbox{Cent}(G)$ o conjunto de todos os centralizadores de elementos de $G$. 
+
+Por exemplo, se $G=S_3$, então os centralizadores dos elementos $1$, $(1,2)$, $(1,3)$, $(2,3)$, $(1,2,3)$, e $(1,3,2)$, são $S_3$, $\left<(1,2)\right>$, $\left<(1,3)\right>$, $\left<(2,3)\right>$, $\left<(1,2,3)\right>$, e $\left<(1,2,3)\right>$. Note que o subgrupo $\left<(1,2,3)\right>$ aparece duas vezes, então 
+$$
+\mbox{cent}(S_3)=\{\left<(1,2)\right>, \left<(1,3)\right>, \left<(2,3)\right>, \left<(1,2,3)\right>\}
+$$ 
+e
+$$
+|\mbox{cent}(S_3)|=5.
+$$
+
+O estudo de $\mbox{Cent}(G)$ tem chamado a atenção de muitos pesquisadores. Essencialmente, as duas principais motivações para se estudar $\mbox{Cent}(G)|$ é responder essencialmente duas questões:
 
 
 1. Dado um grupo $G$, o que se pode dizer sobre $|\mbox{Cent}(G)|$?
@@ -19,10 +31,47 @@ Denote por $\mbox{Cent}(G)$ o conjunto de todos os centralizadores de elementos 
     
 
 Neste projeto, queremos usar o `GAP` para resolver algumas questões para grupos simples finitos.
+:::
 
-FAZER UM EXEMPLO PEQUENO S3
+<!--:::{.subexample}
+Vamos calcular o conjunto de centralizadores do grupo simétrico $S_3$ e alternado $A_4$. 
+
+```matlab
+ap> s3 := SymmetricGroup( 3 );
+Sym( [ 1 .. 3 ] )
+gap> List( s3, x->Centralizer( s3, x ));         
+[ Group([ (1,3), (2,3) ]), Group([ (2,3) ]), Group([ (1,3) ]), 
+  Group([ (1,3,2) ]), Group([ (1,2,3) ]), Group([ (1,2) ]) ]
+gap> Length( last );                              
+6
+gap> Set( s3, x->Centralizer( s3, x )); 
+[ Group([ (2,3) ]), Group([ (1,3), (2,3) ]), Group([ (1,2) ]), 
+  Group([ (1,3,2) ]), Group([ (1,3) ]) ]
+gap> Length( last );
+5
+gap> a4 := AlternatingGroup( 4 );
+Alt( [ 1 .. 4 ] )
+gap> List( a4, x->Centralizer( a4, x ));
+[ Group([ (1,2,4), (1,3,4) ]), Group([ (2,4,3) ]), Group([ (2,3,4) ]), 
+  Group([ (1,4,3) ]), Group([ (1,2)(3,4), (1,4)(2,3) ]), Group([ (1,4,2) ]), 
+  Group([ (1,3,4) ]), Group([ (1,3,2) ]), Group([ (1,2)(3,4), (1,3)(2,4) ]), 
+  Group([ (1,2,4) ]), Group([ (1,3)(2,4), (1,2)(3,4) ]), Group([ (1,2,3) ]) ]
+gap> Length( last );
+12
+gap> Set( a4, x->Centralizer( a4, x )); 
+[ Group([ (2,4,3) ]), Group([ (1,2,4), (1,3,4) ]), 
+  Group([ (1,2)(3,4), (1,4)(2,3) ]), Group([ (1,3,2) ]), Group([ (1,4,2) ]), 
+  Group([ (1,4,3) ]) ]
+gap> Length( last );
+6
+```
+Obtivemos que $|\mbox{Cent}(S_3)=5|$ e $|\mbox{Cent}(A_4)|=6$. Note como usamos a função `Set` em vez da função `List` para obter cada centralizador apenas uma vez.
+:::
+-->
 
 ## Tarefa 1
+
+:::{.subproblem}
 
 Vamos determinar o centralizador de um elemento em um grupo. Considere o seguinte exemplo.
 
@@ -40,12 +89,17 @@ gap> Size( Cx );
 Seguindo o exemplo em cima, determine os seguintes centralizadores $C_G(x)$. 
 
 1. $G=S_6$, $x=(1,2,3)(4,5,6)$. 
-2. etc
+2. $G=D_8$ (diedral de ordem 8) e $x$ é uma rotação por $90$ graus.
+3. $G=\mbox{GL}(2,5)$ e $x$ é a matriz diagonal com $(2,3)$ na diagonal principal.
+:::
 
-## Tarefa 2 
+:::{.hint}
+Consulte @sec-grupos para ver como definir o grupo `GL` e o grupo diedral.
+:::
 
-FAZER EXEMPLO MENOR PRIMEIRO COM LIST E DEPOIS COM SET
+## Exploração interatica 
 
+:::{.subexample}
 Para investigar o problema em cima, nós precisamos determinar o conjunto dos centralizadores em um grupo dado. Vamos fazer esta computação com o grupo $S_5$. 
 
 ```gap
@@ -67,37 +121,48 @@ gap> Size( cent_set );
 5
 ```
 Ou seja, $S_3$ possui 5 centralizadores. Note que usamos a função `Set` que vai devolver um conjunto; ou seja, todo elemento do output será aparece apenas uma vez.
-
+:::
 
 ## Tarefa 3
 
+:::{.subproblem}
 Escreva uma função `Cent(G)` para computar o conjunto de todos os centralizadores de elementos de um grupo $G$ dado. Use a função `Centralizer(G,x)`. 
 
 FAZER EXEMPLOS SEM SIZE
 
 Sua função deve verificar:
 ```matlab
-gap> Size(Cent(SymmetricGroup(3)));
-5
-gap> Size(Cent(AlternatingGroup(5)));
-22 
+gap> Cent( SymmetricGroup( 3 ));                  
+[ Group([ (2,3) ]), Group([ (1,3), (2,3) ]), Group([ (1,2) ]), 
+  Group([ (1,3,2) ]), Group([ (1,3) ]) ]
+gap> Cent( AlternatingGroup( 4 ));
+[ Group([ (2,4,3) ]), Group([ (1,2,4), (1,3,4) ]), 
+  Group([ (1,2)(3,4), (1,4)(2,3) ]), Group([ (1,3,2) ]), Group([ (1,4,2) ]), 
+  Group([ (1,4,3) ]) ]
+gap> Cent( SmallGroup( 16,7 ));   
+[ Group([ f1, f4 ]), Group([ f2, f4 ]), 
+  <pc group of size 16 with 4 generators>, Group([ f1*f2, f3, f4 ]), 
+  Group([ f1*f3, f4 ]), Group([ f2*f3, f4 ]) ]
 gap> Size(Cent(AlternatingGroup(6)));
 137
 gap> Size(Cent(AlternatingGroup(5)));
 807
-gap> Size(Cent(PSL(2,7));
+gap> Size(Cent(PSL(2,7)));
 79
-gap> Size(Cent(PSL(3,3));
+gap> Size(Cent(PSL(3,3)));
 1185
 gap> Size(Cent(DihedralGroup(8)));
 4
 gap> Size(SmallGroup(16,7));
 6
-gap> Size(Cent(MathieuGroup(11));
+gap> Size(Cent(MathieuGroup(11)));
 2081
 ```
+:::
 
 ## Tarefa 4
+
+:::{.subproblem}
 A lista a seguir possui somente ordens de grupos simples não abelianos (com repetição):
 ```matlab
 [60, 168, 360, 504, 660, 1092, 2448, 2520, 3420, 4080, 5616, 6048, 6072, 7800, 7920, 
@@ -111,6 +176,7 @@ Explore a função `AllSmallNonabelianSimpleGroups([60..n])`, para $n$ no conjun
 gap> AllSmallNonabelianSimpleGroups([60..20160]);
 [ A5, PSL(2,7), A6, PSL(2,8), PSL(2,11), PSL(2,13), PSL(2,17), A7, PSL(2,19), PSL(2,16), PSL(3,3), PSU(3,3), PSL(2,23), PSL(2,25), M11, PSL(2,27), PSL(2,29), PSL(2,31), A8, PSL(3,4)]
 ```
+:::
 
 ## Tarefa 5
 
@@ -134,7 +200,38 @@ Faça uma mudança no seu código e crie uma função `abCent(G)` para computar 
 Por fim, o que podemos dizer para o caso de centralizadores não abelianos de elementos?
 
 
-COLOCAR ISOCLINISMO!!!
+## Tarefa 7
+
+Nesta próxima tarefa, vamos usar o conceito de grupos isoclínicos (desenvolvido por P. Hall em [seu artigo influenciador](https://www.degruyter.com/document/doi/10.1515/crll.1940.182.130/pdf) de 1940). Dois grupos $G$ e $H$ são ditos isoclínicos se existem dois isomorfismos 
+$$
+\phi: \frac{G}{Z(G)} \rightarrow \frac{H}{Z(H)}\quad \mbox{e} \quad\psi: G' \rightarrow H'
+$$ 
+tais que se 
+$$
+\phi(g_1Z(G))=h_1Z(H)\quad\mbox{e} \quad\phi(g_2Z(G))=h_2Z(H)
+$$
+para $g_1,g_2 \in G$ e $h_1,h_2 \in H$, então $\psi([g_1,g_2])= [h_1,h_2]$. É possível mostrar que isoclinismo é uma relação de equivalência e que grupos abelianos são isoclínicos ao grupo trivial. 
+
+
+Por exemplo, pode se verificar que o grupo dihedral $D_8$ e o grupo de quaternions $Q_8$ são isoclínicos.
+
+```matlab
+gap> LoadPackage( "xmod" );
+true
+gap> AreIsoclinic( DihedralGroup(8), QuaternionGroup(8));
+true
+gap> f := Isoclinism( DihedralGroup(8), QuaternionGroup(8));
+[ [ f1, f2 ] -> [ f2, f1*f2 ], [ f3 ] -> [ y2 ] ]
+```
+
+
+
+M. Zarrin usou o isoclinismo para estender os resultados sobre centralizados de elementos para grupos infinitos. Em particular, ele provou que se $G$ e $H$ são isoclínicos, então $|Cent(G)| = |Cent(H)|$.
+Nesta tarefa vamos verificar a seguinte questão de [Khoramshahi and M. Zarrin](https://www.worldscientific.com/doi/10.1142/S0219498821500122).
+
+- Ache dois grupos $G$ e $H$ tal que $|\mbox{Cent}(G)|=|\mbox{Cent}(H)|$, $|H|=|G|$, $|G'|=|H'|$, mas  $G$ e $H$ não são isoclínicos.
+- Khoromshahi e Zarrin mostrou que se $G$ e $H$ são como no item anterior, então   $|\mbox{Cent}(G)|\leq 5$. Ache exemplos com $|\mbox{Cent}(G)|=6$ para verificar que esta quota superior não pode ser melhorada.  
+
 <!--
 
 gap> f:=function(g)                               

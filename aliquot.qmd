@@ -1,11 +1,10 @@
 ---
-title: "Projeto: A sequência alíquota"
+title: "A sequência alíquota"
 number-sections: true
 lang: pt-BR
 ---
 
-
-
+<div class="problem">
 Seja $n\in\mathbb N_0$. Denote por $\sigma(n)$ a soma dos divisores de $n$ entre $1$ e $n-1$ (ou seja, $n$ está desconsiderado). Em outras palavras, 
 $$
 \sigma(n)=\sum_{d\mid n,\ d<n}d.
@@ -20,12 +19,15 @@ $$
 $$
 Nós definimos também 
 $$
-\sigma(1)=0\quad\mbox{e}\quad \sigma(0)=0.
+\sigma(1)=\sigma(0)=0.
 $$
+Neste projeto vamos explorar quais tipos de sequências obtemos por sucessivamente aplicar a função $\sigma$ em um número natural.
+</div>
 
 ## Tarefa 1
-Escreva uma função `sum_divisors( n )` em `GAP` que dado um numero `n` devolve $\sigma(n)$. Pode usar a função `DivisorsInt`. A sua função deve se comportar como no seguinte exemplo.
 
+<div class="subproblem">
+Escreva uma função `sum_divisors( n )` em `GAP` que dado um numero `n` devolve $\sigma(n)$.  A sua função deve se comportar como no seguinte exemplo.
 ```matlab
 gap> sum_divisors( 8 );
 7
@@ -34,9 +36,16 @@ gap> sum_divisors( 9 );
 gap> sum_divisors( 11 );
 1
 ```
+</div>
+
+
+<div class="hint">
+Pode usar as funções `DivisorsInt` ([manual](https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695)) e `Sum` ([manual](https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695)). Também pode precisar de `if` para decidir se `n=0`, pois `DivisorsInt( 0 )` não funciona (@sec-if). 
+</div> 
 
 ## Tarefa 2 
 
+<div class="subproblem">
 Um número $n$ chama-se *perfeito* se $\sigma(n)=n$. 
 
 1. Escreva uma função `is_perfect( n )` que devolva `true` se `n` é perfeito e `false` se `n` não é perfeito. 
@@ -49,17 +58,21 @@ gap> is_perfect( 28 );
 true
 ```
 2. Ache todos os números perfeitos entre `1` e `1000000`.
+3. Um número $n$ chama-se *abundante*, se $\sigma(n)>n$. Escreva uma função `is_abundant( n )` que devolve `true` se o número `n` é  abundante e `false` se não é abundante. 
+4. Ache todos os números abundantes entre `1` e `1000`.
+</div>
+
+<div class="hint">
+Use a funução `sum_divisors` escrita para a tarefa anterior. Se precisar, revise como trabalhar com valores booleanas (@sec-bool).
+</div>
+
 
 ## Tarefa 3
 
-Um número $n$ chama-se *abundante*, se $\sigma(n)>n$. Ache todos os número abundantes entre `1` e `1000`.
-
-
-## Tarefa 4
-
+<div class="subproblem">
 Dois números $n$ e $m$ são chamados de amigáveis se $\sigma(n)=m$ e $\sigma(m)=n$. 
 
-1. Escreva uma função `is_friendly( n )` que verifica se um número `n` é membro de um par amigável. A função deve devolver o par de `n` caso sim, e `0` caso não.
+1. Escreva uma função `is_friendly( n )` que verifica se um número `n` é membro de um par amigável. A função deve devolver o par de `n` caso sim, e `0` caso não. 
 ```matlab
 gap> is_friendly( 6 );
 6
@@ -71,9 +84,24 @@ gap> is_friendly( 200 );
 0
 ```
 2. Ache todos os pares amigáveis de números entre `1` e `1000000`. 
+</div>
 
-## Tarefa 5
+<div class="hint">
+Use a função `sum_divisors` escrita para Tarefa 1. Pode usar também a função `Filtered` sobre `[1..1000000]` 
+(@sec-list).
+</div>
 
+<!--
+is_friendly := function( n )
+    local n1;
+    n1 := sigma( n );
+    return n <> n1 and sigma( n1 ) = n;
+end;
+-->
+
+## Tarefa 4
+
+<div class="subproblem">
 Seja $a_0\in\mathbb N$ arbitrário. Defina a sequência que começa por $a_0$ e para $i\geq 1$, $a_i=\sigma(a_{i-1})$. Por exemplo, se $a_0=8$, então 
 $$
 a_0=8,\quad a_1=\sigma(8)=7,\quad a_2=\sigma(7)=1, a_3=\sigma(1)=0, \quad a_4=\sigma(0)=0.
@@ -100,11 +128,15 @@ gap> aliquot_sequence_until_repeat( 34 );
 [ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]
 ```
 
-3. O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o número entre $1$ e $1000$ que produz o sequência com maior comprimento.
+1. O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o números entre $1$ e $1000$ que produzem o sequência particularmente longas. 
+</div>
+<div class="hint">
+Além de utulizar a função `sum_divisors`, vai precisar de listas (@sec-list), variáveis locais (@sec-functions), e laços (@sec-for e @sec-while). Pode precisar também a expressão `break` (@sec-break-continue).
+</div>
 
 Este projeto foi inspirado pelo seguinte vídeo
 
-{{< video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width="560" height="315" >}}
+{< video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width="560" height="315" >}
 
 <!--
 aliquot_sequence := function( a0, k )

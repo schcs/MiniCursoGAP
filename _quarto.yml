@@ -25,6 +25,7 @@ book:
     - cubo.qmd
     - grafos.qmd
     - algebras.qmd
+    - semidirect.qmd
 
 format:
   html:

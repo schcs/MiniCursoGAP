@@ -4,7 +4,7 @@ number-sections: true
 lang: pt-BR
 ---
 
-## Listas
+## Listas {#sec-list}
 
 Listas são importantes em ```GAP```. Listas contém uma sequência de objetos. Os objetos nas listas podem ser números, carateres, ou até objetos complexos, tais como grupos, subgrupos de um grupo, etc. Os seguintes exemplos mostram a criação de listas e as operações básicas com listas.
 
@@ -53,7 +53,7 @@ gap> List( [1..10], x->x^2 );
 [ 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 ]
 ```
 
-## Matrizes 
+## Matrizes {#sec-matrix}
 
 Em `GAP` uma matriz é lista de listas (que são as linhas da matriz). As entradas de matrizes são tipicamente números ou, mais geralmente, elementos de um anel ou corpo. As matrizes podem ser somadas e multiplicadas exatamente como números.
 ```matlab
@@ -83,7 +83,7 @@ gap> Display( last );
   [    4,    7,  3/2 ] ]
 ```
 
-## Permutações
+## Permutações {#sec-permutation}
 
 Outro objeto fundamento quando trabalhamos com grupos finitos é a permutação. Permutações em `GAP` podem ser definidas como produto de cíclos disjuntos mas também usando uma lista. 
 ```matlab

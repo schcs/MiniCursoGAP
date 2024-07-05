@@ -31,6 +31,23 @@
   content: "Tarefa (" attr(text) ") ";
   }
   
+  .subexample {
+    border: 3px outset #00aaff;
+    background-color: #e6f7ff;
+      padding: 5px;
+  }
+  
+  .subexample:before {
+  content: "Exemplo. ";
+  font-weight: bold;
+  font-style: normal;
+  }
+  
+  .subexample[text]:before {
+  content: "Exemplo (" attr(text) ") ";
+  }
+  
+  
   .hint {
     border: 3px outset #00aaff;
     background-color: #e6f7ff;

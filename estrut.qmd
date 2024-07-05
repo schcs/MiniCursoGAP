@@ -4,7 +4,7 @@ number-sections: true
 lang: pt-BR
 ---
 
-## Grupos disponíveis na biblioteca
+## Grupos disponíveis na biblioteca {#sec-grupos}
 
 `GAP` permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas. Primeiro considere alguns exemplos usando os grupos ``GL`` e ``SL``.
 ```matlab
