@@ -1,7 +1,8 @@
 .problem {
-    border: 3px outset green;
+    border: 3px outset  #af7ac5 ;
       padding: 5px;
-    background-color: #e6ffff;
+    background-color:  #fff1ff
+    ;
   }
   
   .problem:before {
@@ -17,8 +18,8 @@
   
   .subproblem {
     border: 3px outset #00aaff;
-    background-color: #e6f7ff;
-      padding: 5px;
+    background-color: #f1f9ff ;
+    padding: 5px;
   }
   
   .subproblem:before {
@@ -32,8 +33,8 @@
   }
   
   .subexample {
-    border: 3px outset #00aaff;
-    background-color: #e6f7ff;
+    border: 3px outset  #7dcea0;
+    background-color: #f2faf6;
       padding: 5px;
   }
   
@@ -49,9 +50,9 @@
   
   
   .hint {
-    border: 3px outset #00aaff;
-    background-color: #e6f7ff;
-      padding: 5px;
+    border: 3px outset #f7dc6f;
+    background-color:#fcf9ee;
+    padding: 5px;
   }
   
   .hint:before {
@@ -146,3 +147,47 @@
   content: "Conjecture (" attr(text) ") ";
   }
   */
+
+
+  .problembox {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border-radius: .25rem;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver; 
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    border-left-color: #9834eb !important; 
+  }
+
+  .problembox-icon {
+    height: .9rem; 
+    width: .9rem;
+    display: inline-block; 
+    content: "";
+    background-repeat: no-repeat;
+    background-size: .9rem .9rem;
+    margin-top: .5rem;
+    padding-right: .5rem;
+    background-image: url('icons/clipboard-question-solid.svg');
+    padding-left: .5em;
+    padding-top: .5em;
+  }
+
+  .problembox-header {
+    margin-top: 0.5em;
+    margin-bottom: .5em;
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 1.5rem;
+    padding-left: .5em;
+    padding-right: .5em;
+    display: flex;
+    background-color: #f5e8ff;
+  }
+
+  .problembox-body{
+    padding-left: .5em;
+    padding-right: .5em;
+  }

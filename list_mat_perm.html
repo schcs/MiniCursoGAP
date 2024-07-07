@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Listas, matrizes e permutações – Álgebra Computacional com GAP</title>
+<title>3&nbsp; Listas, matrizes e permutações – Álgebra Computacional com GAP</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./estrut.html" rel="next">
-<link href="./ling.html" rel="prev">
+<link href="./arith.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,6 +103,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -116,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./list_mat_perm.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Listas, matrizes e permutações</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./list_mat_perm.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Listas, matrizes e permutações</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -155,20 +184,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A linguagem de programação</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./list_mat_perm.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Listas, matrizes e permutações</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Listas, matrizes e permutações</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./estrut.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O primeiro encontro com grupos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">O primeiro encontro com grupos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">A linguagem de programação</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -191,50 +220,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./centralizers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Projeto: Uma exploração dos centralizadores</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./commutators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Comutadores em grupos</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./groebner1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./genord.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Carateres de um grupo e a ordem generalizada</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Comutadores em grupos</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cubo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Grupos livres e o cubo mágico</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Grupos livres e o cubo mágico</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./grafos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./algebras.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Anéis e álgebras</span></span></a>
+  <a href="./centralizers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Uma questão sobre centralizadores</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./semidirect.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Produto semidireto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Produto semidireto</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Carateres de um grupo e a ordem generalizada</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./algebras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Anéis e álgebras</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./groebner1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./grafos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></span></a>
   </div>
 </li>
     </ul>
@@ -247,9 +276,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#sec-list" id="toc-sec-list" class="nav-link active" data-scroll-target="#sec-list"><span class="header-section-number">4.1</span> Listas</a></li>
-  <li><a href="#sec-matrix" id="toc-sec-matrix" class="nav-link" data-scroll-target="#sec-matrix"><span class="header-section-number">4.2</span> Matrizes</a></li>
-  <li><a href="#sec-permutation" id="toc-sec-permutation" class="nav-link" data-scroll-target="#sec-permutation"><span class="header-section-number">4.3</span> Permutações</a></li>
+  <li><a href="#sec-list" id="toc-sec-list" class="nav-link active" data-scroll-target="#sec-list"><span class="header-section-number">3.1</span> Listas</a></li>
+  <li><a href="#sec-matrix" id="toc-sec-matrix" class="nav-link" data-scroll-target="#sec-matrix"><span class="header-section-number">3.2</span> Matrizes</a></li>
+  <li><a href="#sec-permutation" id="toc-sec-permutation" class="nav-link" data-scroll-target="#sec-permutation"><span class="header-section-number">3.3</span> Permutações</a></li>
   </ul>
 </nav>
     </div>
@@ -258,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Listas, matrizes e permutações</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Listas, matrizes e permutações</span></h1>
 </div>
 
 
@@ -275,90 +304,114 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sec-list" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="sec-list"><span class="header-section-number">4.1</span> Listas</h2>
-<p>Listas são importantes em <code>GAP</code>. Listas contém uma sequência de objetos. Os objetos nas listas podem ser números, carateres, ou até objetos complexos, tais como grupos, subgrupos de um grupo, etc. Os seguintes exemplos mostram a criação de listas e as operações básicas com listas.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">L1</span> <span class="op">:=</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">7</span><span class="op">,</span><span class="fl">9</span><span class="op">,</span><span class="fl">10</span><span class="op">,</span><span class="fl">8</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">0</span>]<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">L2</span> <span class="op">:=</span> [<span class="st">"a"</span><span class="op">,</span><span class="st">"b"</span><span class="op">,</span><span class="st">"c"</span><span class="op">,</span><span class="st">"z"</span><span class="op">,</span><span class="st">"x"</span><span class="op">,</span><span class="st">"y"</span>]<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[ <span class="st">"a"</span><span class="op">,</span> <span class="st">"b"</span><span class="op">,</span> <span class="st">"c"</span><span class="op">,</span> <span class="st">"z"</span><span class="op">,</span> <span class="st">"x"</span><span class="op">,</span> <span class="st">"y"</span> ]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">L1</span>[<span class="fl">3</span>]<span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="fl">10</span> <span class="va">in</span> <span class="va">L1</span><span class="op">;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="fl">10</span> <span class="va">in</span> <span class="va">L2</span><span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="st">"a"</span> <span class="va">in</span> <span class="va">L2</span><span class="op">;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Union</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">L2</span> )<span class="op">;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">0</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">10</span><span class="op">,</span> <span class="st">"a"</span><span class="op">,</span> <span class="st">"b"</span><span class="op">,</span> <span class="st">"c"</span><span class="op">,</span> <span class="st">"x"</span><span class="op">,</span> <span class="st">"y"</span><span class="op">,</span> <span class="st">"z"</span> ]</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Position</span>( <span class="va">L1</span><span class="op">,</span> <span class="fl">10</span> )<span class="op">;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fl">6</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Position</span>( <span class="va">L1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span> )<span class="op">;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="va">fail</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Intersection</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">L2</span> )<span class="op">;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>[  ]</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L</span><span class="op">,</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="va">x</span> <span class="va">mod</span> <span class="fl">2</span> <span class="op">=</span> <span class="fl">0</span> )<span class="op">;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="va">Error</span><span class="op">,</span> <span class="va">Variable</span><span class="op">:</span> <span class="ss">'L'</span> <span class="va">must</span> <span class="va">have</span> <span class="va">a</span> <span class="va">value</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="va">not</span> <span class="va">in</span> <span class="va">any</span> <span class="kw">function</span> <span class="va">at</span> <span class="op">*</span><span class="va">stdin</span><span class="op">*:</span><span class="fl">2</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="va">x</span> <span class="va">mod</span> <span class="fl">2</span> <span class="op">=</span> <span class="fl">0</span> )<span class="op">;</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="va">x</span> <span class="va">mod</span> <span class="fl">2</span> <span class="op">=</span> <span class="fl">1</span> )<span class="op">;</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">9</span> ]</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="va">IsEvenInt</span>( <span class="va">x</span> ))<span class="op">;</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="va">IsOddInt</span>( <span class="va">x</span> ))<span class="op">;</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">9</span> ]</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">IsEvenInt</span> )<span class="op">;</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">0</span> ]</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">IsOddInt</span> )<span class="op">;</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">9</span> ]</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Listas podem ser criadas usando outras listas. Por exemplo, criamos a list dos quadrados dos primeiros 10 números naturais:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( [<span class="fl">1</span>.<span class="fl">.10</span>]<span class="op">,</span> <span class="va">x</span><span class="op">-&gt;</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> )<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">16</span><span class="op">,</span> <span class="fl">25</span><span class="op">,</span> <span class="fl">36</span><span class="op">,</span> <span class="fl">49</span><span class="op">,</span> <span class="fl">64</span><span class="op">,</span> <span class="fl">81</span><span class="op">,</span> <span class="fl">100</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nesta página, vamos ver como trabalhar com listas, matrizes e permutações em <code>GAP</code>.</p>
+<section id="sec-list" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-list"><span class="header-section-number">3.1</span> Listas</h2>
+<div class="subexample">
+<p>Listas são importantes em <code>GAP</code> (<a href="https://docs.gap-system.org/doc/ref/chap21.html">manual</a>). Listas contém uma sequência de objetos. Os objetos nas listas podem ser números, carateres, ou até objetos complexos, tais como grupos, subgrupos de um grupo, etc. Os seguintes exemplos mostram a criação de listas e as operações básicas com listas.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">L</span> <span class="op">:=</span> [<span class="fl">1</span>.<span class="fl">.10</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span> .. <span class="fl">10</span> ]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">L1</span> <span class="op">:=</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">7</span><span class="op">,</span><span class="fl">9</span><span class="op">,</span><span class="fl">10</span><span class="op">,</span><span class="fl">8</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">0</span>]<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">0</span> ]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">L2</span> <span class="op">:=</span> [<span class="st">"a"</span><span class="op">,</span><span class="st">"b"</span><span class="op">,</span><span class="st">"c"</span><span class="op">,</span><span class="st">"z"</span><span class="op">,</span><span class="st">"x"</span><span class="op">,</span><span class="st">"y"</span>]<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>[ <span class="st">"a"</span><span class="op">,</span> <span class="st">"b"</span><span class="op">,</span> <span class="st">"c"</span><span class="op">,</span> <span class="st">"z"</span><span class="op">,</span> <span class="st">"x"</span><span class="op">,</span> <span class="st">"y"</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para acessar os elementos de uma lista, usamos <code>list[n]</code> que devolve o <span class="math inline">\(n\)</span>-ésimo elemento começando por <code>list[1]</code>. Para verificar se um objeto pertence ou não a uma lista, pode usar o operador <code>in</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">L1</span>[<span class="fl">3</span>]<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="fl">10</span> <span class="va">in</span> <span class="va">L1</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="fl">10</span> <span class="va">in</span> <span class="va">L2</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="st">"a"</span> <span class="va">in</span> <span class="va">L2</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A posição de um elemento em uma lista pode ser determinada usando a função <code>Position</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Position</span>( <span class="va">L1</span><span class="op">,</span> <span class="fl">10</span> )<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fl">6</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Position</span>( <span class="va">L1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span> )<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">fail</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Frequentamente, precisa-se criar novas listas usando listas. Por exemplo, frequentamente queremos criar a lista de elementos de uma outra lista que satisfazem uma certa propriedade. Esta tarefa pode ser resolvida usando a função <code>Filtered( list, func )</code> em <code>GAP</code> onde <code>list</code> é uma lista e <code>func</code> é uma função (<a href="ling.html#sec-functions" class="quarto-xref"><span>Seção 5.5</span></a>). Nos seguintes exemplos veremos alguns usos simples desta construção.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">IsEvenInt</span> )<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">0</span> ]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">IsOddInt</span> )<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">9</span> ]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="va">x</span> <span class="va">mod</span> <span class="fl">2</span> <span class="op">=</span> <span class="fl">0</span> )<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">10</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">0</span> ]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( <span class="va">L1</span><span class="op">,</span> <span class="va">x</span> <span class="op">-&gt;</span> <span class="va">x</span> <span class="va">mod</span> <span class="fl">2</span> <span class="op">=</span> <span class="fl">1</span> )<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">9</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Novas listas podem ser criadas também aplicando uma função nos elementos de uma outra lista. Por exemplo, criamos a lista dos quadrados dos primeiros 10 números naturais:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( [<span class="fl">1</span>.<span class="fl">.10</span>]<span class="op">,</span> <span class="va">x</span><span class="op">-&gt;</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> )<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">16</span><span class="op">,</span> <span class="fl">25</span><span class="op">,</span> <span class="fl">36</span><span class="op">,</span> <span class="fl">49</span><span class="op">,</span> <span class="fl">64</span><span class="op">,</span> <span class="fl">81</span><span class="op">,</span> <span class="fl">100</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>GAP</code> trabalha também com listas nas quais algumas entradas não estão definidas. Considere por exemplo as seguintes instruções.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">l</span> <span class="op">:=</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,,,</span><span class="fl">12</span>]<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,,,</span> <span class="fl">12</span> ]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">l</span>[<span class="fl">1</span>]<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">l</span>[<span class="fl">2</span>]<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">l</span>[<span class="fl">3</span>]<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="va">Error</span><span class="op">,</span> <span class="va">List</span> <span class="va">Element</span><span class="op">:</span> <span class="op">&lt;</span><span class="va">list</span><span class="op">&gt;</span>[<span class="fl">3</span>] <span class="va">must</span> <span class="va">have</span> <span class="va">an</span> <span class="va">assigned</span> <span class="va">value</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="va">not</span> <span class="va">in</span> <span class="va">any</span> <span class="kw">function</span> <span class="va">at</span> <span class="op">*</span><span class="va">stdin</span><span class="op">*:</span><span class="fl">166</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="va">type</span> <span class="ss">'quit;'</span> <span class="va">to</span> <span class="va">quit</span> <span class="va">to</span> <span class="va">outer</span> <span class="va">loop</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="va">brk</span><span class="op">&gt;</span> <span class="va">quit</span><span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsBound</span>( <span class="va">l</span>[<span class="fl">3</span>] )<span class="op">;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsBound</span>( <span class="va">l</span>[<span class="fl">4</span>] )<span class="op">;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsBound</span>( <span class="va">l</span>[<span class="fl">5</span>] )<span class="op">;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">l</span>[<span class="fl">5</span>]<span class="op">;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fl">12</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">l</span>[<span class="fl">8</span>] <span class="op">:=</span> <span class="fl">22</span><span class="op">;</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="fl">22</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">l</span><span class="op">;</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,,,</span> <span class="fl">12</span><span class="op">,,,</span> <span class="fl">22</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note que, ao acessar <code>l[3]</code>, obtemos um erro, pois esta entrada não existe. Para evitar este erro, podemos verificar se existe ou não a entrada usando <code>IsBound</code>.</p>
+</div>
 </section>
-<section id="sec-matrix" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="sec-matrix"><span class="header-section-number">4.2</span> Matrizes</h2>
-<p>Em <code>GAP</code> uma matriz é lista de listas (que são as linhas da matriz). As entradas de matrizes são tipicamente números ou, mais geralmente, elementos de um anel ou corpo. As matrizes podem ser somadas e multiplicadas exatamente como números.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( [<span class="fl">1</span>.<span class="fl">.10</span>]<span class="op">,</span> <span class="va">x</span><span class="op">-&gt;</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span> )<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">16</span><span class="op">,</span> <span class="fl">25</span><span class="op">,</span> <span class="fl">36</span><span class="op">,</span> <span class="fl">49</span><span class="op">,</span> <span class="fl">64</span><span class="op">,</span> <span class="fl">81</span><span class="op">,</span> <span class="fl">100</span> ]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m1</span> <span class="op">:=</span> [[<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">0</span>]<span class="op">,</span>[<span class="fl">0</span><span class="op">,-</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>]]<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">0</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">,</span> <span class="op">-</span><span class="fl">2</span><span class="op">,</span> <span class="fl">3</span> ] ]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">m1</span> )<span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>[ [   <span class="fl">1</span><span class="op">,</span>   <span class="fl">2</span><span class="op">,</span>   <span class="fl">0</span> ]<span class="op">,</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  [   <span class="fl">0</span><span class="op">,</span>  <span class="op">-</span><span class="fl">2</span><span class="op">,</span>   <span class="fl">3</span> ] ]</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m2</span> <span class="op">:=</span> [[<span class="fl">1</span><span class="op">,-</span><span class="fl">1</span>]<span class="op">,</span>[<span class="fl">0</span><span class="op">,</span><span class="fl">3</span>]<span class="op">,</span>[<span class="fl">4</span><span class="op">,</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span>]]<span class="op">;</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">m2</span> )<span class="op">;</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>[ [    <span class="fl">1</span><span class="op">,</span>   <span class="op">-</span><span class="fl">1</span> ]<span class="op">,</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">0</span><span class="op">,</span>    <span class="fl">3</span> ]<span class="op">,</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">4</span><span class="op">,</span>  <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m1</span><span class="op">*</span><span class="va">m2</span><span class="op">;</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">12</span><span class="op">,</span> <span class="op">-</span><span class="fl">9</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">last</span> )<span class="op">;</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>[ [     <span class="fl">1</span><span class="op">,</span>     <span class="fl">5</span> ]<span class="op">,</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">12</span><span class="op">,</span>  <span class="op">-</span><span class="fl">9</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m2</span><span class="op">*</span><span class="va">m1</span><span class="op">;</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="op">-</span><span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">,</span> <span class="op">-</span><span class="fl">6</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">3</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">last</span> )<span class="op">;</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>[ [    <span class="fl">1</span><span class="op">,</span>    <span class="fl">4</span><span class="op">,</span>   <span class="op">-</span><span class="fl">3</span> ]<span class="op">,</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">0</span><span class="op">,</span>   <span class="op">-</span><span class="fl">6</span><span class="op">,</span>    <span class="fl">9</span> ]<span class="op">,</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">4</span><span class="op">,</span>    <span class="fl">7</span><span class="op">,</span>  <span class="fl">3</span><span class="op">/</span><span class="fl">2</span> ] ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="sec-matrix" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-matrix"><span class="header-section-number">3.2</span> Matrizes</h2>
+<div class="subexample">
+<p>Em <code>GAP</code> uma matriz é lista de listas (que são as linhas da matriz) (<a href="https://docs.gap-system.org/doc/ref/chap24.html">manual</a>). As entradas de matrizes são tipicamente números ou, mais geralmente, elementos de um anel ou corpo. As matrizes podem ser somadas e multiplicadas exatamente como números.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m1</span> <span class="op">:=</span> [[<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">0</span>]<span class="op">,</span>[<span class="fl">0</span><span class="op">,-</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>]]<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">0</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">,</span> <span class="op">-</span><span class="fl">2</span><span class="op">,</span> <span class="fl">3</span> ] ]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">m1</span> )<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>[ [   <span class="fl">1</span><span class="op">,</span>   <span class="fl">2</span><span class="op">,</span>   <span class="fl">0</span> ]<span class="op">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  [   <span class="fl">0</span><span class="op">,</span>  <span class="op">-</span><span class="fl">2</span><span class="op">,</span>   <span class="fl">3</span> ] ]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m2</span> <span class="op">:=</span> [[<span class="fl">1</span><span class="op">,-</span><span class="fl">1</span>]<span class="op">,</span>[<span class="fl">0</span><span class="op">,</span><span class="fl">3</span>]<span class="op">,</span>[<span class="fl">4</span><span class="op">,</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span>]]<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">m2</span> )<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>[ [    <span class="fl">1</span><span class="op">,</span>   <span class="op">-</span><span class="fl">1</span> ]<span class="op">,</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">0</span><span class="op">,</span>    <span class="fl">3</span> ]<span class="op">,</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">4</span><span class="op">,</span>  <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m1</span><span class="op">*</span><span class="va">m2</span><span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">12</span><span class="op">,</span> <span class="op">-</span><span class="fl">9</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">last</span> )<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>[ [     <span class="fl">1</span><span class="op">,</span>     <span class="fl">5</span> ]<span class="op">,</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">12</span><span class="op">,</span>  <span class="op">-</span><span class="fl">9</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m2</span><span class="op">*</span><span class="va">m1</span><span class="op">;</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="op">-</span><span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">,</span> <span class="op">-</span><span class="fl">6</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">3</span><span class="op">/</span><span class="fl">2</span> ] ]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Display</span>( <span class="va">last</span> )<span class="op">;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>[ [    <span class="fl">1</span><span class="op">,</span>    <span class="fl">4</span><span class="op">,</span>   <span class="op">-</span><span class="fl">3</span> ]<span class="op">,</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">0</span><span class="op">,</span>   <span class="op">-</span><span class="fl">6</span><span class="op">,</span>    <span class="fl">9</span> ]<span class="op">,</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  [    <span class="fl">4</span><span class="op">,</span>    <span class="fl">7</span><span class="op">,</span>  <span class="fl">3</span><span class="op">/</span><span class="fl">2</span> ] ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="sec-permutation" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="sec-permutation"><span class="header-section-number">4.3</span> Permutações</h2>
+<section id="sec-permutation" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-permutation"><span class="header-section-number">3.3</span> Permutações</h2>
+<div class="subexample">
 <p>Outro objeto fundamento quando trabalhamos com grupos finitos é a permutação. Permutações em <code>GAP</code> podem ser definidas como produto de cíclos disjuntos mas também usando uma lista.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p1</span> <span class="op">:=</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">4</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span>)<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">4</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p1</span><span class="op">^</span><span class="fl">2</span><span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)(<span class="fl">4</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">5</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p2</span> <span class="op">:=</span> <span class="va">PermList</span>( [<span class="fl">1</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>] )<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>(<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p1</span><span class="op">*</span><span class="va">p2</span><span class="op">;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">4</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p2</span><span class="op">*</span><span class="va">p1</span><span class="op">;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">4</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p1</span> <span class="op">:=</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">4</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span>)<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">4</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p1</span><span class="op">^</span><span class="fl">2</span><span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)(<span class="fl">4</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">5</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p2</span> <span class="op">:=</span> <span class="va">PermList</span>( [<span class="fl">1</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>] )<span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>(<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p1</span><span class="op">*</span><span class="va">p2</span><span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">3</span>)(<span class="fl">2</span><span class="op">,</span><span class="fl">4</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">p2</span><span class="op">*</span><span class="va">p1</span><span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">6</span><span class="op">,</span><span class="fl">4</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">5</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
@@ -786,13 +839,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ling.html" class="pagination-link" aria-label="A linguagem de programação">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A linguagem de programação</span></span>
+      <a href="./arith.html" class="pagination-link" aria-label="Aritmética básica">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Aritmética básica</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./estrut.html" class="pagination-link" aria-label="O primeiro encontro com grupos">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O primeiro encontro com grupos</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">O primeiro encontro com grupos</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
