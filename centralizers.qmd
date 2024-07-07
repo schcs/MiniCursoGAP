@@ -1,5 +1,5 @@
 ---
-title: "Projeto: Uma exploração dos centralizadores"
+title: "Uma questão sobre centralizadores"
 number-sections: true
 lang: pt-BR
 ---

@@ -4,16 +4,25 @@ number-sections: true
 lang: pt-BR
 ---
 
+
+:::{.problembox}
+::::{.problembox-header}
+:::::{.problembox-icon}
+:::::
+O produto semidireto de grupos
+::::
+::::{.problembox-body}
 Dados dois grupos $N$ e $H$ e um homomorfismo $\alpha:H\to\mbox{Aut}(H)$, construimos o *produto semidireto* $G=N\rtimes H$ na segiunte forma. O conjunto de $G$ é o produto cartesiano $N\times H$ e a multiplicação está definida pela seguinte regra:
 $$
 (n_1,h_1)(n_2,h_2)=(n_1\cdot \alpha(h_1)(n_2),h_1h_2).
 $$
-É um exercício fácil mostrar que esta regra define um grupo. 
+É um exercício fácil mostrar que esta regra define um grupo. Neste projeto vamos ver como construir produto semidireto em `GAP` e depois vamos usar esta construção para construir os grupos de ordem $12$
+::::
+:::
 
-Primeiramente, vamos construir um homomorfismo $a$ de $H$ no grupo de  automorfismos de $N$. Em seguida usaremos a função `SemidirectProduct(H, a, N)` para construir alguns grupos, em particular todos os grupos de ordem $12$. 
+## Exploração interativa
 
-## Tarefa 1
-
+:::{.subexample}
 Usando a função `AutomorphismGroup(G)`, vamos construir alguns automorfimos.
 
 ```matlab
@@ -21,38 +30,161 @@ gap> AutomorphismGroup(SmallGroup(4, 2));
 <group with 4 generators>
 gap> StructureDescrition(last);
 "S3"
-gap> AutomorphismGroup(DirectProduct(CyclicGroup(2), CyclicGroup(2)));$
-gap> StructureDescrition(last);
-gap> AutomorphismGroup(CyclicGroup(3)); 
-gap> StructureDescrition(last);
+gap> AutomorphismGroup(DirectProduct(CyclicGroup(2), CyclicGroup(2)));
+<group with 4 generators>
+gap>  StructureDescription(last);
+"S3"
+gap>  AutomorphismGroup(CyclicGroup(3)); 
 <group with 1 generator>
 gap> StructureDescription( last );
 "C2"
 ```
+:::
 
-## Tarefa 2
+## Tarefa 1
 
+:::{.subproblem}
 Agora vamos construir alguns homomorfismos de um grupo $H$ para o grupo de automorfismos de $N$, nos casos em que tais grupos são: $C_2 \times C_2$ ou $C_4$ ou $C_3$. Usaremos a função `GroupHomomorphismByImages( H, AutomorphismGroup(N), gens, imgs )`, onde `gens` é uma lista de geradores de `H` de mesmo tamanho da lista de respectivas imagens `imgs` em `AutomorphismGroup(N)`.
 
-Primeiro, vamos fazer um exemplo e construir um homomorfismo do grupo grupo simétrico $S_4=<(1,2), (1,2,3,4)>$ para o grupo $Aut(S_3) \cong S_3 =<(1,2), (1,2,3)>$. 
+Primeiro, vamos fazer um exemplo e construir um homomorfismo do grupo grupo simétrico $S_4=\left<(1,2), (1,2,3,4)\right>$ para o grupo $\mbox{Aut}(S_3) \cong S_3 =\left<(1,2), (1,2,3)\right>$. 
 
 ```matlab 
 gap> s4 := SymmetricGroup(4);
-gap> gens:=GeneratorsOfGroup(s4);
-gap> s3:=SymmetricGroup(3);
-gap> imgs:=[(1,2),(2,3)];
-gap> GroupHomomorphismByImages(s4, s3, gens, imgs);
-gap> Image(f,(1,2,3,4));
-gap> Image(f, (1,3)(2,4));
-gap> Image(f, (1,2,3,4)*(1,2));
+Sym( [ 1 .. 4 ] )
+gap>  gens:=GeneratorsOfGroup(s4);
+[ (1,2,3,4), (1,2) ]
+gap>  s3:=SymmetricGroup(3);
+Sym( [ 1 .. 3 ] )
+gap>  imgs:=[(1,2),(2,3)];
+[ (1,2), (2,3) ]
+gap>  f := GroupHomomorphismByImages(s4, s3, gens, imgs);
+[ (1,2,3,4), (1,2) ] -> [ (1,2), (2,3) ]
+gap>  Image(f,(1,2,3,4));
+(1,2)
+gap>  Image(f, (1,3)(2,4));
+()
+gap>  Image(f, (1,2,3,4)*(1,2));
+(1,3,2)
 ```
 
-1. Agora, construa um homomorfismo $f$ de $h:=C_4$ para $n:=Aut(C_3) \cong C_2$. Verifique qual é imagem de $a^3$ por $f$, onde $<a>=C_4$. 
-2. Faça o mesmo para $h:=C_2 \times C_2$ para $n:=Aut(C_3) \cong C_2$. \\ Use a função DirectProduct e também GeneratorsOfGroup. 
+1. Agora, construa um homomorfismo $f$ de $h:=C_4$ para $n:=Aut(C_3) \cong C_2$. Verifique qual é imagem de $a^3$ por $f$, onde $\left<a\right>=C_4$. 
+2. Faça o mesmo para $h:=C_2 \times C_2$ para $n:=Aut(C_3) \cong C_2$.  Use a função DirectProduct e também GeneratorsOfGroup. 
+:::
 
+## Tarefa 2
+
+:::{.subproblem}
+Agora vamos usar a função `SemidirectProduct(H, a, N)`, onde $a$ é um homomorfismo de $H$ em $\mbox{Aut}(N)$, já construído em tarefa anterior. Vamos obter os produtos semidiretos com $H=C_4$ e $N=C_3$. E como tarefa, faça o mesmo com $H=C_2 \times C_2$. 
+
+```matlab
+gap> h:=CyclicGroup(4);
+<pc group of size 4 with 2 generators>
+gap>  n:=CyclicGroup(3) ;
+<pc group of size 3 with 1 generator>
+gap>  aut:=AutomorphismGroup(n);
+<group with 1 generator>
+gap>  alpha:=GroupHomomorphismByImages(h, aut, [GeneratorsOfGroup(h)[1]], [GeneratorsOfGroup(aut)[1]]); 
+[ f1 ] -> [ [ f1 ] -> [ f1^2 ] ]
+gap>  g:=SemidirectProduct(h,alpha,n);
+<pc group of size 12 with 3 generators>
+gap>  StructureDescription(g);
+"C3 : C4"
+gap>  alpha:=GroupHomomorphismByImages(h, aut, [GeneratorsOfGroup(h)[1]], [GeneratorsOfGroup(aut)[1]^2]);
+[ f1 ] -> [ Pcgs([ f1 ]) -> [ f1 ] ]
+gap>  g:=SemidirectProduct(h,alpha,n);
+<pc group of size 12 with 3 generators>
+gap>  StructureDescription(g);
+"C12"
+```
+:::
 
 ## Tarefa 3
 
-Agora vamos usar a função $SemidirectProduct(H, \alpha, N)$. 
+:::{.subproblem}
+Um modo alternativo de se obter os homomorfismos de $H$ para $\mbox{Aut}(N)$ é usar a função `AllHomomorphisms(H, AutomorphismGroup(N))`. Vamos obter os homomorfismos de $H$ para $\mbox{Aut}(N)$ usando tal função.
 
+```
+gap> h:=CyclicGroup(4);
+<pc group of size 4 with 2 generators>
+gap>  n:=CyclicGroup(3);
+<pc group of size 3 with 1 generator>
+gap>  aut:=AutomorphismGroup(n);
+<group with 1 generator>
+gap>  a:=AllHomomorphisms(h, aut);
+[ [ f1 ] -> [ IdentityMapping( <pc group of size 3 with 1 generator> ) ], 
+  [ f1 ] -> [ [ f1 ] -> [ f1^2 ] ] ]
+gap>  List(a, f-> StructureDescription(SemidirectProduct(h, f, n)));
+[ "C12", "C3 : C4" ]
+
+```
+
+
+Usando AllHomomorphism como acima, obtenha todos os produtos semidiretos de $H=C_3$ para $N=C_4$, de $H=C_2 \times C_2$ para $N=C_3$ e também de $H=C_3$ para $C_2 \times C_2$. Verifique nas suas respostas que os únicos grupos obtidos do produto semidireto $H \rtimes N$ são os seguintes:
+\begin{itemize}
+    \item $C_4 \rtimes C_3$ e $C_{12}$ (com $H=C_4$ e $N=C_3$);
+    \item $C_{12}$ (com $H=C_3 \times N=C_4$);
+    \item $C_6 \times C_2$ e $D_{12}$ (com $H=C_2 \times C_2$ e $N=C_3$);
+    \item $C_6 \times C_2$ e $A_4$ (com $H=C_3$ e $N=C_2 \times C_2$);
+\end{itemize}
+
+
+Portanto, existem exatamente $5$ grupos de ordem $12$, a menos de isomorfismos. Podemos obtê-los via produto semidireto $H \rtimes N$, onde os grupos $H$ e $N$ correspondem a um grupo de ordem $4$ e de ordem $3$, respectivamente e vice-versa.
+:::
+
+## Tarefa 4
+
+:::{.subproblem}
+Escreva uma função `all_semidirect_products( N, H )` que devolve todos os produtos semidiretos $N\rtimes H$.
+:::
+:::{.hint}
+:::
+
+<!--
+O seguinte código retorna os produtos semidiretos de grupos de ordem $n$ com grupos de ordem $m$ (e vice-versa).
+Copie o código, compute e compare $Morf(4,3)$, $Morf(3,4)$, $Morf(6,2)$, $Morf(2,6)$, $Morf(12,1)$ e $Morf(1,12)$. \\
+Note que $Morf(12,1)$ retorna todos os grupos de ordem $12$.
+
+
+Morf:= function(n,m) \\
+local A,k,k2,c,e,SDP,A1,e1,SDP1,i,N,M,a,b,a1,b1; \\
+i:=[];;\\
+a:=AllSmallGroups(n);; \\
+b:=AllSmallGroups(m);; \\
+if $Size(a)<Size(b)$ then \\
+k:=a;; \\
+k2:=b;; \\
+b:=k;; \\
+a:=k2;; \\
+fi; \\
+a1:=1; \\
+while $a1<=Size(a)$ do \\
+M:=a[a1];; \\
+b1:=1;; \\
+while $b1<=Size(b)$ do \\
+N:=b[b1];; \\
+A:=AutomorphismGroup(M);; \\
+e:=AllHomomorphisms(N,A);; \\
+c:=1;; \\
+while $c<=Size(e)$ do \\
+SDP:=SemidirectProduct(N,e[c],M);; \\
+Add(i,SDP);; \\
+c:=c+1;; \\
+od; \\
+A1:=AutomorphismGroup(N);; \\
+e1:=AllHomomorphisms(M,A1);; \\
+c:=1;; \\
+while $c<=Size(e1)$ do \\
+SDP1:=SemidirectProduct(M,e1[c],N);; \\
+Add(i,SDP1);; \\
+c:=c+1;; \\
+od; \\
+b1:=b1+1;; \\
+od; \\
+a1:=a1+1;; \\
+od; \\
+return \\ Set(List(i,StructureDescription));end;\\
+
+Copie o código, compute e compare $Morf(4,3)$, $Morf(3,4)$, $Morf(6,2)$, $Morf(2,6)$, $Morf(12,1)$ e $Morf(1,12)$. \\
+Note que $Morf(12,1)$ retorna todos os grupos de ordem $12$.
+-->
 

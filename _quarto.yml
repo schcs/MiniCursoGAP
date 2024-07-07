@@ -12,20 +12,20 @@ book:
   chapters:
     - index.qmd
     - arith.qmd
-    - ling.qmd
     - list_mat_perm.qmd
     - estrut.qmd
+    - ling.qmd
     - collatz.qmd
     - aliquot.qmd
     - rsa.qmd
-    - centralizers.qmd
     - commutators.qmd
-    - groebner1.qmd
-    - genord.qmd
     - cubo.qmd
-    - grafos.qmd
-    - algebras.qmd
+    - centralizers.qmd
     - semidirect.qmd
+    - genord.qmd
+    - algebras.qmd
+    - groebner1.qmd
+    - grafos.qmd
 
 format:
   html:

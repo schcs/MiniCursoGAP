@@ -5,10 +5,13 @@ lang: pt-BR
 ---
 
 
+Nesta página vamos revisar os aspetos principais da linguagem de programação do sistema `GAP`.
+
 ## Expressões `if-then-else` {#sec-if}
 
-A expressão `if-then` está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa. Considere o seguinte exemplo:
-```python
+:::{.subexample}
+A expressão `if-then` ([manula](https://docs.gap-system.org/doc/ref/chap4.html#X875000188622700D)) está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa (@sec-bool). Considere o seguinte exemplo:
+```matlab
 gap> a := 3;                # seja a inicialmente 3
 3
 gap> if a mod 2 = 0 then    # se a for par, dividimos a por 2
@@ -37,16 +40,20 @@ gap> a := 8;
 8
 gap> if a mod 2 = 0 then
 > a := a/2;
-> else
+> elif a mod 2 = 1 then 
 > a := 3*a+1;
+> else
+> a := -2
 > fi;
 gap> a;
 4
 ```
+:::
 
 ## Laço `for` {#sec-for}
 
-Usamos `for` quando queremos executar a mesma peça de código várias vezes. Por exemplo, queremos calcular o quadrado dos números entre `1` e `10`.
+:::{.subexample}
+Usamos `for` quando queremos executar a mesma peça de código várias vezes ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X78783E777867638A)). Por exemplo, queremos calcular o quadrado dos números entre `1` e `10`.
 ```matlab
 gap> for i in [1..10] do
 > Print( "O quadrado de ", i, " é ", i^2, "\n" );
@@ -61,21 +68,22 @@ O quadrado de 7 é 49
 O quadrado de 8 é 64
 O quadrado de 9 é 81
 O quadrado de 10 é 100
-gap> 
 ```
 Observamos os seguintes regras importantes:
 
 1. a palavra chave `for` é seguida por uma variável, neste caso `i`;
-2. depois temos a palavra `in` seguida por uma lista;
+2. depois temos a palavra `in` seguida por uma lista (@sec-list);
 3. depois da lista temos a palavra `do`;
-4. o laço está fechado pela palavra `od` (`do` invertido). 
+4. o laço está fechado pela palavra `od` (`do` reverso). 
 
 O ciclo executa o código entre as palavras `do` e `od` para todo valor `i` na lista que aparece depois da palavra `in`.
-
+:::
 
 ## Laço `while` {#sec-while}
 
-Uma outra maneira de criar um laço é usar a construção com `while`. Considere o seguinte exemplo.
+
+:::{.subexample}
+Uma outra maneira de criar um laço é usar a construção com `while` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X87AA46408783383F)). Considere o seguinte exemplo.
 ```matlab 
 gap> while i <= 10 do 
 > Print( "O quadrado de ", i, " é ", i^2, "\n" );
@@ -98,14 +106,15 @@ As regras de construir este tipo de laço são as seguintes:
 
 1. a palavra `while` (enquanto) está seguida por uma condição lógica (booleana) e depois pela palavra `do`;
 2. o laço está fechado pela palavra `od`;
-3. a peça de código está executado entre as palavras `do` e `od` enquanto (`while`) a condição está verdadeira.
+3. a peça de código está executado entre as palavras `do` e `od` enquanto (`while`) a condição está verdadeira (@sec-bool).
 
 Note que no laço `while` o valor da variável `i` precisa ser incrementado manualmente.
-
+:::
 
 ## Laço `repeat` {#sec-repeat}
 
-O terceiro tipo de laço pode ser construída com a palavra `repeat`. Considere o seguinte exemplo:
+:::{.subexample}
+O terceiro tipo de laço pode ser construída com a palavra `repeat` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X8295CBF47FAA05C9)). Considere o seguinte exemplo:
 
 ```matlab
 gap> i := 0;
@@ -130,7 +139,7 @@ Observamos que
 
 1. O laço está iniciado pela palavra `repeat`;
 2. na última linha, temos a palavra `until` seguida por uma condição lógica;
-3. o sistema termina a execução do laço assim que a condição depois de `repeat` vira verdadeira. 
+3. o sistema termina a execução do laço assim que a condição depois de `repeat` vira verdadeira (@sec-bool).  
 
 A diferença entre os laços construídos por `while` e `repeat` é que no caso de `while` a decisão está feita antes da execução do código, enquanto no caso de `repeat`a mesma decisão está feita depois da execução. Em particular, o laço `repeat` sempre será executado pelo menos uma vez. Considere o seguinte código e explique o comportamento.
 
@@ -150,10 +159,12 @@ gap> repeat
 > until i >= 10;
 O quadrado de 11 é 121
 ```
+:::
 
 ## Funções {#sec-functions}
 
-Funções em ```GAP``` podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado ```x``` computa ```3*x+1``` pode ser definida de duas maneiras diferentes.
+:::{.subexample}
+Funções em `GAP` podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado `x` computa `3*x+1` pode ser definida de duas maneiras diferentes.
 ```matlab
 gap> f1 := function( x )
 > return 3*x+1;
@@ -162,6 +173,9 @@ function( x ) ... end
 gap> f1( 5 );
 16
 ```
+
+Observe que o valor da função é devolvido pela expressão `return`.
+
 ```matlab
 gap> f2 := x -> 3*x + 1;
 function( x ) ... end
@@ -204,10 +218,78 @@ gap> y;
 -5
 ```
 
-FUNCTIONS WITH OPTIONAL ARGUMENT
+Funções podem receber mais que um argumento. Considere o seguinte exemplo.
+
+```matlab
+gap> my_sum := function( x, y )
+> return x+y;
+> end;
+function( x, y ) ... end
+gap> my_sum( 4, -1 );
+3
+```
+
+`GAP` permite também um número varíavel de argumentos como no seguinte exemplo.
+```matlab 
+gap> f4 := function( a, args... )
+> local b;
+> if Length( args ) >  0 then
+> b := args[1];
+> else
+> b := true;
+> fi;
+> if b then
+> return 3*a-1;
+> else
+> return a/2;
+> fi;
+> end;
+function( a, args... ) ... end
+```
+
+Esta função devolve $3a-1$ se tem apenas um argumento. No entanto, o usuário pode fornecer um segundo argumento que pode ser `true` ou `false`. No caso de `true`, a função devolve $3a-1$, mas no caso de `false`, a função devolve $a/2$. 
+
+```matlab
+gap> f4(4);
+11
+gap> f4(3);
+8
+gap> f4(3, true);
+8
+gap> f4(3, false);
+3/2
+gap> f4(4, false);
+2
+```
+:::
 
 ## Break e continue {#sec-break-continue}
 
+:::{.subexample}
+As expressões `break` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X7B60C6127E183021) e `continue` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X7CCBA2247AA366BD)) podem ser usadas em laços. 
 
-A ser escrito 
-
+Quando a expressão `break` está executada, o sistema sai do laço. No caso de `continue`, o sistema sai da iteração atual e passa para a próxima iteração.
+```matlab 
+gap> for i in [1..10] do
+> if i = 5 then break; fi;
+> Print( i, "\n" );
+> od;
+1
+2
+3
+4
+gap> for i in [1..10] do
+> if i = 5 then continue; fi;
+> Print( i, "\n" );
+> od;
+1
+2
+3
+4
+6
+7
+8
+9
+10
+```
+:::

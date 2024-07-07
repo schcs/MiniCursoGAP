@@ -131,6 +131,31 @@ Seja $G$ o grupo encontrado na tarefa anterior.
 2. Escreva estes elementos como produto de comutadores de $G$. Demonstre que todo elemento de $G'$ pode ser escrito na forma $[x_1,x_2][y_1,y_2]$ com $x_i,y_i\in G$.
 :::
 
+## Tarefa 6
+
+:::{.subproblem}
+Para um grupo $G$ e $x\in G$, denote por $B_x(G)$ o seguinte conjunto:
+$$
+B_x(G)=\{u^{-1}x^{-1}uv^{-1}x^v\mid u,v\in G\}. 
+$$
+<!--
+gap> B_x := function( G, x )
+> local set1, set2;
+> set1 := Set( G, z->z^-1*x^-1*z );
+> set2 := Set( G, z->z^-1*x*z );
+> return Set( Cartesian( set1, set2 ), z->z[1]*z[2] );
+> end;
+-->
+
+1. Escreva uma função `B_x( G, x )` que calcula $B_x(G)$ para um grupo $G$ e elemento $x\in G$. 
+2. Decide quais dos seguintes groupos possui elemento $x$ tal que $B_x(G)=G$: $D_8$, $Q_8$, $A_4$, $S_4$, $A_5$, $S_5$. 
+:::
+
+:::{.hint}
+Use `Cartesian` para criar o produto cartesiano de duas listas ([manual](https://docs.gap-system.org/doc/ref/chap21.html#X7E1593B979BDF2CD)).
+:::
+
+
 <!-- 
 nr_comms := function( G )
     return Size( Set( Tuples( Elements( G ), 2 ), t->Comm( t[1],t[2])));

@@ -4,9 +4,20 @@ number-sections: true
 lang: pt-BR
 ---
 
+Nesta página, vamos ver como construir grupos em `GAP` e como fazer operações básicas com seus elementos.
+
 ## Grupos disponíveis na biblioteca {#sec-grupos}
 
-`GAP` permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas. Primeiro considere alguns exemplos usando os grupos ``GL`` e ``SL``.
+:::{.subexample}
+`GAP` permite várias formas de definir grupos. O sistema já vem com algumas classes de grupos pré-definidas. Primeiro considere alguns exemplos usando os grupos ``GL`` e ``SL``. Lembre que 
+$$
+\mbox{GL}(n,\mathbb F)=\{A\in M_{n\times n}(\mathbb F)\mid \det A\neq 0\}
+$$
+e
+$$
+\mbox{SL}(n,\mathbb F)=\{A\in \mbox{GL}(n,\mathbb F)\mid \det A\neq 1\}.
+$$
+Quando $\mathbb F$ é o corpo finito com $q$ elementos, o grupo $\mbox{GL}(n,\mathbb F)$ e $\mbox{SL}(n,\mathbb F)$ é também escrito como $\mbox{GL}(n,q)$ e $\mbox{SL}(n,q)$. Para revisar corpos finitos (função `GF`) consulte @sec-ff.
 ```matlab
 gap> G1 := SL( 3, GF(5));
 SL(3,5)
@@ -28,7 +39,8 @@ gap> IsNormal( G1, G2 );
 true
 ```
 
-Ora, considere construções com `SymmetricGroup` e `AlternatingGroup`.
+Ora, considere construções com `SymmetricGroup` e `AlternatingGroup`. Lembre que o grupo simétrico $S_n$ é o grupo de todas as permutações do conjunto $\{1,\ldots,n\}$ considerando com a operaçõo de composição. O grupo alternado $A_n$ é o grupo das permutações pares.
+
 ```matlab
 gap> S6 := SymmetricGroup( 6 );
 Sym( [ 1 .. 6 ] )
@@ -40,8 +52,53 @@ gap> IsNormal( S6, A6 );
 true
 ```
 
+Na biblioteca do `GAP`, tem uma base de dados com todos os grupos de ordem pequena. Estes grupos podem ser acessos usando a função `SmallGroup( n, k )` que devolve o $k$-ésimo grupo de ordem $n$ na biblioteca de `GAP`. Veja o seguinte exemplo.
+
+```matlab
+gap> g := SmallGroup( 8, 3 );
+<pc group of size 8 with 3 generators>
+gap> StructureDescription( g );
+"D8"
+```
+O grupo `SmallGroup( 8, 3 )` é o grupo diedral de ordem 8.
+
+Uma família de grupos pode ser construído também com a função `AllSmallGroups`. No seguinte exemplo, vamos construir todos os grupos nilpotentes de ordem entre $10$ e $20$.
+```matlab
+gap> AllSmallGroups( Size, [10..20] , IsNilpotent, true  );
+[ <pc group of size 10 with 2 generators>, 
+  <pc group of size 11 with 1 generator>, 
+  <pc group of size 12 with 3 generators>, 
+  <pc group of size 12 with 3 generators>, 
+  <pc group of size 13 with 1 generator>, 
+  <pc group of size 14 with 2 generators>, 
+  <pc group of size 15 with 2 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 16 with 4 generators>, 
+  <pc group of size 17 with 1 generator>, 
+  <pc group of size 18 with 3 generators>, 
+  <pc group of size 18 with 3 generators>, 
+  <pc group of size 19 with 1 generator>, 
+  <pc group of size 20 with 3 generators>, 
+  <pc group of size 20 with 3 generators> ]
+```
+:::
+
+
 ## Grupos gerados por permutações
 
+:::{.subexample}
 Pode também definir grupo por geradores. Os geradores podem ser objetos multiplicáveis, tipicamente usamos matrizes e permutações. Primeiro, consideremos alguns exemplos com permutações.
 ```matlab
 gap> G := Group( (1,2), (1,2,3,4,5));
@@ -73,9 +130,11 @@ true
 gap> IsNormal( AlternatingGroup( 5 ), D );
 false
 ```
+:::
 
 ## Grupos gerados por matrizes
 
+:::{.subexample}
 Pode-se também definir grupos de matrizes usando geradores. Considere por exemplo as seguintes duas matrizes sobre `GF( 5 )`:
 $$
 m_1 = \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}\quad \mbox{e}\quad m_2 = \begin{pmatrix} 2 & 1 \\ 2 & 0 \end{pmatrix}.
@@ -94,24 +153,24 @@ gap> Order( G );
 gap> G = GL( 2, 5 );
 true
 ```
+:::
 
-## Projeto: O grupo de Heisenberg
+## O grupo de Heisenberg
 
+:::{.subproblem}
 Sobre um corpo $\mathbb F$, o grupo de Heisenberg é o grupo 
 $$
-H=\left\{\begin{pmatrix} 1 & a & c \\ 0 & 1 & b \\ 0 & 0 & c\end{pmatrix}\mid a, b, c \in\mathbb F\right\}.
+H=\left\{\begin{pmatrix} 1 & a & c \\ 0 & 1 & b \\ 0 & 0 & 1\end{pmatrix}\mid a, b, c \in\mathbb F\right\}.
 $$
 
 O seguinte resultado é fácil de verificar.
 
-:::{#lemma-}
+::::{#lemma-}
 Se $\mathbb F$ é um corpo finito de ordem $q$, então $|H|=q^3$. 
-:::
+::::
 
-:::{tarefa}
-**Tarefa 1:** Construa em `GAP` o grupo de Heisenberg sobre os corpos `GF(2)`, `GF(3)`, `GF(5)`, `GF( 9 )`, `GF( 25 )` como um grupo de matrizes dado por geradores. Calcule a ordem do grupo construido para verificar que tem o grupo certo. 
-
-**Tarefa 2:** Escreva uma função `heisenberg_group( q )` que devolve o grupo de Heisenberg  sobre `GF( q )` dado input `q`. A sua função precisa seguir o seguinte exemplo.
+1. Construa em `GAP` o grupo de Heisenberg sobre os corpos `GF(2)`, `GF(3)`, `GF(5)`, `GF( 9 )`, `GF( 25 )` como um grupo de matrizes dado por geradores. Calcule a ordem do grupo construido para verificar que tem o grupo certo. 
+2. Escreva uma função `heisenberg_group( q )` que devolve o grupo de Heisenberg  sobre `GF( q )` dado input `q`. A sua função precisa seguir o seguinte exemplo.
 ```matlab
 gap> H := heisenberg_group( 5 );
 Group(
@@ -131,14 +190,19 @@ Group(
       [ 0*Z(7), 0*Z(7), Z(7)^0 ] ] ])
 gap> Order( H );
 343
-gap> H := heisenberg_group( 3 );
+gap> H := heisenberg_group( 4 );
 <matrix group of size 729 with 4 generators>
 gap> Order( H );
 729
 ```
 
-**Tarefa 3:** Investiga o grupo de Heisenberg usando a sua função construída na Tarefa 2. Calcule o seu centro, subgrupo derivado, os termos da série derivada, série central superior, e série central inferior. 
+3. Investiga o grupo de Heisenberg usando a sua função construída na Tarefa 2. Calcule o seu centro, subgrupo derivado, os termos da série derivada, série central superior, e série central inferior. 
 :::
+
+:::{.hint}
+O grupo de Heisenberg $H$ é gerado por dois geradores sobre o corpo $\mathbb F_p$. Sobre um corpo $\mathbb F_{p^k}$ o grupo é gerado por $2k$ geradores. Para revisar como trabalhar sobre corpos finitos, consulte @sec-ff; para ver como escrever uma função, consulte @sec-functions.
+:::
+
 
 <!--
 

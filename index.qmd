@@ -1,6 +1,6 @@
 # MiniCursoGAP
 
-Este material foi preparado para o minicurso de *Álgebra Computacional com GAP* que foi realizado na [XXVII Escola de Álgebra](https://algebra2024.ime.usp.br/index.php) em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham em vá
+Este material foi preparado para o minicurso de *Álgebra Computacional com GAP* que foi realizado na [XXVII Escola de Álgebra](https://algebra2024.ime.usp.br/index.php) em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalham individualmente ou em pares em vários pequenos projetos com o objetivo de explorar as várias funcionalidades do [sistema computacional `GAP`](www.gap-system.org). Os projetos representem vários níveis de habilidade matemática e computacional.
 
 - Rodar o sistema, criar, salvar e carregar arquivos
 - [Aritmética básica, variáveis, funções](arith.qmd)
@@ -10,14 +10,12 @@ Este material foi preparado para o minicurso de *Álgebra Computacional com GAP*
 - [A Conjetura de Collatz](collatz.qmd)
 - [Números perfeitos, abundantes, e sequências alíquotas](aliquot.qmd)
 - [Criptografia RSA](rsa.qmd)
-- [Uma exploração dos centralizadores](centralizers.qmd)
-- [Homomorfismos, automorfismos, de grupos](semidirect.qmd)
 - [Comutadores de grupos](commutators.qmd)
 - [Grupos livres, homomorfismos, Exploração do cubo mágico](cubo.qmd)
+- [Uma exploração dos centralizadores](centralizers.qmd)
+- [Homomorfismos, automorfismos, de grupos](semidirect.qmd)
 - [Carateres de um grupo e a ordem generalizada](genord.qmd)
 - [Álgebras associativas](algebras.qmd)
-- Álgebra comutativa
 - [Um problema de álgebra comutativa](groebner1.qmd)
-- Teoria de Galois
 - [Teoria de grafos](grafos.qmd)
   
