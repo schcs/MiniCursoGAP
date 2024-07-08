@@ -85,24 +85,25 @@ O primeiro argumento é o nome da tabela em que definimos o produto. O segundo e
 
 Continuando desta maneira, definimos os produtos de $A_{1,1}$.
 ```matlab
-gap> SetEntrySCTable( T, 1, 2, [1,2] );
-gap> SetEntrySCTable( T, 1, 3, [1,3] );
-gap> SetEntrySCTable( T, 1, 4, [1,4] );
-gap> SetEntrySCTable( T, 2, 1, [1,2] );
-gap> SetEntrySCTable( T, 2, 2, [1,1] );
-gap> SetEntrySCTable( T, 2, 3, [1,4] );
-gap> SetEntrySCTable( T, 2, 4, [1,3] );
-gap> SetEntrySCTable( T, 3, 1, [1,3] );
-gap> SetEntrySCTable( T, 3, 2, [-1,4] );
-gap> SetEntrySCTable( T, 3, 3, [1,1] );
-gap> SetEntrySCTable( T, 3, 4, [-1,2] );
-gap> SetEntrySCTable( T, 4, 1, [1,4] );
-gap> SetEntrySCTable( T, 4, 2, [-1,3] );
-gap> SetEntrySCTable( T, 4, 3, [1,2] );
-gap> SetEntrySCTable( T, 4, 4, [-1,1] );
-gap> A := AlgebraByStructureConstants( F, T );
+ SetEntrySCTable( T, 1, 2, [1,2] );
+ SetEntrySCTable( T, 1, 3, [1,3] );
+ SetEntrySCTable( T, 1, 4, [1,4] );
+ SetEntrySCTable( T, 2, 1, [1,2] );
+ SetEntrySCTable( T, 2, 2, [1,1] );
+ SetEntrySCTable( T, 2, 3, [1,4] );
+ SetEntrySCTable( T, 2, 4, [1,3] );
+ SetEntrySCTable( T, 3, 1, [1,3] );
+ SetEntrySCTable( T, 3, 2, [-1,4] );
+ SetEntrySCTable( T, 3, 3, [1,1] );
+ SetEntrySCTable( T, 3, 4, [-1,2] );
+ SetEntrySCTable( T, 4, 1, [1,4] );
+ SetEntrySCTable( T, 4, 2, [-1,3] );
+ SetEntrySCTable( T, 4, 3, [1,2] );
+ SetEntrySCTable( T, 4, 4, [-1,1] );
+ A := AlgebraByStructureConstants( F, T );
 ```
 :::
+
 
 
 ## Tarefa 2

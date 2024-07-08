@@ -134,9 +134,9 @@ gap> aliquot_sequence_until_repeat( 34 );
 Além de utulizar a função `sum_divisors`, vai precisar de listas (@sec-list), variáveis locais (@sec-functions), e laços (@sec-for e @sec-while). Pode precisar também a expressão `break` (@sec-break-continue).
 </div>
 
-Este projeto foi inspirado pelo seguinte vídeo
+Este projeto foi inspirado pelo seguinte vídeo.
 
-{< video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width="560" height="315" >}
+{{< video https://youtu.be/OtYKDzXwDEE?si=ye9hrQC-TjHL9W5y width="560" height="315" >}}
 
 <!--
 aliquot_sequence := function( a0, k )

@@ -48,6 +48,11 @@ false
 Para verificar um intervalo, pode usar `Filtered` como no exemplo anterior ou o laço `for` (@sec-for) e a função `GcdInt` ([manual](https://docs.gap-system.org/doc/ref/chap14.html#X7A4FEFCA8128E3C3)) dentro do laço. .
 :::
 
+Este projeto foi inspirado pelo seguinte vídeo.
+
+{{< video https://youtu.be/uJtxlErlx0U?si=9UMP-f-plab_gj3B width="560" height="315" >}}
+
+
 <!--
 is_ew_interval := function( a, k )
     local i;

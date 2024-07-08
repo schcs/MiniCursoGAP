@@ -139,12 +139,12 @@ $$
 B_x(G)=\{u^{-1}x^{-1}uv^{-1}xv\mid u,v\in G\}. 
 $$
 <!--
-gap> B_x := function( G, x )
-> local set1, set2;
-> set1 := Set( G, z->z^-1*x^-1*z );
-> set2 := Set( G, z->z^-1*x*z );
-> return Set( Cartesian( set1, set2 ), z->z[1]*z[2] );
-> end;
+B_x := function( G, x )
+  local set1, set2;
+  set1 := Set( G, z->z^-1*x^-1*z );
+  set2 := Set( G, z->z^-1*x*z );
+  return Set( Cartesian( set1, set2 ), z->z[1]*z[2] );
+end;
 -->
 
 1. Escreva uma função `B_x( G, x )` que calcula $B_x(G)$ para um grupo $G$ e elemento $x\in G$. 
