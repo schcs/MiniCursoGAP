@@ -7,6 +7,7 @@ Este material foi preparado para o minicurso de *Álgebra Computacional com GAP*
 - [Listas, matrizes, permutações](list_mat_perm.qmd)
 - [O primeiro encontro com grupos](estrut.qmd)
 - [A linguagem de programação](ling.qmd)
+- [Os números de Erdős-Woods](erdos_woods.qmd)
 - [A Conjetura de Collatz](collatz.qmd)
 - [Números perfeitos, abundantes, e sequências alíquotas](aliquot.qmd)
 - [Criptografia RSA](rsa.qmd)

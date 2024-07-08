@@ -4,14 +4,9 @@ number-sections: false
 lang: pt-BR
 ---
 
+## A criprografia RSA
 
-:::{.problembox}
-::::{.problembox-header}
-:::::{.problembox-icon}
-:::::
-A Teoria da Criptografia
-::::
-::::{.problembox-body}
+:::{.problem}
 Na área da criptografia, a suposição geral é que dois parceiros (que podem ser duas pessoas, ou dois computadores) querem trocar informação sigilosa usando um canal de comunicação que está disponível para terceiros. Os dois parceiros geralmente chamam-se A(lice) e B(ob) e um possível terceiro chama-se E(va). Assume-se que as mensagens enviadas por Alice e Bob são números. A Eva consegue interceptar as mensagens enviadas. O objetivo é desenvolver métodos seguros de criptografia para as mensagens que podem garantir que Eva não vai conseguir descriptografar as mensagens mesmo conseguindo interceptadá-las.
 
 Um método, conhecido como criptografia RSA, foi desenvolvido pelos matemáticos  <a title="Ron Rivest" href="https://en.wikipedia.org/wiki/Ron_Rivest">Ron Rivest</a>, <a title="Adi Shamir" href="https://en.wikipedia.org/wiki/Adi_Shamir">Adi Shamir</a>, and <a title="Leonard Adleman" href="https://en.wikipedia.org/wiki/Leonard_Adleman">Leonard Adleman</a> e foi publicado em 1977.
@@ -47,9 +42,8 @@ O número obtido $D(b_1)$ é a mensagem descriptografada.
 6.  O número $D(b_1)$ coincide com a mensagem original $b$ da Alice; ou seja, o Bob conseguiu descriptografar a mensagem da Alice.
 
 
-:::::{#thm-}
+::::{#thm-}
 Usando a notação acima, $D(C(b))=b$ para todo $b\in\{1,\ldots,n-1\}$. Ou seja, usando a função $D$, o Bob consegue descodificar a mensagem da Alice
-:::::
 ::::
 :::
 

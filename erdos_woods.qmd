@@ -1,0 +1,61 @@
+---
+title: "Os números de Erdős-Woods"
+number-sections: true
+lang: pt-BR
+---
+
+Neste projeto vamos investigar uma classe interessante de números naturais. 
+
+## Os números
+
+:::{.problem}
+Um intervalo de números naturais $\{a,a+1,\ldots,a+k\}$ chama-se *intervalo de Erdős-Woods*, se todo número $m\in\{a,a+1,\ldots,a+k\}$ tem algum fator comum ou com $a$ ou com $a+k$. Por exemplo, o intervalo 
+$$
+\{5,6,7,8,9\}
+$$
+não é de Erdős-Woods, pois $7$ é coprimo com $5$ e também com $9$. Um número natural $k\in\mathbb N$ é dito [*número de Erdős-Woods*](https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Woods_number) (veja também na [OEIS](https://oeis.org/A111042)), se existe um intervalo de Erdős-Woods com comprimento $k$. Por exemplo, $2$ não é número de Erdős-Woods, pois no intervalo $\{a,a+1,a+2\}$ o número $a+1$ é coprimo com $a$ e também com $a+2$. 
+:::
+
+## Exploração interativa
+
+:::{.subexample}
+Vamos verificar por exemplo que $\{10,11,12,13,14,15\}$ não é de Erdős-Woods.
+```matlab 
+gap> a := 10; k := 5;
+10
+5
+gap> Filtered( [a..a+k], x-> GcdInt( a, x ) = 1 and GcdInt( a+k,x) = 1 );
+[ 11, 13 ]
+```
+Ou seja, os números $11$ e $13$ são coprimos com o início e com o final do intervalo.
+:::
+
+## Tarefa 
+
+:::{.subproblem}
+1. Escreva uma função `is_Erdős_woods_interval( a, k )` que verifica se o intervalo $\{a,a+1,\ldots,a+k\}$ é de Erdős-Woods. A função deve devolver `true` ou `false` dependendo se o intervalo é de Erdős-Woods. A sua função deve funcionar na seguinte forma.
+```matlab
+gap> is_ew_interval( 10,5 );
+false
+gap> is_ew_interval( 13,4 );
+false
+```
+2. Use a função escrito no item anterior para verificar que os números $16$ e $22$ são de Erdős-Woods. Ache os intervalos que testemunham que estes números são de fato de Erdős-Woods.
+3. Consegue achar mais números de Erdős-Woods?
+:::
+
+:::{.hint}
+Para verificar um intervalo, pode usar `Filtered` como no exemplo anterior ou o laço `for` (@sec-for) e a função `GcdInt` ([manual](https://docs.gap-system.org/doc/ref/chap14.html#X7A4FEFCA8128E3C3)) dentro do laço. .
+:::
+
+<!--
+is_ew_interval := function( a, k )
+    local i;
+    for i in [a+1..a+k-1] do
+        if Gcd( i, a ) = 1 and Gcd( i,a+k ) = 1 then
+            return false;
+        fi;
+    od;
+    return true;
+    end;
+-->

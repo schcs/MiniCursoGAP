@@ -5,19 +5,14 @@ lang: pt-BR
 ---
 
 
-:::{.problembox}
-::::{.problembox-header}
-:::::{.problembox-icon}
-:::::
-O produto semidireto de grupos
-::::
-::::{.problembox-body}
+## O produto semidireto de grupos
+
+:::{.problem}
 Dados dois grupos $N$ e $H$ e um homomorfismo $\alpha:H\to\mbox{Aut}(H)$, construimos o *produto semidireto* $G=N\rtimes H$ na segiunte forma. O conjunto de $G$ é o produto cartesiano $N\times H$ e a multiplicação está definida pela seguinte regra:
 $$
 (n_1,h_1)(n_2,h_2)=(n_1\cdot \alpha(h_1)(n_2),h_1h_2).
 $$
 É um exercício fácil mostrar que esta regra define um grupo. Neste projeto vamos ver como construir produto semidireto em `GAP` e depois vamos usar esta construção para construir os grupos de ordem $12$
-::::
 :::
 
 ## Exploração interativa
