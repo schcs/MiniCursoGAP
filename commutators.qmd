@@ -136,7 +136,7 @@ Seja $G$ o grupo encontrado na tarefa anterior.
 :::{.subproblem}
 Para um grupo $G$ e $x\in G$, denote por $B_x(G)$ o seguinte conjunto:
 $$
-B_x(G)=\{u^{-1}x^{-1}uv^{-1}x^v\mid u,v\in G\}. 
+B_x(G)=\{u^{-1}x^{-1}uv^{-1}xv\mid u,v\in G\}. 
 $$
 <!--
 gap> B_x := function( G, x )
@@ -148,7 +148,7 @@ gap> B_x := function( G, x )
 -->
 
 1. Escreva uma função `B_x( G, x )` que calcula $B_x(G)$ para um grupo $G$ e elemento $x\in G$. 
-2. Decide quais dos seguintes groupos possui elemento $x$ tal que $B_x(G)=G$: $D_8$, $Q_8$, $A_4$, $S_4$, $A_5$, $S_5$. 
+2. Decide quais dos seguintes grupos possui elemento $x$ tal que $B_x(G)=G$: $D_8$, $Q_8$, $A_4$, $S_4$, $A_5$, $S_5$. 
 :::
 
 :::{.hint}

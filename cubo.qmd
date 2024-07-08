@@ -18,7 +18,7 @@ O cubo mágico, como outros brincedos de lógica, pode ser analisado usando o si
 :::{.subexample}
 O cubo tem 48 peças cujas posições estão ilustradas no seguinte diagrama.
 
-```
+<pre style="color:blue;">
                      +--------------+
                      |              |
                      |  1    2    3 |
@@ -44,7 +44,7 @@ O cubo tem 48 peças cujas posições estão ilustradas no seguinte diagrama.
                      | 46   47   48 |
                      |              |
                      +--------------+
-```
+</pre>
 
  Todo movimento pode ser visto como uma permutação dessas peças. Por exemplo girar o topo induz a permutação seguinte. 
 

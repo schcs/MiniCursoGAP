@@ -6,9 +6,10 @@
   }
   
   .problem:before {
-  content: "Problema. ";
+  content: "📋 Problema";
   font-weight: bold;
   font-style: normal;
+  font-size: 1.5rem;
   }
   
   .problem[text]:before {
@@ -23,9 +24,10 @@
   }
   
   .subproblem:before {
-  content: "Tarefa. ";
+  content: "❓ Tarefa";
   font-weight: bold;
   font-style: normal;
+  font-size: 1.5rem;
   }
   
   .subproblem[text]:before {
@@ -39,9 +41,10 @@
   }
   
   .subexample:before {
-  content: "Exemplo. ";
+  content: "🖥 Exemplo";
   font-weight: bold;
   font-style: normal;
+  font-size: 1.5rem;
   }
   
   .subexample[text]:before {
@@ -56,9 +59,10 @@
   }
   
   .hint:before {
-  content: "Dica. ";
+  content: "❗ Dica";
   font-weight: bold;
   font-style: normal;
+  font-size: 1.5rem;
   }
   
   .hint[text]:before {

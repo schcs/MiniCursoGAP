@@ -264,15 +264,15 @@ $$
 para $g_1,g_2 \in G$ e $h_1,h_2 \in H$, então $\psi([g_1,g_2])= [h_1,h_2]$. É possível mostrar que isoclinismo é uma relação de equivalência e que grupos abelianos são isoclínicos ao grupo trivial. 
 
 
-Por exemplo, pode se verificar que o grupo dihedral $D_8$ e o grupo de quaternions $Q_8$ são isoclínicos.
+Por exemplo, pode se verificar que o grupo dihedral $D_8$ e o grupo de quaternions $Q_8$ são isoclínicos, mas os grupos $D_8$ e $D_{10}$ não são.
 
 ```matlab
 gap> LoadPackage( "xmod" );
 true
-gap> AreIsoclinic( DihedralGroup(8), QuaternionGroup(8));
-true
 gap> f := Isoclinism( DihedralGroup(8), QuaternionGroup(8));
 [ [ f1, f2 ] -> [ f2, f1*f2 ], [ f3 ] -> [ y2 ] ]
+gap> Isoclinism( DihedralGroup( 8 ), DihedralGroup( 10 ));
+fail
 ```
 
 M. Zarrin usou o isoclinismo para estender os resultados sobre centralizados de elementos para grupos infinitos. Em particular, ele provou que se $G$ e $H$ são isoclínicos, então $|\mbox{Cent}(G)| = |\mbox{Cent}(H)|$.
