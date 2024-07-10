@@ -228,7 +228,7 @@ gap> b2 := Blocks( G, orbs[2] );
 Use as funções `Orbits` ([manual](https://docs.gap-system.org/doc/ref/chap41.html#X81E0FF0587C54543)) e `Blocks` ([manual](https://docs.gap-system.org/doc/ref/chap41.html#X84FE699F85371643)).
 :::
 
-## Tarefa 4
+## Tarefa 3
 
 :::{.subproblem}
 Finalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em $G$. Seja $\mathcal F$ o grupo livre gerado pelos geradores $C$, $E$, $F$, $D$, $T$, $B$. Note que $\mathcal F$ é gerado por $6$ elementos e cada gerador de $\mathcal F$ corresponde a um gerador de $G$. A propriedade universal do grupo livre implica que  o mapa 
@@ -305,7 +305,7 @@ B^-1*T^-1*D^-2*C^-1*B^-2*F^-1
 
 
 
-## Tarefa 5
+## Tarefa 4
 
 :::{.subproblem}
 1. Verifique que $G$ pode ser gerado por 2 elementos. Dica: Pegue usando `Random( G )` dois elementos aliatórios em $G$ e verifique se o grupo gerado por eles coincide com $G$.

@@ -129,7 +129,7 @@ gap> Size( cent_set );
 Ou seja, $S_3$ possui 5 centralizadores (como foi visto em cima). Note que usamos a função `Set` que vai devolver um conjunto; ou seja, todo elemento do output será aparece apenas uma vez.
 :::
 
-## Tarefa 3
+## Tarefa 2
 
 :::{.subproblem}
 Escreva uma função `Cent(G)` para computar o conjunto de todos os centralizadores de elementos de um grupo $G$ dado. Use a função `Centralizer(G,x)` ([manual](https://docs.gap-system.org/doc/ref/chap35.html#X7A2BF4527E08803C)). 
@@ -185,7 +185,7 @@ gap> AllSmallNonabelianSimpleGroups([60..20160]);
 :::
 -->
 
-## Tarefa 4
+## Tarefa 3
 
 :::{.subproblem}
 Agora você precisa responder a seguinte questão 
@@ -204,7 +204,7 @@ Ou seja, existem apenas $2$ grupos simples com ordem entre $1$ e $200$; nomeadam
 :::
 <!--Compute $|Cent(PSL(2,23)|$ e $|Cent(A7)|$ e verifique se esses esses grupos são isomorfos.-->
 
-## Tarefa 5
+## Tarefa 4
 
 :::{.subproblem}
 E se restringirmos a função para sabermos a quantidade dos centralizadores abelianos ou dos centralizadores não abelianos de um grupo? Será que se dois grupos simples não abelianos tiverem a mesma quantidade de centralizadores abelianos (ou não abelianos) de elementos, esses grupos são necessariamente isomorfos? 
@@ -250,7 +250,7 @@ end
 Funções com argumentos opcionais foram tratadas na @sec-functions. 
 :::
 
-## Tarefa 6
+## Tarefa 5
 
 :::{.subproblem}
 Nesta próxima tarefa, vamos usar o conceito de grupos isoclínicos (desenvolvido por P. Hall em [seu artigo influenciador](https://www.degruyter.com/document/doi/10.1515/crll.1940.182.130/pdf) de 1940). Dois grupos $G$ e $H$ são ditos isoclínicos se existem dois isomorfismos 

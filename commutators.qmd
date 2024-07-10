@@ -122,7 +122,7 @@ gap> List( AllSmallGroups( Size, [24] ), G -> commutator_set_is_subgroup( G ));
 ```
 :::
 
-## Tarefa 5
+## Tarefa 4
 
 :::{.subproblem}
 Seja $G$ o grupo encontrado na tarefa anterior.
@@ -131,7 +131,7 @@ Seja $G$ o grupo encontrado na tarefa anterior.
 2. Escreva estes elementos como produto de comutadores de $G$. Demonstre que todo elemento de $G'$ pode ser escrito na forma $[x_1,x_2][y_1,y_2]$ com $x_i,y_i\in G$.
 :::
 
-## Tarefa 6
+## Tarefa 5
 
 :::{.subproblem}
 Para um grupo $G$ e $x\in G$, denote por $B_x(G)$ o seguinte conjunto:

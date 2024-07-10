@@ -155,7 +155,7 @@ true
 ```
 :::
 
-## O grupo de Heisenberg
+## Tarefa: O grupo de Heisenberg
 
 :::{.subproblem}
 Sobre um corpo $\mathbb F$, o grupo de Heisenberg é o grupo 
@@ -196,7 +196,7 @@ gap> Order( H );
 729
 ```
 
-3. Investiga o grupo de Heisenberg usando a sua função construída na Tarefa 2. Calcule o seu centro, subgrupo derivado, os termos da série derivada, série central superior, e série central inferior. 
+3. Investiga o grupo de Heisenberg usando a sua função construída em cima. Calcule o seu centro, subgrupo derivado, os termos da série derivada, série central superior, e série central inferior. 
 :::
 
 :::{.hint}
