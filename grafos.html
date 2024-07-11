@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Grafos em GAP – Álgebra Computacional com GAP</title>
+<title>18&nbsp; Grafos em GAP – Álgebra Computacional com GAP</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./groebner1.html" rel="prev">
+<link href="./groebner.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./grafos.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./grafos.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -267,8 +267,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./groebner.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dependência algébrica de polinômios</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./grafos.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></span></a>
   </div>
 </li>
     </ul>
@@ -281,8 +287,8 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#o-grafo-de-petersen" id="toc-o-grafo-de-petersen" class="nav-link active" data-scroll-target="#o-grafo-de-petersen"><span class="header-section-number">17.1</span> O grafo de Petersen</a></li>
-  <li><a href="#tarefa" id="toc-tarefa" class="nav-link" data-scroll-target="#tarefa"><span class="header-section-number">17.2</span> Tarefa</a></li>
+  <li><a href="#o-grafo-de-petersen" id="toc-o-grafo-de-petersen" class="nav-link active" data-scroll-target="#o-grafo-de-petersen"><span class="header-section-number">18.1</span> O grafo de Petersen</a></li>
+  <li><a href="#tarefa" id="toc-tarefa" class="nav-link" data-scroll-target="#tarefa"><span class="header-section-number">18.2</span> Tarefa</a></li>
   </ul>
 </nav>
     </div>
@@ -291,7 +297,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></h1>
 </div>
 
 
@@ -309,8 +315,8 @@ window.Quarto = {
 
 
 <p>Neste projeto iremos trabalhar com grafos.</p>
-<section id="o-grafo-de-petersen" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="o-grafo-de-petersen"><span class="header-section-number">17.1</span> O grafo de Petersen</h2>
+<section id="o-grafo-de-petersen" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="o-grafo-de-petersen"><span class="header-section-number">18.1</span> O grafo de Petersen</h2>
 <div class="subexample">
 <p>O <a href="http://pt.wikipedia.org/wiki/Grafo_de_Petersen">grafo de Petersen</a>é um grafo com muitas propriedades interessantes. O grafo de Petersen pode ser construído como o grafo com o conjunto de vértices <span class="math display">\[
 V=\{\{x,y\}\mid 1\leq x&lt;y\leq 5\}
@@ -363,8 +369,8 @@ e neste caso o conjunto de arestas vai ser <Arg>ares</Arg>.
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="tarefa" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="tarefa"><span class="header-section-number">17.2</span> Tarefa</h2>
+<section id="tarefa" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="tarefa"><span class="header-section-number">18.2</span> Tarefa</h2>
 <div class="subproblem">
 <p>Se <span class="math inline">\(G\)</span> é um grupo, então definimos o <em>grafo não comutante</em> de <span class="math inline">\(G\)</span> como sendo o grafo cujo conjunto de vértices é <span class="math inline">\(G\setminus Z(G)\)</span> e dois vertices <span class="math inline">\(g,\ h\)</span> são conectados se e só se <span class="math inline">\(xy\neq yx\)</span>; ou seja, <span class="math inline">\([x,y]=x^{-1}y^{-1}xy\neq 1\)</span>.</p>
 <ol type="1">
@@ -800,8 +806,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./groebner1.html" class="pagination-link" aria-label="Polynômios, ideais, e um problema de triângulos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Polynômios, ideais, e um problema de triângulos</span></span>
+      <a href="./groebner.html" class="pagination-link" aria-label="Dependência algébrica de polinômios">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dependência algébrica de polinômios</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
