@@ -26,6 +26,7 @@ book:
     - genord.qmd
     - algebras.qmd
     - groebner1.qmd
+    - groebner.qmd
     - grafos.qmd
 
 format:

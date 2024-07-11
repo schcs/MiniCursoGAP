@@ -18,5 +18,6 @@ Este material foi preparado para o minicurso de *Álgebra Computacional com GAP*
 - [Carateres de um grupo e a ordem generalizada](genord.qmd)
 - [Álgebras associativas](algebras.qmd)
 - [Um problema de álgebra comutativa](groebner1.qmd)
+- [Dependência algébrica de polinômios](groebner.qmd)
 - [Teoria de grafos](grafos.qmd)
   
