@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>18&nbsp; Grafos em GAP – Álgebra Computacional com GAP</title>
+<title>1&nbsp; Os primeiros passos – Álgebra Computacional com GAP</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./groebner.html" rel="prev">
+<link href="./arith.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,6 +75,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,35 +106,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -144,7 +119,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./grafos.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rodar.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Os primeiros passos</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -177,7 +152,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rodar.html" class="sidebar-item-text sidebar-link">
+  <a href="./rodar.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Os primeiros passos</span></span></a>
   </div>
 </li>
@@ -279,7 +254,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./grafos.html" class="sidebar-item-text sidebar-link active">
+  <a href="./grafos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></span></a>
   </div>
 </li>
@@ -293,8 +268,11 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#o-grafo-de-petersen" id="toc-o-grafo-de-petersen" class="nav-link active" data-scroll-target="#o-grafo-de-petersen"><span class="header-section-number">18.1</span> O grafo de Petersen</a></li>
-  <li><a href="#tarefa" id="toc-tarefa" class="nav-link" data-scroll-target="#tarefa"><span class="header-section-number">18.2</span> Tarefa</a></li>
+  <li><a href="#rodar-o-sistema-gap" id="toc-rodar-o-sistema-gap" class="nav-link active" data-scroll-target="#rodar-o-sistema-gap"><span class="header-section-number">1.1</span> Rodar o sistema <code>GAP</code></a></li>
+  <li><a href="#criar-salvar-e-carregar-arquivos" id="toc-criar-salvar-e-carregar-arquivos" class="nav-link" data-scroll-target="#criar-salvar-e-carregar-arquivos"><span class="header-section-number">1.2</span> Criar, salvar e carregar arquivos</a></li>
+  <li><a href="#usar-o-terminal" id="toc-usar-o-terminal" class="nav-link" data-scroll-target="#usar-o-terminal"><span class="header-section-number">1.3</span> Usar o terminal</a></li>
+  <li><a href="#o-break-loop" id="toc-o-break-loop" class="nav-link" data-scroll-target="#o-break-loop"><span class="header-section-number">1.4</span> O <code>break loop</code></a></li>
+  <li><a href="#interromper-uma-computação" id="toc-interromper-uma-computação" class="nav-link" data-scroll-target="#interromper-uma-computação"><span class="header-section-number">1.5</span> Interromper uma computação</a></li>
   </ul>
 </nav>
     </div>
@@ -303,7 +281,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Grafos em GAP</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Os primeiros passos</span></h1>
 </div>
 
 
@@ -320,67 +298,117 @@ window.Quarto = {
 </header>
 
 
-<p>Neste projeto iremos trabalhar com grafos.</p>
-<section id="o-grafo-de-petersen" class="level2" data-number="18.1">
-<h2 data-number="18.1" class="anchored" data-anchor-id="o-grafo-de-petersen"><span class="header-section-number">18.1</span> O grafo de Petersen</h2>
-<div class="subexample">
-<p>O <a href="http://pt.wikipedia.org/wiki/Grafo_de_Petersen">grafo de Petersen</a> é um grafo com muitas propriedades interessantes.</p>
+<section id="rodar-o-sistema-gap" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="rodar-o-sistema-gap"><span class="header-section-number">1.1</span> Rodar o sistema <code>GAP</code></h2>
+<p>Para iniciar o sistema <code>GAP</code>, precisamos abrir um terminal. Inicialmente, a sua tela aparece com na seguinte imagem (clique na imagem para aumentar).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="pics/Petersen1_tiny.svg" class="img-fluid figure-img"></p>
-<figcaption>Petersen graph</figcaption>
+<p><a href="pics/screen1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Primeira Tela"><img src="pics/screen1.png" class="img-fluid figure-img" width="400" alt="Primeira Tela"></a></p>
+<figcaption>Primeira Tela</figcaption>
 </figure>
 </div>
-<p>O grafo de Petersen pode ser construído como o grafo com o conjunto de vértices <span class="math display">\[
-V=\{\{x,y\}\mid 1\leq x&lt;y\leq 5\}
-\]</span> onde dois vértices <span class="math inline">\(\{x,y\}\)</span> e <span class="math inline">\(\{u,v\}\)</span> são conectados se e só se <span class="math inline">\(\{x,y\}\cap \{u,v\}=\emptyset\)</span>.</p>
-<p>Vamos construir o grafo de Petersen em <code>GAP</code>. Primeiro construímos o conjunto de vértices.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">ver</span> <span class="op">:=</span> <span class="va">Combinations</span>( [<span class="fl">1</span>.<span class="fl">.5</span>]<span class="op">,</span> <span class="fl">2</span> )<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  [ <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span> ] ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>O conjunto de vértices de um grafo em <code>GAP</code> tem de ser uma lista <code>[1..k]</code>. No nosso caso, o conjunto de vértices será <code>[1..10]</code>. Dois vértices <code>i</code> e <code>j</code> serão conectados se <code>Intersection( ver[i], ver[j] ) = []</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">ares</span> <span class="op">:=</span> <span class="va">Filtered</span>( <span class="va">Tuples</span>( [<span class="fl">1</span>.<span class="fl">.10</span>]<span class="op">,</span> <span class="fl">2</span> )<span class="op">,</span> <span class="va">x</span><span class="op">-&gt;</span><span class="va">Intersection</span>( <span class="va">ver</span>[<span class="va">x</span>[<span class="fl">1</span>]]<span class="op">,</span> <span class="va">ver</span>[<span class="va">x</span>[<span class="fl">2</span>]] ) <span class="op">=</span> [] )<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">6</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">7</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">3</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">3</span><span class="op">,</span> <span class="fl">7</span> ]<span class="op">,</span> [ <span class="fl">3</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">6</span> ]<span class="op">,</span> [ <span class="fl">4</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> [ <span class="fl">5</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  [ <span class="fl">5</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">5</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">6</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">6</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">6</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">7</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">7</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">7</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> [ <span class="fl">8</span><span class="op">,</span> <span class="fl">1</span> ]<span class="op">,</span> [ <span class="fl">8</span><span class="op">,</span> <span class="fl">4</span> ]<span class="op">,</span> [ <span class="fl">8</span><span class="op">,</span> <span class="fl">7</span> ]<span class="op">,</span> [ <span class="fl">9</span><span class="op">,</span> <span class="fl">1</span> ]<span class="op">,</span> [ <span class="fl">9</span><span class="op">,</span> <span class="fl">3</span> ]<span class="op">,</span> [ <span class="fl">9</span><span class="op">,</span> <span class="fl">6</span> ]<span class="op">,</span> [ <span class="fl">10</span><span class="op">,</span> <span class="fl">1</span> ]<span class="op">,</span> [ <span class="fl">10</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">10</span><span class="op">,</span> <span class="fl">5</span> ] ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Para construir o grafo de Petersen, nós precisamos do pacote GRAPE de <code>GAP</code>. O grafo vai ser construído pela função</p>
-<!--http://www.gap-system.org/Manuals/pkg/grape/htm/CHAP002.htm#SECT002</Link><LinkText><Code>EdgeOrbitsGraph( G, ares, n )</Code></LinkText></URL>. 
-O argumento <Arg>G</Arg> é um grupo que age sobre o conjunto de vértices, 
-<Arg>ares</Arg> é um conjunto de arestas, e <Arg>n</Arg> é o número de 
-vértices. O grafo construído pela função vai ter <Code>[1..n]</Code>
-como conjunto de vértices, e o <M>G</M>-fecho de <Arg>ares</Arg> como 
-conjunto de arestas. Nos nossos exemplos nós vamos trabalhar com <M>G=1</M>, 
-e neste caso o conjunto de arestas vai ser <Arg>ares</Arg>.
-
--->
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">LoadPackage</span>( <span class="st">"grape"</span> )<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">EdgeOrbitsGraph</span>( <span class="va">Group</span>(())<span class="op">,</span> <span class="va">ares</span><span class="op">,</span> <span class="fl">10</span> )<span class="op">;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">rec</span>( <span class="va">adjacencies</span> <span class="op">:=</span> [ [ <span class="fl">8</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">6</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">5</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      [ <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">9</span> ]<span class="op">,</span> [ <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">8</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">7</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">6</span> ]<span class="op">,</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      [ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">5</span> ] ]<span class="op">,</span> <span class="va">group</span> <span class="op">:=</span> <span class="va">Group</span>(())<span class="op">,</span> <span class="va">isGraph</span> <span class="op">:=</span> <span class="va">true</span><span class="op">,</span> <span class="va">order</span> <span class="op">:=</span> <span class="fl">10</span><span class="op">,</span> </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="va">representatives</span> <span class="op">:=</span> [ <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span><span class="op">,</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">9</span><span class="op">,</span> <span class="fl">10</span> ]<span class="op">,</span> </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">schreierVector</span> <span class="op">:=</span> [ <span class="op">-</span><span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">2</span><span class="op">,</span> <span class="op">-</span><span class="fl">3</span><span class="op">,</span> <span class="op">-</span><span class="fl">4</span><span class="op">,</span> <span class="op">-</span><span class="fl">5</span><span class="op">,</span> <span class="op">-</span><span class="fl">6</span><span class="op">,</span> <span class="op">-</span><span class="fl">7</span><span class="op">,</span> <span class="op">-</span><span class="fl">8</span><span class="op">,</span> <span class="op">-</span><span class="fl">9</span><span class="op">,</span> <span class="op">-</span><span class="fl">10</span> ] )</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsConnectedGraph</span>( <span class="va">G</span> )<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Diameter</span>( <span class="va">G</span> )<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fl">2</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Girth</span>( <span class="va">G</span> )<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsConnectedGraph</span>( <span class="va">G</span> )<span class="op">;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Clique no menu <code>Atividades</code> e comece a escrever <code>terminal</code> no campo de busca. A sua tela deve aparecer como na seguinte imagem.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="pics/screen2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Segunda Tela"><img src="pics/screen2.png" class="img-fluid figure-img" width="400" alt="Segunda Tela"></a></p>
+<figcaption>Segunda Tela</figcaption>
+</figure>
+</div>
+<p>Ao escrever a palavra <code>terminal</code>, vai aparecer o icone da aplicativo <code>Terminal</code>. Clique nele. Vai aparecer uma janela com o terminal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="pics/screen3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Terceira Tela"><img src="pics/screen3.png" class="img-fluid figure-img" width="400" alt="Terceira Tela"></a></p>
+<figcaption>Terceira Tela</figcaption>
+</figure>
+</div>
+<p>Ora, clique de novo no menu <code>Atividades</code> e comece a escrever <code>gedit</code> no campo de busca. Vai aparecer o icone do aplicativo <code>gedit</code>. Clique nele e a sua tela vai para a seguinte aparência.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="pics/screen4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Quarta Tela"><img src="pics/screen4.png" class="img-fluid figure-img" width="400" alt="Quarta Tela"></a></p>
+<figcaption>Quarta Tela</figcaption>
+</figure>
+</div>
+<p>Agora, digite <code>gap</code> no <code>terminal</code> depois do prompt, e aperte <code>enter</code>. O sistema <code>GAP</code> vai iniciar.</p>
+</section>
+<section id="criar-salvar-e-carregar-arquivos" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="criar-salvar-e-carregar-arquivos"><span class="header-section-number">1.2</span> Criar, salvar e carregar arquivos</h2>
+<p>Quando trabalhamos com <code>GAP</code> podemos escrever as instruções diretamente no terminal, mas é melhor escrever o código no editor, pois assim será mais fácil de salvar, corrigir, reutilizar, etc.</p>
+<p>Escreva <code>Print( "Hello World");</code> na janela do editor.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="pics/screen5.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Quinta Tela"><img src="pics/screen5.png" class="img-fluid figure-img" width="400" alt="Quinta Tela"></a></p>
+<figcaption>Quinta Tela</figcaption>
+</figure>
+</div>
+<p>Salve o arquivo como <code>hello.g</code> e escreva <code>Read( "hello.g" );</code> na janela do terminal (e aperte <code>enter</code>). Depois de apertar o <code>enter</code>, o texto <code>Hello World</code> deve aparecer no seu terminal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="pics/screen6.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Sexta Tela"><img src="pics/screen6.png" class="img-fluid figure-img" width="400" alt="Sexta Tela"></a></p>
+<figcaption>Sexta Tela</figcaption>
+</figure>
+</div>
+<p>Agora, faça uma modificação no arquivo no editor.</p>
+<ol type="1">
+<li>Escreva por exemplo em uma linha separada que <code>Print( "Escola de Álgebra 2024" );</code></li>
+<li>salve o arquivo;</li>
+<li>e reescreve <code>Read( "hello.g" );</code> no terminal.</li>
+</ol>
+<p>Ora vai aparecer o texto <code>Hello World</code> e também <code>Escola de Álgebra 2024</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="pics/screen7.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Sétima Tela"><img src="pics/screen7.png" class="img-fluid figure-img" width="400" alt="Sétima Tela"></a></p>
+<figcaption>Sétima Tela</figcaption>
+</figure>
 </div>
 </section>
-<section id="tarefa" class="level2" data-number="18.2">
-<h2 data-number="18.2" class="anchored" data-anchor-id="tarefa"><span class="header-section-number">18.2</span> Tarefa</h2>
-<div class="subproblem">
-<p>Se <span class="math inline">\(G\)</span> é um grupo, então definimos o <em>grafo não comutante</em> de <span class="math inline">\(G\)</span> como sendo o grafo cujo conjunto de vértices é <span class="math inline">\(G\setminus Z(G)\)</span> e dois vertices <span class="math inline">\(g,\ h\)</span> são conectados se e só se <span class="math inline">\(xy\neq yx\)</span>; ou seja, <span class="math inline">\([x,y]=x^{-1}y^{-1}xy\neq 1\)</span>.</p>
-<ol type="1">
-<li>Escreva uma função <code>non_commuting_graph( G )</code> que devolve o grafo não comutante para um grupo finito <span class="math inline">\(G\)</span>.</li>
-<li>Use a função <code>non_commuting_graph( G )</code> para investigar grafos associados a grupos finitos de ordem pequena (use a função <code>SmallGroup</code>). Verifique se os grafos são conexos, determine o diâmetro.</li>
-</ol>
-<p>Algumas propriedades interessentas de grafos não comutantes são demonstradas <a href="http://www.sciencedirect.com/science/article/pii/S002186930600113X#">neste artigo</a>.</p>
-</div>
+<section id="usar-o-terminal" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="usar-o-terminal"><span class="header-section-number">1.3</span> Usar o terminal</h2>
+<p>Pode também fazer computações menores diretamente no terminal.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> ┌───────┐   <span class="va">GAP</span> <span class="fl">4.12.2</span> <span class="va">of</span> <span class="fl">2022</span><span class="op">-</span><span class="fl">12</span><span class="op">-</span><span class="fl">18</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> │  <span class="va">GAP</span>  │   <span class="va">https</span><span class="op">://</span><span class="va">www</span>.<span class="va">gap</span><span class="op">-</span><span class="va">system</span>.<span class="va">org</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> └───────┘   <span class="va">Architecture</span><span class="op">:</span> <span class="va">x86_64</span><span class="op">-</span><span class="va">pc</span><span class="op">-</span><span class="va">linux</span><span class="op">-</span><span class="va">gnu</span><span class="op">-</span><span class="va">default64</span><span class="op">-</span><span class="va">kv8</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="va">Configuration</span><span class="op">:</span>  <span class="va">gmp</span> <span class="fl">6.2.1</span><span class="op">,</span> <span class="va">GASMAN</span><span class="op">,</span> <span class="va">readline</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a> <span class="va">Loading</span> <span class="va">the</span> <span class="va">library</span> <span class="va">and</span> <span class="va">packages</span> <span class="op">...</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a> <span class="va">Packages</span><span class="op">:</span>   <span class="va">AClib</span> <span class="fl">1.3.2</span><span class="op">,</span> <span class="va">Alnuth</span> <span class="fl">3.2.1</span><span class="op">,</span> <span class="va">AtlasRep</span> <span class="fl">2.1.6</span><span class="op">,</span> <span class="va">AutPGrp</span> <span class="fl">1.11</span><span class="op">,</span> <span class="va">CRISP</span> <span class="fl">1.4.6</span><span class="op">,</span> <span class="va">Cryst</span> <span class="fl">4.1.25</span><span class="op">,</span> <span class="va">CrystCat</span> <span class="fl">1.1.10</span><span class="op">,</span> <span class="va">CTblLib</span> <span class="fl">1.3.4</span><span class="op">,</span> <span class="va">FactInt</span> <span class="fl">1.6.3</span><span class="op">,</span> <span class="va">FGA</span> <span class="fl">1.4.0</span><span class="op">,</span> <span class="va">GAPDoc</span> <span class="fl">1.6.6</span><span class="op">,</span> <span class="va">IRREDSOL</span> <span class="fl">1.4.4</span><span class="op">,</span> <span class="va">LAGUNA</span> <span class="fl">3.9.5</span><span class="op">,</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>             <span class="va">Polenta</span> <span class="fl">1.3.10</span><span class="op">,</span> <span class="va">Polycyclic</span> <span class="fl">2.16</span><span class="op">,</span> <span class="va">PrimGrp</span> <span class="fl">3.4.3</span><span class="op">,</span> <span class="va">RadiRoot</span> <span class="fl">2.9</span><span class="op">,</span> <span class="va">ResClasses</span> <span class="fl">4.7.3</span><span class="op">,</span> <span class="va">SmallGrp</span> <span class="fl">1.5.1</span><span class="op">,</span> <span class="va">Sophus</span> <span class="fl">1.27</span><span class="op">,</span> <span class="va">SpinSym</span> <span class="fl">1.5.2</span><span class="op">,</span> <span class="va">TomLib</span> <span class="fl">1.2.9</span><span class="op">,</span> <span class="va">TransGrp</span> <span class="fl">3.6.3</span><span class="op">,</span> <span class="va">utils</span> <span class="fl">0.81</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a> <span class="va">Try</span> <span class="ss">'??help'</span> <span class="kw">for</span> <span class="va">help</span>. <span class="va">See</span> <span class="va">also</span> <span class="ss">'?copyright'</span><span class="op">,</span> <span class="ss">'?cite'</span> <span class="va">and</span> <span class="ss">'?authors'</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="fl">2</span><span class="op">+</span><span class="fl">3</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Print</span>( <span class="st">"hello"</span> )<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">hello</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="o-break-loop" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="o-break-loop"><span class="header-section-number">1.4</span> O <code>break loop</code></h2>
+<p>Note que se escrever algo errado, o sistema vai entrar no <code>break loop</code>. Para sair do <code>break loop</code> escreva <code>quit;</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">a</span> <span class="op">:=</span> <span class="st">"hello"</span><span class="op">;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"hello"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">a</span><span class="op">+</span><span class="fl">2</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">Error</span><span class="op">,</span> <span class="va">no</span> <span class="va">method</span> <span class="va">found</span><span class="bn">! For debugging hints type ?Recovery from NoMethodFound</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">Error</span><span class="op">,</span> <span class="va">no</span> <span class="fl">1</span><span class="va">st</span> <span class="va">choice</span> <span class="va">method</span> <span class="va">found</span> <span class="kw">for</span> `<span class="op">+</span><span class="er">' on 2 arguments at /usr/local/lib/gap-4.12.2/lib/methsel2.g:249 called from</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="kw">function</span> <span class="st">"HANDLE_METHOD_NOT_FOUND"</span><span class="op">&gt;</span>( <span class="op">&lt;</span><span class="va">arguments</span><span class="op">&gt;</span> )</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a> <span class="va">called</span> <span class="va">from</span> <span class="va">read</span><span class="op">-</span><span class="va">eval</span> <span class="va">loop</span> <span class="va">at</span> <span class="op">*</span><span class="va">stdin</span><span class="op">*:</span><span class="fl">8</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="va">type</span> <span class="ss">'quit;'</span> <span class="va">to</span> <span class="va">quit</span> <span class="va">to</span> <span class="va">outer</span> <span class="va">loop</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="va">brk</span><span class="op">&gt;</span> <span class="va">quit</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Você sempre deve trabalhar com o prompt <code>gap&gt;</code>.</p>
+</section>
+<section id="interromper-uma-computação" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="interromper-uma-computação"><span class="header-section-number">1.5</span> Interromper uma computação</h2>
+<p>Pode acontecer que uma computação demora muito tempo e não temos tempo para aguardar o resultado. Neste caso pode apartar <code>Ctrl-C</code> e a computação vai parar. O sistema vai entrar no <code>break loop</code> e você precisa escrever <code>quit;</code> para sair.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">ConjugacyClassesSubgroups</span>( <span class="va">GL</span>( <span class="fl">10</span><span class="op">,</span> <span class="fl">3</span> ))<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">^</span><span class="va">CError</span><span class="op">,</span> <span class="va">user</span> <span class="va">interrupt</span> <span class="va">in</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="va">result</span> <span class="op">:=</span> <span class="va">SCR_SIFT_HELPER</span>( <span class="va">S</span><span class="op">,</span> <span class="va">g</span><span class="op">,</span> <span class="va">Maximum</span>( <span class="va">LargestMovedPoint</span>( <span class="va">g</span> )<span class="op">,</span> <span class="va">LargestMovedPoint</span>( <span class="va">S</span><span class="bn">!.generators ) ) ); at /usr/local/lib/gap-4.12.2/lib/stbcrand.gi:690 called from </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">SCRSift</span>( <span class="va">stab</span><span class="op">,</span> <span class="va">w1inv</span> <span class="op">*</span> <span class="va">g</span> <span class="op">*</span> <span class="va">w1</span> ) <span class="va">at</span> <span class="op">/</span><span class="va">usr</span><span class="op">/</span><span class="va">local</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">gap</span><span class="op">-</span><span class="fl">4.12.2</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">stbcrand</span>.<span class="va">gi</span><span class="op">:</span><span class="fl">1243</span> <span class="va">called</span> <span class="va">from</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">VerifyStabilizer</span>( <span class="va">temp2</span><span class="op">,</span> <span class="va">newgen</span><span class="op">,</span> <span class="va">missing</span><span class="op">,</span> <span class="va">correct</span> ) <span class="va">at</span> <span class="op">/</span><span class="va">usr</span><span class="op">/</span><span class="va">local</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">gap</span><span class="op">-</span><span class="fl">4.12.2</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">stbcrand</span>.<span class="va">gi</span><span class="op">:</span><span class="fl">1436</span> <span class="va">called</span> <span class="va">from</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">VerifySGS</span>( <span class="va">T</span><span class="op">,</span> <span class="va">missing</span><span class="op">,</span> <span class="va">correct</span> ) <span class="va">at</span> <span class="op">/</span><span class="va">usr</span><span class="op">/</span><span class="va">local</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">gap</span><span class="op">-</span><span class="fl">4.12.2</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">stbcrand</span>.<span class="va">gi</span><span class="op">:</span><span class="fl">257</span> <span class="va">called</span> <span class="va">from</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="va">StabChainRandomPermGroup</span>( <span class="va">ShallowCopy</span>( <span class="va">GeneratorsOfGroup</span>( <span class="va">G</span> ) )<span class="op">,</span> <span class="va">One</span>( <span class="va">G</span> )<span class="op">,</span> <span class="va">options</span> ) <span class="va">at</span> <span class="op">/</span><span class="va">usr</span><span class="op">/</span><span class="va">local</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">gap</span><span class="op">-</span><span class="fl">4.12.2</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">stbc</span>.<span class="va">gi</span><span class="op">:</span><span class="fl">136</span> <span class="va">called</span> <span class="va">from</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="va">StabChainOp</span>( <span class="va">G</span><span class="op">,</span> <span class="va">rec</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>     ) ) <span class="va">at</span> <span class="op">/</span><span class="va">usr</span><span class="op">/</span><span class="va">local</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">gap</span><span class="op">-</span><span class="fl">4.12.2</span><span class="op">/</span><span class="va">lib</span><span class="op">/</span><span class="va">stbc</span>.<span class="va">gi</span><span class="op">:</span><span class="fl">28</span> <span class="va">called</span> <span class="va">from</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">...</span>  <span class="va">at</span> <span class="op">*</span><span class="va">stdin</span><span class="op">*:</span><span class="fl">9</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="va">you</span> <span class="va">can</span> <span class="ss">'return;'</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="va">brk</span><span class="op">&gt;</span> <span class="va">quit</span><span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>#<span class="va">I</span>  <span class="va">Options</span> <span class="va">stack</span> <span class="va">has</span> <span class="va">been</span> <span class="va">reset</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -808,14 +836,49 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./groebner.html" class="pagination-link" aria-label="Dependência algébrica de polinômios">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dependência algébrica de polinômios</span></span>
+      <a href="./index.html" class="pagination-link" aria-label="MiniCursoGAP">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">MiniCursoGAP</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./arith.html" class="pagination-link" aria-label="Aritmética básica">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Aritmética básica</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","closeEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
