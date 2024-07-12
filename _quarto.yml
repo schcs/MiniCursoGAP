@@ -11,6 +11,7 @@ book:
   date: "Criado e atualizado maio-julho de 2024"
   chapters:
     - index.qmd
+    - rodar.qmd
     - arith.qmd
     - list_mat_perm.qmd
     - estrut.qmd

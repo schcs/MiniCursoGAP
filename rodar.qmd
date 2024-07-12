@@ -1,0 +1,111 @@
+---
+title: "Os primeiros passos"
+number-sections: true
+lang: pt-BR
+---
+
+## Rodar o sistema `GAP`
+
+Para iniciar o sistema `GAP`, precisamos  abrir um terminal. Inicialmente, a sua tela aparece com na seguinte imagem (clique na imagem para aumentar).
+
+![Primeira Tela](pics/screen1.png){.lightbox width=400}
+
+Clique no menu `Atividades` e comece a escrever `terminal` no campo de busca. A sua tela deve aparecer como na seguinte imagem. 
+
+
+![Segunda Tela](pics/screen2.png){.lightbox width=400}
+
+Ao escrever a palavra `terminal`, vai aparecer o icone da aplicativo `Terminal`. Clique nele. Vai aparecer uma janela com o terminal.
+
+
+![Terceira Tela](pics/screen3.png){.lightbox width=400}
+
+Ora, clique de novo no menu `Atividades` e comece a escrever `gedit` no campo de busca. Vai aparecer o icone do aplicativo `gedit`. Clique nele e a sua tela vai para a seguinte aparência.
+
+![Quarta Tela](pics/screen4.png){.lightbox width=400}
+
+Agora, digite `gap` no `terminal` depois do prompt, e aperte `enter`. O sistema `GAP` vai iniciar. 
+
+
+
+## Criar, salvar e carregar arquivos
+
+Quando trabalhamos com `GAP` podemos escrever as instruções diretamente no terminal, mas é melhor escrever o código no editor, pois assim será mais fácil de salvar, corrigir, reutilizar, etc. 
+
+Escreva `Print( "Hello World");` na janela do editor.
+
+![Quinta Tela](pics/screen5.png){.lightbox width=400}
+
+Salve o arquivo como `hello.g` e escreva `Read( "hello.g" );` na janela do terminal (e aperte `enter`). Depois de apertar o `enter`, o texto `Hello World` deve aparecer no seu terminal.
+
+![Sexta Tela](pics/screen6.png){.lightbox width=400}
+
+Agora, faça uma modificação no arquivo no editor. 
+
+1. Escreva por exemplo em uma linha separada que `Print( "Escola de Álgebra 2024" );` 
+2. salve o arquivo;
+3. e reescreve `Read( "hello.g" );` no terminal.
+
+Ora vai aparecer o texto `Hello World` e também `Escola de Álgebra 2024`. 
+
+![Sétima Tela](pics/screen7.png){.lightbox width=400}
+
+
+## Usar o terminal
+
+Pode também fazer computações menores diretamente no terminal. 
+
+```matlab
+ ┌───────┐   GAP 4.12.2 of 2022-12-18
+ │  GAP  │   https://www.gap-system.org
+ └───────┘   Architecture: x86_64-pc-linux-gnu-default64-kv8
+ Configuration:  gmp 6.2.1, GASMAN, readline
+ Loading the library and packages ...
+ Packages:   AClib 1.3.2, Alnuth 3.2.1, AtlasRep 2.1.6, AutPGrp 1.11, CRISP 1.4.6, Cryst 4.1.25, CrystCat 1.1.10, CTblLib 1.3.4, FactInt 1.6.3, FGA 1.4.0, GAPDoc 1.6.6, IRREDSOL 1.4.4, LAGUNA 3.9.5, 
+             Polenta 1.3.10, Polycyclic 2.16, PrimGrp 3.4.3, RadiRoot 2.9, ResClasses 4.7.3, SmallGrp 1.5.1, Sophus 1.27, SpinSym 1.5.2, TomLib 1.2.9, TransGrp 3.6.3, utils 0.81
+ Try '??help' for help. See also '?copyright', '?cite' and '?authors'
+gap> 2+3;
+5
+gap> Print( "hello" );
+hello
+```
+
+## O `break loop`
+
+Note que se escrever algo errado, o sistema vai entrar no `break loop`. Para sair do `break loop` escreva `quit;`.
+
+```matlab
+gap> a := "hello"; 
+"hello"
+gap> a+2;
+Error, no method found! For debugging hints type ?Recovery from NoMethodFound
+Error, no 1st choice method found for `+' on 2 arguments at /usr/local/lib/gap-4.12.2/lib/methsel2.g:249 called from
+<function "HANDLE_METHOD_NOT_FOUND">( <arguments> )
+ called from read-eval loop at *stdin*:8
+type 'quit;' to quit to outer loop
+brk> quit;
+gap>
+```
+
+Você sempre deve trabalhar com o prompt `gap>`. 
+
+## Interromper uma computação
+
+Pode acontecer que uma computação demora muito tempo e não temos tempo para aguardar o resultado. Neste caso pode apartar `Ctrl-C` e a computação vai parar. O sistema vai entrar no `break loop` e você precisa escrever `quit;` para sair.
+
+```matlab
+gap> ConjugacyClassesSubgroups( GL( 10, 3 ));
+^CError, user interrupt in
+  result := SCR_SIFT_HELPER( S, g, Maximum( LargestMovedPoint( g ), LargestMovedPoint( S!.generators ) ) ); at /usr/local/lib/gap-4.12.2/lib/stbcrand.gi:690 called from 
+SCRSift( stab, w1inv * g * w1 ) at /usr/local/lib/gap-4.12.2/lib/stbcrand.gi:1243 called from
+VerifyStabilizer( temp2, newgen, missing, correct ) at /usr/local/lib/gap-4.12.2/lib/stbcrand.gi:1436 called from
+VerifySGS( T, missing, correct ) at /usr/local/lib/gap-4.12.2/lib/stbcrand.gi:257 called from
+StabChainRandomPermGroup( ShallowCopy( GeneratorsOfGroup( G ) ), One( G ), options ) at /usr/local/lib/gap-4.12.2/lib/stbc.gi:136 called from
+StabChainOp( G, rec(
+     ) ) at /usr/local/lib/gap-4.12.2/lib/stbc.gi:28 called from
+...  at *stdin*:9
+you can 'return;'
+brk> quit;
+#I  Options stack has been reset
+gap> 
+```
