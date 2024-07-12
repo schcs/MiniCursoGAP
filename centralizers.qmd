@@ -26,10 +26,10 @@ $$
 $$ 
 e
 $$
-|\mbox{cent}(S_3)|=5.
+|\mbox{Cent}(S_3)|=5.
 $$
 
-O estudo de $\mbox{Cent}(G)$ tem chamado a atenção de muitos pesquisadores. As duas principais motivações para se estudar $\mbox{Cent}(G)|$ é responder essencialmente duas questões:
+O estudo de $\mbox{Cent}(G)$ tem chamado a atenção de muitos pesquisadores. As duas principais motivações para se estudar $\mbox{Cent}(G)$ é responder essencialmente duas questões:
 
 
 1. Dado um grupo $G$, o que se pode dizer sobre $|\mbox{Cent}(G)|$?
@@ -188,9 +188,9 @@ gap> AllSmallNonabelianSimpleGroups([60..20160]);
 ## Tarefa 3
 
 :::{.subproblem}
-Agora você precisa responder a seguinte questão 
+Agora você precisa responder a seguinte questão de Ashrafi e Taeri:
 
-1. [Questão de Ashrafi e Taeri] Sejam $G$ e $H$ grupos simples não abelianos. É verdade que se $|\mbox{Cent}(G)| = |\mbox{Cent}(H)|$, então $G$ é isomorfo a $H$?
+1.  Sejam $G$ e $H$ grupos simples não abelianos. É verdade que se $|\mbox{Cent}(G)| = |\mbox{Cent}(H)|$, então $G$ é isomorfo a $H$?
 :::
 
 :::{.hint}
@@ -200,7 +200,7 @@ onde `list` é uma lista de números naturais. A função devolve a lista dos gr
 gap> AllSmallNonabelianSimpleGroups( [1..200] );
 [ A5, PSL(2,7) ]
 ```
-Ou seja, existem apenas $2$ grupos simples com ordem entre $1$ e $200$; nomeadamente $A_5$ e $\mbox{PSL}(2,7)$. Use a função  `AllSmallNonabelianSimpleGroups` para gerar grupos simples e compare os seus números de centralizadores. 
+Ou seja, existem apenas $2$ grupos simples não abelianos com ordem entre $1$ e $200$; nomeadamente $A_5$ e $\mbox{PSL}(2,7)$. Use a função  `AllSmallNonabelianSimpleGroups` para gerar grupos simples e compare os seus números de centralizadores. 
 :::
 <!--Compute $|Cent(PSL(2,23)|$ e $|Cent(A7)|$ e verifique se esses esses grupos são isomorfos.-->
 
@@ -278,8 +278,8 @@ fail
 M. Zarrin usou o isoclinismo para estender os resultados sobre centralizados de elementos para grupos infinitos. Em particular, ele provou que se $G$ e $H$ são isoclínicos, então $|\mbox{Cent}(G)| = |\mbox{Cent}(H)|$.
 Nesta tarefa vamos verificar a seguinte questão de [Khoramshahi and M. Zarrin](https://www.worldscientific.com/doi/10.1142/S0219498821500122).
 
-- Ache dois grupos $G$ e $H$ tal que $|\mbox{Cent}(G)|=|\mbox{Cent}(H)|$, $|H|=|G|$, $|G'|=|H'|$, mas  $G$ e $H$ não são isoclínicos.
-- Khoromshahi e Zarrin mostrou que se $G$ e $H$ são como no item anterior, então   $|\mbox{Cent}(G)|\leq 5$. Ache exemplos com $|\mbox{Cent}(G)|=6$ para verificar que esta quota superior não pode ser melhorada.  
+1. Ache dois grupos $G$ e $H$ tal que $|\mbox{Cent}(G)|=|\mbox{Cent}(H)|$, $|H|=|G|$, $|G'|=|H'|$, mas  $G$ e $H$ não são isoclínicos.
+2. Khoromshahi e Zarrin mostrou que se $G$ e $H$ são como no item anterior, então   $|\mbox{Cent}(G)|\leq 5$. Ache exemplos com $|\mbox{Cent}(G)|=6$ para verificar que esta quota superior não pode ser melhorada.  
 :::
 
 :::{.hint}

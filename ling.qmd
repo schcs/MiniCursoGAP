@@ -10,12 +10,12 @@ Nesta página vamos revisar os aspetos principais da linguagem de programação 
 ## Expressões `if-then-else` {#sec-if}
 
 :::{.subexample}
-A expressão `if-then` ([manula](https://docs.gap-system.org/doc/ref/chap4.html#X875000188622700D)) está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa (@sec-bool). Considere o seguinte exemplo:
+A expressão `if-then` [manual](https://docs.gap-system.org/doc/ref/chap4.html#X875000188622700D)) está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa (@sec-bool). Considere o seguinte exemplo:
 ```matlab
 gap> a := 3;                # seja a inicialmente 3
 3
 gap> if a mod 2 = 0 then    # se a for par, dividimos a por 2
-> b := a/2;
+> a := a/2;
 > fi;
 gap> a;                     # valor de a continua 3
 3
@@ -25,8 +25,8 @@ gap> if a mod 2 = 1 then    # se a for ímpar, multiplicamos a por 3 e somamos 1
 gap> a;                     # o valor de a mudou
 10
 ```
-Expressões mais complicadas podem ser montadas usando as palavras chaves `else` e `elif`.
-```python
+Expressões mais complicadas podem ser montadas usando as expressões `else` e `elif`.
+```matlab
 gap> a := 3;
 3
 gap> if a mod 2 = 0 then 
@@ -49,6 +49,7 @@ gap> a;
 4
 ```
 :::
+
 
 ## Laço `for` {#sec-for}
 
@@ -106,9 +107,9 @@ As regras de construir este tipo de laço são as seguintes:
 
 1. a palavra `while` (enquanto) está seguida por uma condição lógica (booleana) e depois pela palavra `do`;
 2. o laço está fechado pela palavra `od`;
-3. a peça de código está executado entre as palavras `do` e `od` enquanto (`while`) a condição está verdadeira (@sec-bool).
+3. a peça de código está executada entre as palavras `do` e `od` enquanto (`while`) a condição está verdadeira (@sec-bool).
 
-Note que no laço `while` o valor da variável `i` precisa ser incrementado manualmente.
+Note que no laço `while`, o valor da variável `i` precisa ser incrementado manualmente.
 :::
 
 ## Laço `repeat` {#sec-repeat}
@@ -161,10 +162,17 @@ O quadrado de 11 é 121
 ```
 :::
 
+## Tarefa {#sec-tarefa1-laço}
+
+:::{.subproblem}
+1. Calcule os cubos dos números entre $10$ e $20$ usando laço `for`, `while` e `repeat`.
+2. Modifique os laços no item anterior, usando `if`, em tal forma que apenas os cubos dos números pares serão calculados. 
+:::
+
 ## Funções {#sec-functions}
 
 :::{.subexample}
-Funções em `GAP` podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado `x` computa `3*x+1` pode ser definida de duas maneiras diferentes.
+[Funções](https://docs.gap-system.org/doc/tut/chap4.html) em `GAP` podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado `x` computa `3*x+1` pode ser definida de duas maneiras diferentes.
 ```matlab
 gap> f1 := function( x )
 > return 3*x+1;
@@ -263,10 +271,22 @@ gap> f4(4, false);
 ```
 :::
 
+## Tarefa {#sec-tarefa-collatz}
+:::{.subproblem}
+1. Escreva uma função `collatz( n )` que devolve $3n-1$ quando $n$ for ímpar e $n/2$ quando $n$ for par.
+2. Escreva uma função `sum_divisors( n )` que devolve a soma dos divisores entre $1$ e $n-1$ de um número natural $n$.
+:::
+
+:::{.hint}
+No item 1., precisa testar, usando `if`, (@sec-if) se o input é par ou ímpar e para isso pode usar a operação `mod` (@sec-ops-arit). Se precisar de ajuda com funções, consulte a @sec-functions.
+
+No item 2., pode usar as funções `DivisorsInt` ([manual](https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695)) e `Sum` ([manual](https://docs.gap-system.org/doc/ref/chap14.html#X809E0E1B83AF7695)). Também pode precisar de `if` para decidir se `n=0`, pois `DivisorsInt( 0 )` não funciona (@sec-if). 
+:::
+
 ## Break e continue {#sec-break-continue}
 
 :::{.subexample}
-As expressões `break` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X7B60C6127E183021) e `continue` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X7CCBA2247AA366BD)) podem ser usadas em laços. 
+As expressões `break` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X7B60C6127E183021)) e `continue` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X7CCBA2247AA366BD)) podem ser usadas em laços. 
 
 Quando a expressão `break` está executada, o sistema sai do laço. No caso de `continue`, o sistema sai da iteração atual e passa para a próxima iteração.
 ```matlab 
@@ -292,4 +312,10 @@ gap> for i in [1..10] do
 9
 10
 ```
+:::
+
+## Tarefa
+:::{.subproblem}
+1. Resolve o item 2. da tarefa na @sec-tarefa1-laço usando a expressão `continue`.
+2. Usando `while true do` e `break` ache o menor primo que seja maior que $10000000$. 
 :::

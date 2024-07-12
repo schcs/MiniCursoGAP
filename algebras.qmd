@@ -48,7 +48,7 @@ Use a função `IsIdempotent` e `Filtered` (@sec-list). Para verificar se um ele
 ## A álgebra dos quaternions
 
 :::{.problem}
-Seja $\mathbb F$ um corpo e $\alpha,\ \beta\in\mathbb  F\setminus\{0\}$. A álgebra generalizada dos quatérnions $A_{\alpha,\beta}$ é um espaço vetorial de dimensão 4 sobre $\mathbb F$ gerado com a base $B=[1,i,j,k]$ munido  com a multiplicação dada por a tabela seguinte:
+Seja $\mathbb F$ um corpo e $\alpha,\ \beta\in\mathbb  F\setminus\{0\}$. A *álgebra generalizada dos quatérnions* $A_{\alpha,\beta}$ é um espaço vetorial de dimensão 4 sobre $\mathbb F$ gerado com a base $B=\{1,i,j,k\}$ munido  com a multiplicação dada por a tabela seguinte:
 
 | $\cdot$ | $1$  |    $i$    | $j$ | $k$       |
 | ------- | ---- | --------- | --- | --------- |
@@ -62,7 +62,7 @@ A álgebra usual dos quaternions pode ser obtida como $A_{-1,-1}$.
 :::
 
 :::{.subexample}
-Vamos construir $A_{1,1}$. Em `GAP` tal álgebras podem ser construídas com a função 
+Vamos construir $A_{1,1}$ sobre $\mathbb Q$. Em `GAP` tal álgebras podem ser construídas com a função 
 [`AlgebraByStructureConstants`](http://www.gap-system.org/Manuals/doc/ref/chap62.html#X7CC58DFD816E6B65).
 Primeiro nós inicializamos $T$ como uma tabela vazia  de constantes de estrutura.
 
@@ -85,24 +85,49 @@ O primeiro argumento é o nome da tabela em que definimos o produto. O segundo e
 
 Continuando desta maneira, definimos os produtos de $A_{1,1}$.
 ```matlab
- SetEntrySCTable( T, 1, 2, [1,2] );
- SetEntrySCTable( T, 1, 3, [1,3] );
- SetEntrySCTable( T, 1, 4, [1,4] );
- SetEntrySCTable( T, 2, 1, [1,2] );
- SetEntrySCTable( T, 2, 2, [1,1] );
- SetEntrySCTable( T, 2, 3, [1,4] );
- SetEntrySCTable( T, 2, 4, [1,3] );
- SetEntrySCTable( T, 3, 1, [1,3] );
- SetEntrySCTable( T, 3, 2, [-1,4] );
- SetEntrySCTable( T, 3, 3, [1,1] );
- SetEntrySCTable( T, 3, 4, [-1,2] );
- SetEntrySCTable( T, 4, 1, [1,4] );
- SetEntrySCTable( T, 4, 2, [-1,3] );
- SetEntrySCTable( T, 4, 3, [1,2] );
- SetEntrySCTable( T, 4, 4, [-1,1] );
- A := AlgebraByStructureConstants( F, T );
+gap> SetEntrySCTable( T, 1, 2, [1,2] );
+gap> SetEntrySCTable( T, 1, 3, [1,3] );
+gap> SetEntrySCTable( T, 1, 4, [1,4] );
+gap> SetEntrySCTable( T, 2, 1, [1,2] );
+gap> SetEntrySCTable( T, 2, 2, [1,1] );
+gap> SetEntrySCTable( T, 2, 3, [1,4] );
+gap> SetEntrySCTable( T, 2, 4, [1,3] );
+gap> SetEntrySCTable( T, 3, 1, [1,3] );
+gap> SetEntrySCTable( T, 3, 2, [-1,4] );
+gap> SetEntrySCTable( T, 3, 3, [1,1] );
+gap> SetEntrySCTable( T, 3, 4, [-1,2] );
+gap> SetEntrySCTable( T, 4, 1, [1,4] );
+gap> SetEntrySCTable( T, 4, 2, [-1,3] );
+gap> SetEntrySCTable( T, 4, 3, [1,2] );
+gap> SetEntrySCTable( T, 4, 4, [-1,1] );
+gap> A := AlgebraByStructureConstants( Rationals, T );
+<algebra of dimension 4 over Rationals>
 ```
+
+Podemos investigar a álgebra obtida em cima.
+```matlab
+gap> IsAssociative( A );
+true
+gap> IsSimple( A );
+true
+gap> IsDivisionRing( A );
+false
+gap> L := LieAlgebra( A );
+<Lie algebra of dimension 4 over Rationals>
+gap> IsSimple( L );
+false
+gap> Center( L );
+<Lie algebra of dimension 1 over Rationals>
+gap> IsSimple( L/Center( L ));
+true
+gap> SemiSimpleType( L/Center( L ));
+"A1"
+gap> 
+```
+
+Ou seja, a álgebra obtida é uma álgebra associativa simples, mas não é álgebra de divisão. A álgebra de Lie $L$ associada com esta álgebra não é simples, mas $L/Z(L)$ é simples de tipo A1; ou sejam $L/Z(L)\cong\mathfrak{sl}_2(\mathbb Q)$. 
 :::
+
 
 
 
@@ -110,8 +135,8 @@ Continuando desta maneira, definimos os produtos de $A_{1,1}$.
 
 :::{.subproblem}
 1. Escreva uma função `quaternion_algebra( F, a, b )` que devolve a álgebra de quatérnions $A_{a,b}$ sobre $\mathbb F$.
-2. Use a função `quaternion_algebra`  para construir várias álgebras sobre vários corpos. Verifique se as álgebras
-são simples (use [`IsSimpleAlgebra`](http://www.gap-system.org/Manuals/doc/ref/chap62.html#X877DF13387831A6A)). 
+2. Use a função `quaternion_algebra`  para construir várias álgebras sobre vários corpos. Verifique se as álgebras associativas e as álgebra de Lie associadas são simples. 
+1. Ache todos os valores $a,b\in\mathbb F_q$ para os quais $A_{a,b}$ sobre $\mathbb F_q$ é álgebra de divisão com $q\in\{3,5,9,25\}$.
 :::
 
 

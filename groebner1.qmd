@@ -88,6 +88,11 @@ P & = ((x+1)/2,y/2);\\
 Q & = (x/2,y/2);\\
 R & = (1/2,0).
 \end{align*}
+
+Os pontos estão ilustrados na seguinte imagem.
+
+![triangle](pics/triang.png){width=400}
+
 Assuma que $S=(u,v)$ é o ponto de interseção das retas $AP$ e $BQ$.  Precisa provar que a reta $CR$ passa pelo ponto $S$. 
 Os fatos que $S$ está na reta $AP$ e que $S$ está na reta $BQ$ podem ser expressas das equações
 \begin{align*}
@@ -108,7 +113,7 @@ $$
 f_3=-2xv+2yu-y+v=0.
 $$
 
-Para provar que $S$ está na reta $CR$, é suficiente provar que  que 
+Para provar que $S$ está na reta $CR$, é suficiente provar que $f_3=0$ sempre que $f_1=0$ e $f_2=0$. Isso segue do fato que $f_3$ pertence ao ideal gerado por $f_1$ e $f_2$; ou seja, 
 $$
 f_3\in(f_1,f_2).
 $$
@@ -129,7 +134,7 @@ $$
 onde $h_i\in\mathbb Q[x,y,u,v]$. 
 :::
 
-:::{.dica}
+:::{.bint}
 Segue os passos na computação em cima.
 :::
 

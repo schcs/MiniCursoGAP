@@ -26,21 +26,23 @@ Assuma que Alice quer enviar uma mensagem para Bob. Eles seguem os seguintes pas
 $$
 cd\equiv 1\pmod{\varphi(n)}.
 $$
+Este número $d$ será calculado por Bob.
 2.  Bob publica o par $(n,c)$ dos números. Este é a chave pública do Bob e está disponível publicamente para toda pessoa que quer enviar mensagem sigilosa para o Bob. Em particular esta chave é conhecida por Alice.
 3.  O Bob guarda os números $(\varphi(n),d)$ em sigilo. Esta é a chave privada do Bob.
 4.  A mensagem da Alice é um número $b$ entre $1$ e $n$. A Alice vai calcular
 $$
-C(b)=\mbox{o resto de $b^c$ por $n$}.
+C(b)=\mbox{o resto de $b^c$ módulo $n$}.
 $$
 Note que Alice conhece os números $c$ e $n$ e consegue calcular $C(b)$. O número $C(b)$ é a mensagem criptografada.
 5.  Alice envia $C(b)$ para o Bob.
 6.  Ao receber a mensagem $b_1=C(b)$ da Alice, Bob calcula
 $$
-D( b_1)=\mbox{o resto de $b_1^c$ módulo $n$}.
+D( b_1)=\mbox{o resto de $b_1^d$ módulo $n$}.
 $$
 O número obtido $D(b_1)$ é a mensagem descriptografada.
 6.  O número $D(b_1)$ coincide com a mensagem original $b$ da Alice; ou seja, o Bob conseguiu descriptografar a mensagem da Alice.
 
+O fato que este processo funciona é devido ao seguinte teorema baseado no Pequeno Teorema de Fermat.
 
 ::::{#thm-}
 Usando a notação acima, $D(C(b))=b$ para todo $b\in\{1,\ldots,n-1\}$. Ou seja, usando a função $D$, o Bob consegue descodificar a mensagem da Alice
@@ -63,13 +65,12 @@ gap> n <= 2^100;
 true
 ```
 
-Note que na sua computação você vai obter primos diferentes, pois os primos obtidos são aleatórios. 
+Note que na sua computação, você vai obter primos diferentes, pois os primos obtidos são aleatórios. 
 
-Vamos criar as chaves $c$ e $d$ em dois métodos diferentes. Primeiro usamos aritmética ingegral calculando MDC.
+Vamos criar as chaves $c$ e $d$ em dois métodos diferentes. Primeiro usamos aritmética integral calculando MDC.
 
 
 
-Para criar as chaves $c$ e $d$, usaremos aritmética modular. Vamos criar os anéis $R$ e $R_1$ de classes residuais módulo $n$ e calcular $\varphi(n)=(p-1)(q-1)$. 
 
 ```matlab
 gap> phi_n := (p-1)*(q-1);
@@ -94,13 +95,18 @@ gap> gcd_rec.coeff1*c mod phi_n;
 1
 gap> d := gcd_rec.coeff2;
 115087710935716733897683004232
+```
+
+Ora que temos os números $n$, $c$, e $d$ calculados, vamos criptografar o número $2$.
+```matlab
 gap> 2^c mod n;
 Error, Integer operands: <exponent> is too large
 not in any function at *stdin*:112
 type 'quit;' to quit to outer loop
 brk> quit;
+gap> 
 ```
-Note que a expressão `2^1102805946491101901632051878773` não foi aceita pelo `GAP`, pois o expoente é muito grande. Para fazer esta conta, vamos utulizar anéis residuais. 
+Note que a expressão `2^1102805946491101901632051878773` não foi aceita pelo `GAP`, pois o expoente é muito grande. Vamos refazer as contas utulizando anéis residuais. 
 
 
 ```matlab
@@ -132,6 +138,13 @@ gap> msg2_cript := msg2^c;
 ZmodnZObj( 409777624988356516250582182849, 1167067924403112255997192566263 )
 gap> msg2_descript := msg2_cript^d;
 ZmodnZObj( 2, 1167067924403112255997192566263 )
+```
+
+Observe que depois de descriptografar, o resultado é a classe residual representada por $2$. Ou seja, o processo de criptografar e descriptografar foi executado com sucesso.
+
+Vamos repetir esta conta, mas agora usando um número aleatório como mensagem.
+
+```matlab
 gap> msg_rand := Random( R );
 ZmodnZObj( 417408283977422861261533080164, 1167067924403112255997192566263 )
 gap> msg_rand_cript := msg_rand^c;
@@ -154,7 +167,7 @@ gap> Factors( n );
 :::{.subproblem}
 Repita a computação anterior, mas agora com números maiores. Em vez de trabalhar com chave de comprimento de `100` bits, trabalhe com chave de `2048` bits que é o usual com protocolos modernos de criptografia RSA. O comprimento de `p` será de `1228` bits, enquanto o comprimento de `q` será de `820` bits. (Ou seja, `p` é um primo entre $2^{1227}$ e $2^{1228}-1$) e `q` é primo entre $2^{819}$ e $2^{820}-1$.
 
-Verifique que o número $n$ obtida desta vez não pode ser fatorado usando `Factors( n )`.
+Verifique que o número $n$ obtido desta vez não pode ser fatorado usando `Factors( n )`.
 :::
 
 :::{.hint}
@@ -167,7 +180,26 @@ Verifique que o número $n$ obtida desta vez não pode ser fatorado usando `Fact
 Escreva uma função `RSA_keys( nr_bits )` que gera dados necessários para criptografia RSA usando `nr_bits`. Ou seja, `RSA_keys( nr_bits )` devolve 
 
 1. o número `n` que é produto dos primos `p` e `q` (mas não devolve os números `p` e `q`);
-2. devolve a chave pública `c` e a chave privada `d`.
+2. a chave pública `c` e a chave privada `d`.
+   
+A sua função deve funcionar como no seguinte exemplo (mas vai devoler números diferentes, pois terá escolhas aleatórias).
+```matlab
+gap> RSA_keys( 100 );
+[ 316912650070316019695166163909, 67803319666716708665432764421, 123402113103695021747726526701 ]
+gap> RSA_keys( 2048 );
+[ 8079251517827751825178719172167487990111025667428871008032586356881163784716972723299300352880728365922179490230474504873529889787622730273772038096612070780157719341825249022937549437597413026699014\
+409596016892069198054660654939040459523584619423936802132840148098974587465512670264468154836041528791399303629821338677862343476508408719129704032506523521007918729333859365737706858631433480971900864\
+638263805076574870214385615238499229026374713889952084756471996422350380077815154120299937510569062144760090910873471827641595447079810841106710510426149570066998895904923832582092610166532840530813197\
+653753269852451, 
+  7192288102945424787858521453294104187603529373292443494832996567199950593373447191843467648596336466354111301360259647044189398010351244637050665713156802075659077920531325814869596760587751308864739\
+340696664443193627325657677140213670588513586249464402999809068326863845269559193096291594119839200884396779283334530215447671214968834923718725881618320293090587468802422721225000761071107139228783124\
+831159960654824007068686730857752792469160260226212525842862946932922002967218219246000047897040282800429269436913752744220440070728102422490504316768143497622166381341515789631855697084844227310016309\
+01920474411209, 
+  7673512199209917250942248021545990478317671889275527217680964807573904330703979475900391247316654376108455410058597952795886386824500341556821544450701499926539897653333550863267800426221024755589724\
+498705017266598639121063290641559059066462637660387643989656151597506529056513058026142914987050935773395104783940750228548930324401685657726448259117738771591211362993963100987178452005792367299310803\
+700484853963195394096939836926787663396619582243827776754614962129094525567992153167656443410227381642288014676450365455581712150358955373536292463490794521531456519491901415830406291183849562813990696\
+55276725657169 ]
+```
 :::
 
 <!--

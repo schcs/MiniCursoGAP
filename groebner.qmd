@@ -4,21 +4,23 @@ number-sections: true
 lang: pt-BR
 ---
 
+Neste projeto vamos estudar uma aplicação simples das [bases de Groebner](https://en.wikipedia.org/wiki/Gr%C3%B6bner_basis).
+
 ## Dependência algêbrica {#sec-groebner-problem}
 
 :::{.problem} 
-Assuma que $f_1,\ldots,f_k$ são polinômios em um anel $\mathbb F[x_1,\ldots,x_n]$ de polinômios sobre um corpo $\mathbb F$. Dizemos que $f_1,\ldots,f_k$ são *algebricamente dependentes* se existir um polinômio $h(t_1,\ldots,t_k)\in\mathbb F[t_1,\ldots,t_k]$ tal que 
+Assuma que $f_1,\ldots,f_k$ são polinômios em um anel $\mathbb F[x_1,\ldots,x_n]$ de polinômios sobre um corpo $\mathbb F$. Dizemos que $f_1,\ldots,f_k$ são *algebricamente dependentes* se existir um polinômio $h\in\mathbb F[t_1,\ldots,t_k]$ tal que 
 $$
 h(f_1,\ldots,f_k)=0.
 $$
-Um polinômio $f\in\mathbb F[x_1,\ldots,x_n]$ pertence à álgebra $\mathbb F[f_1,\ldots,f_k]$ gerada por $f_1,\ldots,f_k$ se existir um polinômio $h(t_1,\ldots,t_k)\in\mathbb F[t_1,\ldots,t_k]$ tal que 
+Um polinômio $f\in\mathbb F[x_1,\ldots,x_n]$ pertence à álgebra $\mathbb F[f_1,\ldots,f_k]$ gerada por $f_1,\ldots,f_k$ se existir um polinômio $h\in\mathbb F[t_1,\ldots,t_k]$ tal que 
 $$
 f=h(f_1,\ldots,f_k).
 $$
 Note que $f\in\mathbb F[f_1,\ldots,f_k]$ implica que $f,f_1,\ldots,f_k$ são algebricamente dependentes. 
 :::
 
-## Exploração interativa
+## Exploração interativa {#sec-groebner-interactive}
 
 :::{.subexample}
 Considere por exemplo os seguintes polinômios em $\mathbb Q[y_0,y_1,y_2,y_3]$:
@@ -79,7 +81,7 @@ gap> G := GroebnerBasis( I, MonomialLexOrdering );
   y1*y2^2*t2-3*y2*y3*t1*t2+3*y1*y3*t3-2*y2^2*t3+3*y3*t2^2-y1*t4, y1^2-2*y2*t1+t2, y0-t1 ]
 ```
 
-Note que `G[1]` é um polinômio na variáveis $t_1,t_2,t_3,t_4$ apenas. Este polinômio expressa a dependência algébrica entre $f_1,f_2,f_3,f_4$. 
+Note que `G[1]` é um polinômio nas variáveis $t_1,t_2,t_3,t_4$ apenas. Este polinômio expressa a dependência algébrica entre $f_1,f_2,f_3,f_4$. 
 ```matlab
 gap> h := G[1];
 t1^2*t4-t2^3-t3^2
@@ -94,7 +96,7 @@ gap> Filtered( G, x-> DegreeIndeterminate( x, y0 ) = 0 and DegreeIndeterminate( 
 ```
 :::
 
-## A teoria da computação anterior.
+## A teoria atrás da computação anterior
 
 A computação anterior está baseada na seguinte teorema.
 
@@ -106,7 +108,7 @@ $$
 relativa a uma ordem monomial na qual $x_1>x_2\cdots>x_n>t_1>\cdots>t_k$. As seguintes afirmações são verdadeiras. 
 
 1. $f_1,\ldots,f_k$ são algebricamente dependentes se e somente se existe $h\in\mathcal G\cap \mathbb F[t_1,\ldots,t_k]$. Neste caso, $h(f_1,\ldots,f_k)=0$.  
-2. $f_1\in\mathbb F[f_2,\ldots,f_k]$ se e somente se $\mathcal G$ possui um elemento na forma $h=t_1+h_1$ onde $h_1\in \mathbb F[t_2,\ldots,t_k]$. Neste caso, $f=h(f_2,\ldots,f_k)$. 
+2. $f_1\in\mathbb F[f_2,\ldots,f_k]$ se e somente se $\mathcal G$ possui um elemento na forma $h=t_1+h_1$ onde $h_1\in \mathbb F[t_2,\ldots,t_k]$. Neste caso, $f=-h_1(f_2,\ldots,f_k)$. 
 :::
 
 A demonstração do Teorema não é muito difícil, ela dependa da Fórmula de Taylor para polinômios multivariáveis sobre anel arbitrário.
@@ -114,6 +116,20 @@ A demonstração do Teorema não é muito difícil, ela dependa da Fórmula de T
 ## Tarefa 1
 
 :::{.subproblem}
+1. Sejam $f_1$, $f_2$, $f_3$ como na @sec-groebner-interactive, e seja agora 
+$$
+f_4=2y_0y_4-2y_1y_3+y_2^2
+$$
+e 
+$$
+f_5=2y_2^3-6y_1y_2y_3+9y_0y_3^2+6y_1^2y_4-12y_0y_2y_4.
+$$
+Ache uma dependência algébrica entre $f_1,f_2,f_3,f_4,f_5$. 
+2. Verifique se o polinômio 
+$$
+f=-3y_0^2y_3+2y_0^2y_4+3y_0y_1y_2-2y_0y_1y_3+y_0y_2^2-y_1^3
+$$
+está contido na subálgebra $\mathbb Q[f_1,f_2,f_3,f_4]$. Se sim escreva $f$ na forma $h(f_1,f_2,f_3,f_4)$. 
 :::
 
 ## Tarefa 2

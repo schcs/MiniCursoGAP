@@ -42,7 +42,7 @@ Note a diferença entre trabalhar com valores exatos (como por exemplo `1/3`) e 
 ## Operações lógicas (booleanas) {#sec-bool}
 
 :::{.subexample}
-Para comparar se dois valores são iguais,  usamos a operação `=` cujo valor é um [valor lógico](https://docs.gap-system.org/doc/ref/chap20_mj.html#X787B4AB77A2F5E14) ou seja `true` ou `false`. As operações com valores lógicos são `not`, `and` e `or` que funcionam exatamente como os respetivos conetivos na lógica matemática.
+Para comparar se dois valores são iguais,  usamos a operação `=` cujo valor é um [valor lógico](https://docs.gap-system.org/doc/ref/chap20_mj.html#X787B4AB77A2F5E14) ou seja `true` ou `false`. As operações com valores lógicos são `not`, `and` e `or` que funcionam exatamente como os respetivos conectivos na lógica matemática.
 ```matlab
 gap> 2 + 3 = 5;
 true
@@ -100,7 +100,7 @@ gap> Concatenation( s1, s2 );
 
 
 :::{.subexample}
-Quando trabalhamos com estruturas algébricas, precisamos trabalhar com corpos além do corpo $\mathbb Q$. Aqui em baixo veremos alguns exemplos para aritmética com (corpos finitos)[https://docs.gap-system.org/doc/ref/chap59.html]. O corpo finito com $q$ elementos pode ser construído com a função `GF( q )`.
+Quando trabalhamos com estruturas algébricas, precisamos trabalhar com corpos além do corpo $\mathbb Q$. Aqui em baixo veremos alguns exemplos para aritmética com [corpos finitos](https://docs.gap-system.org/doc/ref/chap59.html). O corpo finito com $q$ elementos pode ser construído com a função `GF( q )`.
 
 ```matlab
 gap> GF(3);
@@ -154,6 +154,20 @@ true
 ```
 :::
 
+
+## Tarefa
+:::{.subproblem}
+Faça as seguintes computações em `GAP`.
+
+1. Calcule o resto de $5^7+5^6+5^5$ módulo $11$.
+2. Verifique por computação direta que $a^7\equiv a\pmod 7$ para todo $a\in\{0,\ldots,6\}$. 
+3. Calcule o resto de $a^8$ módulo $8$ para todo $a\in\{0,\ldots,7\}$. Ache valores para os quais $a^8\not\equiv a\pmod 8$. 
+4. Verifique que $a^7=a$ para todo $a\in\mathbb F_7$.
+5. Calcule o valor lógico de 
+   $$
+   8^7 = 13 \mbox{ ou } (6+7 = 13 \mbox{ e } 5^3 \neq 125). 
+   $$
+:::
 
 
 

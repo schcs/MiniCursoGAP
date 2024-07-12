@@ -42,11 +42,13 @@ gap> Position( L1, -1 );
 fail
 ```
 
-Frequentamente, precisa-se criar novas listas usando listas. Por exemplo, frequentamente queremos criar a lista de elementos de uma outra lista que satisfazem uma certa propriedade. Esta tarefa pode ser resolvida usando a função `Filtered( list, func )` em `GAP` onde `list` é uma lista e `func` é uma função (@sec-functions). Nos seguintes exemplos veremos alguns usos simples desta construção.
+Frequentamente, precisa-se criar novas listas usando listas. Por exemplo, frequentamente queremos criar a lista de elementos de uma outra lista que satisfazem uma certa propriedade. Esta tarefa pode ser resolvida usando a função `Filtered( list, func )` em `GAP` onde `list` é uma lista e `func` é uma função (@sec-functions) que devolve `true` ou `false` (@sec-bool). Nos seguintes exemplos veremos alguns usos simples desta construção.
 
 ```matlab 
+# os números pares em L1
 gap> Filtered( L1, IsEvenInt );
 [ 10, 8, 6, 4, 2, 0 ]
+# os números ímpares em L1
 gap> Filtered( L1, IsOddInt );
 [ 1, 3, 5, 7, 9 ]
 gap> Filtered( L1, x -> x mod 2 = 0 );
@@ -61,7 +63,7 @@ gap> List( [1..10], x->x^2 );
 [ 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 ]
 ```
 
-`GAP` trabalha também com listas nas quais algumas entradas não estão definidas. Considere por exemplo as seguintes instruções.
+`GAP` trabalha também com listas nas quais algumas entradas não estão definidas. Tais listas são chamadas de *listas esparsas*. Considere por exemplo as seguintes instruções.
 ```matlab
 gap> l := [1,2,,,12];
 [ 1, 2,,, 12 ]
@@ -89,6 +91,18 @@ gap> l;
 [ 1, 2,,, 12,,, 22 ]
 ```
 Note que, ao acessar `l[3]`, obtemos um erro, pois esta entrada não existe. Para evitar este erro, podemos verificar se existe ou não a entrada usando `IsBound`.
+:::
+
+
+## Tarefa 
+:::{.subproblem}
+Construa as seguintes listas em `GAP`.
+
+1. A lista dos naturais entre $1$ e $50$.
+2. A lista dos naturais pares entre $1$ e $50$.
+3. A lista dos naturais ímpares entre $1$ e $50$.
+4. Os primos entre $1$ e $50$. (Use a função [`IsPrimeInt`](https://docs.gap-system.org/doc/ref/chap14.html#X78FDA4437EDCA70C)).
+5. A lista dos naturais entre $1$ e $50$ que dão resto $3$ módulo $5$ (veja @sec-ops-arit). 
 :::
 
 ## Matrizes {#sec-matrix}
@@ -122,11 +136,50 @@ gap> Display( last );
 ```
 :::
 
+Para acessar uma entrada em uma matriz, pode usar `m[i][j]`. Por exemplo
+```matlab
+gap> m1[2,1];
+0
+```
+
+Determinantes e matrizes inversas podem ser calculados por `Determinant( m )` e `m^-1`.
+
+```matlab
+gap> m := [[1,2,0],[0,-2,3],[0,1,0]];
+[ [ 1, 2, 0 ], [ 0, -2, 3 ], [ 0, 1, 0 ] ]
+gap> Determinant( m );
+-3
+gap> mi := Inverse( m );
+[ [ 1, 0, -2 ], [ 0, 0, 1 ], [ 0, 1/3, 2/3 ] ]
+gap> m*mi;
+[ [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] ]
+```
+
+
+## Tarefa 
+:::{.subproblem}
+1. Defina as seguintes matrizem em `GAP`.
+   $$
+   M_1 := \begin{pmatrix} 0 & 1 & -2 \\ 1 & 0 & 1 \\ -1 & 1 & 2\end{pmatrix}
+   $$
+   e
+   $$
+   M_2 := \begin{pmatrix} -1 & 1 & 2 \\ 2 & -1 & 0 \\ 3 & 0 & -1\end{pmatrix}.
+   $$
+2. Calcule os determinantes de $M_1$ e $M_2$ e as inversas, caso forem invertíveis. 
+3. Calcule o comutador $M_1M_2-M_2M_1$ na álgebra de matrizes e o comutador $M_1^{-1}M_2^{-1}M_1M_2$ no grupo.
+4. Considere as mesmas matrizes $M_1$ e $M_2$ mas agora com entradas no corpo $\mathbb F_5$ (@sec-ff) e repita as computações nos itens anteriores.  
+:::
+
+:::{.hint}
+Para obter as matrizes no item 4., pode multiplicar as matrizes já definidas no item 1. com `One( GF( 5 ))` ou com `Z( 5 )^0`. 
+:::
+
 ## Permutações {#sec-permutation}
 
 
 :::{.subexample}
-Outro objeto fundamento quando trabalhamos com grupos finitos é a permutação. Permutações em `GAP` podem ser definidas como produto de cíclos disjuntos mas também usando uma lista. 
+Outro objeto fundamental quando trabalhamos com grupos finitos é a permutação. Permutações em `GAP` podem ser definidas como produto de cíclos disjuntos mas também usando uma lista. 
 ```matlab
 gap> p1 := (1,2,3)(4,5,6);
 (1,2,3)(4,5,6)
@@ -139,4 +192,17 @@ gap> p1*p2;
 gap> p2*p1;
 (1,2,6,4)(3,5)
 ```
+:::
+
+## Tarefa
+
+:::{.subproblem}
+1. Construa a lista de todas as permutações em três pontos.
+2. Construa a lista das 8 permutações que representam as simetrias de um quadrado com pontas $1$, $2$, $3$, e $4$ (nesta ordem).
+:::
+
+:::{.hint}
+No item 2., considere as quatro rotações e as quatro reflexões do seguinte quadrado.
+
+![quadrado](pics/quadrado.png){width=200}
 :::

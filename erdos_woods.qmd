@@ -9,11 +9,11 @@ Neste projeto vamos investigar uma classe interessante de números naturais.
 ## Os números
 
 :::{.problem}
-Um intervalo de números naturais $\{a,a+1,\ldots,a+k\}$ chama-se *intervalo de Erdős-Woods*, se todo número $m\in\{a,a+1,\ldots,a+k\}$ tem algum fator comum ou com $a$ ou com $a+k$. Por exemplo, o intervalo 
+Vamos chamar um intervalo de números naturais $\{a,a+1,\ldots,a+k\}$ *intervalo de Erdős-Woods*, se todo número $m\in\{a,a+1,\ldots,a+k\}$ tem algum fator comum ou com $a$ ou com $a+k$. Por exemplo, o intervalo 
 $$
 \{5,6,7,8,9\}
 $$
-não é de Erdős-Woods, pois $7$ é coprimo com $5$ e também com $9$. Um número natural $k\in\mathbb N$ é dito [*número de Erdős-Woods*](https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Woods_number) (veja também na [OEIS](https://oeis.org/A111042)), se existe um intervalo de Erdős-Woods com comprimento $k$. Por exemplo, $2$ não é número de Erdős-Woods, pois no intervalo $\{a,a+1,a+2\}$ o número $a+1$ é coprimo com $a$ e também com $a+2$. 
+não é de Erdős-Woods, pois $7$ é coprimo com $5$ e também com $9$. Um número natural $k\in\mathbb N$ é dito [*número de Erdős-Woods*](https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Woods_number) (veja também na [OEIS](https://oeis.org/A111042)), se existe um intervalo de Erdős-Woods na forma $\{a,\ldots,a+k\}$. Por exemplo, $2$ não é número de Erdős-Woods, pois no intervalo $\{a,a+1,a+2\}$ o número $a+1$ é coprimo com $a$ e também com $a+2$. 
 :::
 
 ## Exploração interativa
@@ -33,7 +33,7 @@ Ou seja, os números $11$ e $13$ são coprimos com o início e com o final do in
 ## Tarefa 
 
 :::{.subproblem}
-1. Escreva uma função `is_Erdős_woods_interval( a, k )` que verifica se o intervalo $\{a,a+1,\ldots,a+k\}$ é de Erdős-Woods. A função deve devolver `true` ou `false` dependendo se o intervalo é de Erdős-Woods. A sua função deve funcionar na seguinte forma.
+1. Escreva uma função `is_ew_interval( a, k )` que verifica se o intervalo $\{a,a+1,\ldots,a+k\}$ é de Erdős-Woods. A função deve devolver `true` ou `false` dependendo se o intervalo é de Erdős-Woods. A sua função deve funcionar na seguinte forma.
 ```matlab
 gap> is_ew_interval( 10,5 );
 false

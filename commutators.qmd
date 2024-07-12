@@ -7,7 +7,7 @@ lang: pt-BR
 ## O problema
 
 :::{.problem}
-Seja $G$ um grupo. Se $x,y\in G$,  o comutador $[x,y]$ está definido como 
+Seja $G$ um grupo. Se $x,y\in G$,  o *comutador* $[x,y]$ está definido como 
 $$
 [x,y]=x^{-1}y^{-1}xy.
 $$
@@ -15,7 +15,7 @@ O subgrupo derivado $G'$ de $G$ é definido como o subgrupo de $G$ gerado por to
 $$
 G'=\left<[x,y]\mid x,y\in G\right>.
 $$
-É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o subgrupo gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequeno $G'$ coincide com o conjunto de comutadores. 
+É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o **subgrupo** gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequenos $G'$ coincide com o conjunto de comutadores. 
 :::
 
 ## Exploração interativa
@@ -91,7 +91,7 @@ gap> Size( DerivedSubgroup( PGL( 2,7 )));
 :::
 
 :::{.hint}
-Escreva uma função encapsulando o código no exemplo anterior em uma função.
+Escreva uma função encapsulando o código no exemplo anterior.
 :::
 
 ## Tarefa 2
@@ -113,7 +113,7 @@ true
 ## Tarefa 3
 
 :::{.subproblem}
-Usando a função `AllSmallGroups( Size, list )`, ache o menor grupo `G` tal que o conjunto de comutadores de `G` não é o grupo derivado. Por exemplo, vamos verificar que entre os grupos de ordem 24 isso não ocorre. 
+Usando a função `AllSmallGroups( Size, list )`, ache o menor grupo `G` tal que o conjunto de comutadores de `G` não é o subgrupo derivado. Por exemplo, vamos verificar que entre os grupos de ordem 24 isso não ocorre. 
 
 ```matlab
 gap> List( AllSmallGroups( Size, [24] ), G -> commutator_set_is_subgroup( G ));
@@ -129,6 +129,10 @@ Seja $G$ o grupo encontrado na tarefa anterior.
 
 1. Faça a lista dos elementos do subgrupo derivado $G'$ que não são comutadores. 
 2. Escreva estes elementos como produto de comutadores de $G$. Demonstre que todo elemento de $G'$ pode ser escrito na forma $[x_1,x_2][y_1,y_2]$ com $x_i,y_i\in G$.
+:::
+
+:::{.hint}
+O item 2. da tarefa anterior pode ser difícil resolver construindo todos os elementos  $[x_1,x_2][y_1,y_2]$, pois o número de possibilidades é muito grande. Um caminho alternativo é escolher elementos aleatórios $x_1,x_2,y_1,y_2$ até obter os elemendos desejados na forma $[x_1,x_2][y_1,y_2]$.
 :::
 
 ## Tarefa 5
@@ -148,7 +152,13 @@ end;
 -->
 
 1. Escreva uma função `B_x( G, x )` que calcula $B_x(G)$ para um grupo $G$ e elemento $x\in G$. 
-2. Decide quais dos seguintes grupos possui elemento $x$ tal que $B_x(G)=G$: $D_8$, $Q_8$, $A_4$, $S_4$, $A_5$, $S_5$. 
+2. Decide quais dos seguintes grupos possui elemento $x$ tal que $B_x(G)=G$:
+   - $D_8$, 
+   - $Q_8$, 
+   - $A_4$, 
+   - $S_4$, 
+   - $A_5$, 
+   - $S_5$. 
 :::
 
 :::{.hint}

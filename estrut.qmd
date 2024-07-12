@@ -15,16 +15,10 @@ $$
 $$
 e
 $$
-\mbox{SL}(n,\mathbb F)=\{A\in \mbox{GL}(n,\mathbb F)\mid \det A\neq 1\}.
+\mbox{SL}(n,\mathbb F)=\{A\in \mbox{GL}(n,\mathbb F)\mid \det A= 1\}.
 $$
-Quando $\mathbb F$ é o corpo finito com $q$ elementos, o grupo $\mbox{GL}(n,\mathbb F)$ e $\mbox{SL}(n,\mathbb F)$ é também escrito como $\mbox{GL}(n,q)$ e $\mbox{SL}(n,q)$. Para revisar corpos finitos (função `GF`) consulte @sec-ff.
+Quando $\mathbb F$ é o corpo finito com $q$ elementos, os grupos $\mbox{GL}(n,\mathbb F)$ e $\mbox{SL}(n,\mathbb F)$ são também escritos como $\mbox{GL}(n,q)$ e $\mbox{SL}(n,q)$. Para revisar corpos finitos (função `GF`) consulte @sec-ff.
 ```matlab
-gap> G1 := SL( 3, GF(5));
-SL(3,5)
-gap> G1 := SL( 3, 5);
-SL(3,5)
-gap> G1 := SL( 3, 5 );
-SL(3,5)
 gap> G1 := GL( 3, 5 );
 GL(3,5)
 gap> G2 := SL( 3, 5 );
@@ -39,7 +33,7 @@ gap> IsNormal( G1, G2 );
 true
 ```
 
-Ora, considere construções com `SymmetricGroup` e `AlternatingGroup`. Lembre que o grupo simétrico $S_n$ é o grupo de todas as permutações do conjunto $\{1,\ldots,n\}$ considerando com a operaçõo de composição. O grupo alternado $A_n$ é o grupo das permutações pares.
+Ora, considere as construções com `SymmetricGroup` e `AlternatingGroup`. Lembre que o grupo simétrico $S_n$ é o grupo de todas as permutações do conjunto $\{1,\ldots,n\}$ considerando com a operaçõo de composição. O grupo alternado $A_n$ é o grupo das permutações pares.
 
 ```matlab
 gap> S6 := SymmetricGroup( 6 );
@@ -95,11 +89,18 @@ gap> AllSmallGroups( Size, [10..20] , IsNilpotent, true  );
 ```
 :::
 
+## Tarefa 
+:::{.subproblem}
+1. Construa os grupos $\mbox{SL}(4,7)$ e $\mbox{GL}(4,7)$ e calcule as suas ordens. 
+2. Construa os grupos $S_7$ e $A_7$ e calcule as suas ordens. 
+3. Construa a lista de todos os grupos de ordem entre $55$ e $65$.
+4. Ache todos os grupos solúveis, todos os grupos nilpotentes e todos os grupos simples na lista construída no item anterior. (Use as funções [`IsSimpleGroup`](https://docs.gap-system.org/doc/ref/chap39.html#X7A6685D7819AEC32)  e [`IsSolvableGroup`](https://docs.gap-system.org/doc/ref/chap39.html#X809C78D5877D31DF)).
+:::
 
-## Grupos gerados por permutações
+## Grupos gerados por permutações ou matrizes
 
 :::{.subexample}
-Pode também definir grupo por geradores. Os geradores podem ser objetos multiplicáveis, tipicamente usamos matrizes e permutações. Primeiro, consideremos alguns exemplos com permutações.
+Pode-se também definir grupo por geradores. Os geradores podem ser objetos multiplicáveis, tipicamente usamos matrizes e permutações. Primeiro, consideremos alguns exemplos com permutações.
 ```matlab
 gap> G := Group( (1,2), (1,2,3,4,5));
 Group([ (1,2), (1,2,3,4,5) ])
@@ -165,7 +166,7 @@ $$
 
 O seguinte resultado é fácil de verificar.
 
-::::{#lemma-}
+::::{#lem-heis}
 Se $\mathbb F$ é um corpo finito de ordem $q$, então $|H|=q^3$. 
 ::::
 
@@ -190,7 +191,7 @@ Group(
       [ 0*Z(7), 0*Z(7), Z(7)^0 ] ] ])
 gap> Order( H );
 343
-gap> H := heisenberg_group( 4 );
+gap> H := heisenberg_group( 9 );
 <matrix group of size 729 with 4 generators>
 gap> Order( H );
 729
@@ -200,7 +201,7 @@ gap> Order( H );
 :::
 
 :::{.hint}
-O grupo de Heisenberg $H$ é gerado por dois geradores sobre o corpo $\mathbb F_p$. Sobre um corpo $\mathbb F_{p^k}$ o grupo é gerado por $2k$ geradores. Para revisar como trabalhar sobre corpos finitos, consulte @sec-ff; para ver como escrever uma função, consulte @sec-functions.
+O grupo de Heisenberg $H$ é gerado por dois geradores sobre o corpo $\mathbb F_p$. Sobre um corpo $\mathbb F_{p^k}$ o grupo é gerado por $2k$ geradores. Para revisar como trabalhar sobre corpos finitos, consulte @sec-ff; para ver como escrever uma função, consulte @sec-functions. Para resolver o item 3., use as funções listadas no [capítulo relevante do manual](https://docs.gap-system.org/doc/ref/chap39.html).
 :::
 
 

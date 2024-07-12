@@ -62,14 +62,14 @@ gap>  Image(f, (1,2,3,4)*(1,2));
 (1,3,2)
 ```
 
-1. Agora, construa um homomorfismo $f$ de $h:=C_4$ para $n:=Aut(C_3) \cong C_2$. Verifique qual é imagem de $a^3$ por $f$, onde $\left<a\right>=C_4$. 
-2. Faça o mesmo para $h:=C_2 \times C_2$ para $n:=Aut(C_3) \cong C_2$.  Use a função DirectProduct e também GeneratorsOfGroup. 
+1. Agora, construa um homomorfismo $f$ de $H:=C_4$ para $\mbox{Aut}(C_3) \cong C_2$. Verifique qual é imagem de $a^3$ por $f$, onde $\left<a\right>=C_4$. 
+2. Faça o mesmo para $H:=C_2 \times C_2$ para $\mbox{Aut}(C_3) \cong C_2$.  Use a função `DirectProduct` e também `GeneratorsOfGroup`. 
 :::
 
 ## Tarefa 2
 
 :::{.subproblem}
-Agora vamos usar a função `SemidirectProduct(H, a, N)`, onde $a$ é um homomorfismo de $H$ em $\mbox{Aut}(N)$, já construído em tarefa anterior. Vamos obter os produtos semidiretos com $H=C_4$ e $N=C_3$. E como tarefa, faça o mesmo com $H=C_2 \times C_2$. 
+Agora vamos usar a função `SemidirectProduct(H, a, N)`, onde $a$ é um homomorfismo de $H$ em $\mbox{Aut}(N)$, já construído em tarefa anterior. Vamos obter os produtos semidiretos com $H=C_4$ e $N=C_3$. E como tarefa, faça o mesmo com $H=C_2 \times C_2$ e $N=C_3$. 
 
 ```matlab
 gap> h:=CyclicGroup(4);
@@ -114,13 +114,19 @@ gap>  List(a, f-> StructureDescription(SemidirectProduct(h, f, n)));
 ```
 
 
-Usando AllHomomorphism como acima, obtenha todos os produtos semidiretos de $H=C_3$ para $N=C_4$, de $H=C_2 \times C_2$ para $N=C_3$ e também de $H=C_3$ para $C_2 \times C_2$. Verifique nas suas respostas que os únicos grupos obtidos do produto semidireto $H \rtimes N$ são os seguintes:
-\begin{itemize}
-    \item $C_4 \rtimes C_3$ e $C_{12}$ (com $H=C_4$ e $N=C_3$);
-    \item $C_{12}$ (com $H=C_3 \times N=C_4$);
-    \item $C_6 \times C_2$ e $D_{12}$ (com $H=C_2 \times C_2$ e $N=C_3$);
-    \item $C_6 \times C_2$ e $A_4$ (com $H=C_3$ e $N=C_2 \times C_2$);
-\end{itemize}
+Usando `AllHomomorphisms` como acima, obtenha todos os produtos semidiretos $N\rtimes H$  
+
+1. com $H=C_3$ e $N=C_4$; 
+2. com $H=C_4$ e $H=C_3$;
+3. com $H=C_2 \times C_2$ e $N=C_3$; 
+4. e também com $H=C_3$ e $N=C_2 \times C_2$. 
+
+Verifique nas suas respostas que os únicos grupos obtidos do produto semidireto $H \rtimes N$ são os seguintes:
+
+1. $C_{12}$ (com $H=C_3$ e $N=C_4$);
+2. $C_3 \rtimes C_4$ e $C_{12}$ (com $H=C_4$ e $N=C_3$);
+3. $C_6 \times C_2$ e $D_{12}$ (com $H=C_2 \times C_2$ e $N=C_3$);
+4. $C_6 \times C_2$ e $A_4$ (com $H=C_3$ e $N=C_2 \times C_2$).
 
 
 Portanto, existem exatamente $5$ grupos de ordem $12$, a menos de isomorfismos. Podemos obtê-los via produto semidireto $H \rtimes N$, onde os grupos $H$ e $N$ correspondem a um grupo de ordem $4$ e de ordem $3$, respectivamente e vice-versa.
@@ -130,8 +136,6 @@ Portanto, existem exatamente $5$ grupos de ordem $12$, a menos de isomorfismos. 
 
 :::{.subproblem}
 Escreva uma função `all_semidirect_products( N, H )` que devolve todos os produtos semidiretos $N\rtimes H$.
-:::
-:::{.hint}
 :::
 
 <!--

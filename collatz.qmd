@@ -35,7 +35,7 @@ gap> collatz( 5 );
 :::
 
 :::{.hint}
-Precisa testar, usando `if`, (@sec-if) se o input é par ou ímpar e para isso pode usar a operação `mod` (@sec-ops-arit). Se precisar de ajuda com funções, consulte a @sec-functions.
+Pode ser que você já resolveu esta tarefa na @sec-tarefa-collatz. Se não, precisa testar, usando `if`, (@sec-if) se o input é par ou ímpar e para isso pode usar a operação `mod` (@sec-ops-arit). Se precisar de ajuda com funções, consulte a @sec-functions.
 :::
 
 
@@ -92,7 +92,7 @@ Você usará a função `collatz( n )` na tarefa anterior em um laço `while` (@
 ## Tarefa 3
 
 :::{.subproblem}
-Escreva uma função `max_nr_steps( n )` para determinar o número $k$ tal que `nr_steps( k )` é maior possível para os números $k\in\{1,\ldots,n\}$. A função deve devolver uma lista (@sec-list) de comprimento $2$ tal que a primeira entrada da lista é o número $k$ e a segunda é o número `nr_steps( k )`. 
+Escreva uma função `max_nr_steps( n )` para determinar o número $k$ tal que `nr_steps( k )` é maior possível para os números em $\{1,\ldots,n\}$. A função deve devolver uma lista (@sec-list) de comprimento $2$ tal que a primeira entrada da lista é o número $k$ e a segunda é o número `nr_steps( k )`. 
 
 O comportamento da sua função seguirá os seguintes exemplos:
 ```matlab

@@ -24,8 +24,8 @@ book:
     - centralizers.qmd
     - semidirect.qmd
     - genord.qmd
-    - algebras.qmd
     - groebner1.qmd
+    - algebras.qmd
     - groebner.qmd
     - grafos.qmd
 

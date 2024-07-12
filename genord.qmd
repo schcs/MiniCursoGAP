@@ -10,7 +10,7 @@ Neste projeto vamos ver como trabalhar com carateres de grupos e vamos resolver 
 ## A ordem generalizada
 
 :::{.problem}
-Seja $G$ um grupo e $x\in G$. A *ordem generalizada* $[x]$ de $x$ é o menor número natural $k$ tal que a identidade $1$ de $G$ pode ser escrito como um produto de $k$ conjugados de $x$. Ou seja, $[x]$ é o menor natural $k$ tal que 
+Seja $G$ um grupo e $x\in G$. A *ordem generalizada* $[x]$ de $x$ é o menor número natural $k$ tal que a identidade $1$ de $G$ pode ser escrita como um produto de $k$ conjugados de $x$. Ou seja, $[x]$ é o menor natural $k$ tal que 
 $$
 x^{g_1}\cdots x^{g_k}=1
 $$
@@ -89,7 +89,7 @@ Note que obtemos que o ordem generalizada de $a$ é $2$. Note que a ordem do mes
 
 ## Tarefa 1
 :::{.problem}
-1. Escreva uma função `generalized_order( G, i )` que dado um grupo $G$ e $i\geq 1$, devolve a ordem generalizada de um elemento na $i$-ésima class de conjugação de $G$ usando a equação @eq-genord.  
+1. Escreva uma função `generalized_order( G, i )` que dado um grupo $G$ e $i\geq 1$, devolve a ordem generalizada de um elemento na $i$-ésima classe de conjugação de $G$ usando a equação @eq-genord.  
 2. Escreva uma função `generalized_orders( G )` que calcula a lista das ordens generalizadas das classes de conjugação de $G$.
 
 O resultado do seu código deve seguir os seguintes exemplos.
