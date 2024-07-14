@@ -130,7 +130,7 @@ gap> aliquot_sequence_until_repeat( 34 );
 [ 34, 20, 22, 14, 10, 8, 7, 1, 0, 0 ]
 ```
 
-1. O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache o números entre $1$ e $1000$ que produzem o sequência particularmente longas. 
+1. O comprimento da sequência é o número de passos que precisamos fazer até a sequência vira periódica. Ache números entre $1$ e $1000$ que produzem o sequência particularmente longas. 
 :::
 
 :::{.hint}

@@ -109,7 +109,7 @@ Construa as seguintes listas em `GAP`.
 
 
 :::{.subexample}
-Em `GAP` uma matriz é lista de listas (que são as linhas da matriz) ([manual](https://docs.gap-system.org/doc/ref/chap24.html)). As entradas de matrizes são tipicamente números ou, mais geralmente, elementos de um anel ou corpo. As matrizes podem ser somadas e multiplicadas exatamente como números.
+Em `GAP`, uma matriz é lista de listas (que são as linhas da matriz) ([manual](https://docs.gap-system.org/doc/ref/chap24.html)). As entradas de matrizes são tipicamente números ou, mais geralmente, elementos de um anel ou corpo. As matrizes podem ser somadas e multiplicadas exatamente como números.
 ```matlab
 gap> m1 := [[1,2,0],[0,-2,3]];
 [ [ 1, 2, 0 ], [ 0, -2, 3 ] ]
@@ -134,7 +134,7 @@ gap> Display( last );
   [    0,   -6,    9 ],
   [    4,    7,  3/2 ] ]
 ```
-:::
+
 
 Para acessar uma entrada em uma matriz, pode usar `m[i][j]`. Por exemplo
 ```matlab
@@ -154,7 +154,7 @@ gap> mi := Inverse( m );
 gap> m*mi;
 [ [ 1, 0, 0 ], [ 0, 1, 0 ], [ 0, 0, 1 ] ]
 ```
-
+:::
 
 ## Tarefa 
 :::{.subproblem}

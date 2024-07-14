@@ -11,7 +11,7 @@ Nesta página, vamos resumir brevemente as operações da aritmética básica em
 
 
 :::{.subexample}
-As [operações](https://docs.gap-system.org/doc/ref/chap4_mj.html#X7B66C8707B5DE10A) mais comuns em GAP são `+` (adição), `-` (subtração), `*` (multiplicação), `/` (divisão), `mod`, (resto) `^` (exponenciação). Experimente com os seguintes exemplos.
+As [operações](https://docs.gap-system.org/doc/ref/chap4_mj.html#X7B66C8707B5DE10A) mais comuns em `GAP` são `+` (adição), `-` (subtração), `*` (multiplicação), `/` (divisão), `mod`, (resto) `^` (exponenciação). Experimente com os seguintes exemplos.
 ```matlab
 gap> 2+3;
 5
@@ -36,13 +36,13 @@ gap> 1/3;
 gap> 1.0/3;
 0.333333
 ```
-Note a diferença entre trabalhar com valores exatos (como por exemplo `1/3`) e valores aproximados (por exemplo `1.0/3`).
+Note a diferença entre trabalhar com valores exatos (como por exemplo `1/3`) e valores aproximados (por exemplo `1.0/3`). Neste minicurso, nós vamos trabalhar com valores exatos.
 :::
 
 ## Operações lógicas (booleanas) {#sec-bool}
 
 :::{.subexample}
-Para comparar se dois valores são iguais,  usamos a operação `=` cujo valor é um [valor lógico](https://docs.gap-system.org/doc/ref/chap20_mj.html#X787B4AB77A2F5E14) ou seja `true` ou `false`. As operações com valores lógicos são `not`, `and` e `or` que funcionam exatamente como os respetivos conectivos na lógica matemática.
+Para comparar se dois valores são iguais,  usamos a operação `=` cujo valor é um [valor lógico](https://docs.gap-system.org/doc/ref/chap20_mj.html#X787B4AB77A2F5E14); ou seja, `true` ou `false`. As operações com valores lógicos são `not`, `and` e `or` que funcionam exatamente como os respetivos conectivos na lógica matemática.
 ```matlab
 gap> 2 + 3 = 5;
 true
@@ -100,7 +100,7 @@ gap> Concatenation( s1, s2 );
 
 
 :::{.subexample}
-Quando trabalhamos com estruturas algébricas, precisamos trabalhar com corpos além do corpo $\mathbb Q$. Aqui em baixo veremos alguns exemplos para aritmética com [corpos finitos](https://docs.gap-system.org/doc/ref/chap59.html). O corpo finito com $q$ elementos pode ser construído com a função `GF( q )`.
+Quando trabalhamos com estruturas algébricas, precisamos trabalhar com corpos além do corpo $\mathbb Q$. Aqui em baixo veremos alguns exemplos para aritmética com [corpos finitos](https://docs.gap-system.org/doc/ref/chap59.html). O corpo finito com $q$ elementos pode ser construído com a função `GF( q )` (Galois Field).
 
 ```matlab
 gap> GF(3);
@@ -111,11 +111,11 @@ gap> GF(27);
 GF(3^3)
 ```
 
-Sabemos que o [grupo multiplicativo de um corpo finito é cíclico](https://schcs.github.io/AlgebraNotesPt/GruposECorpos/geradores.html#grupo-c%C3%ADclico). Isso quer dizer que para todo corpo finito $\mathbb F$, existe um elemento $z\in \mathbb F$ tal que os elementos não nulos de $\mathbb F$ são as potências de $z$; ou seja, 
+Sabemos que o [grupo multiplicativo de um corpo finito é cíclico](https://schcs.github.io/AlgebraNotesPt/GruposECorpos/geradores.html#grupo-c%C3%ADclico). Isso quer dizer que em todo corpo finito $\mathbb F$, existe um elemento $z\in \mathbb F$ tal que os elementos não nulos de $\mathbb F$ são as potências de $z$; ou seja, 
 $$
 \mathbb F=\{0\}\cup \{z^0,z^1,\ldots,z^{q-2}\}
 $$
-onde $q=|\mathbb F|$. Este elemento chama-se *elemento primitivo* de $\mathbb F$. Para uma potência de primo `q`,  função `Z( q )` devolve um elemento primitivo explícito do corpo finito `GF( q )` (Galois Field). Os  elementos não nulos de `GF( q )` são representados como potências de `Z( q )`. Considere os seguintes exemplos. 
+onde $q=|\mathbb F|$. Este elemento chama-se *elemento primitivo* de $\mathbb F$. Para uma potência de primo `q`,  função `Z( q )` devolve um elemento primitivo explícito do corpo finito `GF( q )`. Os  elementos não nulos de `GF( q )` são representados como potências de `Z( q )`. Considere os seguintes exemplos. 
 ```matlab
 gap> F := GF(11);
 GF(11)

@@ -6,7 +6,7 @@ lang: pt-BR
 
 ## Rodar o sistema `GAP`
 
-Para iniciar o sistema `GAP`, precisamos  abrir um terminal. Inicialmente, a sua tela aparece com na seguinte imagem (clique na imagem para aumentar).
+Para iniciar o sistema `GAP`, precisamos  abrir um terminal. Inicialmente, a sua tela aparece com na seguinte imagem com possívelmente a janela do navegador visível (clique na imagem para aumentar).
 
 ![Primeira Tela](pics/screen1.png){.lightbox width=400}
 
@@ -44,7 +44,7 @@ Agora, faça uma modificação no arquivo no editor.
 
 1. Escreva por exemplo em uma linha separada que `Print( "Escola de Álgebra 2024" );` 
 2. salve o arquivo;
-3. e reescreve `Read( "hello.g" );` no terminal.
+3. e reescreve `Read( "hello.g" );` no terminal (ou aperte a tecla com `↑`).
 
 Ora vai aparecer o texto `Hello World` e também `Escola de Álgebra 2024`. 
 
@@ -72,7 +72,7 @@ hello
 
 ## O `break loop`
 
-Note que se escrever algo errado, o sistema vai entrar no `break loop`. Para sair do `break loop` escreva `quit;`.
+Note que se escrever algo errado, o sistema vai entrar no `break loop` passando alguma informação sobre a natureza do erro. Para sair do `break loop` escreva `quit;`.
 
 ```matlab
 gap> a := "hello"; 

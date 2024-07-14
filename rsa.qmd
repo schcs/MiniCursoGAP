@@ -155,7 +155,7 @@ gap> msg_rand_descript = msg_rand;
 true
 ```
 
-Note que a criptografia criada neste exemplo não é segura, pois o número $n$ pode ser fatorado (devido ao tamanho relativamente pequeno de fatores).
+Note que a criptografia criada neste exemplo não é segura, pois o número $n$ pode ser fatorado (devido ao tamanho relativamente pequeno de fatores). Assim que a Eva consegue fatorar  o número $n$, ela consegue calcular o valor de $\varphi(n)$ e também a valor de $d$. Ou seja, ele descriptografa a mensagem interseptada. 
 ```matlab
 gap> Factors( n );
 [ 1073930166469, 1086726084099436427 ]

@@ -10,7 +10,7 @@ Nesta página vamos revisar os aspetos principais da linguagem de programação 
 ## Expressões `if-then-else` {#sec-if}
 
 :::{.subexample}
-A expressão `if-then` [manual](https://docs.gap-system.org/doc/ref/chap4.html#X875000188622700D)) está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa (@sec-bool). Considere o seguinte exemplo:
+A expressão `if-then` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X875000188622700D)) está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa (@sec-bool). Considere o seguinte exemplo:
 ```matlab
 gap> a := 3;                # seja a inicialmente 3
 3
@@ -115,7 +115,7 @@ Note que no laço `while`, o valor da variável `i` precisa ser incrementado man
 ## Laço `repeat` {#sec-repeat}
 
 :::{.subexample}
-O terceiro tipo de laço pode ser construída com a palavra `repeat` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X8295CBF47FAA05C9)). Considere o seguinte exemplo:
+O terceiro tipo de laço pode ser construído com a palavra `repeat` ([manual](https://docs.gap-system.org/doc/ref/chap4.html#X8295CBF47FAA05C9)). Considere o seguinte exemplo:
 
 ```matlab
 gap> i := 0;
@@ -142,7 +142,7 @@ Observamos que
 2. na última linha, temos a palavra `until` seguida por uma condição lógica;
 3. o sistema termina a execução do laço assim que a condição depois de `repeat` vira verdadeira (@sec-bool).  
 
-A diferença entre os laços construídos por `while` e `repeat` é que no caso de `while` a decisão está feita antes da execução do código, enquanto no caso de `repeat`a mesma decisão está feita depois da execução. Em particular, o laço `repeat` sempre será executado pelo menos uma vez. Considere o seguinte código e explique o comportamento.
+A diferença entre os laços construídos por `while` e `repeat` é que no caso de `while`, a decisão está feita antes da execução do código, enquanto no caso de `repeat`a mesma decisão está feita depois da execução. Em particular, o laço `repeat` sempre será executado pelo menos uma vez. Considere o seguinte código e explique o comportamento.
 
 ```matlab
 gap> i := 11;
@@ -172,7 +172,7 @@ O quadrado de 11 é 121
 ## Funções {#sec-functions}
 
 :::{.subexample}
-[Funções](https://docs.gap-system.org/doc/tut/chap4.html) em `GAP` podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado `x` computa `3*x+1` pode ser definida de duas maneiras diferentes.
+[Funções](https://docs.gap-system.org/doc/tut/chap4.html) em `GAP` podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado `x`, computa `3*x+1` pode ser definida de duas maneiras diferentes.
 ```matlab
 gap> f1 := function( x )
 > return 3*x+1;
@@ -317,5 +317,5 @@ gap> for i in [1..10] do
 ## Tarefa
 :::{.subproblem}
 1. Resolve o item 2. da tarefa na @sec-tarefa1-laço usando a expressão `continue`.
-2. Usando `while true do` e `break` ache o menor primo que seja maior que $10000000$. 
+2. Usando `while true do` e `break` ache o menor primo que seja maior que $10000000$ (use [`IsPrimeInt`](https://docs.gap-system.org/doc/ref/chap14.html#X78FDA4437EDCA70C)). 
 :::

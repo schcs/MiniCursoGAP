@@ -15,7 +15,7 @@ O subgrupo derivado $G'$ de $G$ é definido como o subgrupo de $G$ gerado por to
 $$
 G'=\left<[x,y]\mid x,y\in G\right>.
 $$
-É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o **subgrupo** gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequenos $G'$ coincide com o conjunto de comutadores. 
+É importante observar que o subgrupo derivado por definição não é apenas o conjunto dos comutadores, mas ele é o **subgrupo** gerado por este conjunto. Isso é porque o conjunto de comutadores pode não ser um subgrupo. No entanto, nos grupos pequenos, $G'$ coincide com o conjunto de comutadores. 
 :::
 
 ## Exploração interativa
@@ -60,7 +60,7 @@ true
 gap> DerivedSubgroup( G ) = AlternatingGroup( 5 );
 true
 ```
-A computação em cima mostra que, no caso do grupo $S_5$, o subgrupo derivado (ou seja, o subgrupo $A_5$) coincide com o conjunto de comutadores. 
+A computação em cima mostra que no caso do grupo $S_5$, o subgrupo derivado (ou seja, o subgrupo $A_5$) coincide com o conjunto de comutadores. 
 :::
 
 ## Tarefa 1

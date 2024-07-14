@@ -15,7 +15,7 @@ $$
     f(n)=\left\{\begin{array}{cc} n/2 & \mbox{se $n$ for par;}\\
     3n+1 & \mbox{se $n$ for ímpar.}\end{array}\right.
 $$
-A [Conjetura de Collatz](https://en.wikipedia.org/wiki/Collatz_conjecture) afirma que para todo $n\in\N$, existe um número $k$ tal que aplicando a função $f$ consecutivamente $k$ vezes em $n$, o resultado vai ser igual a $1$. Em outras, palavras, $f^k(n)=1$.
+A [Conjetura de Collatz](https://en.wikipedia.org/wiki/Collatz_conjecture) afirma que para todo $n\in\N$, existe um número $k$ tal que aplicando a função $f$ consecutivamente $k$ vezes em $n$, o resultado vai ser igual a $1$. Em outras palavras, para todo $n\in\mathbb N$, existe algum $k\geq 1$ tais que  $f^k(n)=1$.
 :::
 
 ## Tarefa 1
@@ -141,7 +141,7 @@ Vamos otimizar o código que foi escrito para a Tarefa 3. Calcular `nr_steps( k 
 ```
 A computação `nr_steps( 6 )` deve realizar que `nr_steps( 3 )` já foi calculado e simplificar a conta por computar que `nr_steps( 6 ) = nr_steps( 3 ) + 1`. Escreva uma versão da função `max_nr_steps_fast( n )` utilizando as computações anteriores e compare o tempo de execução das duas versões.
 
-De acordo com o seguinte exemplo, calcular o valor maximal de `nr_steps( k )` para `k in [1..1000000]` demora mais que 25 segundos usando a função escrita para a Tarefa 3. A nova função faz esta computação em apenas 1,3 segundos. 
+De acordo com o seguinte exemplo, calcular o valor maximal de `nr_steps( k )` para `k in [1..1000000]` demora mais que $25$ segundos usando a função escrita para a Tarefa 3. A nova função faz esta computação em apenas $1,3$ segundos. 
 ```matlab
 gap> max_nr_steps( 1000000 ); time;   
 [ 837799, 524 ]
