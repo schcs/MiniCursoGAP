@@ -328,7 +328,7 @@ window.Quarto = {
 <div class="problem">
 <p>Vamos chamar um intervalo de números naturais <span class="math inline">\(\{a,a+1,\ldots,a+k\}\)</span> <em>intervalo de Erdős-Woods</em>, se todo número <span class="math inline">\(m\in\{a,a+1,\ldots,a+k\}\)</span> tem algum fator comum ou com <span class="math inline">\(a\)</span> ou com <span class="math inline">\(a+k\)</span>. Por exemplo, o intervalo <span class="math display">\[
 \{5,6,7,8,9\}
-\]</span> não é de Erdős-Woods, pois <span class="math inline">\(7\)</span> é coprimo com <span class="math inline">\(5\)</span> e também com <span class="math inline">\(9\)</span>. Um número natural <span class="math inline">\(k\in\mathbb N\)</span> é dito <a href="https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Woods_number"><em>número de Erdős-Woods</em></a> (veja também na <a href="https://oeis.org/A111042">OEIS</a>), se existe um intervalo de Erdős-Woods na forma <span class="math inline">\(\{a,\ldots,a+k\}\)</span>. Por exemplo, <span class="math inline">\(2\)</span> não é número de Erdős-Woods, pois no intervalo <span class="math inline">\(\{a,a+1,a+2\}\)</span> o número <span class="math inline">\(a+1\)</span> é coprimo com <span class="math inline">\(a\)</span> e também com <span class="math inline">\(a+2\)</span>.</p>
+\]</span> não é de Erdős-Woods, pois <span class="math inline">\(7\)</span> é coprimo com <span class="math inline">\(5\)</span> e também com <span class="math inline">\(9\)</span>. Um número natural <span class="math inline">\(k\in\mathbb N\)</span> é dito <a href="https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Woods_number"><em>número de Erdős-Woods</em></a> (veja também na <a href="https://oeis.org/A111042">OEIS</a>), se existe um intervalo de Erdős-Woods na forma <span class="math inline">\(\{a,\ldots,a+k\}\)</span>. Por exemplo, <span class="math inline">\(2\)</span> não é número de Erdős-Woods, pois no intervalo <span class="math inline">\(\{a,a+1,a+2\}\)</span>, o número <span class="math inline">\(a+1\)</span> é coprimo com <span class="math inline">\(a\)</span> e também com <span class="math inline">\(a+2\)</span>.</p>
 </div>
 </section>
 <section id="exploração-interativa" class="level2" data-number="6.2">
@@ -340,7 +340,7 @@ window.Quarto = {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fl">5</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Filtered</span>( [<span class="va">a</span>..<span class="va">a</span><span class="op">+</span><span class="va">k</span>]<span class="op">,</span> <span class="va">x</span><span class="op">-&gt;</span> <span class="va">GcdInt</span>( <span class="va">a</span><span class="op">,</span> <span class="va">x</span> ) <span class="op">=</span> <span class="fl">1</span> <span class="va">and</span> <span class="va">GcdInt</span>( <span class="va">a</span><span class="op">+</span><span class="va">k</span><span class="op">,</span><span class="va">x</span>) <span class="op">=</span> <span class="fl">1</span> )<span class="op">;</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>[ <span class="fl">11</span><span class="op">,</span> <span class="fl">13</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ou seja, os números <span class="math inline">\(11\)</span> e <span class="math inline">\(13\)</span> são coprimos com o início e com o final do intervalo.</p>
+<p>Ou seja, os números <span class="math inline">\(11\)</span> e <span class="math inline">\(13\)</span> são coprimos com o início e com o final do intervalo. Logo este intervalo não é de Erdős-Woods.</p>
 </div>
 </section>
 <section id="tarefa" class="level2" data-number="6.3">
@@ -354,12 +354,12 @@ window.Quarto = {
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">is_ew_interval</span>( <span class="fl">13</span><span class="op">,</span><span class="fl">4</span> )<span class="op">;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
-<li>Use a função escrito no item anterior para verificar que os números <span class="math inline">\(16\)</span> e <span class="math inline">\(22\)</span> são de Erdős-Woods. Ache os intervalos que testemunham que estes números são de fato de Erdős-Woods.</li>
+<li>Use a função escrita no item anterior para verificar que os números <span class="math inline">\(16\)</span> e <span class="math inline">\(22\)</span> são de Erdős-Woods. Ache os intervalos que testemunham que estes números são de fato de Erdős-Woods.</li>
 <li>Consegue achar mais números de Erdős-Woods?</li>
 </ol>
 </div>
 <div class="hint">
-<p>Para verificar um intervalo, pode usar <code>Filtered</code> como no exemplo anterior ou o laço <code>for</code> (<a href="ling.html#sec-for" class="quarto-xref"><span>Seção 5.2</span></a>) e a função <code>GcdInt</code> (<a href="https://docs.gap-system.org/doc/ref/chap14.html#X7A4FEFCA8128E3C3">manual</a>) dentro do laço. .</p>
+<p>Para verificar um intervalo, pode usar <code>Filtered</code> como no exemplo anterior ou o laço <code>for</code> (<a href="ling.html#sec-for" class="quarto-xref"><span>Seção 5.2</span></a>) e a função <code>GcdInt</code> (<a href="https://docs.gap-system.org/doc/ref/chap14.html#X7A4FEFCA8128E3C3">manual</a>) dentro do laço. A expressão <code>break</code> (<a href="ling.html#sec-break-continue" class="quarto-xref"><span>Seção 5.8</span></a>) também pode ser útil caso queira usar laços.</p>
 </div>
 <p>Este projeto foi inspirado pelo seguinte vídeo.</p>
 <div class="quarto-video"><iframe data-external="1" src="https://www.youtube.com/embed/uJtxlErlx0U?si=9UMP-f-plab_gj3B" width="560" height="315" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>

@@ -332,7 +332,7 @@ window.Quarto = {
 <section id="sec-if" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="sec-if"><span class="header-section-number">5.1</span> Expressões <code>if-then-else</code></h2>
 <div class="subexample">
-<p>A expressão <code>if-then</code> <a href="https://docs.gap-system.org/doc/ref/chap4.html#X875000188622700D">manual</a>) está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa (<a href="arith.html#sec-bool" class="quarto-xref"><span>Seção 2.2</span></a>). Considere o seguinte exemplo:</p>
+<p>A expressão <code>if-then</code> (<a href="https://docs.gap-system.org/doc/ref/chap4.html#X875000188622700D">manual</a>) está usada quando queremos executar instruções de acordo com alguma condição que pode ser verdadeira ou falsa (<a href="arith.html#sec-bool" class="quarto-xref"><span>Seção 2.2</span></a>). Considere o seguinte exemplo:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">a</span> <span class="op">:=</span> <span class="fl">3</span><span class="op">;</span>                # <span class="va">seja</span> <span class="va">a</span> <span class="va">inicialmente</span> <span class="fl">3</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fl">3</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="kw">if</span> <span class="va">a</span> <span class="va">mod</span> <span class="fl">2</span> <span class="op">=</span> <span class="fl">0</span> <span class="va">then</span>    # <span class="va">se</span> <span class="va">a</span> <span class="kw">for</span> <span class="va">par</span><span class="op">,</span> <span class="va">dividimos</span> <span class="va">a</span> <span class="va">por</span> <span class="fl">2</span></span>
@@ -426,7 +426,7 @@ window.Quarto = {
 <section id="sec-repeat" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="sec-repeat"><span class="header-section-number">5.4</span> Laço <code>repeat</code></h2>
 <div class="subexample">
-<p>O terceiro tipo de laço pode ser construída com a palavra <code>repeat</code> (<a href="https://docs.gap-system.org/doc/ref/chap4.html#X8295CBF47FAA05C9">manual</a>). Considere o seguinte exemplo:</p>
+<p>O terceiro tipo de laço pode ser construído com a palavra <code>repeat</code> (<a href="https://docs.gap-system.org/doc/ref/chap4.html#X8295CBF47FAA05C9">manual</a>). Considere o seguinte exemplo:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">i</span> <span class="op">:=</span> <span class="fl">0</span><span class="op">;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fl">0</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">repeat</span></span>
@@ -449,7 +449,7 @@ window.Quarto = {
 <li>na última linha, temos a palavra <code>until</code> seguida por uma condição lógica;</li>
 <li>o sistema termina a execução do laço assim que a condição depois de <code>repeat</code> vira verdadeira (<a href="arith.html#sec-bool" class="quarto-xref"><span>Seção 2.2</span></a>).</li>
 </ol>
-<p>A diferença entre os laços construídos por <code>while</code> e <code>repeat</code> é que no caso de <code>while</code> a decisão está feita antes da execução do código, enquanto no caso de <code>repeat</code>a mesma decisão está feita depois da execução. Em particular, o laço <code>repeat</code> sempre será executado pelo menos uma vez. Considere o seguinte código e explique o comportamento.</p>
+<p>A diferença entre os laços construídos por <code>while</code> e <code>repeat</code> é que no caso de <code>while</code>, a decisão está feita antes da execução do código, enquanto no caso de <code>repeat</code>a mesma decisão está feita depois da execução. Em particular, o laço <code>repeat</code> sempre será executado pelo menos uma vez. Considere o seguinte código e explique o comportamento.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">i</span> <span class="op">:=</span> <span class="fl">11</span><span class="op">;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fl">11</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="kw">while</span> <span class="va">i</span> <span class="op">&lt;=</span> <span class="fl">10</span> <span class="va">do</span></span>
@@ -478,7 +478,7 @@ window.Quarto = {
 <section id="sec-functions" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="sec-functions"><span class="header-section-number">5.6</span> Funções</h2>
 <div class="subexample">
-<p><a href="https://docs.gap-system.org/doc/tut/chap4.html">Funções</a> em <code>GAP</code> podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado <code>x</code> computa <code>3*x+1</code> pode ser definida de duas maneiras diferentes.</p>
+<p><a href="https://docs.gap-system.org/doc/tut/chap4.html">Funções</a> em <code>GAP</code> podem ser usadas para realizar computações que queremos fazer várias vezes com diferentes objetos. Por exemplo a função que, dado <code>x</code>, computa <code>3*x+1</code> pode ser definida de duas maneiras diferentes.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f1</span> <span class="op">:=</span> <span class="kw">function</span>( <span class="va">x</span> )</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">return</span> <span class="fl">3</span><span class="op">*</span><span class="va">x</span><span class="op">+</span><span class="fl">1</span><span class="op">;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="kw">end</span><span class="op">;</span></span>
@@ -601,7 +601,7 @@ window.Quarto = {
 <div class="subproblem">
 <ol type="1">
 <li>Resolve o item 2. da tarefa na <a href="#sec-tarefa1-laço" class="quarto-xref"><span>Seção 5.5</span></a> usando a expressão <code>continue</code>.</li>
-<li>Usando <code>while true do</code> e <code>break</code> ache o menor primo que seja maior que <span class="math inline">\(10000000\)</span>.</li>
+<li>Usando <code>while true do</code> e <code>break</code> ache o menor primo que seja maior que <span class="math inline">\(10000000\)</span> (use <a href="https://docs.gap-system.org/doc/ref/chap14.html#X78FDA4437EDCA70C"><code>IsPrimeInt</code></a>).</li>
 </ol>
 </div>
 
