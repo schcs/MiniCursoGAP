@@ -62,8 +62,8 @@ gap>  Image(f, (1,2,3,4)*(1,2));
 (1,3,2)
 ```
 
-1. Agora, construa um homomorfismo $f$ de $H:=C_4$ para $\mbox{Aut}(C_3) \cong C_2$. Verifique qual é imagem de $a^3$ por $f$, onde $\left<a\right>=C_4$. 
-2. Faça o mesmo para $H:=C_2 \times C_2$ para $\mbox{Aut}(C_3) \cong C_2$.  Use a função `DirectProduct` e também `GeneratorsOfGroup`. 
+1. Agora, construa um homomorfismo $f$ de $H:=C_4$ para $\mbox{Aut}(C_3) \cong C_2$. Verifique qual é a imagem de $a^3$ por $f$, onde $\left<a\right>=C_4$. 
+2. Faça o mesmo de $H:=C_2 \times C_2$ para $\mbox{Aut}(C_3) \cong C_2$.  Use a função `DirectProduct` e também `GeneratorsOfGroup`. 
 :::
 
 ## Tarefa 2
@@ -121,7 +121,7 @@ Usando `AllHomomorphisms` como acima, obtenha todos os produtos semidiretos $N\r
 3. com $H=C_2 \times C_2$ e $N=C_3$; 
 4. e também com $H=C_3$ e $N=C_2 \times C_2$. 
 
-Verifique nas suas respostas que os únicos grupos obtidos do produto semidireto $H \rtimes N$ são os seguintes:
+Verifique nas suas respostas que os únicos grupos obtidos do produto semidireto $N \rtimes H$ são os seguintes:
 
 1. $C_{12}$ (com $H=C_3$ e $N=C_4$);
 2. $C_3 \rtimes C_4$ e $C_{12}$ (com $H=C_4$ e $N=C_3$);
@@ -129,14 +129,38 @@ Verifique nas suas respostas que os únicos grupos obtidos do produto semidireto
 4. $C_6 \times C_2$ e $A_4$ (com $H=C_3$ e $N=C_2 \times C_2$).
 
 
-Portanto, existem exatamente $5$ grupos de ordem $12$, a menos de isomorfismos. Podemos obtê-los via produto semidireto $H \rtimes N$, onde os grupos $H$ e $N$ correspondem a um grupo de ordem $4$ e de ordem $3$, respectivamente e vice-versa.
+Portanto, existem exatamente $5$ grupos de ordem $12$, a menos de isomorfismos. Podemos obtê-los via produto semidireto $N \rtimes H$, onde os grupos $H$ e $N$ correspondem a um grupo de ordem $4$ e de ordem $3$, respectivamente e vice-versa.
 :::
 
 ## Tarefa 4
 
 :::{.subproblem}
-Escreva uma função `all_semidirect_products( N, H )` que devolve todos os produtos semidiretos $N\rtimes H$.
+Escreva uma função `all_semidirect_products( N, H )` que devolve todos os produtos semidiretos $N\rtimes H$. A sua função deve funcionar como nos seguintes exemplos.
+
+
+```matlab
+gap> all_semidirect_products( CyclicGroup( 3 ), CyclicGroup( 2 ));
+[ <pc group of size 6 with 2 generators>, <pc group of size 6 with 2 generators> ]
+gap> List( last, StructureDescription );
+[ "C6", "S3" ]
+gap> all_semidirect_products( CyclicGroup( 4 ), CyclicGroup( 2 ));
+[ <pc group of size 8 with 3 generators>, <pc group of size 8 with 3 generators> ]
+gap> List( last, StructureDescription );
+[ "C4 x C2", "D8" ]
+gap> all_semidirect_products( DirectProduct( CyclicGroup( 2 ), CyclicGroup( 2 )), CyclicGroup( 3 ));
+[ <pc group of size 12 with 3 generators>, <pc group of size 12 with 3 generators>, <pc group of size 12 with 3 generators> ]
+gap> List( last, StructureDescription );
+[ "C6 x C2", "A4", "A4" ]
+```
 :::
+
+
+<!--
+all_semidirect_products := function( N, H )
+
+return List( AllHomomorphisms( H, AutomorphismGroup( N )), x->SemidirectProduct( H, x, N ));
+end;
+-->
 
 <!--
 O seguinte código retorna os produtos semidiretos de grupos de ordem $n$ com grupos de ordem $m$ (e vice-versa).

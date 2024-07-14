@@ -10,10 +10,10 @@ lang: pt-BR
 
 
 :::{.problem}
-O cubo mágico, como outros brincedos de lógica, pode ser analisado usando o sistema `GAP`. Neste projeto vamos analizar o grupo associado com o cubo mágico e vamos criar um algoritmo baseado na teoria dos grupos livres para a solução do cubo.
+O cubo mágico, como outros brinquedos de lógica, pode ser analisado usando o sistema `GAP`. Neste projeto vamos analizar o grupo associado com o cubo mágico e vamos criar um algoritmo baseado na teoria dos grupos livres para a solução do cubo.
 :::
 
-## Exploração interativa
+## Exploração interativa{#sec-cube-interactive}
 
 :::{.subexample}
 O cubo tem 48 peças cujas posições estão ilustradas no seguinte diagrama.
@@ -130,7 +130,7 @@ Seja $X$ um grupo. Lembre que uma série
 $$
 X_0>X_1>X_2>\cdots>X_m=1
 $$
-de subgrupos é dita *série de composição* se $X_{i+1}$ é um subgrupo normal em $X_i$ e $X_i/X_{i+1}$ é um grupo simples para todo $i$ (ou seja, $X_i/X_{i+1}$ não possui subgrupo normal próprio e não trivial).   A série de composição em um grupo, pode não ser única, mas sabemos pelo Teorema de Jordan-Holder que o comprimento das séries e os tipos de isomorfismo dos fatores (os *fatores de composição*) são unicamente determinados por $X$. Estes fatores podem ser vistos como os blocos elementares do grupo similarmente aos fatores primos dos números naturais.
+de subgrupos é dita *série de composição* se $X_{i+1}$ é um subgrupo normal em $X_i$ e $X_i/X_{i+1}$ é um grupo simples para todo $i$ (ou seja, $X_i/X_{i+1}$ não possui subgrupo normal próprio e não trivial).   A série de composição em um grupo, pode não ser única, mas sabemos pelo [Teorema de Jordan-Holder](https://pt.wikipedia.org/wiki/Teorema_de_Jordan-H%C3%B6lder) que o comprimento das séries e os tipos de isomorfismo dos fatores (os *fatores de composição*) são unicamente determinados por $X$. Estes fatores podem ser vistos como os blocos elementares do grupo similarmente aos fatores primos dos números naturais.
 
 No seguinte exemplo simples vamos determinar os fatores de composição do grupo dihedral $D_{10}$ (as simetrias do pentágono).
 
@@ -204,7 +204,7 @@ Vamos estudar a estrutura permutacional do grupo $G$.
 
 1. Determine as órbitas de $G$ agindo no conjunto das 48 peças. 
 2. Dê uma intepretação destas órbitas.
-3. Lembre que um subconjunto $\Delta$ das peças chama-se *bloco* se $\Delta g=\Delta$ ou $\Delta g\cap \Delta=\emptyset$. Determine os blocos contidos nas órbitas de $G$.
+3. Lembre que um subconjunto $\Delta$ das peças chama-se *bloco* se $\Delta g=\Delta$ ou $\Delta g\cap \Delta=\emptyset$ vale para todo $g\in G$. Determine os blocos contidos nas órbitas de $G$.
 4. Dê interpretação destes blocos.
 
 <!--
@@ -235,7 +235,7 @@ Finalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em $
 $$
 C\mapsto c,\ E\mapsto e, F\mapsto f,\ D\mapsto d,\ T\mapsto t,\ B\mapsto b
 $$
-pode ser estendido a um único homomorfismo $f:\mathcal F\to G$. Se $g\in G$ e $w$ é uma pré-imagem de $g$, então $w$ mostra como escrever $g$ em uma palavra nos geradores de $G$. Ou seja, $w$ mostra como obter a configuração que corresponde ao elemento $g$ como uma sequência dos $6$ movimentos básicos. 
+pode ser estendido a um único homomorfismo $\varphi:\mathcal F\to G$. Se $g\in G$ e $w\in\mathcal F$ é uma pré-imagem de $g$, então $w$ mostra como escrever $g$ em uma palavra nos geradores de $G$. Ou seja, $w$ mostra como obter a configuração que corresponde ao elemento $g$ como uma sequência dos $6$ movimentos básicos. 
 
 Ilustramos esta ideia com um exemplo simpes usando o grupo $D_{10}$. 
 
@@ -263,10 +263,10 @@ true
 ```
 
 1. Construa o grupo $\mathcal F$ em cima em `GAP` usando `FreeGroup` ([manual](https://docs.gap-system.org/doc/ref/chap37.html#X8215999E835290F0)).
-2. Construa o homomorfismo $f$ em cima usando `GroupHomomorphismByImages` ([manual](https://docs.gap-system.org/doc/ref/chap40.html#X7F348F497C813BE0)).
-3. Considere a configuração do cubo na Tarefa 1. Construa a sequência dos movimentos que resulta nesta configuração.
-4. Considere uma configuração aleatória do cubo por escolhendo um elemento aleatório de $G$ (usando `Random( G )`). Construa a sequência dos movimentos que resulta nesta configuração aleatória.
-5. Usando um dos cubos disponibilizados por Igor, obtenha a configuração da Tarefa 1.
+2. Construa o homomorfismo $\varphi$ em cima usando `GroupHomomorphismByImages` ([manual](https://docs.gap-system.org/doc/ref/chap40.html#X7F348F497C813BE0)).
+3. Considere a configuração do cubo na @sec-cube-interactive. Construa a sequência dos movimentos que resulta nesta configuração.
+4. Considere uma configuração aleatória do cubo  escolhendo um elemento aleatório de $G$ (usando `Random( G )`). Construa a sequência dos movimentos que resulta nesta configuração aleatória.
+5. Usando um dos cubos disponibilizados por Igor, obtenha a configuração da @sec-cube-interactive.
 :::
 
 <!--
@@ -308,8 +308,12 @@ B^-1*T^-1*D^-2*C^-1*B^-2*F^-1
 ## Tarefa 4
 
 :::{.subproblem}
-1. Verifique que $G$ pode ser gerado por 2 elementos. Dica: Pegue usando `Random( G )` dois elementos aliatórios em $G$ e verifique se o grupo gerado por eles coincide com $G$.
+1. Verifique que $G$ pode ser gerado por 2 elementos. 
 2. Ache um subconjunto  minimal $S$ do conjunto $\{c,e,f,d,t,b\}$ de geradores tal que $\left<S\right>=G$.
-3. Construa a configuração da Tarefa 1 usando apenas os movimentos do conjunto $S$ no item anterior.
-3. Seja $C$ o conjunto de 8 peças de canto (as peças que possuem 3 cores). O grupo $G$ age sobre o conjunto $C$.  Mostre que $G$ induz $S_{8}$ sobre o conjunto  dessas peças. Similarmente, seja $L$ o conjunto das 12 peças  laterias (as peças que possuem 2 cores). Mostre que $G$  induz $S_{12}$ sobre $L$. (Isso explica os grupos $A_8$ e $A_{12}$ entre os fatores de composição de $G$). Use `Action( G, conj, act )`([manual](http://www.gap-system.org/Manuals/doc/ref/chap41.html#X85A8E93D786C3C9C)).
+3. Construa a configuração da @sec-cube-interactive usando apenas os movimentos do conjunto $S$ no item anterior.
+4. Seja $C$ o conjunto de 8 peças de canto (as peças que possuem 3 cores). O grupo $G$ age sobre o conjunto $C$.  Mostre que $G$ induz $S_{8}$ sobre o conjunto  dessas peças. Similarmente, seja $L$ o conjunto das 12 peças  laterias (as peças que possuem 2 cores). Mostre que $G$  induz $S_{12}$ sobre $L$. (Isso explica os grupos $A_8$ e $A_{12}$ entre os fatores de composição de $G$). Use `Action( G, conj, act )`([manual](http://www.gap-system.org/Manuals/doc/ref/chap41.html#X85A8E93D786C3C9C)).
+:::
+
+:::{.hint}
+No item 1., pegue, usando `Random( G )`, dois elementos aleatórios em $G$ e verifique se o grupo gerado por eles coincide com $G$.
 :::

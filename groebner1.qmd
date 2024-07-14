@@ -5,7 +5,7 @@ lang: pt-BR
 ---
 
 
-Neste projeto aprendemos como trabalhar com polinômios, anéis polinomiais, ideais em `GAP` e resolvemos um problema de geometria plana.
+Neste projeto, aprendemos como trabalhar com polinômios, anéis polinomiais, ideais em `GAP` e resolvemos um problema de geometria plana.
 
 ## Polynômios em GAP
 
@@ -30,7 +30,7 @@ x^3*y-x^2*z^2+x*y*z^2-z^4
 ```
 
 
-Note que podemos também definir ideais
+Note que podemos também definir ideais.
 
 ```matlab 
 gap> I := Ideal( P, [f,g] );
@@ -134,8 +134,8 @@ $$
 onde $h_i\in\mathbb Q[x,y,u,v]$. 
 :::
 
-:::{.bint}
-Segue os passos na computação em cima.
+:::{.hint}
+Siga os passos na computação em cima.
 :::
 
 ## Tarefa 2

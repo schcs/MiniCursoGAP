@@ -48,7 +48,7 @@ Use a função `IsIdempotent` e `Filtered` (@sec-list). Para verificar se um ele
 ## A álgebra dos quaternions
 
 :::{.problem}
-Seja $\mathbb F$ um corpo e $\alpha,\ \beta\in\mathbb  F\setminus\{0\}$. A *álgebra generalizada dos quatérnions* $A_{\alpha,\beta}$ é um espaço vetorial de dimensão 4 sobre $\mathbb F$ gerado com a base $B=\{1,i,j,k\}$ munido  com a multiplicação dada por a tabela seguinte:
+Seja $\mathbb F$ um corpo e $\alpha,\ \beta\in\mathbb  F\setminus\{0\}$. A *álgebra generalizada dos quatérnions* $A_{\alpha,\beta}$ é um espaço vetorial de dimensão 4 sobre $\mathbb F$ gerado pela base $B=\{1,i,j,k\}$ munido  com a multiplicação dada por a tabela seguinte:
 
 | $\cdot$ | $1$  |    $i$    | $j$ | $k$       |
 | ------- | ---- | --------- | --- | --------- |
@@ -125,7 +125,7 @@ gap> SemiSimpleType( L/Center( L ));
 gap> 
 ```
 
-Ou seja, a álgebra obtida é uma álgebra associativa simples, mas não é álgebra de divisão. A álgebra de Lie $L$ associada com esta álgebra não é simples, mas $L/Z(L)$ é simples de tipo A1; ou sejam $L/Z(L)\cong\mathfrak{sl}_2(\mathbb Q)$. 
+Ou seja, a álgebra obtida é uma álgebra associativa simples, mas não é álgebra de divisão. A álgebra de Lie $L$ associada com esta álgebra não é simples, mas $L/Z(L)$ é simples de tipo A1; ou seja $L/Z(L)\cong\mathfrak{sl}_2(\mathbb Q)$. 
 :::
 
 

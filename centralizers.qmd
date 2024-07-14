@@ -108,7 +108,7 @@ Consulte @sec-grupos para ver como definir o grupo `GL` e o grupo diedral.
 :::{.subexample}
 Para investigar o problema em cima, nós precisamos determinar o conjunto dos centralizadores em um grupo dado. Vamos fazer esta computação com o grupo $S_5$. 
 
-```gap
+```matlab
 gap> G := SymmetricGroup( 3 );
 Sym( [ 1 .. 3 ] )
 gap> cent := List( G, x->Centralizer( G, x ));
@@ -126,7 +126,7 @@ gap> Size( cent );
 gap> Size( cent_set );
 5
 ```
-Ou seja, $S_3$ possui 5 centralizadores (como foi visto em cima). Note que usamos a função `Set` que vai devolver um conjunto; ou seja, todo elemento do output será aparece apenas uma vez.
+Ou seja, $S_3$ possui 5 centralizadores (como foi visto em cima). Note que usamos a função `Set` que vai devolver um conjunto; ou seja, todo elemento do output aparece apenas uma vez.
 :::
 
 ## Tarefa 2
@@ -188,13 +188,13 @@ gap> AllSmallNonabelianSimpleGroups([60..20160]);
 ## Tarefa 3
 
 :::{.subproblem}
-Agora você precisa responder a seguinte questão de Ashrafi e Taeri:
+Agora você precisa responder a seguinte questão de [Ashrafi e Taeri](https://link.springer.com/article/10.1007/BF02936050):
 
 1.  Sejam $G$ e $H$ grupos simples não abelianos. É verdade que se $|\mbox{Cent}(G)| = |\mbox{Cent}(H)|$, então $G$ é isomorfo a $H$?
 :::
 
 :::{.hint}
-Is grupos simples não abelianos podem ser acessos usando a função `AllSmallNonabelianSimpleGroups( list )` 
+Os grupos simples não abelianos podem ser acessos usando a função `AllSmallNonabelianSimpleGroups( list )` 
 onde `list` é uma lista de números naturais. A função devolve a lista dos grupos simples abelianos cuja ordem está na lista `list`. Por exemplo:
 ```matlab
 gap> AllSmallNonabelianSimpleGroups( [1..200] );
@@ -209,16 +209,17 @@ Ou seja, existem apenas $2$ grupos simples não abelianos com ordem entre $1$ e 
 :::{.subproblem}
 E se restringirmos a função para sabermos a quantidade dos centralizadores abelianos ou dos centralizadores não abelianos de um grupo? Será que se dois grupos simples não abelianos tiverem a mesma quantidade de centralizadores abelianos (ou não abelianos) de elementos, esses grupos são necessariamente isomorfos? 
 
-1. Escreva uma nova versão da função `Cent( G )` que aceita, além do grupo `G`, um argumento opcional (veja @sec-functions) que pode ser `true` ou `false`. Se o valor do argumento opcional for `true`, a função devolve o conjunto dos centralizadores abelianos; se o valor for `false`, devolve o conjunto dos centralizadores não abelianos.
+1. Escreva uma nova versão da função `Cent( G )` que aceita, além do grupo `G`, um argumento opcional (veja @sec-functions) que pode ser `true` ou `false`. Se o valor do argumento opcional for `true`, a função devolve o conjunto dos centralizadores abelianos; se o valor for `false`, devolve o conjunto dos centralizadores não abelianos. Se o argumento opcional não for fornecido, a função devolve todos os centralizadores.
+   
 ```matlab
-gap> cent( AlternatingGroup( 4 ));
+gap> Cent( AlternatingGroup( 4 ));
 [ Group([ (2,4,3) ]), Group([ (1,2,4), (1,3,4) ]), 
   Group([ (1,2)(3,4), (1,4)(2,3) ]), Group([ (1,3,2) ]), Group([ (1,4,2) ]), 
   Group([ (1,4,3) ]) ]
-gap> cent( AlternatingGroup( 4 ), true );
+gap> Cent( AlternatingGroup( 4 ), true );
 [ Group([ (2,4,3) ]), Group([ (1,2)(3,4), (1,4)(2,3) ]), Group([ (1,3,2) ]), 
   Group([ (1,4,2) ]), Group([ (1,4,3) ]) ]
-gap> cent( AlternatingGroup( 4 ), false );
+gap> Cent( AlternatingGroup( 4 ), false );
 [ Group([ (1,2,4), (1,3,4) ]) ]
 ```
 2. Ache dois grupos simples não abelianos não isomorfos que têm o mesmo número de centralizadores abelianos ou não abelianos.
@@ -279,13 +280,13 @@ M. Zarrin usou o isoclinismo para estender os resultados sobre centralizados de 
 Nesta tarefa vamos verificar a seguinte questão de [Khoramshahi and M. Zarrin](https://www.worldscientific.com/doi/10.1142/S0219498821500122).
 
 1. Ache dois grupos $G$ e $H$ tal que $|\mbox{Cent}(G)|=|\mbox{Cent}(H)|$, $|H|=|G|$, $|G'|=|H'|$, mas  $G$ e $H$ não são isoclínicos.
-2. Khoromshahi e Zarrin mostrou que se $G$ e $H$ são como no item anterior, então   $|\mbox{Cent}(G)|\leq 5$. Ache exemplos com $|\mbox{Cent}(G)|=6$ para verificar que esta quota superior não pode ser melhorada.  
+2. Khoromshahi e Zarrin mostrou que se $G$ e $H$ são como no item anterior, então   $|\mbox{Cent}(G)|\leq 5$. Ache exemplos com $|\mbox{Cent}(G)|=6$ para verificar que esta cota superior não pode ser melhorada.  
 :::
 
 :::{.hint}
 Para gerar os candidatos entre os possíveis grupos, use a função `AllSmallGroups`. Por exemplo, pode gerar os grupos de ordem entre $1$ e $20$ com 6 centralizadores com o seguinte código:
 ```matlab
-gap> AllSmallGroups( Size, [1..20], x->Size( cent( x )) = 6 );
+gap> AllSmallGroups( Size, [1..20], x->Size( Cent( x )) = 6 );
 [ <pc group of size 12 with 3 generators>, 
   <pc group of size 16 with 4 generators>, 
   <pc group of size 16 with 4 generators>, 

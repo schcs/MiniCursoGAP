@@ -98,7 +98,7 @@ gap> Filtered( G, x-> DegreeIndeterminate( x, y0 ) = 0 and DegreeIndeterminate( 
 
 ## A teoria atrás da computação anterior
 
-A computação anterior está baseada na seguinte teorema.
+A computação anterior está baseada no seguinte teorema.
 
 :::{#thm-greobner}
 Usando a notação da @sec-groebner-problem, seja $\mathcal G$ uma base de Groebner do ideal 
@@ -108,7 +108,7 @@ $$
 relativa a uma ordem monomial na qual $x_1>x_2\cdots>x_n>t_1>\cdots>t_k$. As seguintes afirmações são verdadeiras. 
 
 1. $f_1,\ldots,f_k$ são algebricamente dependentes se e somente se existe $h\in\mathcal G\cap \mathbb F[t_1,\ldots,t_k]$. Neste caso, $h(f_1,\ldots,f_k)=0$.  
-2. $f_1\in\mathbb F[f_2,\ldots,f_k]$ se e somente se $\mathcal G$ possui um elemento na forma $h=t_1+h_1$ onde $h_1\in \mathbb F[t_2,\ldots,t_k]$. Neste caso, $f=-h_1(f_2,\ldots,f_k)$. 
+2. $f_1\in\mathbb F[f_2,\ldots,f_k]$ se e somente se $\mathcal G$ possui um elemento na forma $h=t_1-h_1$ onde $h_1\in \mathbb F[t_2,\ldots,t_k]$. Neste caso, $f=h_1(f_2,\ldots,f_k)$. 
 :::
 
 A demonstração do Teorema não é muito difícil, ela dependa da Fórmula de Taylor para polinômios multivariáveis sobre anel arbitrário.
@@ -132,10 +132,14 @@ $$
 está contido na subálgebra $\mathbb Q[f_1,f_2,f_3,f_4]$. Se sim escreva $f$ na forma $h(f_1,f_2,f_3,f_4)$. 
 :::
 
+:::{.hint}
+Se a computação demorar moito tempo, pode parar com `Ctrl-C` e expermimentar com `MonomialGrlexOrdering` em vez de `MonomialLexOrdering`.
+:::
+
 ## Tarefa 2
 
 
 :::{.subproblem}
-1. Escreva uma função `is_alg_dependent( list )` que devolve um polinômio `h` tal que $h(f_1,\ldots,f_k)=0$ com $f_1,\ldots,f_k$ sendo oselmenentos na lista `list`. Se os polinômios da lista são algebricamente dependentes, a função deve devolver um polinômio não nulo. Caso contrário, a função deve devolver o polinômio nulo.
+1. Escreva uma função `is_alg_dependent( list )` que devolve um polinômio `h` tal que $h(f_1,\ldots,f_k)=0$ com $f_1,\ldots,f_k$ sendo os elmenentos na lista `list`. Se os polinômios da lista são algebricamente dependentes, a função deve devolver um polinômio não nulo. Caso contrário, a função deve devolver o polinômio nulo.
 2. Escreva uma função `is_member_of_subalgebra( f, list )` que decide se $f$ é membro da subálgebra gerada pelos polinômios em `list`. Caso afirmativo, a função deve devolver um polinômio $h$ tal que $f=h(f_1,\ldots,f_k)$ onde $f_1,\ldots,f_k$ são os elementos de `list`. Caso contrário, a função deve devolver `fail`. 
 :::
