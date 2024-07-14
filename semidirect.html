@@ -373,8 +373,8 @@ window.Quarto = {
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span>  <span class="va">Image</span>(<span class="va">f</span><span class="op">,</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)<span class="op">*</span>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span>))<span class="op">;</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">2</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
-<li>Agora, construa um homomorfismo <span class="math inline">\(f\)</span> de <span class="math inline">\(H:=C_4\)</span> para <span class="math inline">\(\mbox{Aut}(C_3) \cong C_2\)</span>. Verifique qual é imagem de <span class="math inline">\(a^3\)</span> por <span class="math inline">\(f\)</span>, onde <span class="math inline">\(\left&lt;a\right&gt;=C_4\)</span>.</li>
-<li>Faça o mesmo para <span class="math inline">\(H:=C_2 \times C_2\)</span> para <span class="math inline">\(\mbox{Aut}(C_3) \cong C_2\)</span>. Use a função <code>DirectProduct</code> e também <code>GeneratorsOfGroup</code>.</li>
+<li>Agora, construa um homomorfismo <span class="math inline">\(f\)</span> de <span class="math inline">\(H:=C_4\)</span> para <span class="math inline">\(\mbox{Aut}(C_3) \cong C_2\)</span>. Verifique qual é a imagem de <span class="math inline">\(a^3\)</span> por <span class="math inline">\(f\)</span>, onde <span class="math inline">\(\left&lt;a\right&gt;=C_4\)</span>.</li>
+<li>Faça o mesmo de <span class="math inline">\(H:=C_2 \times C_2\)</span> para <span class="math inline">\(\mbox{Aut}(C_3) \cong C_2\)</span>. Use a função <code>DirectProduct</code> e também <code>GeneratorsOfGroup</code>.</li>
 </ol>
 </div>
 </section>
@@ -425,21 +425,39 @@ gap&gt;  List(a, f-&gt; StructureDescription(SemidirectProduct(h, f, n)));
 <li>com <span class="math inline">\(H=C_2 \times C_2\)</span> e <span class="math inline">\(N=C_3\)</span>;</li>
 <li>e também com <span class="math inline">\(H=C_3\)</span> e <span class="math inline">\(N=C_2 \times C_2\)</span>.</li>
 </ol>
-<p>Verifique nas suas respostas que os únicos grupos obtidos do produto semidireto <span class="math inline">\(H \rtimes N\)</span> são os seguintes:</p>
+<p>Verifique nas suas respostas que os únicos grupos obtidos do produto semidireto <span class="math inline">\(N \rtimes H\)</span> são os seguintes:</p>
 <ol type="1">
 <li><span class="math inline">\(C_{12}\)</span> (com <span class="math inline">\(H=C_3\)</span> e <span class="math inline">\(N=C_4\)</span>);</li>
 <li><span class="math inline">\(C_3 \rtimes C_4\)</span> e <span class="math inline">\(C_{12}\)</span> (com <span class="math inline">\(H=C_4\)</span> e <span class="math inline">\(N=C_3\)</span>);</li>
 <li><span class="math inline">\(C_6 \times C_2\)</span> e <span class="math inline">\(D_{12}\)</span> (com <span class="math inline">\(H=C_2 \times C_2\)</span> e <span class="math inline">\(N=C_3\)</span>);</li>
 <li><span class="math inline">\(C_6 \times C_2\)</span> e <span class="math inline">\(A_4\)</span> (com <span class="math inline">\(H=C_3\)</span> e <span class="math inline">\(N=C_2 \times C_2\)</span>).</li>
 </ol>
-<p>Portanto, existem exatamente <span class="math inline">\(5\)</span> grupos de ordem <span class="math inline">\(12\)</span>, a menos de isomorfismos. Podemos obtê-los via produto semidireto <span class="math inline">\(H \rtimes N\)</span>, onde os grupos <span class="math inline">\(H\)</span> e <span class="math inline">\(N\)</span> correspondem a um grupo de ordem <span class="math inline">\(4\)</span> e de ordem <span class="math inline">\(3\)</span>, respectivamente e vice-versa.</p>
+<p>Portanto, existem exatamente <span class="math inline">\(5\)</span> grupos de ordem <span class="math inline">\(12\)</span>, a menos de isomorfismos. Podemos obtê-los via produto semidireto <span class="math inline">\(N \rtimes H\)</span>, onde os grupos <span class="math inline">\(H\)</span> e <span class="math inline">\(N\)</span> correspondem a um grupo de ordem <span class="math inline">\(4\)</span> e de ordem <span class="math inline">\(3\)</span>, respectivamente e vice-versa.</p>
 </div>
 </section>
 <section id="tarefa-4" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">13.6</span> Tarefa 4</h2>
 <div class="subproblem">
-<p>Escreva uma função <code>all_semidirect_products( N, H )</code> que devolve todos os produtos semidiretos <span class="math inline">\(N\rtimes H\)</span>.</p>
+<p>Escreva uma função <code>all_semidirect_products( N, H )</code> que devolve todos os produtos semidiretos <span class="math inline">\(N\rtimes H\)</span>. A sua função deve funcionar como nos seguintes exemplos.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">all_semidirect_products</span>( <span class="va">CyclicGroup</span>( <span class="fl">3</span> )<span class="op">,</span> <span class="va">CyclicGroup</span>( <span class="fl">2</span> ))<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>[ <span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">6</span> <span class="va">with</span> <span class="fl">2</span> <span class="va">generators</span><span class="op">&gt;,</span> <span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">6</span> <span class="va">with</span> <span class="fl">2</span> <span class="va">generators</span><span class="op">&gt;</span> ]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( <span class="va">last</span><span class="op">,</span> <span class="va">StructureDescription</span> )<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>[ <span class="st">"C6"</span><span class="op">,</span> <span class="st">"S3"</span> ]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">all_semidirect_products</span>( <span class="va">CyclicGroup</span>( <span class="fl">4</span> )<span class="op">,</span> <span class="va">CyclicGroup</span>( <span class="fl">2</span> ))<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>[ <span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">8</span> <span class="va">with</span> <span class="fl">3</span> <span class="va">generators</span><span class="op">&gt;,</span> <span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">8</span> <span class="va">with</span> <span class="fl">3</span> <span class="va">generators</span><span class="op">&gt;</span> ]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( <span class="va">last</span><span class="op">,</span> <span class="va">StructureDescription</span> )<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>[ <span class="st">"C4 x C2"</span><span class="op">,</span> <span class="st">"D8"</span> ]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">all_semidirect_products</span>( <span class="va">DirectProduct</span>( <span class="va">CyclicGroup</span>( <span class="fl">2</span> )<span class="op">,</span> <span class="va">CyclicGroup</span>( <span class="fl">2</span> ))<span class="op">,</span> <span class="va">CyclicGroup</span>( <span class="fl">3</span> ))<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>[ <span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">12</span> <span class="va">with</span> <span class="fl">3</span> <span class="va">generators</span><span class="op">&gt;,</span> <span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">12</span> <span class="va">with</span> <span class="fl">3</span> <span class="va">generators</span><span class="op">&gt;,</span> <span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">12</span> <span class="va">with</span> <span class="fl">3</span> <span class="va">generators</span><span class="op">&gt;</span> ]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">List</span>( <span class="va">last</span><span class="op">,</span> <span class="va">StructureDescription</span> )<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>[ <span class="st">"C6 x C2"</span><span class="op">,</span> <span class="st">"A4"</span><span class="op">,</span> <span class="st">"A4"</span> ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<!--
+all_semidirect_products := function( N, H )
+
+return List( AllHomomorphisms( H, AutomorphismGroup( N )), x->SemidirectProduct( H, x, N ));
+end;
+-->
 <!--
 O seguinte código retorna os produtos semidiretos de grupos de ordem $n$ com grupos de ordem $m$ (e vice-versa).
 Copie o código, compute e compare $Morf(4,3)$, $Morf(3,4)$, $Morf(6,2)$, $Morf(2,6)$, $Morf(12,1)$ e $Morf(1,12)$. \\

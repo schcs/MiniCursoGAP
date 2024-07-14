@@ -295,7 +295,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#o-cubo-mágico" id="toc-o-cubo-mágico" class="nav-link active" data-scroll-target="#o-cubo-mágico"><span class="header-section-number">11.1</span> O cubo mágico</a></li>
-  <li><a href="#exploração-interativa" id="toc-exploração-interativa" class="nav-link" data-scroll-target="#exploração-interativa"><span class="header-section-number">11.2</span> Exploração interativa</a></li>
+  <li><a href="#sec-cube-interactive" id="toc-sec-cube-interactive" class="nav-link" data-scroll-target="#sec-cube-interactive"><span class="header-section-number">11.2</span> Exploração interativa</a></li>
   <li><a href="#tarefa-1" id="toc-tarefa-1" class="nav-link" data-scroll-target="#tarefa-1"><span class="header-section-number">11.3</span> Tarefa 1</a></li>
   <li><a href="#tarefa-2" id="toc-tarefa-2" class="nav-link" data-scroll-target="#tarefa-2"><span class="header-section-number">11.4</span> Tarefa 2</a></li>
   <li><a href="#tarefa-3" id="toc-tarefa-3" class="nav-link" data-scroll-target="#tarefa-3"><span class="header-section-number">11.5</span> Tarefa 3</a></li>
@@ -328,11 +328,11 @@ window.Quarto = {
 <section id="o-cubo-mágico" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="o-cubo-mágico"><span class="header-section-number">11.1</span> O cubo mágico</h2>
 <div class="problem">
-<p>O cubo mágico, como outros brincedos de lógica, pode ser analisado usando o sistema <code>GAP</code>. Neste projeto vamos analizar o grupo associado com o cubo mágico e vamos criar um algoritmo baseado na teoria dos grupos livres para a solução do cubo.</p>
+<p>O cubo mágico, como outros brinquedos de lógica, pode ser analisado usando o sistema <code>GAP</code>. Neste projeto vamos analizar o grupo associado com o cubo mágico e vamos criar um algoritmo baseado na teoria dos grupos livres para a solução do cubo.</p>
 </div>
 </section>
-<section id="exploração-interativa" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="exploração-interativa"><span class="header-section-number">11.2</span> Exploração interativa</h2>
+<section id="sec-cube-interactive" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="sec-cube-interactive"><span class="header-section-number">11.2</span> Exploração interativa</h2>
 <div class="subexample">
 <p>O cubo tem 48 peças cujas posições estão ilustradas no seguinte diagrama.</p>
 <pre><code>                     +--------------+
@@ -420,7 +420,7 @@ window.Quarto = {
 <div class="subproblem">
 <p>Seja <span class="math inline">\(X\)</span> um grupo. Lembre que uma série <span class="math display">\[
 X_0&gt;X_1&gt;X_2&gt;\cdots&gt;X_m=1
-\]</span> de subgrupos é dita <em>série de composição</em> se <span class="math inline">\(X_{i+1}\)</span> é um subgrupo normal em <span class="math inline">\(X_i\)</span> e <span class="math inline">\(X_i/X_{i+1}\)</span> é um grupo simples para todo <span class="math inline">\(i\)</span> (ou seja, <span class="math inline">\(X_i/X_{i+1}\)</span> não possui subgrupo normal próprio e não trivial). A série de composição em um grupo, pode não ser única, mas sabemos pelo Teorema de Jordan-Holder que o comprimento das séries e os tipos de isomorfismo dos fatores (os <em>fatores de composição</em>) são unicamente determinados por <span class="math inline">\(X\)</span>. Estes fatores podem ser vistos como os blocos elementares do grupo similarmente aos fatores primos dos números naturais.</p>
+\]</span> de subgrupos é dita <em>série de composição</em> se <span class="math inline">\(X_{i+1}\)</span> é um subgrupo normal em <span class="math inline">\(X_i\)</span> e <span class="math inline">\(X_i/X_{i+1}\)</span> é um grupo simples para todo <span class="math inline">\(i\)</span> (ou seja, <span class="math inline">\(X_i/X_{i+1}\)</span> não possui subgrupo normal próprio e não trivial). A série de composição em um grupo, pode não ser única, mas sabemos pelo <a href="https://pt.wikipedia.org/wiki/Teorema_de_Jordan-H%C3%B6lder">Teorema de Jordan-Holder</a> que o comprimento das séries e os tipos de isomorfismo dos fatores (os <em>fatores de composição</em>) são unicamente determinados por <span class="math inline">\(X\)</span>. Estes fatores podem ser vistos como os blocos elementares do grupo similarmente aos fatores primos dos números naturais.</p>
 <p>No seguinte exemplo simples vamos determinar os fatores de composição do grupo dihedral <span class="math inline">\(D_{10}\)</span> (as simetrias do pentágono).</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">G</span> <span class="op">:=</span> <span class="va">DihedralGroup</span>( <span class="fl">10</span> )<span class="op">;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">pc</span> <span class="va">group</span> <span class="va">of</span> <span class="va">size</span> <span class="fl">10</span> <span class="va">with</span> <span class="fl">2</span> <span class="va">generators</span><span class="op">&gt;</span></span>
@@ -488,7 +488,7 @@ gap> List( factors, StructureDescription );
 <ol type="1">
 <li>Determine as órbitas de <span class="math inline">\(G\)</span> agindo no conjunto das 48 peças.</li>
 <li>Dê uma intepretação destas órbitas.</li>
-<li>Lembre que um subconjunto <span class="math inline">\(\Delta\)</span> das peças chama-se <em>bloco</em> se <span class="math inline">\(\Delta g=\Delta\)</span> ou <span class="math inline">\(\Delta g\cap \Delta=\emptyset\)</span>. Determine os blocos contidos nas órbitas de <span class="math inline">\(G\)</span>.</li>
+<li>Lembre que um subconjunto <span class="math inline">\(\Delta\)</span> das peças chama-se <em>bloco</em> se <span class="math inline">\(\Delta g=\Delta\)</span> ou <span class="math inline">\(\Delta g\cap \Delta=\emptyset\)</span> vale para todo <span class="math inline">\(g\in G\)</span>. Determine os blocos contidos nas órbitas de <span class="math inline">\(G\)</span>.</li>
 <li>Dê interpretação destes blocos.</li>
 </ol>
 <!--
@@ -516,7 +516,7 @@ gap> b2 := Blocks( G, orbs[2] );
 <div class="subproblem">
 <p>Finalmente nós vamos resolver o cubo usando um homomorfismo do grupo livre em <span class="math inline">\(G\)</span>. Seja <span class="math inline">\(\mathcal F\)</span> o grupo livre gerado pelos geradores <span class="math inline">\(C\)</span>, <span class="math inline">\(E\)</span>, <span class="math inline">\(F\)</span>, <span class="math inline">\(D\)</span>, <span class="math inline">\(T\)</span>, <span class="math inline">\(B\)</span>. Note que <span class="math inline">\(\mathcal F\)</span> é gerado por <span class="math inline">\(6\)</span> elementos e cada gerador de <span class="math inline">\(\mathcal F\)</span> corresponde a um gerador de <span class="math inline">\(G\)</span>. A propriedade universal do grupo livre implica que o mapa <span class="math display">\[
 C\mapsto c,\ E\mapsto e, F\mapsto f,\ D\mapsto d,\ T\mapsto t,\ B\mapsto b
-\]</span> pode ser estendido a um único homomorfismo <span class="math inline">\(f:\mathcal F\to G\)</span>. Se <span class="math inline">\(g\in G\)</span> e <span class="math inline">\(w\)</span> é uma pré-imagem de <span class="math inline">\(g\)</span>, então <span class="math inline">\(w\)</span> mostra como escrever <span class="math inline">\(g\)</span> em uma palavra nos geradores de <span class="math inline">\(G\)</span>. Ou seja, <span class="math inline">\(w\)</span> mostra como obter a configuração que corresponde ao elemento <span class="math inline">\(g\)</span> como uma sequência dos <span class="math inline">\(6\)</span> movimentos básicos.</p>
+\]</span> pode ser estendido a um único homomorfismo <span class="math inline">\(\varphi:\mathcal F\to G\)</span>. Se <span class="math inline">\(g\in G\)</span> e <span class="math inline">\(w\in\mathcal F\)</span> é uma pré-imagem de <span class="math inline">\(g\)</span>, então <span class="math inline">\(w\)</span> mostra como escrever <span class="math inline">\(g\)</span> em uma palavra nos geradores de <span class="math inline">\(G\)</span>. Ou seja, <span class="math inline">\(w\)</span> mostra como obter a configuração que corresponde ao elemento <span class="math inline">\(g\)</span> como uma sequência dos <span class="math inline">\(6\)</span> movimentos básicos.</p>
 <p>Ilustramos esta ideia com um exemplo simpes usando o grupo <span class="math inline">\(D_{10}\)</span>.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">a</span> <span class="op">:=</span> (<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)<span class="op">;</span> <span class="va">b</span> <span class="op">:=</span> (<span class="fl">2</span><span class="op">,</span><span class="fl">5</span>)(<span class="fl">3</span><span class="op">,</span><span class="fl">4</span>)<span class="op">;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">3</span><span class="op">,</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>)</span>
@@ -536,10 +536,10 @@ C\mapsto c,\ E\mapsto e, F\mapsto f,\ D\mapsto d,\ T\mapsto t,\ B\mapsto b
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
 <li>Construa o grupo <span class="math inline">\(\mathcal F\)</span> em cima em <code>GAP</code> usando <code>FreeGroup</code> (<a href="https://docs.gap-system.org/doc/ref/chap37.html#X8215999E835290F0">manual</a>).</li>
-<li>Construa o homomorfismo <span class="math inline">\(f\)</span> em cima usando <code>GroupHomomorphismByImages</code> (<a href="https://docs.gap-system.org/doc/ref/chap40.html#X7F348F497C813BE0">manual</a>).</li>
-<li>Considere a configuração do cubo na Tarefa 1. Construa a sequência dos movimentos que resulta nesta configuração.</li>
-<li>Considere uma configuração aleatória do cubo por escolhendo um elemento aleatório de <span class="math inline">\(G\)</span> (usando <code>Random( G )</code>). Construa a sequência dos movimentos que resulta nesta configuração aleatória.</li>
-<li>Usando um dos cubos disponibilizados por Igor, obtenha a configuração da Tarefa 1.</li>
+<li>Construa o homomorfismo <span class="math inline">\(\varphi\)</span> em cima usando <code>GroupHomomorphismByImages</code> (<a href="https://docs.gap-system.org/doc/ref/chap40.html#X7F348F497C813BE0">manual</a>).</li>
+<li>Considere a configuração do cubo na <a href="#sec-cube-interactive" class="quarto-xref"><span>Seção 11.2</span></a>. Construa a sequência dos movimentos que resulta nesta configuração.</li>
+<li>Considere uma configuração aleatória do cubo escolhendo um elemento aleatório de <span class="math inline">\(G\)</span> (usando <code>Random( G )</code>). Construa a sequência dos movimentos que resulta nesta configuração aleatória.</li>
+<li>Usando um dos cubos disponibilizados por Igor, obtenha a configuração da <a href="#sec-cube-interactive" class="quarto-xref"><span>Seção 11.2</span></a>.</li>
 </ol>
 </div>
 <!--
@@ -575,11 +575,14 @@ B^-1*T^-1*D^-2*C^-1*B^-2*F^-1
 <h2 data-number="11.6" class="anchored" data-anchor-id="tarefa-4"><span class="header-section-number">11.6</span> Tarefa 4</h2>
 <div class="subproblem">
 <ol type="1">
-<li>Verifique que <span class="math inline">\(G\)</span> pode ser gerado por 2 elementos. Dica: Pegue usando <code>Random( G )</code> dois elementos aliatórios em <span class="math inline">\(G\)</span> e verifique se o grupo gerado por eles coincide com <span class="math inline">\(G\)</span>.</li>
+<li>Verifique que <span class="math inline">\(G\)</span> pode ser gerado por 2 elementos.</li>
 <li>Ache um subconjunto minimal <span class="math inline">\(S\)</span> do conjunto <span class="math inline">\(\{c,e,f,d,t,b\}\)</span> de geradores tal que <span class="math inline">\(\left&lt;S\right&gt;=G\)</span>.</li>
-<li>Construa a configuração da Tarefa 1 usando apenas os movimentos do conjunto <span class="math inline">\(S\)</span> no item anterior.</li>
+<li>Construa a configuração da <a href="#sec-cube-interactive" class="quarto-xref"><span>Seção 11.2</span></a> usando apenas os movimentos do conjunto <span class="math inline">\(S\)</span> no item anterior.</li>
 <li>Seja <span class="math inline">\(C\)</span> o conjunto de 8 peças de canto (as peças que possuem 3 cores). O grupo <span class="math inline">\(G\)</span> age sobre o conjunto <span class="math inline">\(C\)</span>. Mostre que <span class="math inline">\(G\)</span> induz <span class="math inline">\(S_{8}\)</span> sobre o conjunto dessas peças. Similarmente, seja <span class="math inline">\(L\)</span> o conjunto das 12 peças laterias (as peças que possuem 2 cores). Mostre que <span class="math inline">\(G\)</span> induz <span class="math inline">\(S_{12}\)</span> sobre <span class="math inline">\(L\)</span>. (Isso explica os grupos <span class="math inline">\(A_8\)</span> e <span class="math inline">\(A_{12}\)</span> entre os fatores de composição de <span class="math inline">\(G\)</span>). Use <code>Action( G, conj, act )</code>(<a href="http://www.gap-system.org/Manuals/doc/ref/chap41.html#X85A8E93D786C3C9C">manual</a>).</li>
 </ol>
+</div>
+<div class="hint">
+<p>No item 1., pegue, usando <code>Random( G )</code>, dois elementos aleatórios em <span class="math inline">\(G\)</span> e verifique se o grupo gerado por eles coincide com <span class="math inline">\(G\)</span>.</p>
 </div>
 
 

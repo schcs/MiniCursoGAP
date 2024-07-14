@@ -396,7 +396,7 @@ f_4&amp;=-3y_1^2y_2^2+8y_0y_2^3+6y_1^3y_3-18y_0y_1y_2y_3+9y_0^2y_3^2.
 </section>
 <section id="a-teoria-atrás-da-computação-anterior" class="level2" data-number="17.3">
 <h2 data-number="17.3" class="anchored" data-anchor-id="a-teoria-atrás-da-computação-anterior"><span class="header-section-number">17.3</span> A teoria atrás da computação anterior</h2>
-<p>A computação anterior está baseada na seguinte teorema.</p>
+<p>A computação anterior está baseada no seguinte teorema.</p>
 <div id="thm-greobner" class="theorem">
 <p><span class="theorem-title"><strong>Teorema 17.1</strong></span> Usando a notação da <a href="#sec-groebner-problem" class="quarto-xref"><span>Seção 17.1</span></a>, seja <span class="math inline">\(\mathcal G\)</span> uma base de Groebner do ideal <span class="math display">\[
 I=(t_1-f_1,\ldots,t_k-f_k)
@@ -404,7 +404,7 @@ I=(t_1-f_1,\ldots,t_k-f_k)
 <ol type="1">
 <li><span class="math inline">\(f_1,\ldots,f_k\)</span> são algebricamente dependentes se e somente se existe <span class="math inline">\(h\in\mathcal G\cap \mathbb F[t_1,\ldots,t_k]\)</span>. Neste caso, <span class="math inline">\(h(f_1,\ldots,f_k)=0\)</span>.<br>
 </li>
-<li><span class="math inline">\(f_1\in\mathbb F[f_2,\ldots,f_k]\)</span> se e somente se <span class="math inline">\(\mathcal G\)</span> possui um elemento na forma <span class="math inline">\(h=t_1+h_1\)</span> onde <span class="math inline">\(h_1\in \mathbb F[t_2,\ldots,t_k]\)</span>. Neste caso, <span class="math inline">\(f=-h_1(f_2,\ldots,f_k)\)</span>.</li>
+<li><span class="math inline">\(f_1\in\mathbb F[f_2,\ldots,f_k]\)</span> se e somente se <span class="math inline">\(\mathcal G\)</span> possui um elemento na forma <span class="math inline">\(h=t_1-h_1\)</span> onde <span class="math inline">\(h_1\in \mathbb F[t_2,\ldots,t_k]\)</span>. Neste caso, <span class="math inline">\(f=h_1(f_2,\ldots,f_k)\)</span>.</li>
 </ol>
 </div>
 <p>A demonstração do Teorema não é muito difícil, ela dependa da Fórmula de Taylor para polinômios multivariáveis sobre anel arbitrário.</p>
@@ -423,12 +423,15 @@ f=-3y_0^2y_3+2y_0^2y_4+3y_0y_1y_2-2y_0y_1y_3+y_0y_2^2-y_1^3
 \]</span> está contido na subálgebra <span class="math inline">\(\mathbb Q[f_1,f_2,f_3,f_4]\)</span>. Se sim escreva <span class="math inline">\(f\)</span> na forma <span class="math inline">\(h(f_1,f_2,f_3,f_4)\)</span>.</li>
 </ol>
 </div>
+<div class="hint">
+<p>Se a computação demorar moito tempo, pode parar com <code>Ctrl-C</code> e expermimentar com <code>MonomialGrlexOrdering</code> em vez de <code>MonomialLexOrdering</code>.</p>
+</div>
 </section>
 <section id="tarefa-2" class="level2" data-number="17.5">
 <h2 data-number="17.5" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">17.5</span> Tarefa 2</h2>
 <div class="subproblem">
 <ol type="1">
-<li>Escreva uma função <code>is_alg_dependent( list )</code> que devolve um polinômio <code>h</code> tal que <span class="math inline">\(h(f_1,\ldots,f_k)=0\)</span> com <span class="math inline">\(f_1,\ldots,f_k\)</span> sendo oselmenentos na lista <code>list</code>. Se os polinômios da lista são algebricamente dependentes, a função deve devolver um polinômio não nulo. Caso contrário, a função deve devolver o polinômio nulo.</li>
+<li>Escreva uma função <code>is_alg_dependent( list )</code> que devolve um polinômio <code>h</code> tal que <span class="math inline">\(h(f_1,\ldots,f_k)=0\)</span> com <span class="math inline">\(f_1,\ldots,f_k\)</span> sendo os elmenentos na lista <code>list</code>. Se os polinômios da lista são algebricamente dependentes, a função deve devolver um polinômio não nulo. Caso contrário, a função deve devolver o polinômio nulo.</li>
 <li>Escreva uma função <code>is_member_of_subalgebra( f, list )</code> que decide se <span class="math inline">\(f\)</span> é membro da subálgebra gerada pelos polinômios em <code>list</code>. Caso afirmativo, a função deve devolver um polinômio <span class="math inline">\(h\)</span> tal que <span class="math inline">\(f=h(f_1,\ldots,f_k)\)</span> onde <span class="math inline">\(f_1,\ldots,f_k\)</span> são os elementos de <code>list</code>. Caso contrário, a função deve devolver <code>fail</code>.</li>
 </ol>
 </div>
