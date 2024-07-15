@@ -110,8 +110,6 @@ gap> IsAssociative( A );
 true
 gap> IsSimple( A );
 true
-gap> IsDivisionRing( A );
-false
 gap> L := LieAlgebra( A );
 <Lie algebra of dimension 4 over Rationals>
 gap> IsSimple( L );
@@ -125,18 +123,69 @@ gap> SemiSimpleType( L/Center( L ));
 gap> 
 ```
 
-Ou seja, a álgebra obtida é uma álgebra associativa simples, mas não é álgebra de divisão. A álgebra de Lie $L$ associada com esta álgebra não é simples, mas $L/Z(L)$ é simples de tipo A1; ou seja $L/Z(L)\cong\mathfrak{sl}_2(\mathbb Q)$. 
+Ou seja, a álgebra obtida é uma álgebra associativa simples. A álgebra de Lie $L$ associada com esta álgebra não é simples, mas $L/Z(L)$ é simples de tipo A1; ou seja $L/Z(L)\cong\mathfrak{sl}_2(\mathbb Q)$. 
+
+Vamos verificar que a álgebra $A$ é isomorfa à álgebra de matrizes $M_{2\times 2}(\mathbb Q)$.  A estratégia é achar um elemento $x\in A$ tal que o ideal à esquerda gerado por $x$ tem dimensão $2$. Isso permite definir um homomorfismo $A\to M_{2\times 2}(\mathbb Q)$. 
+
+```matlab
+gap> repeat x := Random( A ); until Dimension( LeftIdeal( A, [x] )) = 2;
+gap> I := LeftIdeal( A, [x] );
+<left ideal in <algebra of dimension 4 over Rationals>, (1 generator)>
+gap> B := Basis( I );
+Basis( <left ideal in <algebra of dimension 4 over Rationals>, (dimension 2)>, ... )
+gap> m1 := List( B, x->Coefficients( B, A.2*x  ));
+[ [ -1, 2 ], [ 0, 1 ] ]
+gap> m2 := List( B, x->Coefficients( B, A.3*x  ));
+[ [ 1, 0 ], [ 1, -1 ] ]
+gap> A0 := Algebra( Rationals, [m1,m2] );
+<algebra over Rationals, with 2 generators>
+gap> Dimension( A0 );
+4
+gap> A0 = FullMatrixAlgebra( Rationals, 2 );
+true
+gap> f := AlgebraHomomorphismByImages( A, A0, [A.2,A.3], [m1,m2] );
+[ v.2, v.3 ] -> [ [ [ -1, 2 ], [ 0, 1 ] ], [ [ 1, 0 ], [ 1, -1 ] ] ]
+gap> Kernel( f );
+<algebra of dimension 0 over Rationals>
+gap> Image( f ) = A0;
+true
+```
 :::
 
+<!--
+quaternion_algebra := function( F, a, b )
+  local T;
 
+  T := EmptySCTable( 4, Zero( F ));
+  SetEntrySCTable( T, 1, 1, [1,1] );
+  SetEntrySCTable( T, 1, 2, [1,2] );
+  SetEntrySCTable( T, 1, 3, [1,3] );
+  SetEntrySCTable( T, 1, 4, [1,4] );
+  SetEntrySCTable( T, 2, 1, [1,2] );
+  SetEntrySCTable( T, 2, 2, [a,1] );
+  SetEntrySCTable( T, 2, 3, [1,4] );
+  SetEntrySCTable( T, 2, 4, [a,3] );
+  SetEntrySCTable( T, 3, 1, [1,3] );
+  SetEntrySCTable( T, 3, 2, [-1,4] );
+  SetEntrySCTable( T, 3, 3, [b,1] );
+  SetEntrySCTable( T, 3, 4, [-b,2] );
+  SetEntrySCTable( T, 4, 1, [1,4] );
+  SetEntrySCTable( T, 4, 2, [-a,3] );
+  SetEntrySCTable( T, 4, 3, [b,2] );
+  SetEntrySCTable( T, 4, 4, [-a*b,1] );
+  return AlgebraByStructureConstants( F, T );
+  end;
+-->
 
 
 ## Tarefa 2
 
 :::{.subproblem}
 1. Escreva uma função `quaternion_algebra( F, a, b )` que devolve a álgebra de quatérnions $A_{a,b}$ sobre $\mathbb F$.
-2. Use a função `quaternion_algebra`  para construir várias álgebras sobre vários corpos. Verifique se as álgebras associativas e as álgebra de Lie associadas são simples. 
-1. Ache todos os valores $a,b\in\mathbb F_q$ para os quais $A_{a,b}$ sobre $\mathbb F_q$ é álgebra de divisão com $q\in\{3,5,9,25\}$.
+2. Use a função `quaternion_algebra`  para construir várias álgebras sobre vários corpos. Verifique se as álgebras associativas e as álgebra de Lie associadas são simples.
+3. Considere a álgebra $A_{-1,-1}$ sobre $\mathbb Q$. Tente construir um isomorfismo $A_{-1,-1}\to M_{2,2}(\mathbb Q)$. 
+<!--4. Ache valores $a,b\in\mathbb Q$ tais que $A_{a,b}$ é uma álgebra de divisão.
+5. Verifique se existem $a,b\in\mathbb F_q$ para os quais $A_{a,b}$ sobre $\mathbb F_q$ é álgebra de divisão com $q\in\{3,5,9,25\}$.-->
 :::
 
 

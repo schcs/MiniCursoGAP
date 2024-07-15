@@ -51,6 +51,7 @@ Para verificar um intervalo, pode usar `Filtered` como no exemplo anterior ou o 
 
 Este projeto foi inspirado pelo seguinte vídeo.
 
+{{< video https://youtu.be/uJtxlErlx0U?si=9UMP-f-plab_gj3B width="560" height="315" >}}
 
 <!--
 is_ew_interval := function( a, k )
