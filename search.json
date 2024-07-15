@@ -444,7 +444,7 @@
     "href": "collatz.html#a-conjetura-de-collatz",
     "title": "7  A conjetura de Collatz",
     "section": "",
-    "text": "Considere a seguinte função \\(f:\\N\\to \\N\\): \\[\n    f(n)=\\left\\{\\begin{array}{cc} n/2 & \\mbox{se $n$ for par;}\\\\\n    3n+1 & \\mbox{se $n$ for ímpar.}\\end{array}\\right.\n\\] A Conjetura de Collatz afirma que para todo \\(n\\in\\N\\), existe um número \\(k\\) tal que aplicando a função \\(f\\) consecutivamente \\(k\\) vezes em \\(n\\), o resultado vai ser igual a \\(1\\). Em outras palavras, para todo \\(n\\in\\mathbb N\\), existe algum \\(k\\geq 1\\) tais que \\(f^k(n)=1\\).",
+    "text": "Considere a seguinte função \\(f:\\N\\to \\N\\): \\[\n    f(n)=\\left\\{\\begin{array}{cc} n/2 & \\mbox{se $n$ for par;}\\\\\n    3n+1 & \\mbox{se $n$ for ímpar.}\\end{array}\\right.\n\\] A Conjetura de Collatz afirma que para todo \\(n\\in\\N\\), existe um número \\(k\\) tal que aplicando a função \\(f\\) consecutivamente \\(k\\) vezes em \\(n\\), o resultado vai ser igual a \\(1\\). Em outras palavras, para todo \\(n\\in\\mathbb N\\), existe algum \\(k\\geq 1\\) tais que \\(f^k(n)=1\\).\nA conjetura foi atacado por vários matemáticos sem sucesso. Terence Tao recentemente conseguiu melhorar significativamente os reslutados existentes.",
     "crumbs": [
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>A conjetura de Collatz</span>"
     ]
