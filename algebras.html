@@ -435,21 +435,65 @@ ZmodnZObj( 3, 12 )</code></pre>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSimple</span>( <span class="va">A</span> )<span class="op">;</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsDivisionRing</span>( <span class="va">A</span> )<span class="op">;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">L</span> <span class="op">:=</span> <span class="va">LieAlgebra</span>( <span class="va">A</span> )<span class="op">;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">Lie</span> <span class="va">algebra</span> <span class="va">of</span> <span class="va">dimension</span> <span class="fl">4</span> <span class="va">over</span> <span class="va">Rationals</span><span class="op">&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSimple</span>( <span class="va">L</span> )<span class="op">;</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Center</span>( <span class="va">L</span> )<span class="op">;</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">Lie</span> <span class="va">algebra</span> <span class="va">of</span> <span class="va">dimension</span> <span class="fl">1</span> <span class="va">over</span> <span class="va">Rationals</span><span class="op">&gt;</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSimple</span>( <span class="va">L</span><span class="op">/</span><span class="va">Center</span>( <span class="va">L</span> ))<span class="op">;</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SemiSimpleType</span>( <span class="va">L</span><span class="op">/</span><span class="va">Center</span>( <span class="va">L</span> ))<span class="op">;</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="st">"A1"</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ou seja, a álgebra obtida é uma álgebra associativa simples, mas não é álgebra de divisão. A álgebra de Lie <span class="math inline">\(L\)</span> associada com esta álgebra não é simples, mas <span class="math inline">\(L/Z(L)\)</span> é simples de tipo A1; ou seja <span class="math inline">\(L/Z(L)\cong\mathfrak{sl}_2(\mathbb Q)\)</span>.</p>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">L</span> <span class="op">:=</span> <span class="va">LieAlgebra</span>( <span class="va">A</span> )<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">Lie</span> <span class="va">algebra</span> <span class="va">of</span> <span class="va">dimension</span> <span class="fl">4</span> <span class="va">over</span> <span class="va">Rationals</span><span class="op">&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSimple</span>( <span class="va">L</span> )<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="va">false</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Center</span>( <span class="va">L</span> )<span class="op">;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">Lie</span> <span class="va">algebra</span> <span class="va">of</span> <span class="va">dimension</span> <span class="fl">1</span> <span class="va">over</span> <span class="va">Rationals</span><span class="op">&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">IsSimple</span>( <span class="va">L</span><span class="op">/</span><span class="va">Center</span>( <span class="va">L</span> ))<span class="op">;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">SemiSimpleType</span>( <span class="va">L</span><span class="op">/</span><span class="va">Center</span>( <span class="va">L</span> ))<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="st">"A1"</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> </span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ou seja, a álgebra obtida é uma álgebra associativa simples. A álgebra de Lie <span class="math inline">\(L\)</span> associada com esta álgebra não é simples, mas <span class="math inline">\(L/Z(L)\)</span> é simples de tipo A1; ou seja <span class="math inline">\(L/Z(L)\cong\mathfrak{sl}_2(\mathbb Q)\)</span>.</p>
+<p>Vamos verificar que a álgebra <span class="math inline">\(A\)</span> é isomorfa à álgebra de matrizes <span class="math inline">\(M_{2\times 2}(\mathbb Q)\)</span>. A estratégia é achar um elemento <span class="math inline">\(x\in A\)</span> tal que o ideal à esquerda gerado por <span class="math inline">\(x\)</span> tem dimensão <span class="math inline">\(2\)</span>. Isso permite definir um homomorfismo <span class="math inline">\(A\to M_{2\times 2}(\mathbb Q)\)</span>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode matlab code-with-copy"><code class="sourceCode matlab"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">repeat</span> <span class="va">x</span> <span class="op">:=</span> <span class="va">Random</span>( <span class="va">A</span> )<span class="op">;</span> <span class="va">until</span> <span class="va">Dimension</span>( <span class="va">LeftIdeal</span>( <span class="va">A</span><span class="op">,</span> [<span class="va">x</span>] )) <span class="op">=</span> <span class="fl">2</span><span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">I</span> <span class="op">:=</span> <span class="va">LeftIdeal</span>( <span class="va">A</span><span class="op">,</span> [<span class="va">x</span>] )<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">left</span> <span class="va">ideal</span> <span class="va">in</span> <span class="op">&lt;</span><span class="va">algebra</span> <span class="va">of</span> <span class="va">dimension</span> <span class="fl">4</span> <span class="va">over</span> <span class="va">Rationals</span><span class="op">&gt;,</span> (<span class="fl">1</span> <span class="va">generator</span>)<span class="op">&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">B</span> <span class="op">:=</span> <span class="va">Basis</span>( <span class="va">I</span> )<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="va">Basis</span>( <span class="op">&lt;</span><span class="va">left</span> <span class="va">ideal</span> <span class="va">in</span> <span class="op">&lt;</span><span class="va">algebra</span> <span class="va">of</span> <span class="va">dimension</span> <span class="fl">4</span> <span class="va">over</span> <span class="va">Rationals</span><span class="op">&gt;,</span> (<span class="va">dimension</span> <span class="fl">2</span>)<span class="op">&gt;,</span> <span class="op">...</span> )</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m1</span> <span class="op">:=</span> <span class="va">List</span>( <span class="va">B</span><span class="op">,</span> <span class="va">x</span><span class="op">-&gt;</span><span class="va">Coefficients</span>( <span class="va">B</span><span class="op">,</span> <span class="va">A</span><span class="fl">.2</span><span class="op">*</span><span class="va">x</span>  ))<span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>[ [ <span class="op">-</span><span class="fl">1</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">,</span> <span class="fl">1</span> ] ]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">m2</span> <span class="op">:=</span> <span class="va">List</span>( <span class="va">B</span><span class="op">,</span> <span class="va">x</span><span class="op">-&gt;</span><span class="va">Coefficients</span>( <span class="va">B</span><span class="op">,</span> <span class="va">A</span><span class="fl">.3</span><span class="op">*</span><span class="va">x</span>  ))<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>[ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span> ] ]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A0</span> <span class="op">:=</span> <span class="va">Algebra</span>( <span class="va">Rationals</span><span class="op">,</span> [<span class="va">m1</span><span class="op">,</span><span class="va">m2</span>] )<span class="op">;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">algebra</span> <span class="va">over</span> <span class="va">Rationals</span><span class="op">,</span> <span class="va">with</span> <span class="fl">2</span> <span class="va">generators</span><span class="op">&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Dimension</span>( <span class="va">A0</span> )<span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fl">4</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">A0</span> <span class="op">=</span> <span class="va">FullMatrixAlgebra</span>( <span class="va">Rationals</span><span class="op">,</span> <span class="fl">2</span> )<span class="op">;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">f</span> <span class="op">:=</span> <span class="va">AlgebraHomomorphismByImages</span>( <span class="va">A</span><span class="op">,</span> <span class="va">A0</span><span class="op">,</span> [<span class="va">A</span><span class="fl">.2</span><span class="op">,</span><span class="va">A</span><span class="fl">.3</span>]<span class="op">,</span> [<span class="va">m1</span><span class="op">,</span><span class="va">m2</span>] )<span class="op">;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>[ <span class="va">v</span><span class="fl">.2</span><span class="op">,</span> <span class="va">v</span><span class="fl">.3</span> ] <span class="op">-&gt;</span> [ [ [ <span class="op">-</span><span class="fl">1</span><span class="op">,</span> <span class="fl">2</span> ]<span class="op">,</span> [ <span class="fl">0</span><span class="op">,</span> <span class="fl">1</span> ] ]<span class="op">,</span> [ [ <span class="fl">1</span><span class="op">,</span> <span class="fl">0</span> ]<span class="op">,</span> [ <span class="fl">1</span><span class="op">,</span> <span class="op">-</span><span class="fl">1</span> ] ] ]</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Kernel</span>( <span class="va">f</span> )<span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span><span class="va">algebra</span> <span class="va">of</span> <span class="va">dimension</span> <span class="fl">0</span> <span class="va">over</span> <span class="va">Rationals</span><span class="op">&gt;</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="va">gap</span><span class="op">&gt;</span> <span class="va">Image</span>( <span class="va">f</span> ) <span class="op">=</span> <span class="va">A0</span><span class="op">;</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="va">true</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<!--
+quaternion_algebra := function( F, a, b )
+  local T;
+
+  T := EmptySCTable( 4, Zero( F ));
+  SetEntrySCTable( T, 1, 1, [1,1] );
+  SetEntrySCTable( T, 1, 2, [1,2] );
+  SetEntrySCTable( T, 1, 3, [1,3] );
+  SetEntrySCTable( T, 1, 4, [1,4] );
+  SetEntrySCTable( T, 2, 1, [1,2] );
+  SetEntrySCTable( T, 2, 2, [a,1] );
+  SetEntrySCTable( T, 2, 3, [1,4] );
+  SetEntrySCTable( T, 2, 4, [a,3] );
+  SetEntrySCTable( T, 3, 1, [1,3] );
+  SetEntrySCTable( T, 3, 2, [-1,4] );
+  SetEntrySCTable( T, 3, 3, [b,1] );
+  SetEntrySCTable( T, 3, 4, [-b,2] );
+  SetEntrySCTable( T, 4, 1, [1,4] );
+  SetEntrySCTable( T, 4, 2, [-a,3] );
+  SetEntrySCTable( T, 4, 3, [b,2] );
+  SetEntrySCTable( T, 4, 4, [-a*b,1] );
+  return AlgebraByStructureConstants( F, T );
+  end;
+-->
 </section>
 <section id="tarefa-2" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="tarefa-2"><span class="header-section-number">16.4</span> Tarefa 2</h2>
@@ -457,7 +501,8 @@ ZmodnZObj( 3, 12 )</code></pre>
 <ol type="1">
 <li>Escreva uma função <code>quaternion_algebra( F, a, b )</code> que devolve a álgebra de quatérnions <span class="math inline">\(A_{a,b}\)</span> sobre <span class="math inline">\(\mathbb F\)</span>.</li>
 <li>Use a função <code>quaternion_algebra</code> para construir várias álgebras sobre vários corpos. Verifique se as álgebras associativas e as álgebra de Lie associadas são simples.</li>
-<li>Ache todos os valores <span class="math inline">\(a,b\in\mathbb F_q\)</span> para os quais <span class="math inline">\(A_{a,b}\)</span> sobre <span class="math inline">\(\mathbb F_q\)</span> é álgebra de divisão com <span class="math inline">\(q\in\{3,5,9,25\}\)</span>.</li>
+<li>Considere a álgebra <span class="math inline">\(A_{-1,-1}\)</span> sobre <span class="math inline">\(\mathbb Q\)</span>. Tente construir um isomorfismo <span class="math inline">\(A_{-1,-1}\to M_{2,2}(\mathbb Q)\)</span>. <!--4. Ache valores $a,b\in\mathbb Q$ tais que $A_{a,b}$ é uma álgebra de divisão.
+5. Verifique se existem $a,b\in\mathbb F_q$ para os quais $A_{a,b}$ sobre $\mathbb F_q$ é álgebra de divisão com $q\in\{3,5,9,25\}$.--></li>
 </ol>
 </div>
 
