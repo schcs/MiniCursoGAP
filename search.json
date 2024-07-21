@@ -4,9 +4,9 @@
     "href": "index.html",
     "title": "Álgebra Computacional com GAP",
     "section": "",
-    "text": "MiniCursoGAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalharam individualmente ou em pares em vários pequenos projetos com o objetivo de explorar as várias funcionalidades do sistema computacional GAP. Os projetos representem vários níveis de habilidade matemática e computacional.\nEm caso de perguntas, dúvidas, sugestões, ou relatar problemas com os projetos, os autores podem ser contatados por email:",
+    "text": "O Minicurso GAP\nEste material foi preparado para o minicurso de Álgebra Computacional com GAP realizado na XXVII Escola de Álgebra em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalharam individualmente ou em pares em vários pequenos projetos com o objetivo de explorar as várias funcionalidades do sistema computacional GAP. Os projetos representem vários níveis de habilidade matemática e computacional.\nEm caso de perguntas, dúvidas, sugestões, ou relatar problemas com os projetos, os autores podem ser contatados por email:",
     "crumbs": [
-      "MiniCursoGAP"
+      "O Minicurso GAP"
     ]
   },
   {
@@ -16,7 +16,7 @@
     "section": "Os primeiros passos",
     "text": "Os primeiros passos\nA seguinte página foi criada para mostrar como iniciar o GAP no sistema Debian.\n\nRodar o sistema, criar, salvar e carregar arquivos",
     "crumbs": [
-      "MiniCursoGAP"
+      "O Minicurso GAP"
     ]
   },
   {
@@ -26,7 +26,7 @@
     "section": "Projetos para iniciantes",
     "text": "Projetos para iniciantes\nOs seguintes projetos são recomendados para participantes que têm pouca (ou nenhuma) experiência com sistemas computacionais e linguagens de programação.\n\nAritmética básica, variáveis, funções\nListas, matrizes, permutações\nO primeiro encontro com grupos\nA linguagem de programação",
     "crumbs": [
-      "MiniCursoGAP"
+      "O Minicurso GAP"
     ]
   },
   {
@@ -36,7 +36,7 @@
     "section": "Projetos elementares",
     "text": "Projetos elementares\nOs seguintes projetos são recomendados para participantes que têm experiência com sistemas computacionais e/ou linguagens de programação e gostariam de explorar alguns problemas envolvendo matemática básica (por exemplo aritmética modular).\n\nOs números de Erdős-Woods\nA Conjetura de Collatz\nNúmeros perfeitos, abundantes, e sequências alíquotas\nCriptografia RSA",
     "crumbs": [
-      "MiniCursoGAP"
+      "O Minicurso GAP"
     ]
   },
   {
@@ -46,7 +46,7 @@
     "section": "Projetos mais avançados",
     "text": "Projetos mais avançados\nOs seguintes projetos precisam de conhecimento da linguágem de programação e também algum conhecimento de álgebra abstrata, tais como grupos, anéis, álgebras, etc.\n\nComutadores de grupos\nGrupos livres, homomorfismos, Exploração do cubo mágico\nUma exploração dos centralizadores\nHomomorfismos, automorfismos, de grupos\nCarateres de um grupo e a ordem generalizada\nUm problema de geometria plana usando álgebra comutativa\nÁlgebras associativas\nDependência algébrica de polinômios\nTeoria de grafos",
     "crumbs": [
-      "MiniCursoGAP"
+      "O Minicurso GAP"
     ]
   },
   {
