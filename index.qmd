@@ -7,9 +7,12 @@ Em caso de perguntas, dúvidas, sugestões, ou relatar problemas com os projetos
 - [Csaba Schneider](http://schcs.github.io/WP) 
 - [Igor dos Santos Lima](https://mat.unb.br/index.php/pessoas/docentes/29-igor-dos-santos-lima)
 
-<!--
+## Os primeiros passos
+
+A seguinte página foi criada para mostrar como iniciar o `GAP` no sistema [Debian](https://www.debian.org/).
+
 - [Rodar o sistema, criar, salvar e carregar arquivos](rodar.qmd)
--->
+
 
 ## Projetos para iniciantes {.unnumbered}
 
