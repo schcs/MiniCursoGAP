@@ -10,6 +10,16 @@
     ]
   },
   {
+    "objectID": "index.html#os-primeiros-passos",
+    "href": "index.html#os-primeiros-passos",
+    "title": "Álgebra Computacional com GAP",
+    "section": "Os primeiros passos",
+    "text": "Os primeiros passos\nA seguinte página foi criada para mostrar como iniciar o GAP no sistema Debian.\n\nRodar o sistema, criar, salvar e carregar arquivos",
+    "crumbs": [
+      "MiniCursoGAP"
+    ]
+  },
+  {
     "objectID": "index.html#projetos-para-iniciantes",
     "href": "index.html#projetos-para-iniciantes",
     "title": "Álgebra Computacional com GAP",
