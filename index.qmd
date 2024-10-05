@@ -7,6 +7,19 @@ Em caso de perguntas, dúvidas, sugestões, ou relatar problemas com os projetos
 - [Csaba Schneider](http://schcs.github.io/WP) 
 - [Igor dos Santos Lima](https://mat.unb.br/index.php/pessoas/docentes/29-igor-dos-santos-lima)
 
+## Licença 
+
+[![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
+
+Material disponibilizado sob a licença
+[CC BY-SA 4.0][cc-by-sa].
+
+[![CC BY-SA 4.0][cc-by-sa-image]][cc-by-sa]
+
+[cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
+[cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
+[cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
+
 ## Os primeiros passos
 
 A seguinte página foi criada para mostrar como iniciar o `GAP` no sistema [Debian](https://www.debian.org/).
