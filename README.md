@@ -1,4 +1,4 @@
-Este material foi preparado para o minicurso de [*Álgebra Computacional com GAP*](https://www.https://schcs.github.io/MiniCursoGAP) realizado na [XXVII Escola de Álgebra](https://algebra2024.ime.usp.br/index.php) em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalharam individualmente ou em pares em vários pequenos projetos com o objetivo de explorar as várias funcionalidades do [sistema computacional `GAP`](www.gap-system.org). Os projetos representem vários níveis de habilidade matemática e computacional.
+Este material foi preparado para o minicurso de [*Álgebra Computacional com GAP*](schcs.github.io/MiniCursoGAP) realizado na [XXVII Escola de Álgebra](https://algebra2024.ime.usp.br/index.php) em São Paulo (2024). Durante as 5 sessões do minicurso, os participantes trabalharam individualmente ou em pares em vários pequenos projetos com o objetivo de explorar as várias funcionalidades do [sistema computacional `GAP`](www.gap-system.org). Os projetos representem vários níveis de habilidade matemática e computacional.
 
 
 
